@@ -45,6 +45,6 @@ def test_run_market_research_updates_state_and_report(tmp_path):
 def test_rank_opportunities_returns_sorted_results():
     ranked = module.rank_opportunities(ROOT)
     assert ranked
-    assert ranked[0]["symbol"] in {"NVDA", "AVGO", "KTOS", "ORCL", "SMCI"}
+    assert ranked[0]["symbol"] in {"NVDA", "AMD", "AVGO", "KTOS", "ORCL", "SMCI", "APP"}
     assert ranked[0]["score"] >= ranked[-1]["score"]
     assert all("score" in item for item in ranked)

@@ -7,6 +7,11 @@ from datetime import date
 from pathlib import Path
 from typing import Iterable
 
+try:
+    import yfinance as yf
+except Exception:  # pragma: no cover - optional dependency fallback
+    yf = None
+
 
 @dataclass
 class MarketSnapshot:
@@ -96,6 +101,29 @@ def _latest_macro_summary(root: Path) -> str:
     return "\n".join(lines[:8])
 
 
+def fetch_live_prices(symbols: list[str]) -> dict[str, dict]:
+    if not symbols or yf is None:
+        return {}
+
+    results: dict[str, dict] = {}
+    for symbol in symbols:
+        ticker = symbol.strip().upper()
+        if not ticker:
+            continue
+        try:
+            history = yf.Ticker(ticker).history(period="5d", interval="1d")
+            if history.empty:
+                continue
+
+            last_close = float(history["Close"].iloc[-1])
+            previous_close = float(history["Close"].iloc[-2]) if len(history) > 1 else last_close
+            change_pct = ((last_close - previous_close) / previous_close) * 100 if previous_close else 0.0
+            results[ticker] = {"price": last_close, "change_pct": change_pct}
+        except Exception:
+            continue
+    return results
+
+
 def _load_price_snapshot(root: Path, symbol: str) -> dict:
     data_dir = root / "data" / "stocks"
     for path in data_dir.glob(f"{symbol}.md"):
@@ -111,6 +139,7 @@ def rank_opportunities(root: str | Path, limit: int = 5) -> list[dict]:
     root_path = Path(root)
     watchlist = load_watchlist(root_path)
     summaries = _collect_stock_summaries(root_path)
+    live_prices = fetch_live_prices(watchlist)
 
     ranking: list[dict] = []
     for symbol in watchlist:
@@ -122,15 +151,20 @@ def rank_opportunities(root: str | Path, limit: int = 5) -> list[dict]:
         text = summary.summary.lower()
         theme_score = sum(8 for keyword in ["ai", "semiconductor", "cloud", "defense", "infrastructure", "software"] if keyword in text)
         catalyst_score = 10 if any(keyword in text for keyword in ["earnings", "guidance", "backlog", "demand", "expansion"]) else 0
-        price = _load_price_snapshot(root_path, symbol.upper())["price"]
+        price_data = live_prices.get(symbol.upper(), {})
+        price = price_data.get("price", _load_price_snapshot(root_path, symbol.upper())["price"])
+        momentum = price_data.get("change_pct", 0.0)
         price_score = 5 if price > 0 else 0
+        momentum_score = min(15, max(0, int(abs(momentum) * 5))) if price > 0 else 0
 
-        total = conviction_score + theme_score + catalyst_score + price_score
+        total = conviction_score + theme_score + catalyst_score + price_score + momentum_score
         ranking.append({
             "symbol": symbol.upper(),
             "score": total,
             "conviction": summary.conviction,
             "summary": summary.summary[:180],
+            "price": round(price, 2),
+            "momentum_pct": round(momentum, 2),
         })
 
     ranking.sort(key=lambda item: item["score"], reverse=True)
