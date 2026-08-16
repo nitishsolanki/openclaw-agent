@@ -1,0 +1,11 @@
+signals:
+  market_regime_weight: 0.10
+  sector_weight: 0.20
+  relative_strength_weight: 0.20
+  vwap_weight: 0.15
+  trend_weight: 0.10
+  volume_weight: 0.10
+  momentum_weight: 0.05
+  volatility_weight: 0.05
+  options_weight: 0.05
+
