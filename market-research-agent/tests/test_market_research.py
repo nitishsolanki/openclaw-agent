@@ -40,3 +40,11 @@ def test_run_market_research_updates_state_and_report(tmp_path):
     assert (out_dir / "last_run.json").exists()
     state = json.loads((out_dir / "last_run.json").read_text())
     assert state["status"] == "completed"
+
+
+def test_rank_opportunities_returns_sorted_results():
+    ranked = module.rank_opportunities(ROOT)
+    assert ranked
+    assert ranked[0]["symbol"] in {"NVDA", "AVGO", "KTOS", "ORCL", "SMCI"}
+    assert ranked[0]["score"] >= ranked[-1]["score"]
+    assert all("score" in item for item in ranked)

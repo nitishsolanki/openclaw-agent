@@ -15,6 +15,13 @@ class MarketSnapshot:
     conviction: str
 
 
+def _safe_float(value: str | None) -> float:
+    try:
+        return float(value or 0)
+    except (TypeError, ValueError):
+        return 0.0
+
+
 def load_watchlist(root: str | Path) -> list[str]:
     watchlist_path = Path(root) / "watchlist.txt"
     if not watchlist_path.exists():
@@ -89,11 +96,53 @@ def _latest_macro_summary(root: Path) -> str:
     return "\n".join(lines[:8])
 
 
+def _load_price_snapshot(root: Path, symbol: str) -> dict:
+    data_dir = root / "data" / "stocks"
+    for path in data_dir.glob(f"{symbol}.md"):
+        text = path.read_text(encoding="utf-8")
+        for line in text.splitlines():
+            if "$" in line and ("price" in line.lower() or "level" in line.lower()):
+                value = line.split("$")[-1].split()[0].strip(",")
+                return {"symbol": symbol, "price": _safe_float(value)}
+    return {"symbol": symbol, "price": 0.0}
+
+
+def rank_opportunities(root: str | Path, limit: int = 5) -> list[dict]:
+    root_path = Path(root)
+    watchlist = load_watchlist(root_path)
+    summaries = _collect_stock_summaries(root_path)
+
+    ranking: list[dict] = []
+    for symbol in watchlist:
+        summary = next((item for item in summaries if item.symbol == symbol.upper()), None)
+        if summary is None:
+            continue
+
+        conviction_score = {"High": 35, "Medium": 22, "Low": 10}.get(summary.conviction, 15)
+        text = summary.summary.lower()
+        theme_score = sum(8 for keyword in ["ai", "semiconductor", "cloud", "defense", "infrastructure", "software"] if keyword in text)
+        catalyst_score = 10 if any(keyword in text for keyword in ["earnings", "guidance", "backlog", "demand", "expansion"]) else 0
+        price = _load_price_snapshot(root_path, symbol.upper())["price"]
+        price_score = 5 if price > 0 else 0
+
+        total = conviction_score + theme_score + catalyst_score + price_score
+        ranking.append({
+            "symbol": symbol.upper(),
+            "score": total,
+            "conviction": summary.conviction,
+            "summary": summary.summary[:180],
+        })
+
+    ranking.sort(key=lambda item: item["score"], reverse=True)
+    return ranking[:limit]
+
+
 def build_daily_report(root: str | Path) -> str:
     root_path = Path(root)
     watchlist = load_watchlist(root_path)
     stock_summaries = _collect_stock_summaries(root_path)
     relevant_symbols = [item.symbol for item in stock_summaries][:8]
+    ranked = rank_opportunities(root_path, limit=5)
 
     headlines = _latest_news_summary(root_path)
     macro = _latest_macro_summary(root_path)
@@ -110,6 +159,11 @@ def build_daily_report(root: str | Path) -> str:
 
     if not watchlist_block:
         watchlist_block.append("- No watchlist items were loaded.")
+
+    ranked_lines = [
+        f"{index + 1}. {item['symbol']} — score {item['score']} ({item['conviction']} conviction)"
+        for index, item in enumerate(ranked)
+    ]
 
     report = f"""# Daily Market Research
 
@@ -132,11 +186,7 @@ def build_daily_report(root: str | Path) -> str:
 
 ## Highest Conviction Ideas
 
-1. NVDA — AI infrastructure and strong demand backdrop remain central to the market leadership thesis.
-2. AVGO — semiconductor and AI-capable compute demand should stay constructive for the group.
-3. KTOS — defense and mission-critical software exposure remain attractive in a multi-year backlog environment.
-4. ORCL — cloud and enterprise software demand continue to support durable expansion.
-5. SMCI — data-center infrastructure and AI server demand can sustain a positive setup if execution holds.
+{chr(10).join(ranked_lines)}
 
 ## Key Risks
 
@@ -166,6 +216,7 @@ def run_market_research(root: str | Path, output_dir: str | Path | None = None) 
         "status": "completed",
         "report": str(latest_path),
         "watchlist": load_watchlist(root_path),
+        "rankings": rank_opportunities(root_path),
         "notes": "Market research run completed using local market data and watchlist context.",
     }
 
