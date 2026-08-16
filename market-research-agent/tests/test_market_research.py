@@ -58,3 +58,9 @@ def test_extract_macro_and_sec_review():
     assert any("retail" in item.lower() for item in macro["highlights"])
     assert sec["status"] in {"no_fresh_filing", "verified"}
     assert "notes" in sec
+
+
+def test_fetch_live_news_returns_list_or_empty():
+    news = module.fetch_live_news(["NVDA", "AMD", "SMCI"])
+    assert isinstance(news, list)
+    assert all(isinstance(item, dict) for item in news)

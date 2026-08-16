@@ -8,6 +8,11 @@ from pathlib import Path
 from typing import Iterable
 
 try:
+    import requests
+except Exception:  # pragma: no cover - optional dependency fallback
+    requests = None
+
+try:
     import yfinance as yf
 except Exception:  # pragma: no cover - optional dependency fallback
     yf = None
@@ -146,6 +151,38 @@ def _latest_macro_summary(root: Path) -> str:
     return "\n".join(lines[:8])
 
 
+def fetch_live_news(symbols: list[str]) -> list[dict]:
+    if not symbols or requests is None:
+        return []
+
+    combined: list[dict] = []
+    for symbol in symbols:
+        ticker = symbol.strip().upper()
+        if not ticker:
+            continue
+        url = f"https://feeds.finance.yahoo.com/rss/2.0/headline?s={ticker}&region=US&lang=en-US"
+        try:
+            resp = requests.get(url, timeout=10)
+            if resp.status_code != 200:
+                continue
+            content = resp.text
+            if "<title>" not in content:
+                continue
+
+            titles = []
+            for part in content.split("<title>"):
+                if "</title>" in part:
+                    title = part.split("</title>")[0].strip()
+                    if title and title not in titles:
+                        titles.append(title)
+
+            for title in titles[:3]:
+                combined.append({"symbol": ticker, "title": title})
+        except Exception:
+            continue
+    return combined[:12]
+
+
 def fetch_live_prices(symbols: list[str]) -> dict[str, dict]:
     if not symbols or yf is None:
         return {}
@@ -225,7 +262,13 @@ def build_daily_report(root: str | Path) -> str:
     macro_snapshot = extract_macro_snapshot(root_path)
     sec_review = extract_sec_review(root_path)
 
-    headlines = _latest_news_summary(root_path)
+    live_news = fetch_live_news(watchlist[:8])
+    if live_news:
+        live_headlines = "\n".join(f"- {item['symbol']}: {item['title']}" for item in live_news[:5])
+    else:
+        live_headlines = _latest_news_summary(root_path)
+
+    headlines = live_headlines
     macro = _latest_macro_summary(root_path)
 
     watchlist_block = []
