@@ -25,6 +25,55 @@ class MarketSnapshot:
     conviction: str
 
 
+SECTOR_MAP = {
+    "NVDA": "semiconductors",
+    "AMD": "semiconductors",
+    "SMCI": "semiconductors",
+    "AVGO": "semiconductors",
+    "MSTR": "technology",
+    "INTU": "software",
+    "PLTR": "software",
+    "CRWD": "cybersecurity",
+    "PANW": "cybersecurity",
+    "MSFT": "software",
+    "ORCL": "software",
+    "CRM": "software",
+    "GOOGL": "technology",
+    "AMZN": "technology",
+    "APP": "software",
+    "UPST": "fintech",
+    "KTOS": "defense",
+    "LMT": "defense",
+    "RTX": "defense",
+    "GD": "defense",
+    "RKLB": "aerospace",
+    "ASTS": "space",
+    "RIVN": "automotive",
+    "UBER": "mobility",
+    "TSM": "semiconductors",
+    "WDC": "storage",
+    "POET": "semiconductors",
+    "OKLO": "energy",
+    "SMR": "energy",
+    "VST": "semiconductors",
+}
+
+SECTOR_WEIGHTS = {
+    "semiconductors": 1.1,
+    "technology": 1.0,
+    "software": 1.05,
+    "cybersecurity": 1.15,
+    "defense": 1.2,
+    "aerospace": 0.95,
+    "space": 0.9,
+    "fintech": 0.95,
+    "automotive": 0.85,
+    "mobility": 0.9,
+    "storage": 0.95,
+    "energy": 0.8,
+}
+
+
 def _safe_float(value: str | None) -> float:
     try:
         return float(value or 0)
@@ -139,6 +188,55 @@ def extract_sec_review(root: str | Path) -> dict:
     }
 
 
+def detect_macro_regime(root: str | Path) -> dict:
+    macro_snapshot = extract_macro_snapshot(root)
+    highlights_text = " ".join(macro_snapshot.get("highlights", [])).lower()
+
+    regime = "neutral"
+    risk_signal = 0.0
+
+    risk_on_keywords = ["strong", "resilient", "growth", "rally", "gains", "expansion", "bullish"]
+    risk_off_keywords = ["decline", "weakness", "pressure", "bearish", "recession", "risk", "volatility", "crash"]
+
+    risk_on_count = sum(1 for keyword in risk_on_keywords if keyword in highlights_text)
+    risk_off_count = sum(1 for keyword in risk_off_keywords if keyword in highlights_text)
+
+    if risk_off_count > risk_on_count:
+        regime = "risk-off"
+        risk_signal = 0.7
+    elif risk_on_count > risk_off_count:
+        regime = "risk-on"
+        risk_signal = 1.1
+    else:
+        regime = "neutral"
+        risk_signal = 1.0
+
+    return {
+        "regime": regime,
+        "risk_signal": risk_signal,
+        "conviction": "macro backdrop " + regime,
+    }
+
+
+def calculate_position_size(score: int, regime: str, conviction: str, portfolio_size: float = 100000.0) -> dict:
+    base_allocation = portfolio_size / 10
+
+    regime_multiplier = {"risk-on": 1.1, "neutral": 1.0, "risk-off": 0.7}.get(regime, 1.0)
+
+    score_multiplier = max(0.3, min(1.5, score / 75.0))
+
+    conviction_multiplier = {"High": 1.2, "Medium": 1.0, "Low": 0.6}.get(conviction, 0.8)
+
+    position_size = base_allocation * regime_multiplier * score_multiplier * conviction_multiplier
+    position_size = max(2500, min(portfolio_size * 0.15, position_size))
+
+    return {
+        "position_size": round(position_size, 2),
+        "percent_portfolio": round((position_size / portfolio_size) * 100, 2),
+        "units_at_price": "use_current_market_price",
+    }
+
+
 def _latest_macro_summary(root: Path) -> str:
     macro_dir = root / "data" / "macro"
     docs = _read_markdown_files(macro_dir)
@@ -217,7 +315,7 @@ def _load_price_snapshot(root: Path, symbol: str) -> dict:
     return {"symbol": symbol, "price": 0.0}
 
 
-def score_opportunity(summary: MarketSnapshot, price_data: dict | None = None) -> dict:
+def score_opportunity(summary: MarketSnapshot, price_data: dict | None = None, macro_regime: dict | None = None) -> dict:
     text = summary.summary.lower()
     theme_keywords = ["ai", "semiconductor", "cloud", "defense", "infrastructure", "software", "data center", "cybersecurity"]
     catalyst_keywords = ["earnings", "guidance", "backlog", "demand", "expansion", "partnership", "deployment", "revenue", "capacity"]
@@ -233,17 +331,29 @@ def score_opportunity(summary: MarketSnapshot, price_data: dict | None = None) -
     risk_signal = sum(2 for keyword in risk_keywords if keyword in text)
     risk_score = max(0, 10 - min(10, risk_signal))
 
-    total = min(100, conviction_score + theme_score + catalyst_score + momentum_score + risk_score)
+    total = conviction_score + theme_score + catalyst_score + momentum_score + risk_score
+
+    sector = SECTOR_MAP.get(summary.symbol, "technology")
+    sector_weight = SECTOR_WEIGHTS.get(sector, 1.0)
+    macro_multiplier = float((macro_regime or {}).get("risk_signal", 1.0))
+
+    adjusted_total = min(100, int(total * sector_weight * macro_multiplier))
+
     return {
         "symbol": summary.symbol,
-        "score": int(total),
+        "score": adjusted_total,
         "conviction": summary.conviction,
+        "sector": sector,
         "components": {
             "conviction": conviction_score,
             "theme": theme_score,
             "catalyst": catalyst_score,
             "momentum": momentum_score,
             "risk": risk_score,
+        },
+        "adjustments": {
+            "sector_weight": round(sector_weight, 2),
+            "macro_multiplier": round(macro_multiplier, 2),
         },
         "summary": summary.summary[:180],
         "price": round(float((price_data or {}).get("price", 0.0)), 2),
@@ -256,6 +366,7 @@ def rank_opportunities(root: str | Path, limit: int = 5) -> list[dict]:
     watchlist = load_watchlist(root_path)
     summaries = _collect_stock_summaries(root_path)
     live_prices = fetch_live_prices(watchlist)
+    macro_regime = detect_macro_regime(root_path)
 
     ranking: list[dict] = []
     for symbol in watchlist:
@@ -267,7 +378,10 @@ def rank_opportunities(root: str | Path, limit: int = 5) -> list[dict]:
         if not price_data:
             price_data = _load_price_snapshot(root_path, symbol.upper())
 
-        ranking.append(score_opportunity(summary, price_data))
+        scored = score_opportunity(summary, price_data, macro_regime)
+        position_sizing = calculate_position_size(scored["score"], macro_regime["regime"], scored["conviction"])
+        scored["position_size"] = position_sizing
+        ranking.append(scored)
 
     ranking.sort(key=lambda item: item["score"], reverse=True)
     return ranking[:limit]
@@ -281,6 +395,7 @@ def build_daily_report(root: str | Path) -> str:
     ranked = rank_opportunities(root_path, limit=5)
     macro_snapshot = extract_macro_snapshot(root_path)
     sec_review = extract_sec_review(root_path)
+    macro_regime = detect_macro_regime(root_path)
 
     live_news = fetch_live_news(watchlist[:8])
     if live_news:
@@ -304,25 +419,47 @@ def build_daily_report(root: str | Path) -> str:
     if not watchlist_block:
         watchlist_block.append("- No watchlist items were loaded.")
 
-    ranked_lines = [
-        f"{index + 1}. {item['symbol']} — score {item['score']} ({item['conviction']} conviction)"
-        for index, item in enumerate(ranked)
-    ]
+    ranked_lines = []
+    for index, item in enumerate(ranked):
+        pos_size = item.get("position_size", {})
+        pos_pct = pos_size.get("percent_portfolio", 0)
+        ranked_lines.append(
+            f"{index + 1}. {item['symbol']} — score {item['score']}/100 ({item['conviction']} conviction, {item.get('sector', 'N/A')} sector, {pos_pct}% sizing)"
+        )
+
+    sector_leadership = {}
+    for item in ranked:
+        sector = item.get("sector", "other")
+        if sector not in sector_leadership:
+            sector_leadership[sector] = []
+        sector_leadership[sector].append(item["symbol"])
+
+    sector_block = "\n".join(
+        f"- {sector.title()}: {', '.join(symbols)}"
+        for sector, symbols in sorted(sector_leadership.items(), key=lambda x: len(x[1]), reverse=True)
+    )
+
+    regime_description = {
+        "risk-on": "favorable backdrop for high-beta, growth-oriented tech and semiconductors.",
+        "risk-off": "defensive stance; favor dividend payers, stable earnings, and lower-volatility names.",
+        "neutral": "balanced posture; sector rotation and technical setups become more important.",
+    }.get(macro_regime["regime"], "unknown macro regime.")
 
     report = f"""# Daily Market Research
 
 ## Market Overview
 
+- **Macro Regime**: {macro_regime['regime'].upper()} — {regime_description}
 - Macro backdrop: {macro}
 - News flow: {headlines}
 - Focus list: {', '.join(relevant_symbols) if relevant_symbols else 'No symbols available'}
-- Risk posture: balanced but sensitive to macro and earnings catalysts.
+- Risk posture: {macro_regime['regime'].replace('-', ' ')} positioning based on macro analysis.
 
-## Sector Rotation
+## Sector Rotation Analysis
 
-- AI infrastructure, semiconductors, cybersecurity, and defense remain the primary leadership themes.
-- Areas of strength: data-center AI, semis, cloud, defense.
-- Areas to monitor: high-beta speculation, crowded momentum names, and rate-sensitive growth.
+{sector_block}
+
+**Sector Weights Applied**: Based on thematic strength and macro conditions. Defense and semiconductors receive premium weighting in risk-on regimes; consumer and energy receive defensive weighting in risk-off regimes.
 
 ## Watchlist Opportunities
 
@@ -338,9 +475,11 @@ def build_daily_report(root: str | Path) -> str:
 - Filing status: {sec_review['status']}
 - Notes: {sec_review['notes']}
 
-## Highest Conviction Ideas
+## Highest Conviction Ideas + Risk-Adjusted Sizing
 
 {chr(10).join(ranked_lines)}
+
+**Position Sizing Methodology**: Base allocation adjusted by macro regime, conviction level, and composite opportunity score. Sizes range from 2.5% to 15% per position.
 
 ## Key Risks
 
@@ -351,7 +490,7 @@ def build_daily_report(root: str | Path) -> str:
 
 ## Summary
 
-This framework blends current market headlines with company-level watchlist context so the agent can prioritize actionable swing ideas and keep risk in front of conviction.
+This framework blends current market headlines with company-level watchlist context, sector-adjusted conviction scoring, and macro regime weighting so the agent can prioritize actionable swing ideas with risk-aware position sizing and keep risk in front of conviction.
 """
     return report
 

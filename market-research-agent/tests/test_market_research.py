@@ -57,6 +57,18 @@ def test_score_model_uses_weighted_components_and_caps_total():
     assert scored["components"]["conviction"] >= 0
     assert scored["components"]["theme"] >= 0
     assert scored["components"]["risk"] >= 0
+    assert "sector" in scored
+    assert "adjustments" in scored
+
+
+def test_macro_regime_detection_and_position_sizing():
+    macro = module.detect_macro_regime(ROOT)
+    assert macro["regime"] in {"risk-on", "risk-off", "neutral"}
+    assert 0.5 <= macro["risk_signal"] <= 1.5
+
+    sizing = module.calculate_position_size(75, macro["regime"], "High")
+    assert 2500 <= sizing["position_size"] <= 15000
+    assert 0 <= sizing["percent_portfolio"] <= 15
 
 
 def test_extract_macro_and_sec_review():
