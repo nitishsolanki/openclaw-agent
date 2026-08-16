@@ -48,3 +48,13 @@ def test_rank_opportunities_returns_sorted_results():
     assert ranked[0]["symbol"] in {"NVDA", "AMD", "AVGO", "KTOS", "ORCL", "SMCI", "APP"}
     assert ranked[0]["score"] >= ranked[-1]["score"]
     assert all("score" in item for item in ranked)
+
+
+def test_extract_macro_and_sec_review():
+    macro = module.extract_macro_snapshot(ROOT)
+    sec = module.extract_sec_review(ROOT)
+
+    assert macro["highlights"]
+    assert any("retail" in item.lower() for item in macro["highlights"])
+    assert sec["status"] in {"no_fresh_filing", "verified"}
+    assert "notes" in sec

@@ -89,6 +89,51 @@ def _latest_news_summary(root: Path) -> str:
     return "\n".join(summary_lines[:8])
 
 
+def extract_macro_snapshot(root: str | Path) -> dict:
+    root_path = Path(root)
+    macro_dir = root_path / "data" / "macro"
+    docs = _read_markdown_files(macro_dir)
+    if not docs:
+        return {"highlights": ["Macro data is currently unavailable."], "status": "missing"}
+
+    highlights: list[str] = []
+    for doc in docs[-2:]:
+        for line in doc.splitlines():
+            text = line.strip()
+            if not text or text.startswith("#") or text.startswith("Sources:"):
+                continue
+            highlights.append(text)
+
+    return {
+        "highlights": highlights[:8],
+        "status": "available",
+        "source_files": sorted(str(path.name) for path in macro_dir.glob("*.md"))[-2:],
+    }
+
+
+def extract_sec_review(root: str | Path) -> dict:
+    root_path = Path(root)
+    filings_dir = root_path / "data" / "sec-filings"
+    files = sorted(filings_dir.glob("*.md"))
+    if not files:
+        return {"status": "missing", "notes": "No SEC filings were available for review."}
+
+    latest = files[-1].read_text(encoding="utf-8")
+    text = latest.lower()
+    if "no fresh ticker-specific sec filing" in text or "no fresh" in text:
+        return {
+            "status": "no_fresh_filing",
+            "notes": "No fresh ticker-specific SEC filing was independently verified in the current collection window.",
+            "source": files[-1].name,
+        }
+
+    return {
+        "status": "verified",
+        "notes": "Recent filing review available for the watchlist.",
+        "source": files[-1].name,
+    }
+
+
 def _latest_macro_summary(root: Path) -> str:
     macro_dir = root / "data" / "macro"
     docs = _read_markdown_files(macro_dir)
@@ -177,6 +222,8 @@ def build_daily_report(root: str | Path) -> str:
     stock_summaries = _collect_stock_summaries(root_path)
     relevant_symbols = [item.symbol for item in stock_summaries][:8]
     ranked = rank_opportunities(root_path, limit=5)
+    macro_snapshot = extract_macro_snapshot(root_path)
+    sec_review = extract_sec_review(root_path)
 
     headlines = _latest_news_summary(root_path)
     macro = _latest_macro_summary(root_path)
@@ -217,6 +264,16 @@ def build_daily_report(root: str | Path) -> str:
 ## Watchlist Opportunities
 
 {chr(10).join(watchlist_block)}
+
+## Macro Snapshot
+
+- Macro status: {macro_snapshot['status']}
+- {chr(10).join(f'- {item}' for item in macro_snapshot['highlights'][:4])}
+
+## SEC Review
+
+- Filing status: {sec_review['status']}
+- Notes: {sec_review['notes']}
 
 ## Highest Conviction Ideas
 
