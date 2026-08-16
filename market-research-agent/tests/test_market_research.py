@@ -50,6 +50,15 @@ def test_rank_opportunities_returns_sorted_results():
     assert all("score" in item for item in ranked)
 
 
+def test_score_model_uses_weighted_components_and_caps_total():
+    scored = module.score_opportunity(module._collect_stock_summaries(ROOT)[0], {"price": 100.0, "change_pct": 5.2})
+    assert 0 <= scored["score"] <= 100
+    assert set(scored["components"]) >= {"conviction", "theme", "catalyst", "momentum", "risk"}
+    assert scored["components"]["conviction"] >= 0
+    assert scored["components"]["theme"] >= 0
+    assert scored["components"]["risk"] >= 0
+
+
 def test_extract_macro_and_sec_review():
     macro = module.extract_macro_snapshot(ROOT)
     sec = module.extract_sec_review(ROOT)

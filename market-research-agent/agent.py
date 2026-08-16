@@ -217,6 +217,40 @@ def _load_price_snapshot(root: Path, symbol: str) -> dict:
     return {"symbol": symbol, "price": 0.0}
 
 
+def score_opportunity(summary: MarketSnapshot, price_data: dict | None = None) -> dict:
+    text = summary.summary.lower()
+    theme_keywords = ["ai", "semiconductor", "cloud", "defense", "infrastructure", "software", "data center", "cybersecurity"]
+    catalyst_keywords = ["earnings", "guidance", "backlog", "demand", "expansion", "partnership", "deployment", "revenue", "capacity"]
+    risk_keywords = ["valuation", "risk", "cyclicality", "execution", "concentration", "regulatory", "competition", "debt", "volatility"]
+
+    conviction_score = {"High": 35, "Medium": 22, "Low": 10}.get(summary.conviction, 15)
+    theme_score = min(20, sum(4 for keyword in theme_keywords if keyword in text))
+    catalyst_score = min(20, sum(5 for keyword in catalyst_keywords if keyword in text))
+
+    momentum = float((price_data or {}).get("change_pct", 0.0))
+    momentum_score = min(15, max(0, int(abs(momentum) * 3)))
+
+    risk_signal = sum(2 for keyword in risk_keywords if keyword in text)
+    risk_score = max(0, 10 - min(10, risk_signal))
+
+    total = min(100, conviction_score + theme_score + catalyst_score + momentum_score + risk_score)
+    return {
+        "symbol": summary.symbol,
+        "score": int(total),
+        "conviction": summary.conviction,
+        "components": {
+            "conviction": conviction_score,
+            "theme": theme_score,
+            "catalyst": catalyst_score,
+            "momentum": momentum_score,
+            "risk": risk_score,
+        },
+        "summary": summary.summary[:180],
+        "price": round(float((price_data or {}).get("price", 0.0)), 2),
+        "momentum_pct": round(momentum, 2),
+    }
+
+
 def rank_opportunities(root: str | Path, limit: int = 5) -> list[dict]:
     root_path = Path(root)
     watchlist = load_watchlist(root_path)
@@ -229,25 +263,11 @@ def rank_opportunities(root: str | Path, limit: int = 5) -> list[dict]:
         if summary is None:
             continue
 
-        conviction_score = {"High": 35, "Medium": 22, "Low": 10}.get(summary.conviction, 15)
-        text = summary.summary.lower()
-        theme_score = sum(8 for keyword in ["ai", "semiconductor", "cloud", "defense", "infrastructure", "software"] if keyword in text)
-        catalyst_score = 10 if any(keyword in text for keyword in ["earnings", "guidance", "backlog", "demand", "expansion"]) else 0
         price_data = live_prices.get(symbol.upper(), {})
-        price = price_data.get("price", _load_price_snapshot(root_path, symbol.upper())["price"])
-        momentum = price_data.get("change_pct", 0.0)
-        price_score = 5 if price > 0 else 0
-        momentum_score = min(15, max(0, int(abs(momentum) * 5))) if price > 0 else 0
+        if not price_data:
+            price_data = _load_price_snapshot(root_path, symbol.upper())
 
-        total = conviction_score + theme_score + catalyst_score + price_score + momentum_score
-        ranking.append({
-            "symbol": symbol.upper(),
-            "score": total,
-            "conviction": summary.conviction,
-            "summary": summary.summary[:180],
-            "price": round(price, 2),
-            "momentum_pct": round(momentum, 2),
-        })
+        ranking.append(score_opportunity(summary, price_data))
 
     ranking.sort(key=lambda item: item["score"], reverse=True)
     return ranking[:limit]
