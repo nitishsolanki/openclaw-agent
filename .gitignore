@@ -1,0 +1,39 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+**/.venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytype/ 
+
+# Editor / local machine state
+.vscode/
+.openclaw/
+**/.DS_Store
+
+# Local environment secrets
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.crt
+*.cer
+*.token
+secrets.*
+
+# Local project state and generated output
+memory/
+reports/
+market-research-agent/reports/
+market-research-agent/state/
+openclaw-workspace-state.json
+
+# Optional: keep only source code public if you want a cleaner repo
+# market-research-agent/data/
+# market-research-agent/cache/
+# market-research-agent/data/reports/
