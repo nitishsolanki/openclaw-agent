@@ -1,0 +1,20 @@
+watchlist: watchlist.txt
+
+report:
+  max_words: 2000
+
+cache_days: 30
+
+timezone: America/Chicago
+
+market_open: "08:30"
+
+sources:
+  news:
+    - Reuters
+    - CNBC
+    - Bloomberg
+    - Yahoo Finance
+
+rankings:
+  max_results: 10
