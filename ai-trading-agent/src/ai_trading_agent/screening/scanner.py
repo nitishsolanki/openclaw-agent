@@ -16,7 +16,7 @@ def _bounded(value: float) -> float:
     return max(0.0, min(100.0, value))
 
 def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
-                    weights: dict[str, float]) -> TradeSignal:
+                    weights: dict[str, float], market_score: float = 50.0) -> TradeSignal:
     bars = candidate.bars
     close = bars["close"]
     ema20 = close.ewm(span=20, adjust=False).mean().iloc[-1]
@@ -29,14 +29,13 @@ def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
     volume_score = _bounded(vwap["volume_ratio"] * 50)
     momentum = _bounded(50 + (close.iloc[-1] / close.iloc[-6] - 1) * 500) if len(close) > 6 else 50.0
     components = {
-        "market": 50.0, "sector": candidate.sector_score,
+        "market": market_score, "sector": candidate.sector_score,
         "relative_strength": rs_score, "vwap": vwap_score, "trend": trend,
         "volume": volume_score, "momentum": momentum, "volatility": 50.0, "options": 50.0,
     }
     return score_signal(candidate.symbol, components, weights)
 
 def scan(candidates: list[Candidate], benchmark_close: pd.Series,
-         weights: dict[str, float], limit: int = 10) -> list[TradeSignal]:
-    return sorted((score_candidate(candidate, benchmark_close, weights) for candidate in candidates),
+         weights: dict[str, float], limit: int = 10, market_score: float = 50.0) -> list[TradeSignal]:
+    return sorted((score_candidate(candidate, benchmark_close, weights, market_score) for candidate in candidates),
                   key=lambda signal: signal.final_score, reverse=True)[:limit]
-

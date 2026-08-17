@@ -1,0 +1,13 @@
+sectors:
+  Technology: XLK
+  Financials: XLF
+  Energy: XLE
+  Healthcare: XLV
+  Industrials: XLI
+  Consumer Discretionary: XLY
+  Consumer Staples: XLP
+  Utilities: XLU
+  Materials: XLB
+  Real Estate: XLRE
+  Communication Services: XLC
+

@@ -9,3 +9,24 @@ This package is signal-only: it does not connect to a broker or place orders.
 python -m pytest
 ```
 
+## Run the offline scanner
+
+Install the package in editable mode, then run:
+
+```bash
+python -m pip install -e .
+python -m ai_trading_agent scan
+```
+
+The command uses `data/sample/`, prints ranked signal candidates, and writes
+signals to `trading.db`. It does not place orders.
+
+## Optional API
+
+```bash
+python -m pip install -e ".[api]"
+uvicorn ai_trading_agent.api.routes:create_app --factory --port 8000
+```
+
+Available endpoints are `/health` and `/scan`. The default execution policy is
+`signal_only`; no endpoint places orders.
