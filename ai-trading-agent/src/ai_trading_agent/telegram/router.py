@@ -1,4 +1,4 @@
-COMMANDS = {"scan": "GET /scan", "positions": "GET /paper/orders", "status": "GET /health",
+COMMANDS = {"scan": "GET /scan", "sectors": "GET /sectors", "positions": "GET /paper/orders", "status": "GET /health",
             "orders": "GET /paper/orders", "pnl": "GET /paper/orders", "journal": "GET /paper/orders"}
 
 def route_command(text: str) -> str:
