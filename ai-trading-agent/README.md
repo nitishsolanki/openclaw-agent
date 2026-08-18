@@ -51,6 +51,13 @@ This package is signal-only: it does not connect to a broker or place orders.
 - Paper-validation runner that accumulates results without fabricating trades.
 - Weekly sector-rotation theme refresh with SQLite history and fallback behavior.
 - Active weekly theme filtering in scanner output.
+- Configurable $100 paper-allocation cap foundation with deterministic risk enforcement.
+- Paper session controller for capped entries, open positions, exits, and rotation decisions.
+- Scheduled local paper autotrader for risk-approved signal entries with SQLite persistence.
+- Persistent paper-position exit monitoring for stops, targets, VWAP, and EMA invalidation.
+- Weekday paper checks scheduled at 9:35 AM and 2:00 PM local time.
+- Rotating SQLite-backed universe batches so scheduled scans progress through all cached assets.
+- Options-chain confirmation is applied to the top technical candidates when available.
 - Automated test suite with 20 passing tests.
 
 ### Pending

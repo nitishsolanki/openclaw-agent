@@ -18,3 +18,14 @@ def cached_symbols(connection: sqlite3.Connection, limit: int | None = None) -> 
     if limit: query += f" LIMIT {int(limit)}"
     return [row[0] for row in connection.execute(query)]
 
+def next_batch(connection: sqlite3.Connection, batch_size: int = 100) -> list[str]:
+    symbols = cached_symbols(connection)
+    if not symbols:
+        return []
+    connection.execute("CREATE TABLE IF NOT EXISTS scan_state(key TEXT PRIMARY KEY, value INTEGER NOT NULL)")
+    row = connection.execute("SELECT value FROM scan_state WHERE key='cursor'").fetchone()
+    cursor = int(row[0]) if row else 0
+    batch = [symbols[(cursor + offset) % len(symbols)] for offset in range(min(batch_size, len(symbols)))]
+    connection.execute("INSERT OR REPLACE INTO scan_state(key,value) VALUES ('cursor',?)", ((cursor + len(batch)) % len(symbols),))
+    connection.commit()
+    return batch

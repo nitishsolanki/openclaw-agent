@@ -59,6 +59,19 @@ class AlpacaPaperBroker:
                                     limit_price=limit_price)
         return self._get_client().submit_order(request)
 
+    def submit_sell(self, symbol: str, quantity: int, limit_price: float):
+        if quantity < 1 or limit_price <= 0:
+            raise ValueError("invalid paper sell parameters")
+        try:
+            from alpaca.trading.enums import OrderSide, TimeInForce, OrderType
+            from alpaca.trading.requests import LimitOrderRequest
+        except ImportError as exc:
+            raise RuntimeError("Install alpaca-py to submit paper orders") from exc
+        request = LimitOrderRequest(symbol=symbol.upper(), qty=quantity, side=OrderSide.SELL,
+                                    type=OrderType.LIMIT, time_in_force=TimeInForce.DAY,
+                                    limit_price=limit_price)
+        return self._get_client().submit_order(request)
+
     def cancel_all(self):
         return self._get_client().cancel_orders()
 

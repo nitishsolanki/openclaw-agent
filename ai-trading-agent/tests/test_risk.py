@@ -16,3 +16,8 @@ def test_portfolio_limits_are_rejected():
                             open_positions=8, limits=RiskLimits())
     assert not result.approved
 
+def test_paper_allocation_cap_limits_position_size():
+    limits = RiskLimits(paper_allocation_cap=100)
+    result = validate_trade(TradeSetup("ABC", 5, 4.5, 6, "Technology"), 100_000, limits=limits)
+    assert result.shares == 1
+    assert result.dollar_risk == 0.5

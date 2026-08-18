@@ -29,6 +29,9 @@ class FinnhubProvider:
         end = end or date.today(); start = start or end
         return self._get("/calendar/earnings", **{"from": start.isoformat(), "to": end.isoformat()})
 
+    def profile(self, symbol: str) -> dict:
+        return self._get("/stock/profile2", symbol=symbol.upper())
+
 @dataclass(frozen=True)
 class PolygonProvider:
     api_key: str
@@ -39,4 +42,3 @@ class PolygonProvider:
                                   params={"ticker": symbol.upper(), "limit": limit, "apiKey": self.api_key}, timeout=20)
         response.raise_for_status()
         return response.json()
-

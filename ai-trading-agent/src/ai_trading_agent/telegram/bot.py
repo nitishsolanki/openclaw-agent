@@ -10,6 +10,8 @@ def format_response(endpoint: str, payload: dict) -> str:
             lines.append(f"   RS {components.get('relative_strength', 0):.1f} | VWAP {components.get('vwap', 0):.1f} | Volume {components.get('volume', 0):.1f}")
         return "\n".join(lines)[:4000]
     if endpoint.startswith("/analyze/"):
+        if "error" in payload:
+            return f"ANALYSIS ERROR\n{payload['error']}"
         symbol = payload.get("symbol", endpoint.rsplit("/", 1)[-1])
         return f"ANALYSIS — {symbol}\nScore: {payload.get('score', 0):.2f}/100\nDirection: {payload.get('direction', 'UNKNOWN')}\n\nComponents:\n" + "\n".join(f"• {key}: {value:.1f}" for key, value in payload.get("components", {}).items())
     if endpoint.startswith("/setup/"):

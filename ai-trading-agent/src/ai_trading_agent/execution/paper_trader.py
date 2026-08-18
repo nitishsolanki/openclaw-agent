@@ -31,17 +31,25 @@ class PaperTrader:
                           setup.stop, setup.target, "open")
 
     def close(self, order_id: int, exit_price: float) -> float:
+        return self.close_quantity(order_id, exit_price)
+
+    def close_quantity(self, order_id: int, exit_price: float, quantity: int | None = None) -> float:
         row = self.connection.execute(
             "SELECT quantity,entry_price,status FROM trades WHERE id=?", (order_id,)).fetchone()
         if row is None:
             raise KeyError(f"unknown paper order {order_id}")
-        quantity, entry, status = row
+        current_quantity, entry, status = row
         if status != "open":
             raise ValueError("paper order is not open")
+        quantity = quantity or current_quantity
+        if quantity < 1 or quantity > current_quantity:
+            raise ValueError("invalid close quantity")
         pnl = round((exit_price - entry) * quantity, 2)
+        remaining = current_quantity - quantity
         self.connection.execute(
-            "UPDATE trades SET exit_price=?,status='closed',realized_pnl=?,closed_at=CURRENT_TIMESTAMP WHERE id=?",
-            (exit_price, pnl, order_id))
+            "UPDATE trades SET quantity=?,exit_price=?,status=?,realized_pnl=COALESCE(realized_pnl,0)+?,closed_at=? WHERE id=?",
+            (remaining, exit_price, "closed" if remaining == 0 else "open", pnl,
+             "CURRENT_TIMESTAMP" if remaining == 0 else None, order_id))
         self.connection.commit()
         return pnl
 
@@ -50,4 +58,3 @@ class PaperTrader:
             "SELECT id,symbol,quantity,entry_price,stop_price,target_price,status FROM trades WHERE status='open'"
         ).fetchall()
         return [PaperOrder(*row) for row in rows]
-

@@ -8,6 +8,7 @@ class RiskLimits:
     max_daily_loss_percent: float = 0.02
     max_open_positions: int = 8
     minimum_rr: float = 2.0
+    paper_allocation_cap: float | None = None
 
 @dataclass(frozen=True)
 class TradeSetup:
@@ -40,15 +41,15 @@ def validate_trade(setup: TradeSetup, account_value: float, current_sector_expos
         reasons.append(f"risk/reward {rr:.2f} is below minimum {limits.minimum_rr:.2f}")
     if open_positions >= limits.max_open_positions:
         reasons.append("maximum open positions reached")
-    if daily_loss >= account_value * limits.max_daily_loss_percent:
+    effective_account = min(account_value, limits.paper_allocation_cap) if limits.paper_allocation_cap else account_value
+    if daily_loss >= effective_account * limits.max_daily_loss_percent:
         reasons.append("maximum daily loss reached")
-    risk_budget = account_value * limits.risk_per_trade
-    position_cap = account_value * limits.max_position_percent
-    sector_room = max(0.0, account_value * limits.max_sector_percent - current_sector_exposure)
+    risk_budget = effective_account * limits.risk_per_trade
+    position_cap = effective_account * limits.max_position_percent
+    sector_room = max(0.0, effective_account * limits.max_sector_percent - current_sector_exposure)
     shares = int(min(risk_budget / per_share if per_share else 0, position_cap / setup.entry,
                      sector_room / setup.entry if setup.entry else 0))
     dollar_risk = round(shares * per_share, 2)
     if shares < 1:
         reasons.append("calculated position size is less than one share")
     return RiskDecision(not reasons, shares, dollar_risk, round(rr, 2), tuple(reasons))
-

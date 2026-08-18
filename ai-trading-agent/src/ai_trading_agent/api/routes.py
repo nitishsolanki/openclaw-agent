@@ -33,7 +33,27 @@ def create_app(root: str | Path = ".") -> FastAPI:
         results = {item.symbol: item for item in run_scan(root_path)}
         item = results.get(symbol.upper())
         if item is None:
-            return {"error": "symbol not in current universe"}
+            from ..config.env import load_env
+            from ..config.settings import load_strategy
+            from ..data.market_data import AlpacaMarketData
+            from ..market.regime import detect_regime
+            from ..screening.scanner import Candidate, score_candidate
+            from ..signals.enrichment import news_confirmation
+            env = load_env(root_path / "local.env")
+            if not env.get("ALPACA_API_KEY") or not env.get("ALPACA_SECRET_KEY"):
+                return {"error": f"{symbol.upper()} is unavailable in offline data"}
+            provider = AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
+            try:
+                bars = provider.get_bars(symbol.upper())
+                benchmark = provider.get_bars("SPY")
+                config = load_strategy(root_path / "config" / "strategy.yaml")
+                item = score_candidate(Candidate(symbol.upper(), "Unknown", bars, 50.0), benchmark["close"],
+                                       config["weights"], detect_regime(benchmark).score)
+            except Exception as exc:
+                return {"error": f"Unable to analyze {symbol.upper()}: {type(exc).__name__}"}
+        if hasattr(item, "final_score"):
+            return {"symbol": item.symbol, "direction": item.direction,
+                    "score": item.final_score, "components": item.components}
         return {"symbol": item.symbol, "direction": item.direction,
                 "score": item.final_score, "components": item.components}
 
