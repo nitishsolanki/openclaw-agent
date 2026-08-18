@@ -1,0 +1,9 @@
+# Local credentials and runtime state
+local.env
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+trading.db
+
