@@ -32,26 +32,34 @@ This package is signal-only: it does not connect to a broker or place orders.
   - Minimum risk/reward validation.
 - SQLite signal journal and initial trade schema.
 - Execution policy gate with `disabled`, `signal_only`, `paper`, and `live` modes.
-- Read-only FastAPI endpoints: `/health`, `/scan`, and `/paper/orders`.
+- Read-only FastAPI endpoints: `/health`, `/scan`, `/sectors`, `/analyze/{symbol}`,
+  `/setup/{symbol}`, and `/paper/orders`.
 - Local paper-trading simulator with risk-gated order creation, fills, exits,
   P&L calculation, and SQLite persistence.
 - Basic portfolio performance analytics and moving-average backtesting.
 - OpenClaw trading-agent skill instructions and paper-order API endpoint.
 - `.env.example` with signal-only defaults.
 - Local `local.env` loading plus paper-only Alpaca and Telegram routing adapters.
+- Telegram bot factory and Alpaca paper-order/cancel methods (not auto-started).
+- Read-only Finnhub earnings/news and Polygon/Massive news adapters.
+- Transparent news-confirmation and upcoming-earnings risk scoring helpers.
+- Stock-universe price/liquidity filtering.
+- `/analyze/{symbol}` and `/setup/{symbol}` API response generation.
+- Broker reconciliation helpers and walk-forward/slippage validation tools.
+- Dockerfile and Docker Compose deployment support.
+- Alpaca options snapshot adapter and neutral-safe options confirmation score.
+- Paper-validation runner that accumulates results without fabricating trades.
+- Weekly sector-rotation theme refresh with SQLite history and fallback behavior.
+- Active weekly theme filtering in scanner output.
 - Automated test suite with 20 passing tests.
 
 ### Pending
 
-- Replace sample sector scores with live sector ETF rotation data.
-- Add complete stock-universe and liquidity filtering.
-- Connect the Telegram router to a running bot and add `/analyze` and `/setup` response generation.
-- Add Alpaca paper-order submission and reconciliation after installing `alpaca-py`.
-- Add richer trade outcome journaling and walk-forward validation.
-- Add real paper-trading validation with slippage and latency tracking.
-- Add options/IV confirmation, earnings filters, and news analysis.
-- Add Docker/container deployment support.
-- Validate the strategy through a substantial paper-trading sample.
+- Connect live sector ETF rotation results directly to the CLI candidate universe.
+- Add broker fill polling and automatic reconciliation scheduling.
+- Connect options confirmation to candidate ranking after feed availability is verified.
+- Schedule `python scripts/refresh_theme.py` weekly and use the active theme in universe filtering.
+- Run `scripts/paper_validation.py` long enough to accumulate a substantial paper-trading sample.
 
 ### Explicitly disabled
 
@@ -96,3 +104,15 @@ uvicorn ai_trading_agent.api.routes:create_app --factory --port 8000
 
 Available endpoints are `/health`, `/scan`, and `/paper/orders`. The default execution policy is
 `signal_only`; no endpoint places orders.
+
+## Start local services
+
+From the project directory, start the API and Telegram polling in separate
+terminals:
+
+```powershell
+python scripts/run_api.py
+python scripts/run_telegram.py
+```
+
+Telegram polling is signal-only. It does not submit broker orders.

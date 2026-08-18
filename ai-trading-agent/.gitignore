@@ -6,4 +6,12 @@ __pycache__/
 .pytest_cache/
 *.pyc
 trading.db
+*.db-wal
+*.db-shm
 
+# Runtime logs and generated Python packaging metadata
+*.log
+*.egg-info/
+build/
+dist/
+.ruff_cache/

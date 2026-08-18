@@ -56,10 +56,19 @@ class AlpacaMarketData:
 
     def get_bars(self, symbol: str, timeframe: str = "1D", start: datetime | None = None,
                  end: datetime | None = None) -> pd.DataFrame:
+        try:
+            import truststore
+            truststore.inject_into_ssl()
+        except ImportError:
+            pass
         from alpaca.data.requests import StockBarsRequest
         from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
         unit = TimeFrameUnit.Day if timeframe.upper().endswith("D") else TimeFrameUnit.Minute
         amount = int(timeframe[:-1]) if timeframe[:-1].isdigit() else 1
+        if start is None:
+            from datetime import timedelta, timezone
+            end = end or datetime.now(timezone.utc)
+            start = end - timedelta(days=365)
         request = StockBarsRequest(symbol_or_symbols=symbol.upper(), timeframe=TimeFrame(amount, unit),
                                    start=start, end=end, feed=self.feed)
         result = self._get_client().get_stock_bars(request).df
@@ -70,3 +79,18 @@ class AlpacaMarketData:
     def get_quote(self, symbol: str) -> float:
         bars = self.get_bars(symbol, "1D")
         return float(bars["close"].iloc[-1])
+
+    def get_assets(self):
+        try:
+            import truststore
+            truststore.inject_into_ssl()
+        except ImportError:
+            pass
+        try:
+            from alpaca.trading.client import TradingClient
+            from alpaca.trading.requests import GetAssetsRequest
+            from alpaca.trading.enums import AssetClass, AssetStatus
+        except ImportError as exc:
+            raise RuntimeError("Install alpaca-py to load assets") from exc
+        client = TradingClient(self.api_key, self.secret_key, paper=True)
+        return client.get_all_assets(GetAssetsRequest(asset_class=AssetClass.US_EQUITY, status=AssetStatus.ACTIVE))

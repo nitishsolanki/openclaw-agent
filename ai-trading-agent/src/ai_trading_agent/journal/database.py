@@ -13,6 +13,11 @@ CREATE TABLE IF NOT EXISTS trades (
  stop_price REAL NOT NULL, target_price REAL NOT NULL, status TEXT NOT NULL DEFAULT 'pending',
  realized_pnl REAL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, closed_at TEXT
 );
+CREATE TABLE IF NOT EXISTS themes (
+ id INTEGER PRIMARY KEY, name TEXT NOT NULL, sectors TEXT NOT NULL,
+ industries TEXT NOT NULL, source TEXT NOT NULL, score REAL NOT NULL,
+ created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, expires_at TEXT NOT NULL
+);
 """
 
 def connect(path: str | Path) -> sqlite3.Connection:
@@ -28,4 +33,3 @@ def record_signal(connection: sqlite3.Connection, symbol: str, direction: str, s
         (symbol.upper(), direction, score, entry, stop, target, reasoning))
     connection.commit()
     return int(cursor.lastrowid)
-

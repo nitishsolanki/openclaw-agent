@@ -10,3 +10,5 @@ Requires-Dist: alpaca-py>=0.30; extra == "alpaca"
 Provides-Extra: api
 Requires-Dist: fastapi>=0.100; extra == "api"
 Requires-Dist: uvicorn>=0.20; extra == "api"
+Provides-Extra: telegram
+Requires-Dist: python-telegram-bot>=21.0; extra == "telegram"

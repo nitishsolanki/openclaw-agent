@@ -8,3 +8,6 @@ alpaca-py>=0.30
 [api]
 fastapi>=0.100
 uvicorn>=0.20
+
+[telegram]
+python-telegram-bot>=21.0

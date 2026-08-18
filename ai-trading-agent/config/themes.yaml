@@ -1,0 +1,17 @@
+sector_themes:
+  Technology:
+    name: technology_leadership
+    industries: [Semiconductors, Software, Data Centers, Artificial Intelligence]
+  Industrials:
+    name: industrials_leadership
+    industries: [Aerospace, Defense, Machinery, Infrastructure]
+  Energy:
+    name: energy_leadership
+    industries: [Oil & Gas, Renewable Energy, Power Generation]
+  Healthcare:
+    name: healthcare_leadership
+    industries: [Biotechnology, Medical Devices, Pharmaceuticals]
+  Financials:
+    name: financials_leadership
+    industries: [Banks, Insurance, Capital Markets, Fintech]
+

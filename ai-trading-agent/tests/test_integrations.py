@@ -21,3 +21,11 @@ def test_telegram_routes_are_signal_only():
     assert route_command("/scan") == "GET /scan"
     assert "Unsupported" in route_command("/trade ABC")
 
+def test_paper_adapter_validates_order_parameters():
+    broker = AlpacaPaperBroker("x", "y")
+    try:
+        broker.submit_buy("ABC", 0, 100)
+    except ValueError:
+        assert True
+    else:
+        assert False
