@@ -66,17 +66,17 @@
   {
     "date": "2026-08-19",
     "scores": {
-      "Healthcare": 88.12,
-      "Energy": 87.02,
-      "Consumer Staples": 84.05,
-      "Financials": 83.42,
-      "Consumer Discretionary": 83.17,
-      "Materials": 82.61,
-      "Communication Services": 82.31,
-      "Real Estate": 81.75,
-      "Utilities": 52.06,
-      "Technology": 51.91,
-      "Industrials": 51.75
+      "Healthcare": 92.25,
+      "Energy": 89.73,
+      "Financials": 86.83,
+      "Consumer Staples": 86.52,
+      "Consumer Discretionary": 84.99,
+      "Materials": 84.31,
+      "Communication Services": 83.78,
+      "Technology": 54.54,
+      "Utilities": 54.33,
+      "Industrials": 54.26,
+      "Real Estate": 53.98
     }
   }
 ]
