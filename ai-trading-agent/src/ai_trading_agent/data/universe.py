@@ -43,6 +43,7 @@ def symbols_missing_metadata(connection: sqlite3.Connection, limit: int = 100) -
     return [row[0] for row in connection.execute("SELECT symbol FROM assets WHERE industry IS NULL OR industry='' LIMIT ?", (limit,))]
 
 def cached_symbols(connection: sqlite3.Connection, limit: int | None = None) -> list[str]:
+    connection.execute("CREATE TABLE IF NOT EXISTS assets(symbol TEXT PRIMARY KEY, name TEXT, exchange TEXT, tradable INTEGER, updated_at TEXT, industry TEXT, sector TEXT)")
     query = "SELECT symbol FROM assets WHERE tradable=1 ORDER BY symbol"
     if limit: query += f" LIMIT {int(limit)}"
     return [row[0] for row in connection.execute(query)]
