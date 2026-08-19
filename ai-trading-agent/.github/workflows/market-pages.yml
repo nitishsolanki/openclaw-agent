@@ -1,4 +1,5 @@
 name: Generate Market Report
+# Manual dispatch is enabled for one-click report generation from Actions.
 
 on:
   workflow_dispatch:
