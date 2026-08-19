@@ -19,13 +19,15 @@ from .sector.live_rotation import rank_sectors
 from .data.external import FinnhubProvider
 from .screening.scanner import Candidate, scan
 
-def run_scan(root: Path) -> list:
+def run_scan(root: Path, require_live: bool = False) -> list:
     config = load_strategy(root / "config" / "strategy.yaml")
     env = load_env(root / "local.env")
     db = connect(root / "trading.db")
     provider = CsvMarketData(root / "data" / "sample")
     symbols = ["AAA", "BBB", "CCC"]
     live = bool(env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"))
+    if require_live and not live:
+        raise RuntimeError("Live scan requires ALPACA_API_KEY and ALPACA_SECRET_KEY")
     if live:
         provider = AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
         try:
@@ -35,6 +37,8 @@ def run_scan(root: Path) -> list:
             bars = fetch_liquid_bars(provider, symbols, limit=100)
             symbols = list(bars)
         except Exception:
+            if require_live:
+                raise
             provider = CsvMarketData(root / "data" / "sample")
             symbols = ["AAA", "BBB", "CCC"]
     benchmark = provider.get_bars("SPY")["close"]

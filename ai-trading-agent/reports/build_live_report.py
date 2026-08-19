@@ -14,7 +14,7 @@ if not env.get("ALPACA_API_KEY") or not env.get("ALPACA_SECRET_KEY"):
     raise SystemExit("Alpaca credentials are required")
 provider = AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
 sectors = [item.__dict__ for item in rank_sectors(provider)]
-signals = run_scan(root)
+signals = run_scan(root, require_live=True)
 report = {
     "generated_at": datetime.now(timezone.utc).isoformat(),
     "market": {"label": "See signal components", "score": signals[0].components.get("market", 0) if signals else 0},
