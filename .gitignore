@@ -29,6 +29,10 @@ secrets.*
 # Local project state and generated output
 memory/
 reports/
+!ai-trading-agent/reports/
+!ai-trading-agent/reports/*.py
+!ai-trading-agent/reports/*.css
+!ai-trading-agent/reports/sample_report.json
 market-research-agent/reports/
 market-research-agent/state/
 openclaw-workspace-state.json

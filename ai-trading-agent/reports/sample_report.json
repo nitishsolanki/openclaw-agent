@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-08-18T09:35:00-05:00",
+  "market": {"label": "Bull", "score": 72},
+  "theme": {"name": "technology_leadership", "sectors": ["Technology"]},
+  "sectors": [
+    {"rank": 1, "sector": "Technology", "symbol": "XLK", "score": 88.4},
+    {"rank": 2, "sector": "Industrials", "symbol": "XLI", "score": 79.2},
+    {"rank": 3, "sector": "Energy", "symbol": "XLE", "score": 74.6}
+  ],
+  "signals": [
+    {"symbol": "AAPL", "direction": "WATCH", "score": 78.2, "sector": "Technology", "reasons": ["Relative strength positive", "Price above VWAP"]},
+    {"symbol": "NVDA", "direction": "LONG", "score": 86.1, "sector": "Technology", "reasons": ["Sector leadership", "Volume confirmation"]}
+  ],
+  "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
+}
+
