@@ -10,5 +10,8 @@ def load_env(path: str | Path = "local.env") -> dict[str, str]:
             if line and not line.startswith("#") and "=" in line:
                 key, value = line.split("=", 1)
                 values[key.strip()] = value.strip().strip('"').strip("'")
-    return {key: os.getenv(key, value) for key, value in values.items()}
-
+    # Support both local.env development and GitHub Actions/CI environment variables.
+    known_keys = {"ALPACA_API_KEY", "ALPACA_SECRET_KEY", "FINNHUB_API_KEY",
+                  "POLYGON_API_KEY", "TELEGRAM_BOT_TOKEN", "DATABASE_URL", "EXECUTION_MODE"}
+    keys = values.keys() | known_keys
+    return {key: os.getenv(key, values.get(key, "")) for key in keys if os.getenv(key, values.get(key, ""))}
