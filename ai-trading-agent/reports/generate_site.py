@@ -6,7 +6,7 @@ from html import escape
 
 def render(report: dict) -> str:
     sectors = "".join(f"<tr><td>{item['rank']}</td><td>{escape(item['sector'])}</td><td>{item['symbol']}</td><td>{item['score']:.1f}</td></tr>" for item in report.get("sectors", []))
-    signals = "".join(f"<article class='card'><div class='row'><h3>{escape(item['symbol'])}</h3><span class='badge'>{item['score']:.1f}/100</span></div><p>{escape(item['direction'])} · {escape(item.get('sector', 'Unknown'))}</p><ul>{''.join(f'<li>{escape(reason)}</li>' for reason in item.get('reasons', []))}</ul></article>" for item in report.get("signals", []))
+    signals = "".join(f"<article class='card'><div class='row'><h3>{escape(str(item['symbol']))}</h3><span class='badge'>{float(item['score']):.1f}/100</span></div><p>{escape(str(item['direction']))} · {escape(str(item.get('sector', 'Unknown')))}</p><ul>{''.join(f'<li>{escape(str(reason))}</li>' for reason in item.get('reasons', []))}</ul></article>" for item in report.get("signals", []))
     return f"""<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AI Trading Market Report</title><link rel='stylesheet' href='assets/styles.css'></head><body><main><header><p class='eyebrow'>AI TRADING AGENT · PAPER MODE</p><h1>Market Intelligence</h1><p class='muted'>Generated {escape(report.get('generated_at', 'unknown'))}</p></header><section class='hero'><div><span class='eyebrow'>MARKET REGIME</span><strong>{escape(report['market']['label'])}</strong><span class='score'>{report['market']['score']}/100</span></div><div><span class='eyebrow'>ACTIVE THEME</span><strong>{escape(report['theme']['name'])}</strong><span class='muted'>{', '.join(report['theme'].get('sectors', []))}</span></div></section><section><h2>Sector Rotation</h2><table><thead><tr><th>Rank</th><th>Sector</th><th>ETF</th><th>Score</th></tr></thead><tbody>{sectors}</tbody></table></section><section><h2>Top Candidates</h2><div class='grid'>{signals}</div></section><footer>{escape(report.get('disclaimer', ''))}</footer></main></body></html>"""
 
 def build(input_path: Path, output_dir: Path) -> None:
@@ -25,4 +25,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     build(args.input, args.output)
     print(f"site_generated={args.output}")
-
