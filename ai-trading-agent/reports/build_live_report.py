@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from ai_trading_agent.cli import run_scan
 from ai_trading_agent.config.env import load_env
 from ai_trading_agent.data.market_data import AlpacaMarketData
-from ai_trading_agent.sector.live_rotation import rank_sectors
+from ai_trading_agent.sector.live_rotation import rank_sectors, sector_score_history
 from ai_trading_agent.theme.manager import active_theme
 from generate_site import build
 
@@ -22,6 +22,8 @@ try:
 except (FileNotFoundError, json.JSONDecodeError):
     history = []
 today = datetime.now(timezone.utc).date().isoformat()
+if len(history) < 5:
+    history = sector_score_history(provider, days=5)
 history = [item for item in history if item.get("date") != today]
 history.append({"date": today, "scores": {item["sector"]: item["score"] for item in sectors}})
 history = history[-5:]
