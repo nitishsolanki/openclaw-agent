@@ -4,14 +4,43 @@ from datetime import datetime, timezone
 
 def refresh_assets(provider, connection: sqlite3.Connection) -> int:
     connection.execute("CREATE TABLE IF NOT EXISTS assets(symbol TEXT PRIMARY KEY, name TEXT, exchange TEXT, tradable INTEGER, updated_at TEXT)")
+    for column in ("industry", "sector"):
+        try:
+            connection.execute(f"ALTER TABLE assets ADD COLUMN {column} TEXT")
+        except sqlite3.OperationalError:
+            pass
     count = 0
     for asset in provider.get_assets():
-        connection.execute("INSERT OR REPLACE INTO assets VALUES (?,?,?,?,?)",
+        connection.execute("INSERT OR REPLACE INTO assets(symbol,name,exchange,tradable,updated_at) VALUES (?,?,?,?,?)",
                            (asset.symbol, getattr(asset, "name", ""), getattr(asset, "exchange", ""),
                             int(bool(getattr(asset, "tradable", False))), datetime.now(timezone.utc).isoformat()))
         count += 1
     connection.commit()
     return count
+
+def refresh_metadata(provider, connection: sqlite3.Connection, symbols: list[str]) -> int:
+    for column in ("industry", "sector"):
+        try:
+            connection.execute(f"ALTER TABLE assets ADD COLUMN {column} TEXT")
+        except sqlite3.OperationalError:
+            pass
+    updated = 0
+    for symbol in symbols:
+        try:
+            profile = provider.profile(symbol)
+            connection.execute("UPDATE assets SET industry=?,sector=? WHERE symbol=?",
+                               (profile.get("finnhubIndustry") or "Unknown", profile.get("sector") or "Unknown", symbol))
+            updated += 1
+        except Exception:
+            continue
+    connection.commit()
+    return updated
+
+def symbols_missing_metadata(connection: sqlite3.Connection, limit: int = 100) -> list[str]:
+    columns = [row[1] for row in connection.execute("PRAGMA table_info(assets)")]
+    if "industry" not in columns:
+        return cached_symbols(connection, limit)
+    return [row[0] for row in connection.execute("SELECT symbol FROM assets WHERE industry IS NULL OR industry='' LIMIT ?", (limit,))]
 
 def cached_symbols(connection: sqlite3.Connection, limit: int | None = None) -> list[str]:
     query = "SELECT symbol FROM assets WHERE tradable=1 ORDER BY symbol"

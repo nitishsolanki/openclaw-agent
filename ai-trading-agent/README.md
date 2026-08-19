@@ -47,6 +47,7 @@ This package is signal-only: it does not connect to a broker or place orders.
 - `/analyze/{symbol}` and `/setup/{symbol}` API response generation.
 - Broker reconciliation helpers and walk-forward/slippage validation tools.
 - Dockerfile and Docker Compose deployment support.
+- GitHub Actions workflow for scheduled static report generation and GitHub Pages deployment.
 - Alpaca options snapshot adapter and neutral-safe options confirmation score.
 - Paper-validation runner that accumulates results without fabricating trades.
 - Weekly sector-rotation theme refresh with SQLite history and fallback behavior.
@@ -57,6 +58,7 @@ This package is signal-only: it does not connect to a broker or place orders.
 - Persistent paper-position exit monitoring for stops, targets, VWAP, and EMA invalidation.
 - Weekday paper checks scheduled at 9:35 AM and 2:00 PM local time.
 - Rotating SQLite-backed universe batches so scheduled scans progress through all cached assets.
+- Progressive sector/industry metadata enrichment for cached assets.
 - Options-chain confirmation is applied to the top technical candidates when available.
 - Automated test suite with 20 passing tests.
 
@@ -111,6 +113,13 @@ uvicorn ai_trading_agent.api.routes:create_app --factory --port 8000
 
 Available endpoints are `/health`, `/scan`, and `/paper/orders`. The default execution policy is
 `signal_only`; no endpoint places orders.
+
+## GitHub Pages deployment
+
+The workflow in `.github/workflows/market-pages.yml` generates reports at 9:35 AM
+and 2:00 PM Chicago time on weekdays. Add `ALPACA_API_KEY`,
+`ALPACA_SECRET_KEY`, `FINNHUB_API_KEY`, and `POLYGON_API_KEY` as repository
+Actions secrets, then enable GitHub Pages with **GitHub Actions** as the source.
 
 ## Start local services
 

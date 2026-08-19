@@ -15,3 +15,5 @@ trading.db
 build/
 dist/
 .ruff_cache/
+reports/site/
+reports/latest.json
