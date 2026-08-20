@@ -18,6 +18,19 @@ def refresh_assets(provider, connection: sqlite3.Connection) -> int:
     connection.commit()
     return count
 
+def replace_symbol_universe(connection: sqlite3.Connection, symbols: list[str],
+                            name: str = "") -> int:
+    """Replace the cached tradable universe with a controlled symbol list."""
+    connection.execute("CREATE TABLE IF NOT EXISTS assets(symbol TEXT PRIMARY KEY, name TEXT, exchange TEXT, tradable INTEGER, updated_at TEXT, industry TEXT, sector TEXT)")
+    connection.execute("DELETE FROM assets")
+    now = datetime.now(timezone.utc).isoformat()
+    for symbol in sorted({item.upper().strip() for item in symbols if item.strip()}):
+        connection.execute("INSERT INTO assets(symbol,name,exchange,tradable,updated_at,industry,sector) VALUES (?,?,?,?,?,?,?)",
+                           (symbol, name, "S&P 500", 1, now, "Unknown", "Unknown"))
+    connection.execute("DELETE FROM scan_state WHERE key='cursor'")
+    connection.commit()
+    return len(symbols)
+
 def refresh_metadata(provider, connection: sqlite3.Connection, symbols: list[str]) -> int:
     for column in ("industry", "sector"):
         try:
