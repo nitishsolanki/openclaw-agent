@@ -25,9 +25,9 @@ def evaluate_exit(position: PositionState, current_price: float, current_score: 
         return ExitDecision("TAKE_PARTIAL", "target_reached", max(1, position.quantity // 2))
     if not above_vwap and not trend_intact:
         return ExitDecision("SELL_ALL", "technical_invalidation", position.quantity)
-    if not sector_active and current_score < 75:
+    if not sector_active and current_score < 50:
         return ExitDecision("SELL_ALL", "sector_theme_lost", position.quantity)
-    if current_score < 75:
+    if current_score < 50:
         return ExitDecision("SELL_ALL", "score_below_exit_threshold", position.quantity)
     if current_score >= position.signal_score + rotation_buffer:
         return ExitDecision("ROTATE", "stronger_candidate", position.quantity)
@@ -37,4 +37,3 @@ def trailing_stop(entry: float, current_price: float, atr: float, multiple: floa
     if atr <= 0:
         raise ValueError("ATR must be positive")
     return max(entry, current_price - multiple * atr)
-

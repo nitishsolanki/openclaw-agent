@@ -30,8 +30,8 @@ for order in trader.open_orders():
         ema50 = bars["close"].ewm(span=50, adjust=False).mean().iloc[-1]
         features = vwap_features(bars)
         decision = evaluate_exit(PositionState(order.symbol, order.quantity, order.entry_price,
-                                               order.stop_price, order.target_price, 80.0, "Unknown"),
-                                  price, 80.0, bool(features["above"]), price > ema20 > ema50, True)
+                                               order.stop_price, order.target_price, 50.0, "Unknown"),
+                                  price, 50.0, bool(features["above"]), price > ema20 > ema50, True)
         if decision.action in {"SELL_ALL", "TAKE_PARTIAL"}:
             if alpaca:
                 alpaca.submit_sell(order.symbol, decision.quantity, price)
@@ -46,7 +46,7 @@ if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     provider = AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
     limits = RiskLimits(paper_allocation_cap=100.0, max_open_positions=2)
     for signal in signals:
-        if signal.final_score < 80 or signal.symbol in {order.symbol for order in trader.open_orders()}:
+        if signal.final_score < 63 or signal.symbol in {order.symbol for order in trader.open_orders()}:
             continue
         try:
             bars = provider.get_bars(signal.symbol)
