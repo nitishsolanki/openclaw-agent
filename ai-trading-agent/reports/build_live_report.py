@@ -22,10 +22,16 @@ try:
 except (FileNotFoundError, json.JSONDecodeError):
     history = []
 today = datetime.now(timezone.utc).date().isoformat()
-if len(history) < 5:
+if len(history) < 5 or any("prices" not in item for item in history):
     history = sector_score_history(provider, days=5)
+current_prices = {}
+for item in sectors:
+    try:
+        current_prices[item["sector"]] = round(float(provider.get_bars(item["symbol"])["close"].iloc[-1]), 2)
+    except (KeyError, ValueError, IndexError, FileNotFoundError):
+        pass
 history = [item for item in history if item.get("date") != today]
-history.append({"date": today, "scores": {item["sector"]: item["score"] for item in sectors}})
+history.append({"date": today, "scores": {item["sector"]: item["score"] for item in sectors}, "prices": current_prices})
 history = history[-5:]
 history_path.write_text(json.dumps(history, indent=2) + "\n", encoding="utf-8")
 signals = run_scan(root, require_live=True)
@@ -38,6 +44,7 @@ report = {
     "theme": active_theme(root) or {"name": "none", "sectors": []},
     "sectors": sectors,
     "sector_history": history,
+    "sector_current_prices": current_prices,
     "signals": [{"symbol": item.symbol, "direction": item.direction, "score": item.final_score,
                  "sector": item.components.get("sector", "Unknown"),
                  "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if value >= 80]}

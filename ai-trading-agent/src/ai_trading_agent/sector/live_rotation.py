@@ -45,13 +45,15 @@ def sector_score_history(provider: MarketDataProvider, days: int = 5,
     snapshots = []
     for date in dates:
         scores = {}
+        prices = {}
         benchmark_slice = benchmark.loc[benchmark.index <= date]
         for sector, frame in frames.items():
             sector_slice = frame.loc[frame.index <= date]
             try:
                 scores[sector] = round(sector_score(sector_slice, benchmark_slice["close"]), 2)
+                prices[sector] = round(float(sector_slice["close"].iloc[-1]), 2)
             except (KeyError, ValueError, IndexError, ZeroDivisionError):
                 continue
         if scores:
-            snapshots.append({"date": date.strftime("%Y-%m-%d"), "scores": scores})
+            snapshots.append({"date": date.strftime("%Y-%m-%d"), "scores": scores, "prices": prices})
     return snapshots
