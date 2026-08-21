@@ -14,7 +14,7 @@ from ai_trading_agent.indicators.vwap import vwap_features
 root = Path(__file__).parents[1]
 env = load_env(root / "local.env")
 db = connect(root / "trading.db")
-trader = PaperTrader(db, account_value=100.0)
+trader = PaperTrader(db, account_value=10000.0)
 mode = ExecutionMode(env.get("EXECUTION_MODE", "signal_only"))
 if mode == ExecutionMode.LIVE:
     raise SystemExit("Refusing to run: live execution is permanently disabled")
@@ -44,7 +44,8 @@ signals = run_scan(root)
 
 if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     provider = AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
-    limits = RiskLimits(paper_allocation_cap=100.0, max_open_positions=2)
+    limits = RiskLimits(paper_allocation_cap=10000.0, max_position_percent=0.10,
+                        risk_per_trade=0.05, max_open_positions=10)
     for signal in signals:
         if signal.final_score < 63 or signal.symbol in {order.symbol for order in trader.open_orders()}:
             continue
@@ -52,7 +53,7 @@ if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
             bars = provider.get_bars(signal.symbol)
             price = float(bars["close"].iloc[-1])
             atr = float((bars["high"] - bars["low"]).rolling(14).mean().iloc[-1])
-            setup = generate_long_setup(signal.symbol, price, atr, signal.final_score, "Unknown", 100.0, limits)
+            setup = generate_long_setup(signal.symbol, price, atr, signal.final_score, "Unknown", 10000.0, limits)
             if setup.risk.approved:
                 local_order = trader.submit_long(setup.trade, setup.risk)
                 if alpaca:

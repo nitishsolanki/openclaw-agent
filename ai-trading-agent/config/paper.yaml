@@ -1,9 +1,8 @@
 execution_mode: paper
-paper_allocation_cap: 100.0
-risk_per_trade: 0.005
+paper_allocation_cap: 10000.0
+risk_per_trade: 0.05
 max_position_percent: 0.10
 max_sector_percent: 0.25
 max_daily_loss_percent: 0.02
-max_open_positions: 2
+max_open_positions: 10
 minimum_rr: 2.0
-

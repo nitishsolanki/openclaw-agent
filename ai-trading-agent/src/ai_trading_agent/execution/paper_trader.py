@@ -7,7 +7,7 @@ from ..risk.risk_engine import RiskDecision, TradeSetup
 class PaperOrder:
     id: int
     symbol: str
-    quantity: int
+    quantity: float
     entry_price: float
     stop_price: float
     target_price: float
@@ -33,7 +33,7 @@ class PaperTrader:
     def close(self, order_id: int, exit_price: float) -> float:
         return self.close_quantity(order_id, exit_price)
 
-    def close_quantity(self, order_id: int, exit_price: float, quantity: int | None = None) -> float:
+    def close_quantity(self, order_id: int, exit_price: float, quantity: float | None = None) -> float:
         row = self.connection.execute(
             "SELECT quantity,entry_price,status FROM trades WHERE id=?", (order_id,)).fetchone()
         if row is None:
@@ -42,7 +42,7 @@ class PaperTrader:
         if status != "open":
             raise ValueError("paper order is not open")
         quantity = quantity or current_quantity
-        if quantity < 1 or quantity > current_quantity:
+        if quantity <= 0 or quantity > current_quantity:
             raise ValueError("invalid close quantity")
         pnl = round((exit_price - entry) * quantity, 2)
         remaining = current_quantity - quantity

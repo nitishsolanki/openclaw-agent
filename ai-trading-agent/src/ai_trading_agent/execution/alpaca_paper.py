@@ -46,8 +46,8 @@ class AlpacaPaperBroker:
         client = OptionHistoricalDataClient(self.api_key, self.secret_key)
         return client.get_option_chain(OptionChainRequest(underlying_symbol=underlying.upper(), feed=feed))
 
-    def submit_buy(self, symbol: str, quantity: int, limit_price: float):
-        if quantity < 1 or limit_price <= 0:
+    def submit_buy(self, symbol: str, quantity: float, limit_price: float):
+        if quantity <= 0 or limit_price <= 0:
             raise ValueError("invalid paper order parameters")
         try:
             from alpaca.trading.enums import OrderSide, TimeInForce, OrderType
@@ -59,8 +59,8 @@ class AlpacaPaperBroker:
                                     limit_price=limit_price)
         return self._get_client().submit_order(request)
 
-    def submit_sell(self, symbol: str, quantity: int, limit_price: float):
-        if quantity < 1 or limit_price <= 0:
+    def submit_sell(self, symbol: str, quantity: float, limit_price: float):
+        if quantity <= 0 or limit_price <= 0:
             raise ValueError("invalid paper sell parameters")
         try:
             from alpaca.trading.enums import OrderSide, TimeInForce, OrderType

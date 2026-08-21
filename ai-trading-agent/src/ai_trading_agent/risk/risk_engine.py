@@ -21,7 +21,7 @@ class TradeSetup:
 @dataclass(frozen=True)
 class RiskDecision:
     approved: bool
-    shares: int
+    shares: float
     dollar_risk: float
     risk_reward: float
     reasons: tuple[str, ...]
@@ -47,9 +47,9 @@ def validate_trade(setup: TradeSetup, account_value: float, current_sector_expos
     risk_budget = effective_account * limits.risk_per_trade
     position_cap = effective_account * limits.max_position_percent
     sector_room = max(0.0, effective_account * limits.max_sector_percent - current_sector_exposure)
-    shares = int(min(risk_budget / per_share if per_share else 0, position_cap / setup.entry,
-                     sector_room / setup.entry if setup.entry else 0))
+    shares = round(min(risk_budget / per_share if per_share else 0, position_cap / setup.entry,
+                       sector_room / setup.entry if setup.entry else 0), 9)
     dollar_risk = round(shares * per_share, 2)
-    if shares < 1:
-        reasons.append("calculated position size is less than one share")
+    if shares <= 0:
+        reasons.append("calculated position size is zero")
     return RiskDecision(not reasons, shares, dollar_risk, round(rr, 2), tuple(reasons))
