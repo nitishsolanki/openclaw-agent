@@ -22,6 +22,7 @@ def replace_symbol_universe(connection: sqlite3.Connection, symbols: list[str],
                             name: str = "") -> int:
     """Replace the cached tradable universe with a controlled symbol list."""
     connection.execute("CREATE TABLE IF NOT EXISTS assets(symbol TEXT PRIMARY KEY, name TEXT, exchange TEXT, tradable INTEGER, updated_at TEXT, industry TEXT, sector TEXT)")
+    connection.execute("CREATE TABLE IF NOT EXISTS scan_state(key TEXT PRIMARY KEY, value INTEGER NOT NULL)")
     connection.execute("DELETE FROM assets")
     now = datetime.now(timezone.utc).isoformat()
     for symbol in sorted({item.upper().strip() for item in symbols if item.strip()}):
