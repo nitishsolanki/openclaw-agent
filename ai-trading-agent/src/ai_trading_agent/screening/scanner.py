@@ -32,6 +32,7 @@ def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
     momentum = 0.8 * momentum + 0.2 * news_score
     components = {
         "market": market_score, "sector": candidate.sector_score,
+        "sector_name": candidate.sector,
         "relative_strength": rs_score, "vwap": vwap_score, "trend": trend,
         "volume": volume_score, "momentum": momentum, "volatility": 50.0, "options": options_score,
     }

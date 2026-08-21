@@ -46,8 +46,8 @@ report = {
     "sector_history": history,
     "sector_current_prices": current_prices,
     "signals": [{"symbol": item.symbol, "direction": item.direction, "score": item.final_score,
-                 "sector": item.components.get("sector", "Unknown"),
-                 "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if value >= 80]}
+                 "sector": item.components.get("sector_name", "Unknown"),
+                 "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if isinstance(value, (int, float)) and value >= 80]}
                 for item in signals],
     "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
 }
