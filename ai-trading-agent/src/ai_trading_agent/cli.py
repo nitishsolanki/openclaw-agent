@@ -19,6 +19,30 @@ from .sector.live_rotation import rank_sectors
 from .data.external import FinnhubProvider
 from .screening.scanner import Candidate, scan
 
+def _normalize_sector(profile: dict) -> str:
+    sector = str(profile.get("sector") or "").strip()
+    industry = str(profile.get("finnhubIndustry") or "").strip()
+    known = {"Technology", "Financials", "Energy", "Healthcare", "Industrials",
+             "Consumer Discretionary", "Consumer Staples", "Utilities", "Materials",
+             "Real Estate", "Communication Services"}
+    if sector in known:
+        return sector
+    text = f"{sector} {industry}".lower()
+    groups = {
+        "Technology": ("technology", "software", "semiconductor", "computer", "electronic"),
+        "Financials": ("bank", "financial", "insurance", "capital market", "credit"),
+        "Energy": ("oil", "gas", "energy", "coal"),
+        "Healthcare": ("health", "biotech", "pharma", "medical"),
+        "Industrials": ("rail", "industrial", "machinery", "aerospace", "defense", "transport"),
+        "Consumer Discretionary": ("restaurant", "hotel", "retail", "automobile", "auto", "leisure", "travel"),
+        "Consumer Staples": ("beverage", "food", "household", "tobacco", "grocery"),
+        "Utilities": ("utility", "utilities", "electric", "water"),
+        "Materials": ("chemical", "materials", "steel", "metal", "mining"),
+        "Real Estate": ("real estate", "reit", "property"),
+        "Communication Services": ("telecommunication", "telecom", "media", "entertainment", "internet content"),
+    }
+    return next((name for name, terms in groups.items() if any(term in text for term in terms)), "Unknown")
+
 def run_scan(root: Path, require_live: bool = False) -> list:
     config = load_strategy(root / "config" / "strategy.yaml")
     env = load_env(root / "local.env")
@@ -54,7 +78,7 @@ def run_scan(root: Path, require_live: bool = False) -> list:
             sector = candidate.sector
             if finnhub and sector == "Unknown":
                 try:
-                    sector = finnhub.profile(candidate.symbol).get("finnhubIndustry", "Unknown")
+                    sector = _normalize_sector(finnhub.profile(candidate.symbol))
                 except Exception:
                     pass
             matched_score = max((score for name, score in sector_ranks.items() if name.lower() in sector.lower() or sector.lower() in name.lower()), default=50.0)
