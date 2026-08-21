@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         working-directory: ai-trading-agent
         run: python -m pip install -e ".[alpaca]"
+      - name: Refresh S&P 500 universe
+        working-directory: ai-trading-agent
+        run: python scripts/refresh_sp500.py
       - name: Generate report
         working-directory: ai-trading-agent
         run: python reports/build_live_report.py
