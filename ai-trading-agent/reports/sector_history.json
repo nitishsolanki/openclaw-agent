@@ -1,21 +1,5 @@
 [
   {
-    "date": "2026-08-14",
-    "scores": {
-      "Technology": 84.86,
-      "Financials": 89.08,
-      "Energy": 89.61,
-      "Healthcare": 85.1,
-      "Industrials": 84.04,
-      "Consumer Discretionary": 82.95,
-      "Consumer Staples": 86.19,
-      "Utilities": 55.91,
-      "Materials": 84.24,
-      "Real Estate": 85.96,
-      "Communication Services": 83.93
-    }
-  },
-  {
     "date": "2026-08-17",
     "scores": {
       "Technology": 88.31,
@@ -29,6 +13,19 @@
       "Materials": 83.92,
       "Real Estate": 61.39,
       "Communication Services": 84.48
+    },
+    "prices": {
+      "Technology": 190.27,
+      "Financials": 57.58,
+      "Energy": 62.59,
+      "Healthcare": 167.07,
+      "Industrials": 186.29,
+      "Consumer Discretionary": 116.73,
+      "Consumer Staples": 84.69,
+      "Utilities": 44.17,
+      "Materials": 52.23,
+      "Real Estate": 44.82,
+      "Communication Services": 110.84
     }
   },
   {
@@ -45,38 +42,106 @@
       "Materials": 54.88,
       "Real Estate": 59.96,
       "Communication Services": 53.9
+    },
+    "prices": {
+      "Technology": 185.59,
+      "Financials": 57.84,
+      "Energy": 63.66,
+      "Healthcare": 169.72,
+      "Industrials": 183.51,
+      "Consumer Discretionary": 116.39,
+      "Consumer Staples": 85.56,
+      "Utilities": 44.01,
+      "Materials": 51.77,
+      "Real Estate": 44.63,
+      "Communication Services": 110.51
     }
   },
   {
     "date": "2026-08-19",
     "scores": {
-      "Healthcare": 92.25,
-      "Energy": 89.73,
-      "Financials": 86.83,
+      "Technology": 55.34,
+      "Financials": 89.04,
+      "Energy": 91.41,
+      "Healthcare": 93.84,
+      "Industrials": 55.88,
+      "Consumer Discretionary": 87.29,
+      "Consumer Staples": 88.41,
+      "Utilities": 55.63,
+      "Materials": 85.47,
+      "Real Estate": 86.57,
+      "Communication Services": 84.4
+    },
+    "prices": {
+      "Technology": 183.64,
+      "Financials": 57.49,
+      "Energy": 63.56,
+      "Healthcare": 175.7,
+      "Industrials": 181.94,
+      "Consumer Discretionary": 118.59,
       "Consumer Staples": 86.52,
-      "Consumer Discretionary": 84.99,
-      "Materials": 84.31,
-      "Communication Services": 83.78,
-      "Technology": 54.54,
-      "Utilities": 54.33,
-      "Industrials": 54.26,
-      "Real Estate": 53.98
+      "Utilities": 44.02,
+      "Materials": 52.52,
+      "Real Estate": 45.01,
+      "Communication Services": 111.34
     }
   },
   {
     "date": "2026-08-20",
     "scores": {
-      "Energy": 89.68,
-      "Healthcare": 86.93,
-      "Real Estate": 85.57,
-      "Consumer Staples": 85.52,
-      "Materials": 84.97,
-      "Utilities": 58.16,
-      "Financials": 57.93,
-      "Industrials": 54.88,
-      "Consumer Discretionary": 54.62,
-      "Communication Services": 53.79,
-      "Technology": 52.4
+      "Technology": 53.92,
+      "Financials": 60.02,
+      "Energy": 90.92,
+      "Healthcare": 88.57,
+      "Industrials": 57.96,
+      "Consumer Discretionary": 55.99,
+      "Consumer Staples": 87.18,
+      "Utilities": 59.52,
+      "Materials": 85.81,
+      "Real Estate": 87.27,
+      "Communication Services": 55.53
+    },
+    "prices": {
+      "Technology": 183.12,
+      "Financials": 56.94,
+      "Energy": 63.76,
+      "Healthcare": 172.43,
+      "Industrials": 179.75,
+      "Consumer Discretionary": 116.67,
+      "Consumer Staples": 85.33,
+      "Utilities": 43.77,
+      "Materials": 52.42,
+      "Real Estate": 45.09,
+      "Communication Services": 110.7
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "scores": {
+      "Energy": 90.92,
+      "Healthcare": 88.57,
+      "Real Estate": 87.27,
+      "Consumer Staples": 87.18,
+      "Materials": 85.81,
+      "Financials": 60.02,
+      "Utilities": 59.52,
+      "Industrials": 57.96,
+      "Consumer Discretionary": 55.99,
+      "Communication Services": 55.53,
+      "Technology": 53.92
+    },
+    "prices": {
+      "Energy": 63.76,
+      "Healthcare": 172.43,
+      "Real Estate": 45.09,
+      "Consumer Staples": 85.33,
+      "Materials": 52.42,
+      "Financials": 56.94,
+      "Utilities": 43.77,
+      "Industrials": 179.75,
+      "Consumer Discretionary": 116.67,
+      "Communication Services": 110.7,
+      "Technology": 183.12
     }
   }
 ]
