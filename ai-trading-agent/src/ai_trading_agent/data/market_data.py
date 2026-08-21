@@ -80,6 +80,17 @@ class AlpacaMarketData:
         bars = self.get_bars(symbol, "1D")
         return float(bars["close"].iloc[-1])
 
+    def get_spread(self, symbol: str) -> float | None:
+        try:
+            import truststore
+            truststore.inject_into_ssl()
+            from alpaca.data.requests import StockLatestQuoteRequest
+            quote = self._get_client().get_stock_latest_quote(StockLatestQuoteRequest(symbol_or_symbols=symbol.upper(), feed=self.feed))[symbol.upper()]
+            midpoint = (float(quote.bid_price) + float(quote.ask_price)) / 2
+            return round((float(quote.ask_price) - float(quote.bid_price)) / midpoint * 100, 4) if midpoint else None
+        except Exception:
+            return None
+
     def get_assets(self):
         try:
             import truststore

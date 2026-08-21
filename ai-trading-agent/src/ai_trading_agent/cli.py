@@ -33,8 +33,8 @@ def run_scan(root: Path, require_live: bool = False) -> list:
         try:
             if not cached_symbols(db, 1):
                 refresh_assets(provider, db)
-            symbols = next_batch(db, 100)
-            bars = fetch_liquid_bars(provider, symbols, limit=100)
+            symbols = cached_symbols(db)
+            bars = fetch_liquid_bars(provider, symbols)
             symbols = list(bars)
         except Exception:
             if require_live:

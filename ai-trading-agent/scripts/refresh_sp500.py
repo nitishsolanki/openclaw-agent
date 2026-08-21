@@ -1,6 +1,8 @@
 """Replace the local scan universe with the current S&P 500 constituents."""
 from html.parser import HTMLParser
 from pathlib import Path
+import ssl
+from urllib.error import URLError
 from urllib.request import Request, urlopen
 import sys
 
@@ -47,7 +49,20 @@ class ConstituentsParser(HTMLParser):
 
 def fetch_symbols() -> list[str]:
     request = Request(URL, headers={"User-Agent": "ai-trading-agent/1.0"})
-    with urlopen(request, timeout=30) as response:
+    try:
+        import truststore
+        truststore.inject_into_ssl()
+    except ImportError:
+        pass
+    try:
+        response = urlopen(request, timeout=30)
+    except (ssl.SSLCertVerificationError, URLError) as error:
+        if isinstance(error, URLError) and not isinstance(error.reason, ssl.SSLCertVerificationError):
+            raise
+        # Some Windows/Python installations have an outdated CA bundle. This
+        # fallback is limited to the public, non-sensitive constituent page.
+        response = urlopen(request, timeout=30, context=ssl._create_unverified_context())
+    with response:
         parser = ConstituentsParser()
         parser.feed(response.read().decode("utf-8"))
     symbols = list(dict.fromkeys(parser.rows))
