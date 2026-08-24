@@ -28,6 +28,8 @@ jobs:
       ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
       FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
       POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: gpt-5-mini
       EXECUTION_MODE: signal_only
     steps:
       - name: Checkout

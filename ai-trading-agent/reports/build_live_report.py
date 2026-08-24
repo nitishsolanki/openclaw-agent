@@ -7,6 +7,7 @@ from ai_trading_agent.config.env import load_env
 from ai_trading_agent.data.market_data import AlpacaMarketData
 from ai_trading_agent.sector.live_rotation import rank_sectors, sector_score_history
 from ai_trading_agent.theme.manager import active_theme
+from ai_trading_agent.signals.llm import analyze_top_candidates
 from generate_site import build
 
 root = Path(__file__).parents[1]
@@ -51,6 +52,10 @@ report = {
                 for item in signals],
     "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
 }
+if env.get("OPENAI_API_KEY"):
+    analyses = analyze_top_candidates(env["OPENAI_API_KEY"], report["signals"][:5], env.get("OPENAI_MODEL", "gpt-5-mini"))
+    for signal in report["signals"][:5]:
+        signal["llm_analysis"] = analyses.get(signal["symbol"], {"status": "unavailable"})
 output = root / "reports" / "site"
 json_path = root / "reports" / "latest.json"
 json_path.write_text(json.dumps(report, indent=2, default=float), encoding="utf-8")
