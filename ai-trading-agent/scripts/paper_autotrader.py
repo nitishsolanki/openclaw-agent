@@ -1,4 +1,11 @@
 from pathlib import Path
+import sys
+
+root = Path(__file__).parents[1]
+sys.path.insert(0, str(root))
+sys.path.insert(0, str(root / "src"))
+sys.path.insert(0, str(root / "reports"))
+
 from ai_trading_agent.cli import run_scan
 from ai_trading_agent.config.env import load_env
 from ai_trading_agent.data.market_data import AlpacaMarketData
@@ -14,7 +21,6 @@ from ai_trading_agent.research.bridge import export_top_candidates, load_researc
 from ai_trading_agent.research.openclaw import run_research
 from publish_paper_report import publish
 
-root = Path(__file__).parents[1]
 env = load_env(root / "local.env")
 db = connect(root / "trading.db")
 trader = PaperTrader(db, account_value=10000.0)
