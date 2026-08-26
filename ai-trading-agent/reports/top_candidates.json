@@ -1,0 +1,89 @@
+{
+  "candidates": [
+    {
+      "symbol": "SMCI",
+      "score": 78.26,
+      "direction": "LONG",
+      "sector": "Technology",
+      "components": {
+        "market": 100.0,
+        "sector": 53.87,
+        "relative_strength": 100.0,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 39.219938899246834,
+        "momentum": 71.28040630847372,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    },
+    {
+      "symbol": "CMCSA",
+      "score": 72.62,
+      "direction": "LONG",
+      "sector": "Communication Services",
+      "components": {
+        "market": 100.0,
+        "sector": 86.51,
+        "relative_strength": 89.17609270062079,
+        "vwap": 34.021103494871596,
+        "trend": 100.0,
+        "volume": 41.03651025719336,
+        "momentum": 65.42998855398703,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    },
+    {
+      "symbol": "BAC",
+      "score": 59.52,
+      "direction": "LONG",
+      "sector": "Financials",
+      "components": {
+        "market": 100.0,
+        "sector": 87.76,
+        "relative_strength": 27.53343265278975,
+        "vwap": 100.0,
+        "trend": 0.0,
+        "volume": 40.334517304832055,
+        "momentum": 48.576764454128124,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    },
+    {
+      "symbol": "NVDA",
+      "score": 55.96,
+      "direction": "LONG",
+      "sector": "Technology",
+      "components": {
+        "market": 100.0,
+        "sector": 53.87,
+        "relative_strength": 47.371006591403706,
+        "vwap": 100.0,
+        "trend": 0.0,
+        "volume": 40.77117758500176,
+        "momentum": 32.67578391662498,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    },
+    {
+      "symbol": "CCL",
+      "score": 41.83,
+      "direction": "WATCH",
+      "sector": "Consumer Discretionary",
+      "components": {
+        "market": 100.0,
+        "sector": 87.36,
+        "relative_strength": 3.4597803867837804,
+        "vwap": 0.0,
+        "trend": 0.0,
+        "volume": 67.95819832672765,
+        "momentum": 37.43108504398825,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    }
+  ]
+}

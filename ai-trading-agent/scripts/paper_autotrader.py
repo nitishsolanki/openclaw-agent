@@ -11,6 +11,7 @@ from ai_trading_agent.execution.policy import ExecutionMode
 from ai_trading_agent.portfolio.position_manager import PositionState, evaluate_exit
 from ai_trading_agent.indicators.vwap import vwap_features
 from ai_trading_agent.research.bridge import export_top_candidates, load_research, boosted_score
+from ai_trading_agent.research.openclaw import run_research
 from publish_paper_report import publish
 
 root = Path(__file__).parents[1]
@@ -45,7 +46,19 @@ for order in trader.open_orders():
 signals = run_scan(root)
 from reports.build_live_report import generate_report
 export_top_candidates(root, signals)
-research = load_research(root, {signal.symbol for signal in signals[:5]})
+research = {}
+if env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() in {"1", "true", "yes"}:
+    from prepare_research_handoff import write_prompt
+    write_prompt(root, signals[:5])
+    try:
+        run_research(root, root / "reports" / "openclaw_research_prompt.md",
+                     {signal.symbol for signal in signals[:5]})
+    except Exception as exc:
+        print(f"research_fallback=python reason={type(exc).__name__}: {exc}")
+    else:
+        research = load_research(root, {signal.symbol for signal in signals[:5]})
+elif env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() not in {"1", "true", "yes"}:
+    research = load_research(root, {signal.symbol for signal in signals[:5]})
 generate_report(root, signals, research)
 
 if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
