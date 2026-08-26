@@ -33,6 +33,13 @@ reports/
 !ai-trading-agent/reports/*.py
 !ai-trading-agent/reports/*.css
 !ai-trading-agent/reports/sample_report.json
+!ai-trading-agent/reports/latest.json
+!ai-trading-agent/reports/sector_history.json
+!ai-trading-agent/reports/top_candidates.json
+!ai-trading-agent/reports/research_enrichment.json
+!ai-trading-agent/reports/openclaw_research_prompt.md
+!ai-trading-agent/reports/site/
+!ai-trading-agent/reports/site/**
 market-research-agent/reports/
 market-research-agent/state/
 openclaw-workspace-state.json
