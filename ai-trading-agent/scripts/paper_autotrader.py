@@ -10,6 +10,8 @@ from ai_trading_agent.signals.setup import generate_long_setup
 from ai_trading_agent.execution.policy import ExecutionMode
 from ai_trading_agent.portfolio.position_manager import PositionState, evaluate_exit
 from ai_trading_agent.indicators.vwap import vwap_features
+from ai_trading_agent.research.bridge import export_top_candidates, load_research, boosted_score
+from publish_paper_report import publish
 
 root = Path(__file__).parents[1]
 env = load_env(root / "local.env")
@@ -41,19 +43,24 @@ for order in trader.open_orders():
         print(f"monitor_skip={order.symbol} reason={type(exc).__name__}")
 
 signals = run_scan(root)
+from reports.build_live_report import generate_report
+export_top_candidates(root, signals)
+research = load_research(root, {signal.symbol for signal in signals[:5]})
+generate_report(root, signals, research)
 
 if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     provider = AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
     limits = RiskLimits(paper_allocation_cap=10000.0, max_position_percent=0.10,
                         risk_per_trade=0.05, max_open_positions=10)
     for signal in signals:
-        if signal.final_score < 63 or signal.symbol in {order.symbol for order in trader.open_orders()}:
+        final_score = boosted_score(signal.final_score, research.get(signal.symbol))
+        if final_score < 63 or signal.symbol in {order.symbol for order in trader.open_orders()}:
             continue
         try:
             bars = provider.get_bars(signal.symbol)
             price = float(bars["close"].iloc[-1])
             atr = float((bars["high"] - bars["low"]).rolling(14).mean().iloc[-1])
-            setup = generate_long_setup(signal.symbol, price, atr, signal.final_score, "Unknown", 10000.0, limits)
+            setup = generate_long_setup(signal.symbol, price, atr, final_score, "Unknown", 10000.0, limits)
             if setup.risk.approved:
                 local_order = trader.submit_long(setup.trade, setup.risk)
                 if alpaca:
@@ -64,3 +71,4 @@ if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
             print(f"skip={signal.symbol} reason={type(exc).__name__}")
 
 print(f"open_paper_orders={len(trader.open_orders())}")
+publish()
