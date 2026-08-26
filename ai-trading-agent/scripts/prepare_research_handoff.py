@@ -26,7 +26,7 @@ Review each candidate using the supplied trading data and existing research. Do 
 {\"research\":[{\"symbol\":\"MSFT\",\"research_score\":0,\"conviction\":\"Low\",\"catalysts\":[],\"risks\":[],\"summary\":\"\"}]}
 ```
 
-Use a 0-100 research score. Do not invent facts. Treat missing data as uncertainty. Keep Python's technical score authoritative; this research score is only a 20% adjustment.
+Use a 0-100 research score. Do not invent facts. Treat missing data as uncertainty. Keep Python's technical score authoritative; this research score is a 30% adjustment.
 
 """ + "\n\n".join(sections)
 path = root / "reports" / "openclaw_research_prompt.md"

@@ -146,6 +146,6 @@ Ask the local OpenClaw research agent to read `reports/openclaw_research_prompt.
 python scripts/paper_autotrader.py
 ```
 
-The paper trader applies an 80/20 Python/research score blend, preserves all risk limits, and updates `reports/latest.json` and `reports/site/index.html`.
+The paper trader applies a 70/30 Python/research score blend, preserves all risk limits, and updates `reports/latest.json` and `reports/site/index.html`.
 
 The scheduled paper-trader also publishes only these generated report artifacts to `main` after the run: the latest JSON report, sector history, Top-5 handoff, research enrichment, prompt, and Pages site. Credentials, `trading.db`, and runtime logs are never staged.

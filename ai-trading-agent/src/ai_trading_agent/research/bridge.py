@@ -37,4 +37,4 @@ def boosted_score(base_score: float, research: dict | None) -> float:
         research_score = max(0.0, min(100.0, float(research["research_score"])))
     except (KeyError, TypeError, ValueError):
         return round(base_score, 2)
-    return round(max(0.0, min(100.0, base_score * 0.80 + research_score * 0.20)), 2)
+    return round(max(0.0, min(100.0, base_score * 0.70 + research_score * 0.30)), 2)
