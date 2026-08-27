@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 import sqlite3
 
 from ..risk.risk_engine import RiskDecision, TradeSetup
@@ -58,3 +59,19 @@ class PaperTrader:
             "SELECT id,symbol,quantity,entry_price,stop_price,target_price,status FROM trades WHERE status='open'"
         ).fetchall()
         return [PaperOrder(*row) for row in rows]
+
+    def bought_today(self, symbol: str) -> bool:
+        row = self.connection.execute(
+            "SELECT 1 FROM trades WHERE symbol=? AND side='BUY' "
+            "AND date(created_at)=date('now') LIMIT 1", (symbol.upper(),)
+        ).fetchone()
+        return row is not None
+
+    def wash_sale_blocked(self, symbol: str) -> bool:
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%d %H:%M:%S")
+        row = self.connection.execute(
+            "SELECT 1 FROM trades WHERE symbol=? AND status='closed' "
+            "AND realized_pnl < 0 AND closed_at >= ? LIMIT 1",
+            (symbol.upper(), cutoff),
+        ).fetchone()
+        return row is not None

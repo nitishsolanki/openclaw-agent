@@ -31,6 +31,9 @@ alpaca = None
 if mode == ExecutionMode.PAPER and env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     alpaca = AlpacaPaperBroker(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
 for order in trader.open_orders():
+    if trader.bought_today(order.symbol):
+        print(f"paper_exit_blocked={order.symbol} reason=same_day_entry")
+        continue
     try:
         bars = (AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
                 .get_bars(order.symbol))
@@ -74,6 +77,9 @@ if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     for signal in signals:
         final_score = boosted_score(signal.final_score, research.get(signal.symbol))
         if final_score < 63 or signal.symbol in {order.symbol for order in trader.open_orders()}:
+            continue
+        if trader.wash_sale_blocked(signal.symbol):
+            print(f"paper_entry_blocked={signal.symbol} reason=wash_sale_window")
             continue
         try:
             bars = provider.get_bars(signal.symbol)
