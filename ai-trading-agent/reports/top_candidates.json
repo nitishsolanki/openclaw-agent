@@ -1,86 +1,86 @@
 {
   "candidates": [
     {
-      "symbol": "PFE",
-      "score": 76.0,
+      "symbol": "NVDA",
+      "score": 83.0,
       "direction": "LONG",
-      "sector": "Healthcare",
+      "sector": "Technology",
       "components": {
         "market": 100.0,
-        "sector": 81.52,
-        "relative_strength": 71.9225464232531,
+        "sector": 82.79,
+        "relative_strength": 93.55529909535144,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 22.678817160278182,
-        "momentum": 60.77862325252172,
+        "volume": 39.71177024475855,
+        "momentum": 75.242749780995,
         "volatility": 50.0,
         "options": 50.0
       }
     },
     {
-      "symbol": "WBD",
-      "score": 75.8,
+      "symbol": "PLTR",
+      "score": 81.8,
       "direction": "LONG",
-      "sector": "Communication Services",
+      "sector": "Technology",
       "components": {
         "market": 100.0,
-        "sector": 83.91,
-        "relative_strength": 77.11636223585595,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 8.561765680900118,
-        "momentum": 54.76858345021034,
-        "volatility": 50.0,
-        "options": 50.0
-      }
-    },
-    {
-      "symbol": "VZ",
-      "score": 75.62,
-      "direction": "LONG",
-      "sector": "Communication Services",
-      "components": {
-        "market": 100.0,
-        "sector": 83.91,
-        "relative_strength": 67.90996337764783,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 20.096817703587256,
-        "momentum": 64.95461912479743,
-        "volatility": 50.0,
-        "options": 50.0
-      }
-    },
-    {
-      "symbol": "CMG",
-      "score": 75.43,
-      "direction": "LONG",
-      "sector": "Consumer Discretionary",
-      "components": {
-        "market": 100.0,
-        "sector": 52.0,
+        "sector": 82.79,
         "relative_strength": 100.0,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 7.384949986276271,
-        "momentum": 85.75591459896145,
+        "volume": 10.302486872215551,
+        "momentum": 84.27483110536146,
         "volatility": 50.0,
         "options": 50.0
       }
     },
     {
       "symbol": "SMCI",
-      "score": 75.02,
+      "score": 81.74,
       "direction": "LONG",
       "sector": "Technology",
       "components": {
         "market": 100.0,
-        "sector": 51.27,
+        "sector": 82.79,
         "relative_strength": 100.0,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 8.938738991708908,
-        "momentum": 77.44122471295793,
+        "volume": 10.762600047564314,
+        "momentum": 82.14912280701756,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    },
+    {
+      "symbol": "WBD",
+      "score": 75.85,
+      "direction": "LONG",
+      "sector": "Communication Services",
+      "components": {
+        "market": 100.0,
+        "sector": 81.46,
+        "relative_strength": 80.23457941357643,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 6.647949307100184,
+        "momentum": 56.85269121813028,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    },
+    {
+      "symbol": "PFE",
+      "score": 75.13,
+      "direction": "LONG",
+      "sector": "Healthcare",
+      "components": {
+        "market": 100.0,
+        "sector": 82.35,
+        "relative_strength": 71.96810301422192,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 10.92182999970517,
+        "momentum": 63.52264557872033,
         "volatility": 50.0,
         "options": 50.0
       }
