@@ -13,17 +13,17 @@ Trading candidate:
 ```json
 {
   "symbol": "NVDA",
-  "score": 83.0,
+  "score": 80.84,
   "direction": "LONG",
   "sector": "Technology",
   "components": {
     "market": 100.0,
-    "sector": 82.79,
-    "relative_strength": 93.55529909535144,
+    "sector": 83.17,
+    "relative_strength": 91.65122911541091,
     "vwap": 100.0,
     "trend": 100.0,
-    "volume": 39.71177024475855,
-    "momentum": 75.242749780995,
+    "volume": 19.16924935339716,
+    "momentum": 79.24187389401135,
     "volatility": 50.0,
     "options": 50.0
   }
@@ -43,22 +43,57 @@ Existing research:
 **Rating:** Medium conviction only after fresh company-level verification; not investment advice.
 
 
+## SMCI
+Trading candidate:
+```json
+{
+  "symbol": "SMCI",
+  "score": 80.71,
+  "direction": "LONG",
+  "sector": "Technology",
+  "components": {
+    "market": 100.0,
+    "sector": 83.17,
+    "relative_strength": 100.0,
+    "vwap": 100.0,
+    "trend": 100.0,
+    "volume": 6.128178353005023,
+    "momentum": 69.34730056406127,
+    "volatility": 50.0,
+    "options": 50.0
+  }
+}
+```
+Existing research:
+# SMCI — 2026-08-12
+
+**View:** Watchlist coverage; conviction is conditional on valuation and company-specific verification. **Theme:** AI/infrastructure, software, fintech, mobility or space depending on issuer.
+
+**Bull case:** Continued AI/data-center spending, easing inflation, and resilient equity demand can support growth names and infrastructure suppliers.
+
+**Bear case:** 4.68% long yields, Brent near $89, geopolitical disruption, crowded AI positioning, execution risk and any financing/dilution could compress multiples.
+
+**Catalysts / checks:** next earnings, guidance, customer wins, backlog, margins, cash burn and SEC filings. No ticker-specific filing was independently verified in today’s collection window.
+
+**Rating:** Medium conviction only after fresh company-level verification; not investment advice.
+
+
 ## PLTR
 Trading candidate:
 ```json
 {
   "symbol": "PLTR",
-  "score": 81.8,
+  "score": 80.61,
   "direction": "LONG",
   "sector": "Technology",
   "components": {
     "market": 100.0,
-    "sector": 82.79,
+    "sector": 83.17,
     "relative_strength": 100.0,
     "vwap": 100.0,
     "trend": 100.0,
-    "volume": 10.302486872215551,
-    "momentum": 84.27483110536146,
+    "volume": 3.5008487182369112,
+    "momentum": 72.50451551949317,
     "volatility": 50.0,
     "options": 50.0
   }
@@ -103,57 +138,22 @@ Medium conviction: strong product/market narrative, but risk/reward is heavily d
 ## Sources checked
 Google News RSS; Palantir investor page; SEC submissions JSON (CIK 0001321655).
 
-## SMCI
+## HPQ
 Trading candidate:
 ```json
 {
-  "symbol": "SMCI",
-  "score": 81.74,
+  "symbol": "HPQ",
+  "score": 76.93,
   "direction": "LONG",
   "sector": "Technology",
   "components": {
     "market": 100.0,
-    "sector": 82.79,
-    "relative_strength": 100.0,
+    "sector": 83.17,
+    "relative_strength": 76.435424051394,
     "vwap": 100.0,
     "trend": 100.0,
-    "volume": 10.762600047564314,
-    "momentum": 82.14912280701756,
-    "volatility": 50.0,
-    "options": 50.0
-  }
-}
-```
-Existing research:
-# SMCI — 2026-08-12
-
-**View:** Watchlist coverage; conviction is conditional on valuation and company-specific verification. **Theme:** AI/infrastructure, software, fintech, mobility or space depending on issuer.
-
-**Bull case:** Continued AI/data-center spending, easing inflation, and resilient equity demand can support growth names and infrastructure suppliers.
-
-**Bear case:** 4.68% long yields, Brent near $89, geopolitical disruption, crowded AI positioning, execution risk and any financing/dilution could compress multiples.
-
-**Catalysts / checks:** next earnings, guidance, customer wins, backlog, margins, cash burn and SEC filings. No ticker-specific filing was independently verified in today’s collection window.
-
-**Rating:** Medium conviction only after fresh company-level verification; not investment advice.
-
-
-## WBD
-Trading candidate:
-```json
-{
-  "symbol": "WBD",
-  "score": 75.85,
-  "direction": "LONG",
-  "sector": "Communication Services",
-  "components": {
-    "market": 100.0,
-    "sector": 81.46,
-    "relative_strength": 80.23457941357643,
-    "vwap": 100.0,
-    "trend": 100.0,
-    "volume": 6.647949307100184,
-    "momentum": 56.85269121813028,
+    "volume": 15.734902434544248,
+    "momentum": 68.68394479973071,
     "volatility": 50.0,
     "options": 50.0
   }
@@ -162,22 +162,22 @@ Trading candidate:
 Existing research:
 No local stock research file exists. Use available provider data only.
 
-## PFE
+## T
 Trading candidate:
 ```json
 {
-  "symbol": "PFE",
-  "score": 75.13,
+  "symbol": "T",
+  "score": 75.57,
   "direction": "LONG",
-  "sector": "Healthcare",
+  "sector": "Communication Services",
   "components": {
     "market": 100.0,
-    "sector": 82.35,
-    "relative_strength": 71.96810301422192,
-    "vwap": 100.0,
+    "sector": 82.01,
+    "relative_strength": 78.79407552814139,
+    "vwap": 95.06068043053689,
     "trend": 100.0,
-    "volume": 10.92182999970517,
-    "momentum": 63.52264557872033,
+    "volume": 6.442234209666677,
+    "momentum": 70.11457921770057,
     "volatility": 50.0,
     "options": 50.0
   }
