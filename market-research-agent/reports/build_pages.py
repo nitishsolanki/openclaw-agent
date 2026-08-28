@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parents[1]
 OUT = ROOT / "reports" / "site"
-STYLE = "body{font-family:system-ui;max-width:1050px;margin:auto;padding:24px;background:#f5f7fb;color:#172033;line-height:1.55}a{color:#155eef;text-decoration:none}.card,header{background:white;border:1px solid #e1e6ef;border-radius:14px;padding:20px;margin-bottom:16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.muted{color:#667085;font-size:.9rem}"
+STYLE = "body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;max-width:1050px;margin:auto;padding:24px;background:#f5f7fb;color:#172033;line-height:1.65}a{color:#155eef;text-decoration:none}a:hover{text-decoration:underline}header,.card,main{background:white;border:1px solid #e1e6ef;border-radius:14px;padding:22px;margin-bottom:16px;box-shadow:0 3px 12px #1720330d}main{max-width:850px;margin:auto}h1{letter-spacing:-.03em}h2{margin-top:1.6em;border-bottom:1px solid #eef1f5;padding-bottom:6px}h3{color:#344054}ul{padding-left:24px}li{margin:6px 0}strong{color:#101828}code{background:#f2f4f7;border-radius:5px;padding:2px 5px;font-size:.9em}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.muted{color:#667085;font-size:.9rem}input{box-sizing:border-box;font-size:1rem;border:1px solid #d0d5dd;border-radius:8px}"
 
 def date_for(path: Path) -> str:
     try:
@@ -20,6 +20,17 @@ def date_for(path: Path) -> str:
 def page(body: str, title: str) -> str:
     return f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title><style>{STYLE}</style></head><body>{body}</body></html>"
 
+def inline(text: str) -> str:
+    """Render common inline Markdown after escaping untrusted content."""
+    value = html.escape(text, quote=True)
+    value = re.sub(r"`([^`]+)`", r"<code>\1</code>", value)
+    value = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", value)
+    value = re.sub(r"__([^_]+)__", r"<strong>\1</strong>", value)
+    value = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", value)
+    value = re.sub(r"(?<!_)_([^_]+)_(?!_)", r"<em>\1</em>", value)
+    value = re.sub(r"\[([^\]]+)\]\((https?://[^ )]+)\)", r"<a href='\2' target='_blank' rel='noopener'>\1</a>", value)
+    return value
+
 def render_md(text: str) -> str:
     out=[]; listed=False
     for line in text.splitlines():
@@ -27,13 +38,13 @@ def render_md(text: str) -> str:
         if line.startswith("## ") or line.startswith("### "):
             if listed: out.append("</ul>"); listed=False
             level=3 if line.startswith("### ") else 2
-            out.append(f"<h{level}>{html.escape(line[level+1:])}</h{level}>")
+            out.append(f"<h{level}>{inline(line[level+1:])}</h{level}>")
         elif line.startswith("- "):
             if not listed: out.append("<ul>"); listed=True
-            out.append(f"<li>{html.escape(line[2:])}</li>")
+            out.append(f"<li>{inline(line[2:])}</li>")
         elif line.strip():
             if listed: out.append("</ul>"); listed=False
-            out.append(f"<p>{html.escape(line)}</p>")
+            out.append(f"<p>{inline(line)}</p>")
     if listed: out.append("</ul>")
     return "".join(out)
 

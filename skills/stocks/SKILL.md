@@ -62,3 +62,14 @@ data/stocks/AMD.md
 data/stocks/PLTR.md
 
 Never overwrite reports for companies that were not requested.
+
+## Publish successful analysis
+
+After the requested ticker Markdown file has been successfully created or updated, publish only stock analyses so the GitHub Pages library refreshes:
+
+```powershell
+cd C:\Users\nitis\.openclaw\workspace\market-research-agent
+python scripts\publish_research.py
+```
+
+Run this command only after the file write succeeds. If publishing fails, keep the analysis locally and report the failure; do not retry by staging unrelated files. Never stage `local.env`, API keys, `trading.db`, runtime state, or generated reports.
