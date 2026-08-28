@@ -263,6 +263,16 @@ CRWD
 The agent reads from local markdown files:
 
 - `data/stocks/*.md` — Company analyses with conviction levels
+
+## Automatic GitHub Pages publishing
+
+After `/analyse TICKER` creates or updates `data/stocks/TICKER.md`, run the safe publisher:
+
+```bash
+python scripts/publish_research.py
+```
+
+It stages only `data/stocks/`, commits the changed analysis files, and pushes `main`. The repository Pages workflow then rebuilds the research library automatically. Configure the Telegram/OpenClaw analysis skill to invoke this command after a successful Markdown write. It never stages credentials, databases, reports, or unrelated files.
 - `data/macro/*.md` — Macroeconomic context
 - `data/news/*.md` — Market headlines and summaries
 - `data/sec-filings/*.md` — Recent filing reviews

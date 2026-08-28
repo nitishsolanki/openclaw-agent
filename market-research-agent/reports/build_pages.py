@@ -37,19 +37,32 @@ def render_md(text: str) -> str:
     if listed: out.append("</ul>")
     return "".join(out)
 
+def section_body(text: str, wanted: str) -> str:
+    parts = re.split(r"^##\s+(.+)$", text, flags=re.MULTILINE)
+    for i in range(1, len(parts), 2):
+        if parts[i].strip().lower() == wanted.lower():
+            return parts[i + 1].strip()
+    return ""
+
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     records=[]
     for path in (ROOT / "data" / "stocks").glob("*.md"):
         symbol=path.stem.upper(); text=path.read_text(encoding="utf-8"); date=date_for(path)
         records.append((date,symbol,text))
-        sections=re.split(r"^##\s+(.+)$", text, flags=re.MULTILINE)
-        overview=""; conviction=""
-        for i in range(1,len(sections),2):
-            if sections[i].lower()=="overview": overview=sections[i+1].strip()
-            if "conviction" in sections[i].lower(): conviction=sections[i+1].strip()
+        overview=section_body(text, "Overview")
+        conviction=""
+        parts=re.split(r"^##\s+(.+)$", text, flags=re.MULTILINE)
+        for i in range(1,len(parts),2):
+            if "conviction" in parts[i].lower(): conviction=parts[i+1].strip()
         nav=f"<p><a href='index.html'>← All analyses</a> · <a href='{symbol.lower()}-full.html'>Full view</a> · <a href='{symbol.lower()}.html'>Telegram view</a></p>"
-        short=render_md((overview or text)[:1600]+("\n\n"+conviction if conviction else ""))
+        recent=section_body(text, "Recent Developments / News / Earnings / Analyst / SEC / Product Notes")
+        short_source=(overview[:650] if overview else text[:650])
+        if conviction: short_source += "\n\n## Conviction\n" + conviction[:500]
+        if recent:
+            bullets=[line for line in recent.splitlines() if line.startswith("- ")][:3]
+            if bullets: short_source += "\n\n## Key updates\n" + "\n".join(bullets)
+        short=render_md(short_source)
         full=render_md(text)
         (OUT/f"{symbol.lower()}.html").write_text(page(f"<header><h1>{html.escape(symbol)}</h1><p class='muted'>Updated {date}</p>{nav}</header><main><h2>Telegram view</h2>{short}</main>",f"{symbol} · Telegram view"),encoding="utf-8")
         (OUT/f"{symbol.lower()}-full.html").write_text(page(f"<header><h1>{html.escape(symbol)}</h1><p class='muted'>Updated {date}</p>{nav}</header><main><h2>Full analysis</h2>{full}</main>",f"{symbol} · Full analysis"),encoding="utf-8")
