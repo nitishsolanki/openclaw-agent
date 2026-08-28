@@ -5,6 +5,9 @@ on:
   push:
     paths:
       - "ai-trading-agent/reports/**"
+      - "market-research-agent/data/stocks/*.md"
+      - "market-research-agent/reports/build_pages.py"
+      - "market-research-agent/agent.py"
   schedule:
     - cron: "35 9 * * 1-5"
       timezone: America/Chicago
@@ -54,6 +57,13 @@ jobs:
       - name: Generate report
         working-directory: ai-trading-agent
         run: python reports/build_live_report.py
+      - name: Build research library
+        working-directory: market-research-agent
+        run: python reports/build_pages.py
+      - name: Add research library to Pages site
+        run: |
+          mkdir -p ai-trading-agent/reports/site/research
+          cp -R market-research-agent/reports/site/. ai-trading-agent/reports/site/research/
       - name: Persist sector history
         run: |
           git config user.name "github-actions[bot]"
