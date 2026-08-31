@@ -1,86 +1,86 @@
 {
   "candidates": [
     {
-      "symbol": "SMCI",
-      "score": 82.9,
+      "symbol": "HPQ",
+      "score": 81.27,
       "direction": "LONG",
       "sector": "Technology",
       "components": {
         "market": 100.0,
-        "sector": 86.5,
+        "sector": 82.07,
         "relative_strength": 100.0,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 26.85061947974159,
-        "momentum": 58.38839645447219,
+        "volume": 6.1558569853808685,
+        "momentum": 84.90381252186084,
         "volatility": 50.0,
         "options": 50.0
       }
     },
     {
-      "symbol": "HPQ",
-      "score": 82.56,
+      "symbol": "SMCI",
+      "score": 81.18,
       "direction": "LONG",
       "sector": "Technology",
       "components": {
         "market": 100.0,
-        "sector": 86.5,
-        "relative_strength": 83.1304793349444,
+        "sector": 82.07,
+        "relative_strength": 100.0,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 51.007553323922735,
-        "momentum": 70.70346684617977,
+        "volume": 5.721954912548764,
+        "momentum": 83.7837837837838,
         "volatility": 50.0,
         "options": 50.0
       }
     },
     {
-      "symbol": "T",
-      "score": 80.55,
-      "direction": "LONG",
-      "sector": "Communication Services",
-      "components": {
-        "market": 100.0,
-        "sector": 89.1,
-        "relative_strength": 83.11463038793799,
-        "vwap": 97.29177704314735,
-        "trend": 100.0,
-        "volume": 30.13706412019465,
-        "momentum": 69.90478071908336,
-        "volatility": 50.0,
-        "options": 50.0
-      }
-    },
-    {
-      "symbol": "AAPL",
-      "score": 77.95,
+      "symbol": "PLTR",
+      "score": 80.75,
       "direction": "LONG",
       "sector": "Technology",
       "components": {
         "market": 100.0,
-        "sector": 86.5,
-        "relative_strength": 65.55248221441619,
+        "sector": 82.07,
+        "relative_strength": 100.0,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 39.18987108465256,
-        "momentum": 72.33462670158765,
+        "volume": 5.000529532574709,
+        "momentum": 76.67263630678269,
         "volatility": 50.0,
         "options": 50.0
       }
     },
     {
       "symbol": "PFE",
-      "score": 76.3,
+      "score": 76.15,
       "direction": "LONG",
       "sector": "Healthcare",
       "components": {
         "market": 100.0,
-        "sector": 83.5,
-        "relative_strength": 67.21020014460612,
+        "sector": 81.93,
+        "relative_strength": 79.65937761316972,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 36.370305605819695,
-        "momentum": 50.360947799750555,
+        "volume": 11.307158421575588,
+        "momentum": 54.07290922087209,
+        "volatility": 50.0,
+        "options": 50.0
+      }
+    },
+    {
+      "symbol": "AAPL",
+      "score": 73.15,
+      "direction": "LONG",
+      "sector": "Technology",
+      "components": {
+        "market": 100.0,
+        "sector": 82.07,
+        "relative_strength": 62.333732978881685,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 10.484445832969744,
+        "momentum": 64.43196352916544,
         "volatility": 50.0,
         "options": 50.0
       }
