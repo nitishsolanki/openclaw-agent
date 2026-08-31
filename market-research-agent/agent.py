@@ -137,7 +137,7 @@ def _latest_news_summary(root: Path) -> str:
         return "No fresh market news was available for this run."
 
     summary_lines: list[str] = []
-    for doc in docs[-2:]:
+    for doc in docs[-1:]:
         summary_lines.extend(line.strip() for line in doc.splitlines() if line.strip())
 
     return "\n".join(summary_lines[:8])
@@ -151,7 +151,7 @@ def extract_macro_snapshot(root: str | Path) -> dict:
         return {"highlights": ["Macro data is currently unavailable."], "status": "missing"}
 
     highlights: list[str] = []
-    for doc in docs[-2:]:
+    for doc in docs[-1:]:
         for line in doc.splitlines():
             text = line.strip()
             if not text or text.startswith("#") or text.startswith("Sources:"):
@@ -201,7 +201,10 @@ def detect_macro_regime(root: str | Path) -> dict:
     risk_on_count = sum(1 for keyword in risk_on_keywords if keyword in highlights_text)
     risk_off_count = sum(1 for keyword in risk_off_keywords if keyword in highlights_text)
 
-    if risk_off_count > risk_on_count:
+    if "risk-off" in highlights_text or "hawkish" in highlights_text:
+        regime = "risk-off"
+        risk_signal = 0.7
+    elif risk_off_count > risk_on_count:
         regime = "risk-off"
         risk_signal = 0.7
     elif risk_on_count > risk_off_count:
@@ -244,7 +247,7 @@ def _latest_macro_summary(root: Path) -> str:
         return "Macro data is currently unavailable."
 
     lines: list[str] = []
-    for doc in docs[-2:]:
+    for doc in docs[-1:]:
         lines.extend(line.strip() for line in doc.splitlines() if line.strip())
     return "\n".join(lines[:8])
 
