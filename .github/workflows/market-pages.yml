@@ -54,6 +54,14 @@ jobs:
       - name: Refresh active theme
         working-directory: ai-trading-agent
         run: python scripts/refresh_theme.py
+      - name: Generate Python candidates
+        working-directory: ai-trading-agent
+        run: python scripts/generate_python_candidates.py
+      - name: Upload Python candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-candidates
+          path: ai-trading-agent/reports/python_candidates.json
       - name: Generate report
         working-directory: ai-trading-agent
         run: python reports/build_live_report.py
