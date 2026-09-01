@@ -11,8 +11,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -40,13 +38,9 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -e ".[alpaca]"
       - name: Generate report
-        run: python reports/build_live_report.py
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
+        run: python scripts/generate_python_candidates.py
+      - name: Upload Python candidates
+        uses: actions/upload-artifact@v4
         with:
-          path: reports/site
-      - name: Deploy to Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          name: python-candidates
+          path: reports/python_candidates.json
