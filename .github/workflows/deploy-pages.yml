@@ -1,0 +1,34 @@
+name: Deploy Market Intelligence
+
+on:
+  push:
+    paths:
+      - "ai-trading-agent/reports/site/**"
+      - "ai-trading-agent/reports/latest.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ai-trading-agent/reports/site
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

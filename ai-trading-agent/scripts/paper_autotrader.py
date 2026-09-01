@@ -6,7 +6,7 @@ sys.path.insert(0, str(root))
 sys.path.insert(0, str(root / "src"))
 sys.path.insert(0, str(root / "reports"))
 
-from ai_trading_agent.cli import run_scan
+from ai_trading_agent.signals.scoring import TradeSignal
 from ai_trading_agent.config.env import load_env
 from ai_trading_agent.data.market_data import AlpacaMarketData
 from ai_trading_agent.execution.paper_trader import PaperTrader
@@ -52,7 +52,16 @@ for order in trader.open_orders():
     except Exception as exc:
         print(f"monitor_skip={order.symbol} reason={type(exc).__name__}")
 
-signals = run_scan(root)
+import json
+candidate_artifact = root.parent / "python_candidates.json"
+if not candidate_artifact.exists():
+    raise SystemExit(f"Paper entries blocked: missing GitHub artifact {candidate_artifact}")
+artifact = json.loads(candidate_artifact.read_text(encoding="utf-8"))
+signals = [TradeSignal(str(item["symbol"]).upper(), item["direction"], float(item["score"]),
+                       {**item.get("components", {}), "sector_name": item.get("sector", "Unknown")})
+           for item in artifact.get("swing", [])]
+if not signals:
+    raise SystemExit("Paper entries blocked: GitHub artifact has no Swing candidates")
 from reports.build_live_report import generate_report
 export_top_candidates(root, signals)
 research = {}
@@ -69,6 +78,11 @@ if env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() in {"1", "true", "yes"}:
 elif env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() not in {"1", "true", "yes"}:
     research = load_research(root, {signal.symbol for signal in signals[:5]})
 generate_report(root, signals, research)
+if env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() in {"1", "true", "yes"} and not research:
+    raise SystemExit("Paper entries blocked: no valid OpenClaw research scores")
+
+# Publish the report before considering any new paper entries.
+publish()
 
 if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     provider = AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
@@ -96,4 +110,3 @@ if env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
             print(f"skip={signal.symbol} reason={type(exc).__name__}")
 
 print(f"open_paper_orders={len(trader.open_orders())}")
-publish()
