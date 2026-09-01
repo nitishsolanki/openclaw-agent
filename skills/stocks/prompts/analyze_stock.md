@@ -2,7 +2,19 @@
 
 Analyze the supplied stock ticker.
 
-Produce a markdown report with the following sections.
+Produce a concise, trading-oriented markdown report. Preserve important facts, but avoid essay-style paragraphs.
+
+Start with this table:
+
+| Field | Value |
+|---|---|
+| Ticker | ... |
+| Price / date | ... |
+| Sector / industry | ... |
+| Conviction | High / Medium / Low |
+| Trading bias | Buy / Accumulate on weakness / Hold / Avoid |
+
+Use short bullets and compact tables wherever possible. Every section should contain no more than 3-5 bullets. Put the most actionable information first.
 
 # Company
 
@@ -14,7 +26,7 @@ Produce a markdown report with the following sections.
 
 # Recent News
 
-Summarize the three most important developments.
+Summarize the three most important developments in one line each.
 
 # Earnings
 
@@ -40,6 +52,17 @@ Largest investment risks.
 
 Upcoming events that may move the stock.
 
+# Trading View
+
+Include:
+
+| Item | View |
+|---|---|
+| Bias | ... |
+| Entry condition | ... |
+| Invalidation | ... |
+| Time horizon | Swing / Position |
+
 # Overall Conviction
 
 High
@@ -48,4 +71,4 @@ Medium
 
 Low
 
-Limit the report to approximately 600 words.
+Limit the report to approximately 450-600 words. Do not repeat the same fact in multiple sections. Clearly label facts versus analysis, and never invent entry, stop, target, score, or price data.

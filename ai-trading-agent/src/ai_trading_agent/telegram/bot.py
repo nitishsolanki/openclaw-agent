@@ -13,7 +13,13 @@ def format_response(endpoint: str, payload: dict) -> str:
         if "error" in payload:
             return f"ANALYSIS ERROR\n{payload['error']}"
         symbol = payload.get("symbol", endpoint.rsplit("/", 1)[-1])
-        return f"ANALYSIS — {symbol}\nScore: {payload.get('score', 0):.2f}/100\nDirection: {payload.get('direction', 'UNKNOWN')}\n\nComponents:\n" + "\n".join(f"• {key}: {value:.1f}" for key, value in payload.get("components", {}).items())
+        components = payload.get("components", {})
+        ranked = sorted(components.items(), key=lambda item: float(item[1]), reverse=True)
+        strengths = ", ".join(f"{key.replace('_', ' ')} {float(value):.0f}" for key, value in ranked[:3]) or "No signal details"
+        return (f"📊 {symbol} — {payload.get('direction', 'UNKNOWN')}\n"
+                f"Score: {payload.get('score', 0):.0f}/100\n\n"
+                f"Signal strengths: {strengths}\n\n"
+                "Action: Use /setup for entry, stop, target, and position size.")
     if endpoint.startswith("/setup/"):
         return (f"TRADE SETUP — {payload.get('symbol')}\nEntry: ${payload.get('entry', 0):.2f}\nStop: ${payload.get('stop', 0):.2f}\nTarget: ${payload.get('target', 0):.2f}\nShares: {payload.get('shares', 0)}\nApproved: {payload.get('approved')}\nReasons: {', '.join(payload.get('reasons', [])) or 'none'}")
     if endpoint == "/sectors":

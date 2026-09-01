@@ -16,7 +16,7 @@ market-research-agent/watchlist.txt
 1. Read watchlist.txt
 2. Process one ticker at a time
 3. Search recent information
-4. Produce one markdown report per ticker
+4. Produce one concise, trading-oriented markdown report per ticker using `prompts/analyze_stock.md`
 
 ## Research Areas
 
