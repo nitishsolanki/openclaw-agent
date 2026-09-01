@@ -8,167 +8,125 @@ Review each candidate using the supplied trading data and existing research. Do 
 
 Use a 0-100 research score. Do not invent facts. Treat missing data as uncertainty. Keep Python's technical score authoritative; this research score is a 30% adjustment.
 
-## HPQ
+## WBD
 Trading candidate:
 ```json
 {
-  "symbol": "HPQ",
-  "score": 81.27,
+  "symbol": "WBD",
+  "score": 75.71,
   "direction": "LONG",
-  "sector": "Technology",
+  "sector": "Communication Services",
   "components": {
     "market": 100.0,
-    "sector": 82.07,
-    "relative_strength": 100.0,
+    "sector": 54.49,
+    "relative_strength": 64.33852218439041,
     "vwap": 100.0,
     "trend": 100.0,
-    "volume": 6.1558569853808685,
-    "momentum": 84.90381252186084,
+    "volume": 52.119360711926646,
+    "momentum": 48.28175640355463,
     "volatility": 50.0,
-    "options": 50.0
+    "options": 50.0,
+    "extension": 96.97189778858117
   }
 }
 ```
 Existing research:
 No local stock research file exists. Use available provider data only.
 
-## SMCI
+## NFLX
 Trading candidate:
 ```json
 {
-  "symbol": "SMCI",
-  "score": 81.18,
+  "symbol": "NFLX",
+  "score": 61.09,
   "direction": "LONG",
-  "sector": "Technology",
+  "sector": "Communication Services",
   "components": {
     "market": 100.0,
-    "sector": 82.07,
-    "relative_strength": 100.0,
-    "vwap": 100.0,
+    "sector": 54.49,
+    "relative_strength": 77.73836445221534,
+    "vwap": 0.0,
     "trend": 100.0,
-    "volume": 5.721954912548764,
-    "momentum": 83.7837837837838,
+    "volume": 29.43957451235533,
+    "momentum": 55.24934383202096,
     "volatility": 50.0,
-    "options": 50.0
-  }
-}
-```
-Existing research:
-# SMCI — 2026-08-12
-
-**View:** Watchlist coverage; conviction is conditional on valuation and company-specific verification. **Theme:** AI/infrastructure, software, fintech, mobility or space depending on issuer.
-
-**Bull case:** Continued AI/data-center spending, easing inflation, and resilient equity demand can support growth names and infrastructure suppliers.
-
-**Bear case:** 4.68% long yields, Brent near $89, geopolitical disruption, crowded AI positioning, execution risk and any financing/dilution could compress multiples.
-
-**Catalysts / checks:** next earnings, guidance, customer wins, backlog, margins, cash burn and SEC filings. No ticker-specific filing was independently verified in today’s collection window.
-
-**Rating:** Medium conviction only after fresh company-level verification; not investment advice.
-
-
-## PLTR
-Trading candidate:
-```json
-{
-  "symbol": "PLTR",
-  "score": 80.75,
-  "direction": "LONG",
-  "sector": "Technology",
-  "components": {
-    "market": 100.0,
-    "sector": 82.07,
-    "relative_strength": 100.0,
-    "vwap": 100.0,
-    "trend": 100.0,
-    "volume": 5.000529532574709,
-    "momentum": 76.67263630678269,
-    "volatility": 50.0,
-    "options": 50.0
-  }
-}
-```
-Existing research:
-# PLTR (Palantir Technologies)
-
-_Last updated: 2026-07-26 CDT_
-
-## Overview
-Palantir builds data integration, analytics and AI decision platforms for government and commercial customers. Core products include Gotham for government/defense, Foundry for enterprises, Apollo for deployment/operations, and AIP for AI workflows.
-
-## Sector / Industry
-- Sector: Information Technology
-- Industry: Software / prepackaged software (SEC SIC 7372)
-
-## Recent developments / notes
-- Google News RSS showed July 2026 coverage focused on the upcoming Aug. 3 earnings event, including bearish/prediction pieces and “what to expect this quarter” articles.
-- Palantir IR press-release page extraction was sparse, but the site exposed quarterly results and SEC filings links.
-- SEC submissions feed confirms Palantir is a Nasdaq large accelerated filer in software; monitor 10-Q/8-K filings for U.S. commercial growth, government contract timing, SBC dilution and profitability metrics.
-- Product focus remains AIP adoption, bootcamps, defense/government AI use cases and enterprise conversion from pilots to scaled deployments.
-
-## Bull thesis
-Palantir has a strong position where AI must connect to messy operational data, security permissions and real workflows. AIP can accelerate commercial adoption while the government franchise provides credibility and durable mission-critical revenue. If bootcamp-led demand converts into large enterprise expansions, revenue growth and operating leverage could remain above software peers.
-
-## Bear thesis
-Valuation is the central concern: the market may already discount years of exceptional AI growth. Revenue can be lumpy due to large government contracts, and commercial adoption may be slower than narrative momentum suggests. Customers may also prefer broader cloud/platform vendors or build internal AI layers.
-
-## Risks
-High valuation, government budget/procurement delays, contract concentration, SBC/dilution, political/reputational risk, AI hype cycle reversal, competition from hyperscalers and enterprise software incumbents, and execution risk converting pilots into durable ARR.
-
-## Catalysts
-Aug. 3 earnings/guidance, U.S. commercial acceleration, major defense/intelligence contracts, AIP customer expansion, margin beats, index/flow support, and analyst upgrades if growth remains durable.
-
-## Long-term outlook
-Positive but valuation-sensitive. Palantir is one of the more distinctive AI software companies, yet long-term returns depend on whether growth can compound fast enough to justify the premium multiple.
-
-## Conviction rating
-Medium conviction: strong product/market narrative, but risk/reward is heavily dependent on valuation and execution.
-
-## Sources checked
-Google News RSS; Palantir investor page; SEC submissions JSON (CIK 0001321655).
-
-## PFE
-Trading candidate:
-```json
-{
-  "symbol": "PFE",
-  "score": 76.15,
-  "direction": "LONG",
-  "sector": "Healthcare",
-  "components": {
-    "market": 100.0,
-    "sector": 81.93,
-    "relative_strength": 79.65937761316972,
-    "vwap": 100.0,
-    "trend": 100.0,
-    "volume": 11.307158421575588,
-    "momentum": 54.07290922087209,
-    "volatility": 50.0,
-    "options": 50.0
+    "options": 50.0,
+    "extension": 82.5444551219421
   }
 }
 ```
 Existing research:
 No local stock research file exists. Use available provider data only.
 
-## AAPL
+## BAC
 Trading candidate:
 ```json
 {
-  "symbol": "AAPL",
-  "score": 73.15,
+  "symbol": "BAC",
+  "score": 58.53,
   "direction": "LONG",
-  "sector": "Technology",
+  "sector": "Financials",
   "components": {
     "market": 100.0,
-    "sector": 82.07,
-    "relative_strength": 62.333732978881685,
+    "sector": 88.06,
+    "relative_strength": 39.379104394258555,
     "vwap": 100.0,
-    "trend": 100.0,
-    "volume": 10.484445832969744,
-    "momentum": 64.43196352916544,
+    "trend": 0.0,
+    "volume": 44.03392630344886,
+    "momentum": 49.4653084142135,
     "volatility": 50.0,
-    "options": 50.0
+    "options": 50.0,
+    "extension": 100.0
+  }
+}
+```
+Existing research:
+No local stock research file exists. Use available provider data only.
+
+## WMT
+Trading candidate:
+```json
+{
+  "symbol": "WMT",
+  "score": 37.46,
+  "direction": "WATCH",
+  "sector": "Consumer Discretionary",
+  "components": {
+    "market": 100.0,
+    "sector": 55.78,
+    "relative_strength": 23.547796588114167,
+    "vwap": 0.0,
+    "trend": 0.0,
+    "volume": 48.11284464498413,
+    "momentum": 48.65377393916634,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
+}
+```
+Existing research:
+No local stock research file exists. Use available provider data only.
+
+## PCG
+Trading candidate:
+```json
+{
+  "symbol": "PCG",
+  "score": 33.67,
+  "direction": "WATCH",
+  "sector": "Utilities",
+  "components": {
+    "market": 100.0,
+    "sector": 57.67,
+    "relative_strength": 0.0,
+    "vwap": 0.0,
+    "trend": 0.0,
+    "volume": 100.0,
+    "momentum": 4.0,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
   }
 }
 ```

@@ -1,7 +1,7 @@
 profile: swing
 signals:
   market_regime_weight: 0.10
-  sector_weight: 0.13
+  sector_weight: 0.10
   relative_strength_weight: 0.20
   vwap_weight: 0.15
   trend_weight: 0.15
