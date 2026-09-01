@@ -12,6 +12,7 @@ def load_strategy(path: str | Path) -> dict:
     weights = {key: float(configured.get(f"{key}_weight", value)) for key, value in DEFAULT_WEIGHTS.items()}
     if "extension_weight" in configured:
         weights["extension"] = float(configured["extension_weight"])
-    if abs(sum(weights.values()) - 1.0) > 1e-6:
-        raise ValueError("Signal weights must sum to 1.0")
+    total = sum(weights.values())
+    if abs(total - 1.0) > 1e-6:
+        raise ValueError(f"Signal weights must sum to 1.0: {path} totals {total:.6f}; weights={weights}")
     return {**raw, "weights": weights}

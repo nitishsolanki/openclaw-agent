@@ -1,12 +1,12 @@
 profile: day
 signals:
-  market_regime_weight: 0.10
-  sector_weight: 0.05
+  market_regime_weight: 0.16
+  sector_weight: 0.20
   relative_strength_weight: 0.20
-  vwap_weight: 0.17
-  trend_weight: 0.10
-  volume_weight: 0.18
-  momentum_weight: 0.15
-  volatility_weight: 0.00
-  options_weight: 0.00
+  vwap_weight: 0.05
+  trend_weight: 0.14
+  volume_weight: 0.05
+  momentum_weight: 0.05
+  volatility_weight: 0.05
+  options_weight: 0.05
   extension_weight: 0.05
