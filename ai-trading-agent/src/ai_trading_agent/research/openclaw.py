@@ -15,9 +15,10 @@ def run_research(root: Path, prompt_path: Path, expected_symbols: set[str]) -> P
     contains valid research for every requested symbol.
     """
     binary = os.environ.get("OPENCLAW_BIN", "openclaw")
+    agent = os.environ.get("OPENCLAW_AGENT", "main")
     prompt = prompt_path.read_text(encoding="utf-8")
     result = subprocess.run(
-        [binary, "agent", "--message", prompt],
+        [binary, "agent", "--agent", agent, "--message", prompt],
         cwd=str(root), text=True, capture_output=True, timeout=900,
         check=False,
     )
