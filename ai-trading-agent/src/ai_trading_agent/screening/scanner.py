@@ -15,6 +15,18 @@ class Candidate:
 def _bounded(value: float) -> float:
     return max(0.0, min(100.0, value))
 
+def extension_score(close: pd.Series, lookback: int = 50) -> float:
+    """Score distance from the 50-bar simple moving average."""
+    if len(close) < lookback:
+        return 50.0
+    sma50 = float(close.rolling(lookback).mean().iloc[-1])
+    distance_pct = (float(close.iloc[-1]) / sma50 - 1.0) * 100.0
+    if distance_pct <= 5.0:
+        return 100.0
+    if distance_pct >= 25.0:
+        return 0.0
+    return _bounded(100.0 - (distance_pct - 5.0) * 5.0)
+
 def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
                     weights: dict[str, float], market_score: float = 50.0,
                     news_score: float = 50.0, options_score: float = 50.0) -> TradeSignal:
@@ -36,6 +48,8 @@ def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
         "relative_strength": rs_score, "vwap": vwap_score, "trend": trend,
         "volume": volume_score, "momentum": momentum, "volatility": 50.0, "options": options_score,
     }
+    if "extension" in weights:
+        components["extension"] = extension_score(close)
     return score_signal(candidate.symbol, components, weights)
 
 def scan(candidates: list[Candidate], benchmark_close: pd.Series,

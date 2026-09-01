@@ -10,7 +10,8 @@ def load_strategy(path: str | Path) -> dict:
     raw = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
     configured = raw.get("signals", {})
     weights = {key: float(configured.get(f"{key}_weight", value)) for key, value in DEFAULT_WEIGHTS.items()}
+    if "extension_weight" in configured:
+        weights["extension"] = float(configured["extension_weight"])
     if abs(sum(weights.values()) - 1.0) > 1e-6:
         raise ValueError("Signal weights must sum to 1.0")
     return {**raw, "weights": weights}
-

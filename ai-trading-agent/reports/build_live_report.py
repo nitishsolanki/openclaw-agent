@@ -38,20 +38,27 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     history = history[-5:]
     history_path.write_text(json.dumps(history, indent=2) + "\n", encoding="utf-8")
     signals = run_scan(root, require_live=True) if signals is None else signals
+    profile_results = {"day": run_scan(root, require_live=True, profile="day"),
+                       "swing": signals,
+                       "growth": run_scan(root, require_live=True, profile="growth")}
     if os.getenv("GITHUB_ACTIONS") == "true" and any(item.symbol in {"AAA", "BBB", "CCC"} for item in signals):
         raise RuntimeError("Refusing to publish sample candidates in GitHub Actions")
     research = research or load_research(root)
+    def serialize(items):
+        return [{"symbol": item.symbol, "direction": item.direction, "score": item.final_score,
+                 "boosted_score": boosted_score(item.final_score, research.get(item.symbol)),
+                 "research": research.get(item.symbol, {}),
+                 "sector": item.components.get("sector_name", "Unknown"),
+                 "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if isinstance(value, (int, float)) and value >= 80]}
+                for item in items]
+
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(), "data_source": "alpaca_live",
         "market": {"label": "See signal components", "score": signals[0].components.get("market", 0) if signals else 0},
         "theme": active_theme(root) or {"name": "none", "sectors": []}, "sectors": sectors,
         "sector_history": history, "sector_current_prices": current_prices,
-        "signals": [{"symbol": item.symbol, "direction": item.direction, "score": item.final_score,
-                     "boosted_score": boosted_score(item.final_score, research.get(item.symbol)),
-                     "research": research.get(item.symbol, {}),
-                     "sector": item.components.get("sector_name", "Unknown"),
-                     "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if isinstance(value, (int, float)) and value >= 80]}
-                    for item in signals],
+        "signals": serialize(signals),
+        "profiles": {profile: serialize(items) for profile, items in profile_results.items()},
         "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
     }
     if env.get("OPENAI_API_KEY") and not research:

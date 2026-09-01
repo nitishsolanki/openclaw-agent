@@ -1,0 +1,12 @@
+profile: swing
+signals:
+  market_regime_weight: 0.10
+  sector_weight: 0.13
+  relative_strength_weight: 0.20
+  vwap_weight: 0.15
+  trend_weight: 0.15
+  volume_weight: 0.10
+  momentum_weight: 0.10
+  volatility_weight: 0.05
+  options_weight: 0.00
+  extension_weight: 0.05

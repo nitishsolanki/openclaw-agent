@@ -43,8 +43,13 @@ def _normalize_sector(profile: dict) -> str:
     }
     return next((name for name, terms in groups.items() if any(term in text for term in terms)), "Unknown")
 
-def run_scan(root: Path, require_live: bool = False) -> list:
-    config = load_strategy(root / "config" / "strategy.yaml")
+def run_scan(root: Path, require_live: bool = False, profile: str = "swing") -> list:
+    if profile not in {"day", "swing", "growth"}:
+        raise ValueError("profile must be one of: day, swing, growth")
+    config_path = root / "config" / f"strategy_{profile}.yaml"
+    if not config_path.exists():
+        config_path = root / "config" / "strategy.yaml"
+    config = load_strategy(config_path)
     env = load_env(root / "local.env")
     db = connect(root / "trading.db")
     provider = CsvMarketData(root / "data" / "sample")
@@ -126,9 +131,11 @@ def run_scan(root: Path, require_live: bool = False) -> list:
 def main() -> None:
     parser = argparse.ArgumentParser(description="AI Trading Agent (signal-only scanner)")
     parser.add_argument("command", choices=["scan"])
+    parser.add_argument("--profile", choices=["day", "swing", "growth"], default="swing",
+                        help="Scoring profile: day, swing, or growth (default: swing)")
     parser.add_argument("--root", type=Path, default=Path.cwd())
     args = parser.parse_args()
-    for rank, result in enumerate(run_scan(args.root), 1):
+    for rank, result in enumerate(run_scan(args.root, profile=args.profile), 1):
         print(f"{rank}. {result.symbol} {result.final_score:.2f}/100 {result.direction}")
         print(f"   {result.components}")
 

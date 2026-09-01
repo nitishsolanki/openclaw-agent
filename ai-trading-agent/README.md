@@ -1,74 +1,135 @@
 # AI Trading Agent
 
-Initial scanner foundation for the plan in `AI_Trading_Agent_VSCode_Plan.md`.
-This package is signal-only: it does not connect to a broker or place orders.
+The AI Trading Agent is a signal-only stock scanner and paper-trading framework. It
+combines deterministic Python technical signals with optional market, sector, news,
+earnings, options, and OpenClaw research inputs. It does not place live broker orders.
+
+## How the agent works
+
+1. Load the configured stock universe and OHLCV price data.
+2. In live mode, remove stocks that fail the price, liquidity, history, or spread checks.
+3. Calculate a 0–100 score for every remaining candidate.
+4. Rank candidates and keep the top 10.
+5. Label scores of 50 or higher `LONG`; lower scores are `WATCH`.
+6. Record signals in SQLite and optionally create risk-checked paper trades.
+7. Optionally enrich the top candidates with OpenClaw research; research changes the
+   ranking blend but does not bypass deterministic risk controls.
+
+## Quick start
+
+From this directory:
+
+```powershell
+python -m pip install -e .
+python -m ai_trading_agent scan
+
+# Choose a scoring profile
+python -m ai_trading_agent scan --profile day
+python -m ai_trading_agent scan --profile swing
+python -m ai_trading_agent scan --profile growth
+```
+
+This uses the offline sample data and writes signals to `trading.db`.
+
+For the local API and Telegram bot, use separate terminals:
+
+```powershell
+python scripts/run_api.py
+python scripts/run_telegram.py
+```
+
+Useful Telegram commands are `/scan`, `/sectors`, `/analyze SYMBOL`,
+`/setup SYMBOL`, `/positions`, `/pnl`, and `/status`. `/analyze` is informational;
+`/setup` calculates a possible entry, stop, target, and share quantity subject to
+risk rules.
+
+## Python stock-filtering rules
+
+The main liquidity filters are implemented in
+`src/ai_trading_agent/data/bars_batch.py`, function `fetch_liquid_bars()`.
+Universe loading and live/offline selection are handled in
+`src/ai_trading_agent/cli.py`, function `run_scan()`.
+
+In live mode, `fetch_liquid_bars()` excludes a symbol when any of these checks fail:
+
+| Rule | Requirement |
+|---|---:|
+| Minimum price | At least $10.00 |
+| Price history | At least 60 bars |
+| Average share volume | At least 1,000,000 shares over the latest 20 bars |
+| Average dollar volume | At least $25,000,000 over the latest 20 bars |
+| Median dollar volume | At least $15,000,000 over the latest 20 bars |
+| Bid/ask spread | No more than 0.50%, when available |
+
+Empty data, provider errors, or failed calculations also exclude the symbol. Offline
+mode currently uses the sample universe (`AAA`, `BBB`, and `CCC`) and does not apply
+the live liquidity download path.
+
+After liquidity filtering, `run_scan()` may also apply the active weekly theme filter
+in offline mode. In live mode it enriches sector names and applies sector scores;
+these affect ranking rather than eligibility. The final scanner in
+`src/ai_trading_agent/screening/scanner.py`, function `scan()`, sorts eligible stocks
+by score and keeps the top 10.
+
+These are eligibility and ranking rules, not trade approval. A stock that passes the
+filters is scored and ranked; it is not automatically approved for a trade.
+
+## Scoring profiles
+
+Profiles are stored in `config/strategy_day.yaml`, `config/strategy_swing.yaml`,
+and `config/strategy_growth.yaml`. The default is `swing`.
+
+- `day`: emphasizes VWAP, current volume, momentum, and relative strength. Use with
+  intraday bars; the current data adapter may still provide daily bars.
+- `swing`: balances sector, trend, relative strength, VWAP, volume, and momentum for
+  multi-day setups.
+- `growth`: emphasizes market regime, sector, trend, and longer-horizon relative
+  strength, with less dependence on current VWAP and volume. It is currently a
+  technical growth proxy, not a fundamental long-term investing model.
+
+The growth profile should not be treated as complete until revenue growth, earnings
+growth, free cash flow, debt, margins, valuation, dilution, and return-on-capital
+data are added to the candidate model. The next recommended enhancement is an
+extension penalty (for example, distance from the 50-day moving average) so the
+scanner can avoid chasing technically overheated stocks.
+
+## Python scoring rules
+
+Each eligible candidate receives these component scores, bounded from 0 to 100:
+
+| Component | Weight | Python rule |
+|---|---:|---|
+| Market regime | 10% | SPY price versus EMA20 and EMA50 |
+| Sector | 20% | Sector-rotation score; 50 when unavailable |
+| Relative strength | 20% | Stock performance versus SPY over 5 and 20 bars |
+| VWAP | 15% | Distance above/below VWAP and whether price is above VWAP |
+| Trend | 10% | Price above EMA20, with EMA20 above EMA50 scoring strongest |
+| Volume | 10% | Current volume compared with its 20-bar average |
+| Momentum | 5% | Six-bar price change, blended with news confirmation |
+| Volatility | 5% | Currently neutral at 50; reserved for future volatility logic |
+| Options | 5% | Neutral at 50 unless live options confirmation is available |
+
+The final score is the weighted sum, clamped to 0–100. Research enrichment, when
+available, uses a 70% Python / 30% research blend in the paper-trading workflow.
 
 ## Current status
 
 ### Completed
 
-- Project packaging with editable installation through `pyproject.toml`.
-- YAML strategy configuration and configurable signal weights.
-- Normalized market-data boundary with:
-  - In-memory data for tests.
-  - CSV data for offline development.
-  - Read-only Alpaca adapter (optional dependency).
-- Technical calculations:
-  - VWAP and VWAP distance.
-  - Volume ratio.
-  - EMA-based trend score.
-  - Relative strength versus a benchmark.
-  - Momentum score.
-- Market-regime detection using benchmark trend.
-- Candidate scanner with reproducible 0–100 signal scoring.
-- Sample OHLCV data for offline testing.
-- Deterministic ATR-based trade setup generation.
-- Deterministic risk engine with:
-  - Risk-per-trade limits.
-  - Maximum position size.
-  - Sector exposure limits.
-  - Daily-loss limits.
-  - Maximum open positions.
-  - Minimum risk/reward validation.
-- SQLite signal journal and initial trade schema.
-- Execution policy gate with `disabled`, `signal_only`, `paper`, and `live` modes.
-- Read-only FastAPI endpoints: `/health`, `/scan`, `/sectors`, `/analyze/{symbol}`,
-  `/setup/{symbol}`, and `/paper/orders`.
-- Local paper-trading simulator with risk-gated order creation, fills, exits,
-  P&L calculation, and SQLite persistence.
-- Basic portfolio performance analytics and moving-average backtesting.
-- OpenClaw trading-agent skill instructions and paper-order API endpoint.
-- `.env.example` with signal-only defaults.
-- Local `local.env` loading plus paper-only Alpaca and Telegram routing adapters.
-- Telegram bot factory and Alpaca paper-order/cancel methods (not auto-started).
-- Read-only Finnhub earnings/news and Polygon/Massive news adapters.
-- Transparent news-confirmation and upcoming-earnings risk scoring helpers.
-- Stock-universe price/liquidity filtering.
-- `/analyze/{symbol}` and `/setup/{symbol}` API response generation.
-- Broker reconciliation helpers and walk-forward/slippage validation tools.
-- Dockerfile and Docker Compose deployment support.
-- GitHub Actions workflow for scheduled static report generation and GitHub Pages deployment.
-- Alpaca options snapshot adapter and neutral-safe options confirmation score.
-- Paper-validation runner that accumulates results without fabricating trades.
-- Weekly sector-rotation theme refresh with SQLite history and fallback behavior.
-- Active weekly theme filtering in scanner output.
-- Configurable $100 paper-allocation cap foundation with deterministic risk enforcement.
-- Paper session controller for capped entries, open positions, exits, and rotation decisions.
-- Scheduled local paper autotrader for risk-approved signal entries with SQLite persistence.
-- Persistent paper-position exit monitoring for stops, targets, VWAP, and EMA invalidation.
-- Weekday paper checks scheduled at 9:35 AM and 2:00 PM local time.
-- Rotating SQLite-backed universe batches so scheduled scans progress through all cached assets.
-- Progressive sector/industry metadata enrichment for cached assets.
-- Options-chain confirmation is applied to the top technical candidates when available.
-- Automated test suite with 20 passing tests.
+- Offline and live stock scanning with reproducible 0–100 Python scoring.
+- Price, liquidity, history, spread, sector, market-regime, news, earnings, and options inputs.
+- Deterministic ATR trade setups and risk controls for paper trading.
+- FastAPI, Telegram, SQLite journaling, paper-trading, backtesting, and validation tools.
+- OpenClaw research handoff with a 70/30 Python/research ranking blend.
+- Scheduled paper checks, sector rotation, GitHub Pages reports, Docker support, and automated tests.
 
 ### Pending
 
-- Connect live sector ETF rotation results directly to the CLI candidate universe.
-- Add broker fill polling and automatic reconciliation scheduling.
-- Connect options confirmation to candidate ranking after feed availability is verified.
-- Schedule `python scripts/refresh_theme.py` weekly and use the active theme in universe filtering.
-- Run `scripts/paper_validation.py` long enough to accumulate a substantial paper-trading sample.
+- Connect live sector rotation directly to the CLI universe.
+- Finish broker fill polling and automatic reconciliation scheduling.
+- Verify and connect live options confirmation to final ranking.
+- Schedule weekly theme refresh and validate the active-theme filter.
+- Accumulate a larger paper-trading sample for performance validation.
 
 ### Explicitly disabled
 

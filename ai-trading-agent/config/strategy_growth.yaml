@@ -1,0 +1,13 @@
+profile: growth
+# Technical growth proxy until fundamental-data fields are available.
+signals:
+  market_regime_weight: 0.15
+  sector_weight: 0.20
+  relative_strength_weight: 0.20
+  vwap_weight: 0.05
+  trend_weight: 0.15
+  volume_weight: 0.05
+  momentum_weight: 0.05
+  volatility_weight: 0.05
+  options_weight: 0.05
+  extension_weight: 0.05
