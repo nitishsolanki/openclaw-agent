@@ -2,12 +2,12 @@ name: Generate Market Report
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "ai-trading-agent/reports/**"
-      - "market-research-agent/data/stocks/*.md"
-      - "market-research-agent/reports/build_pages.py"
-      - "market-research-agent/agent.py"
+    inputs:
+      fresh_scan:
+        description: "Refresh stock universe and run all Python profiles"
+        required: false
+        default: false
+        type: boolean
   schedule:
     - cron: "35 9 * * 1-5"
       timezone: America/Chicago
@@ -49,22 +49,31 @@ jobs:
         working-directory: ai-trading-agent
         run: python -m pip install -e ".[alpaca]"
       - name: Refresh S&P 500 universe
+        if: ${{ github.event_name == 'schedule' || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python scripts/refresh_sp500.py
       - name: Refresh active theme
+        if: ${{ github.event_name == 'schedule' || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python scripts/refresh_theme.py
       - name: Generate Python candidates
+        if: ${{ github.event_name == 'schedule' || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python scripts/generate_python_candidates.py
       - name: Upload Python candidates
+        if: ${{ github.event_name == 'schedule' || inputs.fresh_scan == true }}
         uses: actions/upload-artifact@v4
         with:
           name: python-candidates
           path: ai-trading-agent/reports/python_candidates.json
       - name: Generate report
+        if: ${{ github.event_name == 'schedule' || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python reports/build_live_report.py
+      - name: Rebuild report from last scan
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.fresh_scan != true }}
+        working-directory: ai-trading-agent
+        run: python reports/generate_site.py --input reports/latest.json --output reports/site
       - name: Build research library
         working-directory: market-research-agent
         run: python reports/build_pages.py
