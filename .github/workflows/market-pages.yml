@@ -9,13 +9,17 @@ on:
         default: false
         type: boolean
   schedule:
-    - cron: "35 9 * * 1-5"
+    - cron: "0 9 * * *"
       timezone: America/Chicago
-    - cron: "0 14 * * 1-5"
+    - cron: "0 12 * * *"
+      timezone: America/Chicago
+    - cron: "0 14 * * *"
       timezone: America/Chicago
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
@@ -25,6 +29,9 @@ jobs:
   build-and-deploy:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     env:
       ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
       ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
@@ -59,3 +66,22 @@ jobs:
         with:
           name: python-candidates
           path: ai-trading-agent/reports/python_candidates.json
+      - name: Generate Market Intelligence report
+        working-directory: ai-trading-agent
+        run: python reports/build_live_report.py
+      - name: Build research library
+        working-directory: market-research-agent
+        run: python reports/build_pages.py
+      - name: Add research library to Pages site
+        run: |
+          mkdir -p ai-trading-agent/reports/site/research
+          cp -R market-research-agent/reports/site/. ai-trading-agent/reports/site/research/
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ai-trading-agent/reports/site
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

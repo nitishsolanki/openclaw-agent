@@ -1,10 +1,18 @@
 import argparse
 import json
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from html import escape
 
 def render(report: dict) -> str:
+    try:
+        generated = datetime.fromisoformat(str(report.get("generated_at", "")).replace("Z", "+00:00"))
+        if generated.tzinfo is None:
+            generated = generated.replace(tzinfo=timezone.utc)
+        report = {**report, "generated_at": generated.astimezone(ZoneInfo("America/Chicago")).strftime("%Y-%m-%d %I:%M:%S %p %Z")}
+    except (TypeError, ValueError):
+        pass
     history = report.get("sector_history", [])[-5:]
     oldest = history[0].get("scores", {}) if history else {}
     ranked_sectors = sorted(report.get("sectors", []), key=lambda item: float(item.get("score", -1)), reverse=True)
