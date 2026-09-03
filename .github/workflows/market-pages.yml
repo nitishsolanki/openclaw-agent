@@ -9,11 +9,11 @@ on:
         default: false
         type: boolean
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "35 9 * * 1-5"
       timezone: America/Chicago
-    - cron: "0 12 * * *"
+    - cron: "0 12 * * 1-5"
       timezone: America/Chicago
-    - cron: "0 14 * * *"
+    - cron: "0 14 * * 1-5"
       timezone: America/Chicago
 
 permissions:
