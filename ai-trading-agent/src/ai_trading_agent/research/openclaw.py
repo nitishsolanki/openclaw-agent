@@ -16,9 +16,14 @@ def run_research(root: Path, prompt_path: Path, expected_symbols: set[str]) -> P
     """
     binary = os.environ.get("OPENCLAW_BIN", "openclaw")
     agent = os.environ.get("OPENCLAW_AGENT", "main")
-    prompt = prompt_path.read_text(encoding="utf-8")
+    command = [binary, "agent", "--agent", agent, "--message-file", str(prompt_path)]
+    if binary.lower().endswith(".ps1"):
+        command = ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", binary,
+                   "agent", "--agent", agent, "--message-file", str(prompt_path)]
+    elif binary.lower().endswith(".cmd"):
+        command = ["cmd.exe", "/d", "/s", "/c", binary, "agent", "--agent", agent, "--message-file", str(prompt_path)]
     result = subprocess.run(
-        [binary, "agent", "--agent", agent, "--message", prompt],
+        command,
         cwd=str(root), text=True, capture_output=True, timeout=900,
         check=False,
     )

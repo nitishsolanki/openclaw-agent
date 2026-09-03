@@ -1,1 +1,71 @@
-{"research":[{"symbol":"SMCI","research_score":50.0,"conviction":"Medium","summary":"Research coverage is generic and contains no independently verified company-specific filing. Technical candidate data shows a LONG setup with strong trend, VWAP, and relative-strength readings, but only moderate volume support.","thesis":"The candidate may continue higher if AI and data-center spending remains resilient, but conviction is limited because valuation, earnings, guidance, backlog, margins, cash burn, and customer wins were not company-specifically verified.","catalysts":["Continued AI and data-center spending could support infrastructure suppliers.","Next earnings, guidance, customer wins, backlog, and margin updates could validate the setup."],"risks":["Crowded AI positioning and execution risk could compress valuation multiples.","Financing or dilution risk, geopolitical disruption, and elevated long-term yields could pressure the stock."]},{"symbol":"CMCSA","research_score":50.0,"conviction":"Low","summary":"No corresponding company research file was available. The candidate data indicates a LONG technical setup with strong trend and relative strength, but weak VWAP alignment and only moderate volume support.","thesis":"The technical signal may warrant monitoring, but there is insufficient company-specific evidence to establish a fundamental thesis or determine whether the candidate should be pursued or avoided.","catalysts":["No company-specific catalysts were available in the supplied research files."],"risks":["Insufficient company-specific research prevents assessment of earnings, valuation, catalysts, and financial risks.","Weak VWAP alignment and moderate volume support reduce confidence in the technical signal."]},{"symbol":"BAC","research_score":50.0,"conviction":"Low","summary":"No corresponding company research file was available. Candidate data shows a LONG direction with strong VWAP alignment but no trend confirmation and weak relative strength.","thesis":"The VWAP signal provides limited technical support, but the absence of company-specific financial, valuation, earnings, and catalyst evidence makes the thesis uncertain.","catalysts":["No company-specific catalysts were available in the supplied research files."],"risks":["Insufficient company-specific research prevents assessment of earnings, valuation, and financial risks.","No trend confirmation and weak relative strength undermine confidence in continuation."]},{"symbol":"NVDA","research_score":50.0,"conviction":"Medium","summary":"Research coverage is generic and states that no ticker-specific filing was independently verified. Candidate data shows a LONG setup with strong VWAP alignment, but trend and momentum readings are weak.","thesis":"Continued AI and data-center spending could support the company, but crowded AI positioning, valuation sensitivity, and weak technical trend and momentum make continuation uncertain.","catalysts":["Continued AI and data-center spending could support growth and infrastructure demand.","Next earnings, guidance, customer wins, backlog, and margin updates could provide validation."],"risks":["Crowded AI positioning and execution risk could compress multiples.","Elevated long-term yields, geopolitical disruption, and valuation pressure could weigh on the stock."]},{"symbol":"CCL","research_score":50.0,"conviction":"Low","summary":"No corresponding company research file was available. Candidate data assigns WATCH status and shows very weak relative strength, no trend or VWAP confirmation, despite relatively strong volume.","thesis":"The elevated volume may indicate interest, but the lack of technical confirmation and absence of company-specific research do not support a reliable continuation thesis.","catalysts":["No company-specific catalysts were available in the supplied research files."],"risks":["Very weak relative strength and absent trend and VWAP confirmation undermine the setup.","Insufficient company-specific research prevents assessment of earnings, valuation, catalysts, and financial risks."]}]}
+{
+  "research": [
+    {
+      "symbol": "NVDA",
+      "research_score": 55,
+      "conviction": "Medium",
+      "catalysts": [
+        "AI and data-center spending",
+        "Potential customer wins, backlog, and earnings guidance"
+      ],
+      "risks": [
+        "Crowded AI positioning",
+        "Valuation compression",
+        "Execution risk",
+        "No ticker-specific filing independently verified"
+      ],
+      "summary": "Broad AI and infrastructure themes support the long thesis, but company-specific verification and valuation data are missing."
+    },
+    {
+      "symbol": "PFE",
+      "research_score": 35,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research",
+        "Missing current earnings, guidance, pipeline, and valuation data"
+      ],
+      "summary": "The technical setup is strong, but no local research or provider-specific fundamental evidence was supplied."
+    },
+    {
+      "symbol": "AAPL",
+      "research_score": 35,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research",
+        "Missing current earnings, guidance, product, and valuation data"
+      ],
+      "summary": "Technical conditions are favorable, but the supplied materials do not provide enough verified research to establish conviction."
+    },
+    {
+      "symbol": "BAC",
+      "research_score": 35,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research",
+        "Missing current earnings, credit, interest-rate, and valuation data"
+      ],
+      "summary": "The technical setup is constructive, but fundamental and company-specific evidence is unavailable."
+    },
+    {
+      "symbol": "AMZN",
+      "research_score": 78,
+      "conviction": "Medium",
+      "catalysts": [
+        "AWS growth and AI monetization",
+        "Advertising growth",
+        "Retail margin expansion",
+        "Improved free cash flow"
+      ],
+      "risks": [
+        "High AI and cloud infrastructure spending",
+        "AWS competition",
+        "Regulatory and antitrust scrutiny",
+        "Consumer demand and operating-cost pressure"
+      ],
+      "summary": "Amazon has a well-developed multi-engine growth thesis across AWS, advertising, and retail efficiency, but capex intensity, competition, and regulatory risk remain material."
+    }
+  ]
+}

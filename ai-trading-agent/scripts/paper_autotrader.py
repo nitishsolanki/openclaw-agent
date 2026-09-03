@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+import os
 
 root = Path(__file__).parents[1]
 sys.path.insert(0, str(root))
@@ -22,6 +23,7 @@ from ai_trading_agent.research.openclaw import run_research
 from publish_paper_report import publish
 
 env = load_env(root / "local.env")
+os.environ.update(env)
 db = connect(root / "trading.db")
 trader = PaperTrader(db, account_value=10000.0)
 mode = ExecutionMode(env.get("EXECUTION_MODE", "signal_only"))
