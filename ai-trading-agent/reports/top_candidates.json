@@ -1,93 +1,93 @@
 {
   "candidates": [
     {
-      "symbol": "AAPL",
-      "score": 79.33,
+      "symbol": "NVDA",
+      "score": 86.27,
       "direction": "LONG",
       "sector": "Technology",
       "components": {
-        "market": 50.0,
-        "sector": 54.57,
-        "relative_strength": 93.1196940986379,
+        "market": 100.0,
+        "sector": 55.47,
+        "relative_strength": 93.01440576434432,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 50.75277148825867,
-        "momentum": 76.7550783329838,
+        "volume": 63.81216217295071,
+        "momentum": 87.96396052819752,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 88.78612129827623
+      }
+    },
+    {
+      "symbol": "PFE",
+      "score": 84.84,
+      "direction": "LONG",
+      "sector": "Healthcare",
+      "components": {
+        "market": 100.0,
+        "sector": 86.35,
+        "relative_strength": 95.84824959756426,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 44.22160887745767,
+        "momentum": 69.95762711864404,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 62.332071974969374
+      }
+    },
+    {
+      "symbol": "AAPL",
+      "score": 81.45,
+      "direction": "LONG",
+      "sector": "Technology",
+      "components": {
+        "market": 100.0,
+        "sector": 55.47,
+        "relative_strength": 81.8012107844726,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 47.71724543948731,
+        "momentum": 72.74439747986276,
         "volatility": 50.0,
         "options": 50.0,
         "extension": 100.0
       }
     },
     {
-      "symbol": "PFE",
-      "score": 75.44,
+      "symbol": "BAC",
+      "score": 78.57,
       "direction": "LONG",
-      "sector": "Healthcare",
+      "sector": "Financials",
       "components": {
-        "market": 50.0,
-        "sector": 84.61,
-        "relative_strength": 87.84941951239082,
+        "market": 100.0,
+        "sector": 88.76,
+        "relative_strength": 52.62699670745095,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 31.166268317929035,
-        "momentum": 53.5601260283564,
+        "volume": 54.161419497273734,
+        "momentum": 62.507232401157204,
         "volatility": 50.0,
         "options": 50.0,
-        "extension": 68.6340296417317
+        "extension": 100.0
       }
     },
     {
-      "symbol": "PLTR",
-      "score": 73.64,
+      "symbol": "AMZN",
+      "score": 51.78,
       "direction": "LONG",
-      "sector": "Technology",
+      "sector": "Consumer Discretionary",
       "components": {
-        "market": 50.0,
-        "sector": 54.57,
-        "relative_strength": 100.0,
+        "market": 100.0,
+        "sector": 53.67,
+        "relative_strength": 25.56105999703835,
         "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 23.99678243686347,
-        "momentum": 82.01441764859152,
+        "trend": 0.0,
+        "volume": 36.23578589946771,
+        "momentum": 51.807562250230525,
         "volatility": 50.0,
         "options": 50.0,
-        "extension": 1.644685075735893
-      }
-    },
-    {
-      "symbol": "T",
-      "score": 73.61,
-      "direction": "LONG",
-      "sector": "Communication Services",
-      "components": {
-        "market": 50.0,
-        "sector": 55.47,
-        "relative_strength": 92.77011000521367,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 21.70632264882486,
-        "momentum": 65.97942147155894,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 64.82993459682318
-      }
-    },
-    {
-      "symbol": "HPQ",
-      "score": 73.48,
-      "direction": "LONG",
-      "sector": "Technology",
-      "components": {
-        "market": 50.0,
-        "sector": 54.57,
-        "relative_strength": 88.42987777598736,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 28.94526713124274,
-        "momentum": 73.79543533389685,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 51.21106130792752
+        "extension": 100.0
       }
     }
   ]
