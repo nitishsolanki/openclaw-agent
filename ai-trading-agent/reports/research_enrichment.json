@@ -5,67 +5,67 @@
       "research_score": 55,
       "conviction": "Medium",
       "catalysts": [
-        "AI and data-center spending",
-        "Potential customer wins, backlog, and earnings guidance"
+        "Next earnings and guidance",
+        "AI/data-center spending",
+        "Customer wins and backlog"
       ],
       "risks": [
         "Crowded AI positioning",
-        "Valuation compression",
         "Execution risk",
+        "Valuation compression",
         "No ticker-specific filing independently verified"
       ],
-      "summary": "Broad AI and infrastructure themes support the long thesis, but company-specific verification and valuation data are missing."
+      "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
     },
     {
       "symbol": "PFE",
-      "research_score": 35,
+      "research_score": 50,
       "conviction": "Low",
       "catalysts": [],
       "risks": [
-        "Insufficient company-specific research",
-        "Missing current earnings, guidance, pipeline, and valuation data"
+        "Insufficient company-specific research data"
       ],
-      "summary": "The technical setup is strong, but no local research or provider-specific fundamental evidence was supplied."
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the strong technical setup."
     },
     {
       "symbol": "AAPL",
-      "research_score": 35,
+      "research_score": 50,
       "conviction": "Low",
       "catalysts": [],
       "risks": [
-        "Insufficient company-specific research",
-        "Missing current earnings, guidance, product, and valuation data"
+        "Insufficient company-specific research data"
       ],
-      "summary": "Technical conditions are favorable, but the supplied materials do not provide enough verified research to establish conviction."
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
     },
     {
       "symbol": "BAC",
-      "research_score": 35,
+      "research_score": 50,
       "conviction": "Low",
       "catalysts": [],
       "risks": [
-        "Insufficient company-specific research",
-        "Missing current earnings, credit, interest-rate, and valuation data"
+        "Insufficient company-specific research data"
       ],
-      "summary": "The technical setup is constructive, but fundamental and company-specific evidence is unavailable."
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
     },
     {
       "symbol": "AMZN",
-      "research_score": 78,
-      "conviction": "Medium",
+      "research_score": 72,
+      "conviction": "High",
       "catalysts": [
-        "AWS growth and AI monetization",
+        "AWS acceleration",
+        "AI monetization",
         "Advertising growth",
-        "Retail margin expansion",
-        "Improved free cash flow"
+        "Retail operating-margin expansion",
+        "Stronger free cash flow"
       ],
       "risks": [
-        "High AI and cloud infrastructure spending",
+        "AI and cloud capex pressure",
         "AWS competition",
-        "Regulatory and antitrust scrutiny",
-        "Consumer demand and operating-cost pressure"
+        "Consumer slowdown",
+        "Regulatory and antitrust actions",
+        "Execution risk"
       ],
-      "summary": "Amazon has a well-developed multi-engine growth thesis across AWS, advertising, and retail efficiency, but capex intensity, competition, and regulatory risk remain material."
+      "summary": "Existing research describes a diversified growth platform led by AWS, advertising, and retail efficiency, but capex intensity, competition, regulation, and the weak technical trend warrant discipline."
     }
   ]
 }
