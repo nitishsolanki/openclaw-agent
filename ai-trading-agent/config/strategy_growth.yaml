@@ -11,3 +11,10 @@ signals:
   volatility_weight: 0.05
   options_weight: 0.05
   extension_weight: 0.05
+filters:
+  market: 60
+  sector: 65
+  relative_strength: 70
+  trend: 65
+  volume: 60
+  momentum: 60

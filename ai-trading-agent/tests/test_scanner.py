@@ -16,3 +16,12 @@ def test_scanner_returns_ranked_signals():
     assert [result.symbol for result in results] == ["AAA", "BBB"]
     assert results[0].final_score > results[1].final_score
 
+def test_scanner_applies_profile_filters():
+    benchmark = pd.Series([100] * 30)
+    weights = {"market": .5, "sector": .5}
+    candidates = [Candidate("AAA", "Technology", bars(range(10, 40)), 90),
+                  Candidate("BBB", "Energy", bars(range(10, 25)), 60)]
+    results = scan(candidates, benchmark, weights, market_score=50,
+                   minimum_filters={"sector": 70})
+    assert [result.symbol for result in results] == ["AAA"]
+

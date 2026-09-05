@@ -54,11 +54,21 @@ def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
 
 def scan(candidates: list[Candidate], benchmark_close: pd.Series,
          weights: dict[str, float], limit: int = 10, market_score: float = 50.0,
-         enrichments: dict[str, dict[str, float]] | None = None) -> list[TradeSignal]:
+         enrichments: dict[str, dict[str, float]] | None = None,
+         minimum_filters: dict[str, float] | None = None,
+         minimum_score: float | None = None) -> list[TradeSignal]:
     enrichments = enrichments or {}
     signals = (score_candidate(candidate, benchmark_close, weights, market_score,
                                enrichments.get(candidate.symbol, {}).get("news", 50.0),
                                enrichments.get(candidate.symbol, {}).get("options", 50.0))
                for candidate in candidates)
-    return sorted((signal for signal in signals if signal.direction != "SHORT"),
+    def passes_filters(signal: TradeSignal) -> bool:
+        if signal.direction == "SHORT":
+            return False
+        if minimum_score is not None and signal.final_score < minimum_score:
+            return False
+        return all(signal.components.get(name, 0.0) >= threshold
+                   for name, threshold in (minimum_filters or {}).items())
+
+    return sorted((signal for signal in signals if passes_filters(signal)),
                   key=lambda signal: signal.final_score, reverse=True)[:limit]

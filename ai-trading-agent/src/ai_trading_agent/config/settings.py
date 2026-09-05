@@ -15,4 +15,5 @@ def load_strategy(path: str | Path) -> dict:
     total = sum(weights.values())
     if abs(total - 1.0) > 1e-6:
         raise ValueError(f"Signal weights must sum to 1.0: {path} totals {total:.6f}; weights={weights}")
-    return {**raw, "weights": weights}
+    filters = {str(key): float(value) for key, value in (raw.get("filters", {}) or {}).items()}
+    return {**raw, "weights": weights, "filters": filters}

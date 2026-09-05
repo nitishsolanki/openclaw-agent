@@ -87,30 +87,9 @@ and `config/strategy_growth.yaml`. The default is `swing`.
   strength, with less dependence on current VWAP and volume. It is currently a
   technical growth proxy, not a fundamental long-term investing model.
 
-The growth profile should not be treated as complete until revenue growth, earnings
-growth, free cash flow, debt, margins, valuation, dilution, and return-on-capital
-data are added to the candidate model. The next recommended enhancement is an
-extension penalty (for example, distance from the 50-day moving average) so the
-scanner can avoid chasing technically overheated stocks.
-
-## Python scoring rules
-
-Each eligible candidate receives these component scores, bounded from 0 to 100:
-
-| Component | Weight | Python rule |
-|---|---:|---|
-| Market regime | 10% | SPY price versus EMA20 and EMA50 |
-| Sector | 20% | Sector-rotation score; 50 when unavailable |
-| Relative strength | 20% | Stock performance versus SPY over 5 and 20 bars |
-| VWAP | 15% | Distance above/below VWAP and whether price is above VWAP |
-| Trend | 10% | Price above EMA20, with EMA20 above EMA50 scoring strongest |
-| Volume | 10% | Current volume compared with its 20-bar average |
-| Momentum | 5% | Six-bar price change, blended with news confirmation |
-| Volatility | 5% | Currently neutral at 50; reserved for future volatility logic |
-| Options | 5% | Neutral at 50 unless live options confirmation is available |
-
-The final score is the weighted sum, clamped to 0–100. Research enrichment, when
-available, uses a 70% Python / 30% research blend in the paper-trading workflow.
+See [Trading Candidate Profiles.md](Trading%20Candidate%20Profiles.md) for the
+Day, Swing, and Growth top-candidate sections, profile weights, and Python
+scoring rules.
 
 ## Current status
 
