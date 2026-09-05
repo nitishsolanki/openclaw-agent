@@ -56,8 +56,9 @@ def scan(candidates: list[Candidate], benchmark_close: pd.Series,
          weights: dict[str, float], limit: int = 10, market_score: float = 50.0,
          enrichments: dict[str, dict[str, float]] | None = None) -> list[TradeSignal]:
     enrichments = enrichments or {}
-    return sorted((score_candidate(candidate, benchmark_close, weights, market_score,
-                                   enrichments.get(candidate.symbol, {}).get("news", 50.0),
-                                   enrichments.get(candidate.symbol, {}).get("options", 50.0))
-                   for candidate in candidates),
+    signals = (score_candidate(candidate, benchmark_close, weights, market_score,
+                               enrichments.get(candidate.symbol, {}).get("news", 50.0),
+                               enrichments.get(candidate.symbol, {}).get("options", 50.0))
+               for candidate in candidates)
+    return sorted((signal for signal in signals if signal.direction != "SHORT"),
                   key=lambda signal: signal.final_score, reverse=True)[:limit]

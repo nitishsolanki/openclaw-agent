@@ -1,5 +1,5 @@
 import pytest
-from ai_trading_agent.signals.scoring import score_signal
+from ai_trading_agent.signals.scoring import TradeSignal, score_signal
 
 def test_score_is_bounded_and_directional():
     weights = {"market": .5, "sector": .5}
@@ -10,4 +10,8 @@ def test_score_is_bounded_and_directional():
 def test_weights_must_sum_to_one():
     with pytest.raises(ValueError):
         score_signal("SPY", {"market": 90}, {"market": .5})
+
+def test_short_signals_are_rejected():
+    with pytest.raises(ValueError, match="short signals are disabled"):
+        TradeSignal("SPY", "SHORT", 80, {})
 

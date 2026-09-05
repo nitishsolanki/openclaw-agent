@@ -7,6 +7,10 @@ class TradeSignal:
     final_score: float
     components: dict[str, float]
 
+    def __post_init__(self) -> None:
+        if self.direction.upper() == "SHORT":
+            raise ValueError("short signals are disabled; only long trades are allowed")
+
 def score_signal(symbol: str, components: dict[str, float], weights: dict[str, float]) -> TradeSignal:
     missing = set(weights) - set(components)
     if missing:

@@ -61,7 +61,7 @@ if not candidate_artifact.exists():
 artifact = json.loads(candidate_artifact.read_text(encoding="utf-8"))
 signals = [TradeSignal(str(item["symbol"]).upper(), item["direction"], float(item["score"]),
                        {**item.get("components", {}), "sector_name": item.get("sector", "Unknown")})
-           for item in artifact.get("swing", [])]
+           for item in artifact.get("swing", []) if str(item.get("direction", "")).upper() != "SHORT"]
 if not signals:
     raise SystemExit("Paper entries blocked: GitHub artifact has no Swing candidates")
 from reports.build_live_report import generate_report

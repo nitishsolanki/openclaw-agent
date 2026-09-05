@@ -28,6 +28,8 @@ secrets.*
 
 # Local project state and generated output
 memory/
+*.db
+*.log
 reports/
 !ai-trading-agent/reports/
 !ai-trading-agent/reports/*.py
