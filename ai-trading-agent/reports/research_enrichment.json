@@ -15,7 +15,7 @@
         "Valuation compression",
         "No ticker-specific filing independently verified"
       ],
-      "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
+      "summary": "The supplied research supports the AI and infrastructure thesis but makes conviction conditional on fresh company-level verification."
     },
     {
       "symbol": "PFE",
@@ -25,7 +25,7 @@
       "risks": [
         "Insufficient company-specific research data"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the strong technical setup."
+      "summary": "No company-specific research or provider data beyond the technical candidate was supplied."
     },
     {
       "symbol": "AAPL",
@@ -35,7 +35,7 @@
       "risks": [
         "Insufficient company-specific research data"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "summary": "No company-specific research or provider data beyond the technical candidate was supplied."
     },
     {
       "symbol": "BAC",
@@ -45,7 +45,7 @@
       "risks": [
         "Insufficient company-specific research data"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "summary": "No company-specific research or provider data beyond the technical candidate was supplied."
     },
     {
       "symbol": "AMZN",
@@ -65,7 +65,7 @@
         "Regulatory and antitrust actions",
         "Execution risk"
       ],
-      "summary": "Existing research describes a diversified growth platform led by AWS, advertising, and retail efficiency, but capex intensity, competition, regulation, and the weak technical trend warrant discipline."
+      "summary": "The supplied research identifies diversified growth drivers across AWS, advertising, and retail efficiency, while noting substantial capex, competition, regulatory, and execution risks."
     }
   ]
 }
