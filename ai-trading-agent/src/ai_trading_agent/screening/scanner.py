@@ -74,6 +74,7 @@ def scan(candidates: list[Candidate], benchmark_close: pd.Series,
                     key=lambda signal: signal.final_score, reverse=True)
     qualified = [replace(signal, profile_status="QUALIFIED")
                  for signal in ranked if passes_filters(signal)]
-    if qualified:
-        return qualified[:limit]
-    return [replace(signal, profile_status="FILTER_FALLBACK") for signal in ranked[:limit]]
+    qualified_symbols = {signal.symbol for signal in qualified}
+    fallback = [replace(signal, profile_status="FILTER_FALLBACK")
+                for signal in ranked if signal.symbol not in qualified_symbols]
+    return (qualified + fallback)[:limit]

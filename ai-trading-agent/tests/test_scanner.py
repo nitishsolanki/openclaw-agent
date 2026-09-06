@@ -23,7 +23,9 @@ def test_scanner_applies_profile_filters():
                   Candidate("BBB", "Energy", bars(range(10, 25)), 60)]
     results = scan(candidates, benchmark, weights, market_score=50,
                    minimum_filters={"sector": 70})
-    assert [result.symbol for result in results] == ["AAA"]
+    assert [result.symbol for result in results] == ["AAA", "BBB"]
+    assert results[0].profile_status == "QUALIFIED"
+    assert results[1].profile_status == "FILTER_FALLBACK"
 
 def test_scanner_falls_back_to_ranked_candidates_when_no_gate_passes():
     benchmark = pd.Series([100] * 30)
@@ -32,4 +34,14 @@ def test_scanner_falls_back_to_ranked_candidates_when_no_gate_passes():
     results = scan(candidates, benchmark, weights, minimum_filters={"sector": 90})
     assert [result.symbol for result in results] == ["AAA"]
     assert results[0].profile_status == "FILTER_FALLBACK"
+
+def test_scanner_fills_shortlist_after_qualified_candidates():
+    benchmark = pd.Series([100] * 30)
+    weights = {"market": .5, "sector": .5}
+    candidates = [Candidate("AAA", "Technology", bars(range(10, 40)), 90),
+                  Candidate("BBB", "Energy", bars(range(10, 25)), 50)]
+    results = scan(candidates, benchmark, weights, minimum_filters={"sector": 70})
+    assert [result.symbol for result in results] == ["AAA", "BBB"]
+    assert results[0].profile_status == "QUALIFIED"
+    assert results[1].profile_status == "FILTER_FALLBACK"
 
