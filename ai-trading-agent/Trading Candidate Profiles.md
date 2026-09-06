@@ -445,20 +445,19 @@ The key question is:
 
 ---
 
-## Day Candidate Minimum Filters
+## Day Shortlist Filters
 
-Recommended minimum requirements:
+These relaxed thresholds create a review shortlist. They do not approve a trade.
+The stricter `BUY NOW` conditions below remain required before entry.
 
 ```text
-Market Regime >= 60
-Sector >= 60
-Relative Strength >= 65
+Market Regime >= 55
+Sector >= 55
+Relative Strength >= 60
 Trend >= 60
-Price Setup >= 70
-VWAP >= 70
-Volume >= 60
-Momentum >= 55
-Risk/Reward >= 2.0
+VWAP >= 60
+Volume >= 45
+Momentum >= 50
 ```
 
 Additionally:
@@ -646,18 +645,19 @@ Intraday VWAP is useful but should receive less weight than it does for Day cand
 
 ---
 
-## Swing Minimum Filters
+## Swing Shortlist Filters
+
+These relaxed thresholds create a review shortlist. They do not approve a trade.
+The stricter `BUY NOW` conditions below remain required before entry.
 
 ```text
 Market Regime >= 55
-Sector >= 60
-Relative Strength >= 65
-Trend >= 65
-Price Setup >= 70
-Volume >= 55
-Momentum >= 60
-Extension >= 55
-Risk/Reward >= 2.0
+Sector >= 55
+Relative Strength >= 60
+Trend >= 60
+Volume >= 45
+Momentum >= 55
+Extension >= 50
 ```
 
 VWAP is used as supporting evidence rather than the primary entry trigger.
@@ -869,17 +869,18 @@ The fundamental weight can be increased after sufficient backtesting.
 
 ---
 
-# Growth Minimum Filters
+# Growth Shortlist Filters
+
+These relaxed thresholds create a review shortlist. They do not approve a trade.
+The stricter `BUY NOW` conditions below remain required before entry.
 
 ```text
 Market Regime >= 60
-Sector >= 65
-Relative Strength >= 70
-Trend >= 65
-Price Setup >= 65
-Volume >= 60
-Momentum >= 60
-Risk/Reward >= 2.0
+Sector >= 60
+Relative Strength >= 65
+Trend >= 60
+Volume >= 45
+Momentum >= 55
 ```
 
 ---

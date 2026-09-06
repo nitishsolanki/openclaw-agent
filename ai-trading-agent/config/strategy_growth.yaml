@@ -13,8 +13,8 @@ signals:
   extension_weight: 0.05
 filters:
   market: 60
-  sector: 65
-  relative_strength: 70
-  trend: 65
-  volume: 60
-  momentum: 60
+  sector: 60
+  relative_strength: 65
+  trend: 60
+  volume: 45
+  momentum: 55
