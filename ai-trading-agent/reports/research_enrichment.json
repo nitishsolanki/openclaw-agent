@@ -2,13 +2,20 @@
   "research": [
     {
       "symbol": "AAPL",
-      "research_score": 50,
+      "research_score": 52,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Upcoming iPhone launch",
+        "Strong iPhone and Mac demand",
+        "Services installed-base growth"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Near-term slowdown",
+        "FX and tariff pressure",
+        "Regulatory and ATT lawsuit exposure",
+        "No local research, SEC filings, earnings, or independently verified company-specific filings"
+      ],
+      "summary": "Provider news and fundamentals indicate durable demand and growth, but valuation, regulatory exposure, and limited source coverage constrain conviction."
     },
     {
       "symbol": "AMZN",
@@ -18,181 +25,287 @@
         "AWS acceleration",
         "AI monetization",
         "Advertising growth",
-        "Retail operating-margin expansion",
-        "Stronger free cash flow"
+        "Retail margin expansion",
+        "Free-cash-flow improvement"
       ],
       "risks": [
         "AI and cloud capex pressure",
         "AWS competition",
         "Consumer slowdown",
-        "Regulatory and antitrust actions",
-        "Execution risk"
+        "Antitrust and regulatory actions",
+        "Direct IR earnings release unavailable"
       ],
-      "summary": "Diversified growth platform led by AWS, advertising, and retail efficiency, with risks from capex intensity, competition, regulation, and the weak technical trend."
+      "summary": "Diversified growth platform with strong AWS, advertising, and retail-efficiency themes; capex, competition, regulation, and weaker technical trend remain key risks."
     },
     {
       "symbol": "BAC",
-      "research_score": 50,
+      "research_score": 43,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Potential bank-backed stablecoin initiative",
+        "Payments and treasury-service opportunities",
+        "Strong recent earnings and valuation metrics in supplied fundamentals"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Berkshire has reduced its BAC position for eight consecutive quarters",
+        "Valuation concerns",
+        "No local company-specific research, filings, or earnings supplied",
+        "Rate, credit, and regulatory uncertainty"
+      ],
+      "summary": "Fundamentals and payments themes are supportive, but Berkshire reductions and incomplete company-specific research weaken conviction."
     },
     {
       "symbol": "BSX",
-      "research_score": 50,
+      "research_score": 48,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "ICVT sales momentum",
+        "Cardiovascular device growth",
+        "Renal-denervation and IVL market exposure",
+        "Atrial-fibrillation device demand"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Spinal-cord-stimulator recall and injury reports",
+        "Cyberattack disrupted manufacturing and shipping",
+        "Zacks Strong Sell designation and earnings-estimate cuts",
+        "No local research, SEC filings, or earnings supplied"
+      ],
+      "summary": "Long-term device-market exposure and recent sales momentum are offset by operational disruptions, recall risk, and negative estimate revisions."
     },
     {
       "symbol": "CCL",
-      "research_score": 50,
+      "research_score": 45,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Debt reduction",
+        "Investment-grade rating upgrade",
+        "Record sales and bookings",
+        "Resumed dividend",
+        "Valuation discount"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "52-week low and significant recent underperformance",
+        "Expected earnings decline",
+        "High leverage and low liquidity ratios",
+        "Oil, geopolitical, and travel-demand sensitivity",
+        "No local research, SEC filings, or earnings supplied"
+      ],
+      "summary": "Recovery and deleveraging evidence is constructive, but recent weakness, leverage, earnings pressure, and macro sensitivity limit conviction."
     },
     {
       "symbol": "CMG",
-      "research_score": 50,
-      "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "research_score": 57,
+      "conviction": "Medium",
+      "catalysts": [
+        "First Seoul restaurant and Asian expansion test",
+        "Potential South Korea and Singapore growth"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Recent EPS and TTM EPS contraction",
+        "Premium valuation",
+        "Recent five-day decline",
+        "No Polygon news, local research, SEC filings, or earnings supplied"
+      ],
+      "summary": "International expansion offers a company-specific catalyst, but valuation and declining recent earnings metrics create uncertainty."
     },
     {
       "symbol": "HPQ",
-      "research_score": 50,
-      "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "research_score": 55,
+      "conviction": "Medium",
+      "catalysts": [
+        "New AI-focused OmniBook products",
+        "Upcoming Q4 earnings",
+        "Recent revenue growth and strong relative performance",
+        "Attractive forward valuation"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Negative TTM and quarterly EPS growth",
+        "Long-term revenue and EBITDA pressure",
+        "High recent momentum may reverse",
+        "No local research, SEC filings, or Polygon news supplied"
+      ],
+      "summary": "AI-PC launches, earnings visibility, and valuation support the setup, while declining profitability trends and limited company-specific sourcing temper conviction."
     },
     {
       "symbol": "INTC",
-      "research_score": 50,
+      "research_score": 51,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Agentic-AI and enterprise-server demand",
+        "Potentially broadening AI-chip investor interest",
+        "Recent revenue growth"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Loss-making TTM results",
+        "Very high forward valuation",
+        "Negative long-term revenue and EBITDA trends",
+        "Mizuho target reduction",
+        "High volatility",
+        "No local research, SEC filings, Polygon news, or earnings supplied"
+      ],
+      "summary": "News identifies AI and server tailwinds, but profitability, valuation, execution, and volatility risks remain substantial."
     },
     {
       "symbol": "NFLX",
-      "research_score": 50,
+      "research_score": 46,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Subscription price increases",
+        "Advertising expansion potential",
+        "Strong margins and cash-flow growth"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Growth slowing and pricing power concerns",
+        "Advertising remains unproven",
+        "Premium valuation",
+        "Recent UK price increase triggered a decline",
+        "No local research, SEC filings, Polygon news, or earnings supplied"
+      ],
+      "summary": "Strong profitability and pricing actions are offset by slowing growth, uncertain advertising economics, and valuation risk."
     },
     {
       "symbol": "NKE",
-      "research_score": 50,
+      "research_score": 39,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Nike Strength expansion into elite training facilities"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Large multi-period price decline",
+        "Negative revenue and earnings-growth trends",
+        "Margin and cash-flow deterioration",
+        "Limited direct company-specific evidence",
+        "No local research, SEC filings, earnings, or Polygon news supplied"
+      ],
+      "summary": "A product-expansion item is constructive, but the supplied fundamentals and news indicate a weak and uncertain recovery profile."
     },
     {
       "symbol": "NVDA",
-      "research_score": 55,
+      "research_score": 62,
       "conviction": "Medium",
       "catalysts": [
+        "Strong AI and data-center demand",
         "Next earnings and guidance",
-        "AI and data-center spending",
-        "Customer wins and backlog"
+        "Customer wins and backlog",
+        "Projected revenue growth"
       ],
       "risks": [
         "Crowded AI positioning",
-        "Execution risk",
-        "Valuation compression",
-        "No ticker-specific filing independently verified"
+        "Valuation and multiple-compression risk",
+        "Execution and supply constraints",
+        "No independently verified ticker-specific filing",
+        "High volatility"
       ],
-      "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
+      "summary": "Evidence supports exceptional AI growth and upcoming earnings catalysts, but expectations, valuation, crowding, and filing-verification gaps require caution."
     },
     {
       "symbol": "PCG",
-      "research_score": 50,
+      "research_score": 38,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Potential wildfire-liability reform",
+        "Strategic review and preparedness initiatives"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Wildfire-liability framework and unresolved financing risk",
+        "Truist downgrade to Hold",
+        "Heavy debt and low interest coverage",
+        "Recent underperformance",
+        "No local research, SEC filings, earnings, or Polygon news supplied"
+      ],
+      "summary": "Wildfire-liability uncertainty dominates the evidence; valuation and fundamentals do not offset the regulatory and financing risks."
     },
     {
       "symbol": "PFE",
-      "research_score": 50,
+      "research_score": 44,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Low valuation relative to peers",
+        "Approximately 6% dividend yield",
+        "Pipeline and portfolio repositioning potential"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the strong technical setup."
+      "risks": [
+        "Patent and exclusivity risks",
+        "Sharp TTM EPS decline",
+        "Weak revenue and cash-flow growth",
+        "High payout ratio and dividend sustainability concerns",
+        "No local research, SEC filings, earnings, or Polygon news supplied"
+      ],
+      "summary": "Low valuation and income are potential supports, but earnings deterioration, patent exposure, and payout sustainability keep conviction low."
     },
     {
       "symbol": "SMCI",
-      "research_score": 55,
+      "research_score": 54,
       "conviction": "Medium",
       "catalysts": [
-        "Next earnings and guidance",
         "AI and data-center spending",
+        "Revenue growth",
+        "Next earnings and guidance",
         "Customer wins and backlog"
       ],
       "risks": [
+        "Inconsistent margins",
         "Crowded AI positioning",
-        "Execution risk",
-        "Valuation compression",
-        "No ticker-specific filing independently verified"
+        "Execution and financing risk",
+        "High volatility",
+        "No fresh ticker-specific filing independently verified"
       ],
-      "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
+      "summary": "Rapid revenue and earnings growth support the AI-server thesis, but margin quality, volatility, execution, and filing gaps limit conviction."
     },
     {
       "symbol": "T",
-      "research_score": 50,
+      "research_score": 48,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Potential benefit from telecom cash flow",
+        "Preferred-share market interest"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Negative multi-period price performance",
+        "Declining long-term revenue growth",
+        "High leverage",
+        "Weak liquidity ratios",
+        "Dividend-growth deterioration",
+        "No local company-specific research, SEC filings, earnings, or Polygon news supplied"
+      ],
+      "summary": "Income and valuation metrics are somewhat supportive, but leverage, weak growth, and incomplete company-specific research constrain conviction."
     },
     {
       "symbol": "WBD",
-      "research_score": 50,
+      "research_score": 40,
       "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "catalysts": [
+        "Potential Paramount-Warner transaction",
+        "Recent price appreciation",
+        "Streaming-sector positioning"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Negative TTM EPS and operating margin",
+        "Declining revenue and quarterly earnings",
+        "High debt and weak interest coverage",
+        "Deal and antitrust uncertainty",
+        "No local research, SEC filings, earnings, or Polygon news supplied"
+      ],
+      "summary": "Deal speculation and price momentum provide catalysts, but negative profitability, declining revenue, leverage, and transaction uncertainty dominate."
     },
     {
       "symbol": "WMT",
-      "research_score": 50,
-      "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
+      "research_score": 53,
+      "conviction": "Medium",
+      "catalysts": [
+        "$1.3 billion fulfillment facility",
+        "Expansion of delivery partnerships",
+        "Upcoming earnings",
+        "Scale and consumer-value positioning"
       ],
-      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+      "risks": [
+        "Premium valuation and high forward P/E",
+        "Weak recent relative performance",
+        "Low margins and cash-flow growth pressure",
+        "Retail-crime and execution risks",
+        "No local research, SEC filings, or Polygon news supplied"
+      ],
+      "summary": "Fulfillment investment, delivery expansion, and earnings visibility are constructive, but premium valuation, thin margins, and recent weakness limit conviction."
     }
   ]
 }
