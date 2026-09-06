@@ -17,7 +17,7 @@ def git(*args):
 
 def publish():
     for path in paths:
-        git("add", "--", path)
+        git("add", "-f", "--", path)
     staged = git("diff", "--cached", "--quiet")
     if staged.returncode == 0:
         print("paper_report_publish=no_changes")

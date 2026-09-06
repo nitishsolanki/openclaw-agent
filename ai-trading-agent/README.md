@@ -195,4 +195,16 @@ When `openclaw` is installed locally, `paper_autotrader.py` now performs this ha
 
 The paper trader applies a 70/30 Python/research score blend, preserves all risk limits, and updates `reports/latest.json` and `reports/site/index.html`.
 
+When only research scores change, skip the market scan and refresh the report with:
+
+```powershell
+python scripts/update_research_scores.py
+python scripts/publish_paper_report.py
+```
+
+This reuses the existing Day, Swing, and Growth candidates, recalculates only
+the research-enriched scores, rebuilds the static site, and triggers the
+lightweight Pages deployment. It does not refresh the universe, rerun Alpaca
+market scans, or submit orders.
+
 The scheduled paper-trader also publishes only these generated report artifacts to `main` after the run: the latest JSON report, sector history, Top-5 handoff, research enrichment, prompt, and Pages site. Credentials, `trading.db`, and runtime logs are never staged.
