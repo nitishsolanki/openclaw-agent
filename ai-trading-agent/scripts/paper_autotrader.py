@@ -71,14 +71,14 @@ export_top_candidates(root, signals)
 research = {}
 if env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() in {"1", "true", "yes"}:
     from prepare_research_handoff import write_prompt
-    write_prompt(root, signals[:5])
+    write_prompt(root, signals)
     try:
         run_research(root, root / "reports" / "openclaw_research_prompt.md",
-                     {signal.symbol for signal in signals[:5]})
+                     {signal.symbol for signal in signals})
     except Exception as exc:
         print(f"research_fallback=python reason={type(exc).__name__}: {exc}")
     else:
-        research = load_research(root, {signal.symbol for signal in signals[:5]})
+        research = load_research(root, {signal.symbol for signal in signals})
 elif env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() not in {"1", "true", "yes"}:
     research = load_research(root, {signal.symbol for signal in signals[:5]})
 generate_report(root, signals, research)

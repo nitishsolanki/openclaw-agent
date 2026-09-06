@@ -29,6 +29,15 @@ class FinnhubProvider:
         end = end or date.today(); start = start or end
         return self._get("/calendar/earnings", **{"from": start.isoformat(), "to": end.isoformat()})
 
+    def fundamentals(self, symbol: str) -> dict:
+        return self._get("/stock/metric", symbol=symbol.upper(), metric="all")
+
+    def filings(self, symbol: str, start: date | None = None, end: date | None = None):
+        end = end or date.today(); start = start or (end - timedelta(days=90))
+        return self._get("/stock/filings", symbol=symbol.upper(), **{
+            "from": start.isoformat(), "to": end.isoformat()
+        })
+
     def profile(self, symbol: str) -> dict:
         return self._get("/stock/profile2", symbol=symbol.upper())
 
