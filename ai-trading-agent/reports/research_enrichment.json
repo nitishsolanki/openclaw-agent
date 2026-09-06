@@ -1,33 +1,6 @@
 {
   "research": [
     {
-      "symbol": "NVDA",
-      "research_score": 55,
-      "conviction": "Medium",
-      "catalysts": [
-        "Next earnings and guidance",
-        "AI/data-center spending",
-        "Customer wins and backlog"
-      ],
-      "risks": [
-        "Crowded AI positioning",
-        "Execution risk",
-        "Valuation compression",
-        "No ticker-specific filing independently verified"
-      ],
-      "summary": "The supplied research supports the AI and infrastructure thesis but makes conviction conditional on fresh company-level verification."
-    },
-    {
-      "symbol": "PFE",
-      "research_score": 50,
-      "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
-      ],
-      "summary": "No company-specific research or provider data beyond the technical candidate was supplied."
-    },
-    {
       "symbol": "AAPL",
       "research_score": 50,
       "conviction": "Low",
@@ -35,17 +8,7 @@
       "risks": [
         "Insufficient company-specific research data"
       ],
-      "summary": "No company-specific research or provider data beyond the technical candidate was supplied."
-    },
-    {
-      "symbol": "BAC",
-      "research_score": 50,
-      "conviction": "Low",
-      "catalysts": [],
-      "risks": [
-        "Insufficient company-specific research data"
-      ],
-      "summary": "No company-specific research or provider data beyond the technical candidate was supplied."
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
     },
     {
       "symbol": "AMZN",
@@ -65,7 +28,171 @@
         "Regulatory and antitrust actions",
         "Execution risk"
       ],
-      "summary": "The supplied research identifies diversified growth drivers across AWS, advertising, and retail efficiency, while noting substantial capex, competition, regulatory, and execution risks."
+      "summary": "Diversified growth platform led by AWS, advertising, and retail efficiency, with risks from capex intensity, competition, regulation, and the weak technical trend."
+    },
+    {
+      "symbol": "BAC",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "BSX",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "CCL",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "CMG",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "HPQ",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "INTC",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "NFLX",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "NKE",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "NVDA",
+      "research_score": 55,
+      "conviction": "Medium",
+      "catalysts": [
+        "Next earnings and guidance",
+        "AI and data-center spending",
+        "Customer wins and backlog"
+      ],
+      "risks": [
+        "Crowded AI positioning",
+        "Execution risk",
+        "Valuation compression",
+        "No ticker-specific filing independently verified"
+      ],
+      "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
+    },
+    {
+      "symbol": "PCG",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "PFE",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the strong technical setup."
+    },
+    {
+      "symbol": "SMCI",
+      "research_score": 55,
+      "conviction": "Medium",
+      "catalysts": [
+        "Next earnings and guidance",
+        "AI and data-center spending",
+        "Customer wins and backlog"
+      ],
+      "risks": [
+        "Crowded AI positioning",
+        "Execution risk",
+        "Valuation compression",
+        "No ticker-specific filing independently verified"
+      ],
+      "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
+    },
+    {
+      "symbol": "T",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "WBD",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
+    },
+    {
+      "symbol": "WMT",
+      "research_score": 50,
+      "conviction": "Low",
+      "catalysts": [],
+      "risks": [
+        "Insufficient company-specific research data"
+      ],
+      "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
     }
   ]
 }
