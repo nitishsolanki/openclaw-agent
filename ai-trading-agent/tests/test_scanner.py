@@ -25,3 +25,11 @@ def test_scanner_applies_profile_filters():
                    minimum_filters={"sector": 70})
     assert [result.symbol for result in results] == ["AAA"]
 
+def test_scanner_falls_back_to_ranked_candidates_when_no_gate_passes():
+    benchmark = pd.Series([100] * 30)
+    weights = {"market": .5, "sector": .5}
+    candidates = [Candidate("AAA", "Technology", bars(range(10, 40)), 50)]
+    results = scan(candidates, benchmark, weights, minimum_filters={"sector": 90})
+    assert [result.symbol for result in results] == ["AAA"]
+    assert results[0].profile_status == "FILTER_FALLBACK"
+

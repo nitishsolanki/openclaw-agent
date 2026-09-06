@@ -91,6 +91,11 @@ See [Trading Candidate Profiles.md](Trading%20Candidate%20Profiles.md) for the
 Day, Swing, and Growth top-candidate sections, profile weights, and Python
 scoring rules.
 
+When no stock passes every profile gate in a market snapshot, the report shows
+the highest-ranked long-only candidates with `FILTER_FALLBACK` status for review.
+Fallback candidates are not eligible for automatic paper entries; setup and risk
+checks remain mandatory.
+
 ## Current status
 
 ### Completed

@@ -6,6 +6,7 @@ class TradeSignal:
     direction: str
     final_score: float
     components: dict[str, float]
+    profile_status: str = "QUALIFIED"
 
     def __post_init__(self) -> None:
         if self.direction.upper() == "SHORT":

@@ -46,6 +46,7 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     research = research or load_research(root)
     def serialize(items):
         return [{"symbol": item.symbol, "direction": item.direction, "score": item.final_score,
+                 "profile_status": item.profile_status,
                  "boosted_score": boosted_score(item.final_score, research.get(item.symbol)),
                  "research": research.get(item.symbol, {}),
                  "sector": item.components.get("sector_name", "Unknown"),

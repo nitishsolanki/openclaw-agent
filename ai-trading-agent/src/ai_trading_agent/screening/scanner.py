@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import pandas as pd
 
 from ..indicators.relative_strength import relative_strength
@@ -70,5 +70,10 @@ def scan(candidates: list[Candidate], benchmark_close: pd.Series,
         return all(signal.components.get(name, 0.0) >= threshold
                    for name, threshold in (minimum_filters or {}).items())
 
-    return sorted((signal for signal in signals if passes_filters(signal)),
-                  key=lambda signal: signal.final_score, reverse=True)[:limit]
+    ranked = sorted((signal for signal in signals if signal.direction != "SHORT"),
+                    key=lambda signal: signal.final_score, reverse=True)
+    qualified = [replace(signal, profile_status="QUALIFIED")
+                 for signal in ranked if passes_filters(signal)]
+    if qualified:
+        return qualified[:limit]
+    return [replace(signal, profile_status="FILTER_FALLBACK") for signal in ranked[:limit]]

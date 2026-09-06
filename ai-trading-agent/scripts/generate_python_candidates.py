@@ -9,6 +9,7 @@ output = root / "reports" / "python_candidates.json"
 def serialize(items):
     return [{"symbol": item.symbol, "direction": item.direction,
              "score": item.final_score,
+             "profile_status": item.profile_status,
              "components": {k: v for k, v in item.components.items()
                             if isinstance(v, (int, float))},
              "sector": item.components.get("sector_name", "Unknown")}
