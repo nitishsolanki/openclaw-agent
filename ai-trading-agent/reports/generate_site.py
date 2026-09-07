@@ -1,5 +1,6 @@
 import argparse
 import json
+import math
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -65,6 +66,8 @@ def render(report: dict) -> str:
     dates = [str(item.get("date", "")) for item in history]
     chart_lines = []
     colors = ["#70d6c3", "#f6c85f", "#ff7f66", "#8ea7ff", "#c792ea", "#7bdff2", "#f29e4c", "#9be564"]
+    chart_min, chart_max = 45.0, 100.0
+    log_min, log_max = math.log(chart_min), math.log(chart_max)
     for index, sector in enumerate(sectors):
         values = [float(day.get("scores", {}).get(sector["sector"], 0)) for day in history]
         if not values:
@@ -72,11 +75,14 @@ def render(report: dict) -> str:
         points = []
         for pos, value in enumerate(values):
             x = pad + (width - 2 * pad) * pos / max(len(values) - 1, 1)
-            y = height - pad - (height - 2 * pad) * max(0, min(100, value)) / 100
+            bounded = max(chart_min, min(chart_max, value))
+            y = height - pad - (height - 2 * pad) * (math.log(bounded) - log_min) / (log_max - log_min)
             points.append(f"{x:.1f},{y:.1f}")
         chart_lines.append(f"<polyline data-sector='{escape(str(sector['sector']))}' fill='none' stroke='{colors[index % len(colors)]}' stroke-width='2' points='{ ' '.join(points) }'/>")
     legend = "".join(f"<span class='sector-legend'><i style='background:{colors[i % len(colors)]}'></i>{escape(str(sector['sector']))}</span>" for i, sector in enumerate(sectors))
-    chart = f"<div class='chart-scroll'><svg viewBox='0 0 {width + 40} {height}' role='img' aria-label='Sector momentum score history'><line x1='{pad}' y1='{height-pad}' x2='{width}' y2='{height-pad}' stroke='#52627d'/><line x1='{pad}' y1='{pad}' x2='{pad}' y2='{height-pad}' stroke='#52627d'/><text x='8' y='{height-pad+4}' fill='#8e9bb0' font-size='11'>0</text><text x='8' y='{height/2+4}' fill='#8e9bb0' font-size='11'>50</text><text x='8' y='{pad+4}' fill='#8e9bb0' font-size='11'>100</text>{''.join(chart_lines)}{''.join(f"<text x='{pad + (width - 2*pad) * i / max(len(dates)-1,1):.1f}' y='{height-10}' fill='#8e9bb0' font-size='10'>{escape(format_date(date))}</text>" for i, date in enumerate(dates))}</svg></div><div class='sector-legend-wrap'>{legend}</div>"
+    ticks = [45, 50, 60, 75, 100]
+    tick_labels = "".join(f"<text x='8' y='{height - pad - (height - 2 * pad) * (math.log(tick) - log_min) / (log_max - log_min) + 4:.1f}' fill='#8e9bb0' font-size='11'>{tick}</text>" for tick in ticks)
+    chart = f"<div class='chart-scroll'><svg viewBox='0 0 {width + 40} {height}' role='img' aria-label='Sector momentum score history'><line x1='{pad}' y1='{height-pad}' x2='{width}' y2='{height-pad}' stroke='#52627d'/><line x1='{pad}' y1='{pad}' x2='{pad}' y2='{height-pad}' stroke='#52627d'/>{tick_labels}{''.join(chart_lines)}{''.join(f"<text x='{pad + (width - 2*pad) * i / max(len(dates)-1,1):.1f}' y='{height-10}' fill='#8e9bb0' font-size='10'>{escape(format_date(date))}</text>" for i, date in enumerate(dates))}</svg></div><div class='sector-legend-wrap'>{legend}</div>"
     heatmap_rows_parts = []
     for sector in sorted(sectors, key=lambda item: float(item.get("score", 0)), reverse=True):
         cells = []
