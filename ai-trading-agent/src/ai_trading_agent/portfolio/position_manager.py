@@ -9,6 +9,7 @@ class PositionState:
     target_price: float
     signal_score: float
     sector: str
+    side: str = "BUY"
 
 @dataclass(frozen=True)
 class ExitDecision:
@@ -19,15 +20,16 @@ class ExitDecision:
 def evaluate_exit(position: PositionState, current_price: float, current_score: float,
                   above_vwap: bool, trend_intact: bool, sector_active: bool,
                   rotation_buffer: float = 10.0) -> ExitDecision:
-    if current_price <= position.stop_price:
+    is_short = position.side.upper() in {"SELL", "SHORT"}
+    if (is_short and current_price >= position.stop_price) or (not is_short and current_price <= position.stop_price):
         return ExitDecision("SELL_ALL", "stop_loss", position.quantity)
-    if current_price >= position.target_price:
+    if (is_short and current_price <= position.target_price) or (not is_short and current_price >= position.target_price):
         return ExitDecision("TAKE_PARTIAL", "target_reached", max(1, position.quantity // 2))
-    if not above_vwap and not trend_intact:
+    if (is_short and above_vwap and trend_intact) or (not is_short and not above_vwap and not trend_intact):
         return ExitDecision("SELL_ALL", "technical_invalidation", position.quantity)
-    if not sector_active and current_score < 50:
+    if not sector_active and ((is_short and current_score > 50) or (not is_short and current_score < 50)):
         return ExitDecision("SELL_ALL", "sector_theme_lost", position.quantity)
-    if current_score < 50:
+    if (is_short and current_score > 50) or (not is_short and current_score < 50):
         return ExitDecision("SELL_ALL", "score_below_exit_threshold", position.quantity)
     if current_score >= position.signal_score + rotation_buffer:
         return ExitDecision("ROTATE", "stronger_candidate", position.quantity)

@@ -44,11 +44,14 @@ for order in trader.open_orders():
         ema50 = bars["close"].ewm(span=50, adjust=False).mean().iloc[-1]
         features = vwap_features(bars)
         decision = evaluate_exit(PositionState(order.symbol, order.quantity, order.entry_price,
-                                               order.stop_price, order.target_price, 50.0, "Unknown"),
+                                               order.stop_price, order.target_price, 50.0, "Unknown", order.side),
                                   price, 50.0, bool(features["above"]), price > ema20 > ema50, True)
         if decision.action in {"SELL_ALL", "TAKE_PARTIAL"}:
             if alpaca:
-                alpaca.submit_sell(order.symbol, decision.quantity, price)
+                if order.side in {"SELL", "SHORT"}:
+                    alpaca.submit_buy(order.symbol, decision.quantity, price)
+                else:
+                    alpaca.submit_sell(order.symbol, decision.quantity, price)
             pnl = trader.close_quantity(order.id, price, decision.quantity)
             print(f"paper_exit={order.symbol} action={decision.action} pnl={pnl} reason={decision.reason}")
     except Exception as exc:

@@ -13,6 +13,7 @@ class PaperOrder:
     stop_price: float
     target_price: float
     status: str
+    side: str = "BUY"
 
 class PaperTrader:
     """Deterministic local paper broker. Orders fill at the requested entry price."""
@@ -29,23 +30,24 @@ class PaperTrader:
             (signal_id, setup.symbol.upper(), "BUY", risk.shares, setup.entry, setup.stop, setup.target, "open"))
         self.connection.commit()
         return PaperOrder(cursor.lastrowid, setup.symbol.upper(), risk.shares, setup.entry,
-                          setup.stop, setup.target, "open")
+                          setup.stop, setup.target, "open", "BUY")
 
     def close(self, order_id: int, exit_price: float) -> float:
         return self.close_quantity(order_id, exit_price)
 
     def close_quantity(self, order_id: int, exit_price: float, quantity: float | None = None) -> float:
         row = self.connection.execute(
-            "SELECT quantity,entry_price,status FROM trades WHERE id=?", (order_id,)).fetchone()
+            "SELECT quantity,entry_price,side,status FROM trades WHERE id=?", (order_id,)).fetchone()
         if row is None:
             raise KeyError(f"unknown paper order {order_id}")
-        current_quantity, entry, status = row
+        current_quantity, entry, side, status = row
         if status != "open":
             raise ValueError("paper order is not open")
         quantity = quantity or current_quantity
         if quantity <= 0 or quantity > current_quantity:
             raise ValueError("invalid close quantity")
-        pnl = round((exit_price - entry) * quantity, 2)
+        pnl = round((entry - exit_price) * quantity if side in {"SELL", "SHORT"}
+                    else (exit_price - entry) * quantity, 2)
         remaining = current_quantity - quantity
         self.connection.execute(
             "UPDATE trades SET quantity=?,exit_price=?,status=?,realized_pnl=COALESCE(realized_pnl,0)+?,closed_at=? WHERE id=?",
@@ -56,7 +58,7 @@ class PaperTrader:
 
     def open_orders(self) -> list[PaperOrder]:
         rows = self.connection.execute(
-            "SELECT id,symbol,quantity,entry_price,stop_price,target_price,status FROM trades WHERE status='open'"
+            "SELECT id,symbol,quantity,entry_price,stop_price,target_price,status,side FROM trades WHERE status='open'"
         ).fetchall()
         return [PaperOrder(*row) for row in rows]
 
