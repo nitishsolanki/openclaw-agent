@@ -1,40 +1,290 @@
 # OpenClaw Candidate Research Handoff
 
-Review every candidate using the supplied trading data and source-labelled evidence. Do not place orders. Return only JSON in this exact format:
+Review each candidate using the supplied trading data and evidence packet. Do not place orders. Return only JSON in this format:
 
+```json
 {"research":[{"symbol":"MSFT","research_score":0,"conviction":"Low","catalysts":[],"risks":[],"summary":""}]}
+```
 
-Return exactly one row per symbol. Use a 0-100 research score. Do not invent facts or infer fundamentals from technical data. Treat missing sources as uncertainty and name them in risks. Python remains authoritative; research is a 30% score adjustment.
+Use a 0-100 research score. Do not invent facts or infer fundamentals from technical data. Treat missing data as uncertainty, name the missing source in risks, and use only dated/source-labelled news, earnings, filings, or fundamentals. Keep Python's technical score authoritative; this research score is a 30% adjustment.
 
-## AAPL
+## NVDA
 Trading candidate:
 ```json
 {
-  "symbol": "AAPL",
+  "symbol": "NVDA",
+  "score": 86.27,
   "direction": "LONG",
-  "score": 76.17,
-  "boosted_score": 68.32,
-  "research": {
-    "symbol": "AAPL",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
   "sector": "Technology",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.8",
-    "vwap: 100.0",
-    "trend: 100.0",
-    "extension: 100.0"
-  ]
+  "components": {
+    "market": 100.0,
+    "sector": 55.47,
+    "relative_strength": 93.01440576434432,
+    "vwap": 100.0,
+    "trend": 100.0,
+    "volume": 63.81216217295071,
+    "momentum": 87.96396052819752,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 88.78612129827623
+  }
 }
 ```
-Evidence packet:
+Evidence packet (source-labelled; missing sources must remain uncertain):
+```json
+{
+  "local_research": [
+    "[NVDA.md]\n# NVDA \u2014 2026-08-12\n\n**View:** Watchlist coverage; conviction is conditional on valuation and company-specific verification. **Theme:** AI/infrastructure, software, fintech, mobility or space depending on issuer.\n\n**Bull case:** Continued AI/data-center spending, easing inflation, and resilient equity demand can support growth names and infrastructure suppliers.\n\n**Bear case:** 4.68% long yields, Brent near $89, geopolitical disruption, crowded AI positioning, execution risk and any financing/dilution could compress multiples.\n\n**Catalysts / checks:** next earnings, guidance, customer wins, backlog, margins, cash burn and SEC filings. No ticker-specific filing was independently verified in today\u2019s collection window.\n\n**Rating:** Medium conviction only after fresh company-level verification; not investment advice.\n"
+  ],
+  "local_news": [
+    "[2026-08-14.md]\n# Market News \u2014 2026-08-14\n\n- U.S. index futures were mixed before the open: S&P 500 futures +0.1%, Nasdaq futures +0.1%, Dow futures -0.1% (AP, 05:58 UTC).\n- Thursday closed at records after softer July PPI and falling oil supported growth shares.\n- Oil rebounded into Friday after reports that two UAE tankers were attacked while crossing the Strait of Hormuz; geopolitical energy risk remains active.\n- Applied Materials' record quarter and stronger outlook remain a positive read-through for AI infrastructure, semiconductors, servers, and storage, although the stock's weak reaction highlights elevated expectations.\n- Watchlist market snapshots around 11:45 UTC: NVDA $225.30 (+0.5%), ORCL $156.22 (+1.9%), SMCI $39.16 (+4.0%), WDC $487.29 (+7.3%), VST $146.40 (-0.2%). Quotes are time-stamped snapshots, not end-of-day closes.\n\nSources: https://apnews.com/article/5d9870d6c5ae735f9b74bf4ceefaa3ec ; https://ir.appliedmaterials.com/\n",
+    "[2026-08-13.md]\n# Market News \u2014 2026-08-13\n\n## Executive read\n\nU.S. stocks closed at records as benign July PPI and lower oil supported growth shares. AI and semiconductor leadership remained dominant, while Applied Materials\u2019 post-close results reinforced the equipment and AI-capex thesis. The tape is constructive but expectations and geopolitical risks are elevated.\n\n## Market-moving developments\n\n1. The S&P 500 rose 0.7% to 7,798.99 and the Nasdaq rose 0.8% to 26,803.03; both set record closes. The Dow gained 0.1% and Russell 2000 gained 0.2%. [AP](https://apnews.com/article/892c5409d8ed26bfd5965eb2a89d9005)\n2. July PPI was flat month over month and core PPI rose 0.2%, slightly below forecasts, supporting hopes that rate pressure can ease. [Axios](https://www.axios.com/2026/08/13/inflation-july-ppi)\n3. Brent fell 2.1%, helping duration-sensitive equities, but the Iran/Hormuz disruption remains a material inflation and supply-chain risk.\n4. Applied Materials reported record Q3 revenue of about $9.12B and adjusted EPS of about $3.50, above consensus, with above-estimate forward guidance reported in market coverage. The read-through is positive for semiconductor equipment and AI infrastructure, though after-hours weakness highlights valuation risk.\n\n## Watchlist implications\n\n- Favor profitable AI infrastructure, cloud, storage, and power names.\n- Treat speculative space, EV, leveraged crypto, and fintech as satellite exposures.\n- No additions or removals; raise priority on NVDA, AMD, AVGO, SMCI, WDC, and ORCL.\n"
+  ],
+  "local_sec_filings": [
+    "[2026-08-31.md]\n# SEC Filing Review \u2014 2026-08-31\n\n- AMD: SEC EDGAR filing index shows an August 13, 2026 filing with associated XBRL exhibits; this is the only fresh ticker-specific filing independently verified in the current collection window.\n- NVDA: an August 26, 2026 8-K is listed by a secondary filing index; verify the primary EDGAR document before relying on details.\n- For the remaining watchlist names, no new material filing was independently verified in this run. Treat filing status as unavailable rather than clean.\n- Source: https://www.sec.gov/Archives/edgar/data/2488/000119312526354029/0001193125-26-354029-index.htm\n",
+    "[2026-08-13.md]\n# SEC Filings \u2014 2026-08-13\n\nNo fresh ticker-specific SEC filing was independently verified for the watchlist in this collection window. This is a data-quality limitation, not evidence that no filing exists. Priority checks remain SMCI, NVDA, ORCL, AMD, AVGO, and financing/dilution disclosures for MSTR, ASTS, RKLB, RIVN, UPST, and POET.\n"
+  ],
+  "finnhub_news": [
+    {
+      "category": "company",
+      "datetime": 1788799140,
+      "headline": "1 Stat That Makes Costco Hard to Ignore this September",
+      "id": 141765108,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "NVDA",
+      "source": "Yahoo",
+      "summary": "The warehouse chain's latest sales update gave investors another reason to watch September closely.",
+      "url": "https://finnhub.io/api/news?id=cb18f714fda83bd60a692cbfddf9735cdf2cc14fe004910f1889b74157a4f418"
+    },
+    {
+      "category": "company",
+      "datetime": 1788799020,
+      "headline": "Up 26% in 2026, Is Coca-Cola a Buy Near an All-Time High?",
+      "id": 141765109,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "NVDA",
+      "source": "Yahoo",
+      "summary": "The beverage bellwether is beating the market this year. Is the fizz about to go flat?",
+      "url": "https://finnhub.io/api/news?id=cc58735c2e268622cdb2b60372b4b56194f0e75eaea492afd4473dc018f3cd58"
+    },
+    {
+      "category": "company",
+      "datetime": 1788798300,
+      "headline": "What If the Clarity Act Doesn't Pass This Year? Here Are 3 Ways to Bulletproof Your Crypto Portfolio.",
+      "id": 141765112,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "NVDA",
+      "source": "Yahoo",
+      "summary": "Plan for the contingency now so that you won't be chasing the market later.",
+      "url": "https://finnhub.io/api/news?id=04cf90d6658bb59287c971a7ecbdea09a06259ea4b3739333c02f24ba9cf0d35"
+    },
+    {
+      "category": "company",
+      "datetime": 1788798001,
+      "headline": "What's Wrong With PepsiCo Stock?",
+      "id": 141765110,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "NVDA",
+      "source": "Yahoo",
+      "summary": "The stock has drastically underperformed the market over the past five years.",
+      "url": "https://finnhub.io/api/news?id=f5605ef5323b02d2ef76dfd77a0ea86515c9486606a9079d3b9e296b5237daec"
+    },
+    {
+      "category": "company",
+      "datetime": 1788797100,
+      "headline": "Caterpillar's Power Generation Backlog Just Hit $72 Billion. The Construction Cycle Barely Matters Anymore.",
+      "id": 141765113,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "NVDA",
+      "source": "Yahoo",
+      "summary": "The construction industry giant has become a compelling AI-driven winning stock.",
+      "url": "https://finnhub.io/api/news?id=4a729d7e3a6e8ca0e894aec5b980f5438d95f79edfd86290591b737842e5ffd0"
+    }
+  ],
+  "polygon_news": [],
+  "earnings": [
+    {
+      "symbol": "NVDA",
+      "date": "2026-11-17",
+      "hour": "amc",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 2.4659,
+      "epsActual": null,
+      "revenueEstimate": 108129157692,
+      "revenueActual": null
+    }
+  ],
+  "fundamentals": {
+    "10DayAverageTradingVolume": 159.30202,
+    "13WeekPriceReturnDaily": 5.3508,
+    "26WeekPriceReturnDaily": 27.9422,
+    "3MonthADReturnStd": 42.17823,
+    "3MonthAverageTradingVolume": 146.35042,
+    "52WeekHigh": 236.54,
+    "52WeekHighDate": "2026-05-14",
+    "52WeekLow": 164.07,
+    "52WeekLowDate": "2025-09-05",
+    "52WeekPriceReturnDaily": 37.9236,
+    "5DayPriceReturnDaily": 4.3392,
+    "assetTurnoverAnnual": 1.0442,
+    "assetTurnoverTTM": 1.2788,
+    "beta": 2.2200592,
+    "bookValuePerShareAnnual": 6.4719,
+    "bookValuePerShareQuarterly": 9.4829,
+    "bookValueShareGrowth5Y": 56.87,
+    "capexCagr5Y": 39.89,
+    "cashFlowPerShareAnnual": 3.9778,
+    "cashFlowPerShareQuarterly": 5.2597,
+    "cashFlowPerShareTTM": 8.20683,
+    "cashPerSharePerShareAnnual": 2.5739,
+    "cashPerSharePerShareQuarterly": 4.1152,
+    "currentDividendYieldTTM": 0.1221,
+    "currentEv/freeCashFlowAnnual": 57.5386,
+    "currentEv/freeCashFlowTTM": 43.7979,
+    "currentRatioAnnual": 3.9053,
+    "currentRatioQuarterly": 4.5889,
+    "dividendGrowthRate5Y": 20.05,
+    "dividendIndicatedAnnual": 1,
+    "dividendPerShareAnnual": 0.0399,
+    "dividendPerShareTTM": 0.2795,
+    "dividendYieldIndicatedAnnual": 0.03349,
+    "ebitdPerShareAnnual": 5.4349,
+    "ebitdPerShareTTM": 8.2446,
+    "ebitdaCagr5Y": 88.29,
+    "ebitdaInterimCagr5Y": 88.37,
+    "enterpriseValue": 5562599,
+    "epsAnnual": 4.8979,
+    "epsBasicExclExtraItemsAnnual": 4.8979,
+    "epsBasicExclExtraItemsTTM": 7.9108,
+    "epsExclExtraItemsAnnual": 4.8979,
+    "epsExclExtraItemsTTM": 7.9108,
+    "epsGrowth3Y": 204.08,
+    "epsGrowth5Y": 95.27,
+    "epsGrowthQuarterlyYoy": 128.21,
+    "epsGrowthTTMYoy": 125.15,
+    "epsInclExtraItemsAnnual": 4.8979,
+    "epsInclExtraItemsTTM": 7.9108,
+    "epsNormalizedAnnual": 4.8979,
+    "epsTTM": 7.9108,
+    "evEbitdaTTM": 27.6547,
+    "evRevenueTTM": 18.3603,
+    "focfCagr5Y": 83.13,
+    "forwardPE": 18.10034,
+    "forwardPEG": 0.34983,
+    "grossMargin5Y": 68.54,
+    "grossMarginAnnual": 73.15,
+    "grossMarginTTM": 74.67,
+    "inventoryTurnoverAnnual": 3.6829,
+    "inventoryTurnoverTTM": 3.2975,
+    "longTermDebt/equityAnnual": 0.0475,
+    "longTermDebt/equityQuarterly": 0.1413,
+    "marketCapitalization": 5551676,
+    "monthToDatePriceReturnDaily": 4.3392,
+    "netIncomeEmployeeAnnual": 2.8587,
+    "netIncomeEmployeeTTM": 4.5924,
+    "netInterestCoverageAnnual": 29.0975,
+    "netInterestCoverageTTM": 75.6607,
+    "netMarginGrowth5Y": 16.44,
+    "netProfitMargin5Y": 42.54,
+    "netProfitMarginAnnual": 55.6,
+    "netProfitMarginTTM": 63.66,
+    "operatingMargin5Y": 45.98,
+    "operatingMarginAnnual": 60.38,
+    "operatingMarginTTM": 65.17,
+    "payoutRatioAnnual": 0.81,
+    "payoutRatioTTM": 3.51,
+    "pb": 24.2448,
+    "pbAnnual": 28.8075,
+    "pbQuarterly": 20.768,
+    "pcfShareAnnual": 54.0477,
+    "pcfShareTTM": 41.3194,
+    "peAnnual": 46.2382,
+    "peBasicExclExtraTTM": 28.7832,
+    "peExclExtraAnnual": 274.2091,
+    "peExclExtraTTM": 28.7832,
+    "peInclExtraTTM": 28.7832,
+    "peNormalizedAnnual": 46.2382,
+    "peTTM": 28.7832,
+    "pegTTM": 0.57728,
+    "pfcfShareAnnual": 57.4256,
+    "pfcfShareTTM": 43.7119,
+    "pretaxMargin5Y": 47.57,
+    "pretaxMarginAnnual": 65.5,
+    "pretaxMarginTTM": 75.83,
+    "priceRelativeToS&P50013Week": 3.6205,
+    "priceRelativeToS&P50026Week": 14.7339,
+    "priceRelativeToS&P5004Week": 6.2557,
+    "priceRelativeToS&P50052Week": 18.9276,
+    "priceRelativeToS&P500Ytd": 10.5731,
+    "psAnnual": 25.7096,
+    "psTTM": 18.3242,
+    "ptbvAnnual": 29.426,
+    "ptbvQuarterly": 21.0435,
+    "quickRatioAnnual": 3.1409,
+    "quickRatioQuarterly": 3.7757,
+    "receivablesTurnoverAnnual": 7.0188,
+    "receivablesTurnoverTTM": 6.6684,
+    "revenueEmployeeAnnual": 5.1414,
+    "revenueEmployeeTTM": 7.2135,
+    "revenueGrowth3Y": 100.05,
+    "revenueGrowth5Y": 66.9,
+    "revenueGrowthQuarterlyYoy": 105.85,
+    "revenueGrowthTTMYoy": 83.38,
+    "revenuePerShareAnnual": 8.8088,
+    "revenuePerShareTTM": 12.4756,
+    "revenueShareGrowth5Y": 67.72,
+    "roa5Y": 40.26,
+    "roaRfy": 58.06,
+    "roaTTM": 81.41000000000001,
+    "roe5Y": 58.77,
+    "roeRfy": 76.33,
+    "roeTTM": 110.11,
+    "roi5Y": 50.22,
+    "roiAnnual": 72.43,
+    "roiTTM": 101.59,
+    "tangibleBookValuePerShareAnnual": 6.3359,
+    "tangibleBookValuePerShareQuarterly": 9.3588,
+    "tbvCagr5Y": 61.18,
+    "totalDebt/totalEquityAnnual": 0.0538,
+    "totalDebt/totalEquityQuarterly": 0.1457,
+    "yearToDatePriceReturnDaily": 23.5174
+  },
+  "source_status": {
+    "local_research": true,
+    "local_news": true,
+    "local_sec_filings": true,
+    "finnhub_news": true,
+    "polygon_news": false,
+    "earnings": true,
+    "fundamentals": true
+  }
+}
+```
+
+## PFE
+Trading candidate:
+```json
+{
+  "symbol": "PFE",
+  "score": 84.84,
+  "direction": "LONG",
+  "sector": "Healthcare",
+  "components": {
+    "market": 100.0,
+    "sector": 86.35,
+    "relative_strength": 95.84824959756426,
+    "vwap": 100.0,
+    "trend": 100.0,
+    "volume": 44.22160887745767,
+    "momentum": 69.95762711864404,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 62.332071974969374
+  }
+}
+```
+Evidence packet (source-labelled; missing sources must remain uncertain):
 ```json
 {
   "local_research": [],
@@ -43,61 +293,340 @@ Evidence packet:
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788683400,
-      "headline": "What I Found By Analyzing How Seeking Alpha Analysts Rated The Mag 7",
-      "id": 141590639,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1314220672/image_1314220672.jpg?io=getty-c-w1536",
-      "related": "AAPL",
-      "source": "SeekingAlpha",
-      "summary": "Mag 7 is fragmenting\u00e2\u0080\u0094stock picking matters. See Seeking Alpha analysts' upgrade trends, Nvidia vs Apple/Tesla outlooks, and options hedging signals.",
-      "url": "https://finnhub.io/api/news?id=eba233ff3388800a9f35b66ef6f1f68eff2afea31b642f11a07505e75d4043ea"
+      "datetime": 1788784860,
+      "headline": "AstraZeneca Secures FDA Nod for New Breast Cancer Therapy Etcamah",
+      "id": 141762863,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "PFE",
+      "source": "Yahoo",
+      "summary": "AZN's Etcamah wins accelerated FDA approval for certain advanced breast cancer patients, backed by a 56% risk reduction in progression or death.",
+      "url": "https://finnhub.io/api/news?id=41ffd461059d01b83af5f6b005e0cd9ed487a6bbd0d0ecd81a797819bfe6cdb1"
     },
     {
       "category": "company",
-      "datetime": 1788637200,
-      "headline": "Prediction: Amazon Will Join Nvidia, Apple, and Alphabet in the $4 Trillion Club Before 2029",
-      "id": 141539840,
+      "datetime": 1788778920,
+      "headline": "Vaccines Global Market Intelligence Report 2026-2035 Featuring Bio Farma, Emergent BioSolutions, GC Pharma, GlaxoSmithKline, Janssen, Merck, Novavax, Moderna, Pfizer, Sanofi Pasteur, and Valneva",
+      "id": 141760935,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "AAPL",
+      "related": "PFE",
       "source": "Yahoo",
-      "summary": "Amazon stock has underperformed the S&P 500 over the last five years, but the company has incredible strengths.",
-      "url": "https://finnhub.io/api/news?id=372822162d1d5b0765b427b9a1dbf5610fd5ca95d7e01bdce5489b7ce7060f52"
+      "summary": "Dublin, Sept. 07, 2026 (GLOBE NEWSWIRE) -- The \"Vaccines Market Distribution by Type of Vaccine API, Targeted Patient Population, Type of Vaccines, Route of Administration, and Key Geographical Region - Trends and Forecasts Till 2035\" has been added to ResearchAndMarkets.com's offering. The global vaccines market is projected to increase from approximately USD 48 billion to USD 94 billion by 2030, representing a compound annual growth rate of about 11.9% during the forecast period. Market expans",
+      "url": "https://finnhub.io/api/news?id=9f51313c5b3c77384d06c621b598127ced700b1ca8ebed5cb5ba133ec949c83a"
     },
     {
       "category": "company",
-      "datetime": 1788633300,
-      "headline": "Apple's First iPhone Under New CEO John Ternus Launches Sept. 9. Here's Whether It's Finally Time to Buy the Stock.",
-      "id": 141539847,
+      "datetime": 1788547801,
+      "headline": "AbbVie vs. Pfizer: Which Healthcare Stock Is a Better Buy in 2026?",
+      "id": 141455037,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "AAPL",
+      "related": "PFE",
       "source": "Yahoo",
-      "summary": "Ternus will introduce Apple's new iPhones (as well as some other products and services) on Sept. 9.",
-      "url": "https://finnhub.io/api/news?id=c686985f2d1ee36acd57cf68fc1ec368cbd7560286e77ee01a4f48c461c0159b"
+      "summary": "AbbVie's immunology pivot is offsetting Humira's decline, while Pfizer trades at half the valuation despite patent risks ahead.",
+      "url": "https://finnhub.io/api/news?id=882e78db4092ee8e4a4f8c9153c570608198427b13f54f3413147816ac706bb2"
     },
     {
       "category": "company",
-      "datetime": 1788632529,
-      "headline": "Dow Jones Futures: U.S., Iran Exchange Attacks; Nvidia, Micron, Sandisk Flash Buy Signals",
-      "id": 141539843,
+      "datetime": 1788541047,
+      "headline": "Was JNJ Stock Rally Actually Its Own?",
+      "id": 141444058,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "AAPL",
+      "related": "PFE",
       "source": "Yahoo",
-      "summary": "Dow Jones futures: The U.S. and Iran exchanged attacks. Nvidia, Micron, Sandisk are buys, but for how long? Apple, inflation data loom.",
-      "url": "https://finnhub.io/api/news?id=cf521da6baded2820a5b09171cb98ea179012bbcf95faebb53f973a36f24c7e7"
+      "summary": "Johnson & Johnson (JNJ) stock returned 59.9% over the past year, against 21.1% for the S&P 500. The company has a clean story for it. The biosimilar hit it had been bracing for arrived and was absorbed, and its talc litigation now has a proposed ending. Both are real. The first does not explain a move that size, and the second is not finished.",
+      "url": "https://finnhub.io/api/news?id=905919b186b2cb70f624aa1750860bd8a239d54c5d4daa0db9581cc8254fae21"
     },
     {
       "category": "company",
-      "datetime": 1788627934,
-      "headline": "Apple (AAPL) Draws New \u00a32 Billion UK ATT Lawsuit With Wider Europe Stakes",
-      "id": 141532967,
+      "datetime": 1788532931,
+      "headline": "Pfizer\u2019s Stock Has Been Crushed\u2014Is Its 6% Dividend Finally Worth Buying?",
+      "id": 141431642,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "PFE",
+      "source": "Yahoo",
+      "summary": "Pfizer shareholders are collecting a 6% yield while the stock bleeds value, and the CEO just made a bold promise about keeping that payout alive through what could be the company's toughest stretch in years.",
+      "url": "https://finnhub.io/api/news?id=30c88d515f9a37e92b3066e6f44c71beb646245c32bfe22b3b84e95acef516c2"
+    }
+  ],
+  "polygon_news": [],
+  "earnings": [],
+  "fundamentals": {
+    "10DayAverageTradingVolume": 32.73994,
+    "13WeekPriceReturnDaily": 10.7435,
+    "26WeekPriceReturnDaily": 7.0354,
+    "3MonthADReturnStd": 22.492231,
+    "3MonthAverageTradingVolume": 40.13358,
+    "52WeekHigh": 29.21,
+    "52WeekHighDate": "2026-09-03",
+    "52WeekLow": 23.58,
+    "52WeekLowDate": "2025-09-25",
+    "52WeekPriceReturnDaily": 14.3489,
+    "5DayPriceReturnDaily": -0.0351,
+    "assetTurnoverAnnual": 0.3006,
+    "assetTurnoverTTM": 0.3086,
+    "beta": 0.27623326,
+    "bookValuePerShareAnnual": 15.2086,
+    "bookValuePerShareQuarterly": 14.9482,
+    "bookValueShareGrowth5Y": 6.01,
+    "capexCagr5Y": -1.19,
+    "cashFlowPerShareAnnual": 1.5962,
+    "cashFlowPerShareQuarterly": 1.9277,
+    "cashFlowPerShareTTM": 2.91656,
+    "cashPerSharePerShareAnnual": 2.3911,
+    "cashPerSharePerShareQuarterly": 2.0528,
+    "currentDividendYieldTTM": 6.0343,
+    "currentEv/freeCashFlowAnnual": 24.7217,
+    "currentEv/freeCashFlowTTM": 20.4236,
+    "currentRatioAnnual": 1.1599,
+    "currentRatioQuarterly": 1.2669,
+    "dividendGrowthRate5Y": 2.51,
+    "dividendIndicatedAnnual": 1.72,
+    "dividendPerShareAnnual": 1.7213,
+    "dividendPerShareTTM": 1.7191,
+    "dividendYieldIndicatedAnnual": 5.37705,
+    "ebitdPerShareAnnual": 2.4968,
+    "ebitdPerShareTTM": 1.6023,
+    "ebitdaCagr5Y": 5.56,
+    "ebitdaInterimCagr5Y": null,
+    "enterpriseValue": 224373.7,
+    "epsAnnual": 1.3601,
+    "epsBasicExclExtraItemsAnnual": 1.3601,
+    "epsBasicExclExtraItemsTTM": 0.7554000000000001,
+    "epsExclExtraItemsAnnual": 1.3601,
+    "epsExclExtraItemsTTM": 0.7554000000000001,
+    "epsGrowth3Y": -37.13,
+    "epsGrowth5Y": -3.51,
+    "epsGrowthQuarterlyYoy": null,
+    "epsGrowthTTMYoy": -59.91,
+    "epsInclExtraItemsAnnual": 1.3601,
+    "epsInclExtraItemsTTM": 0.7554000000000001,
+    "epsNormalizedAnnual": 1.3601,
+    "epsTTM": 0.7554000000000001,
+    "evEbitdaTTM": 24.5351,
+    "evRevenueTTM": 3.5226,
+    "focfCagr5Y": -4.81,
+    "forwardPE": 8.64266,
+    "grossMargin5Y": 69.76,
+    "grossMarginAnnual": 75.81,
+    "grossMarginTTM": 74.71,
+    "inventoryTurnoverAnnual": 1.408,
+    "inventoryTurnoverTTM": 1.4903,
+    "longTermDebt/equityAnnual": 0.7128,
+    "longTermDebt/equityQuarterly": 0.7101,
+    "marketCapitalization": 162155.7,
+    "monthToDatePriceReturnDaily": -0.0351,
+    "netIncomeEmployeeAnnual": 0.1036,
+    "netIncomeEmployeeTTM": 0.0578,
+    "netInterestCoverageAnnual": 5.3511,
+    "netInterestCoverageTTM": 5.0214,
+    "netMarginGrowth5Y": -10.8,
+    "netProfitMargin5Y": 17.33,
+    "netProfitMarginAnnual": 12.42,
+    "netProfitMarginTTM": 6.8,
+    "operatingMargin5Y": 18.78,
+    "operatingMarginAnnual": 15.01,
+    "operatingMarginTTM": 6.79,
+    "payoutRatioAnnual": 125.75,
+    "payoutRatioTTM": 80.25,
+    "pb": 1.9035,
+    "pbAnnual": 1.6371,
+    "pbQuarterly": 1.6304,
+    "pcfShareAnnual": 13.8535,
+    "pcfShareTTM": 12.0994,
+    "peAnnual": 20.8695,
+    "peBasicExclExtraTTM": 37.4234,
+    "peExclExtraAnnual": 5.57472,
+    "peExclExtraTTM": 37.4234,
+    "peInclExtraTTM": 37.4234,
+    "peNormalizedAnnual": 20.8695,
+    "peTTM": 37.4234,
+    "pegTTM": -2.72351,
+    "pfcfShareAnnual": 17.8664,
+    "pfcfShareTTM": 14.7602,
+    "pretaxMargin5Y": 18.13,
+    "pretaxMarginAnnual": 12.02,
+    "pretaxMarginTTM": 6.61,
+    "priceRelativeToS&P50013Week": 9.0132,
+    "priceRelativeToS&P50026Week": -6.1729,
+    "priceRelativeToS&P5004Week": 5.543,
+    "priceRelativeToS&P50052Week": -4.6471,
+    "priceRelativeToS&P500Ytd": 1.3127,
+    "psAnnual": 2.5912,
+    "psTTM": 2.5458,
+    "ptbvAnnual": 4.3235,
+    "ptbvQuarterly": 3.642,
+    "quickRatioAnnual": 0.8718,
+    "quickRatioQuarterly": 0.9622,
+    "receivablesTurnoverAnnual": 5.3631,
+    "receivablesTurnoverTTM": 5.1852,
+    "revenueEmployeeAnnual": 0.8344,
+    "revenueEmployeeTTM": 0.8493,
+    "revenueGrowth3Y": -14.8,
+    "revenueGrowth5Y": 8.48,
+    "revenueGrowthQuarterlyYoy": 2.6,
+    "revenueGrowthTTMYoy": -0.22,
+    "revenuePerShareAnnual": 10.9538,
+    "revenuePerShareTTM": 11.1765,
+    "revenueShareGrowth5Y": 8.17,
+    "roa5Y": 7.29,
+    "roaRfy": 3.73,
+    "roaTTM": 2.1,
+    "roe5Y": 16.35,
+    "roeRfy": 8.99,
+    "roeTTM": 4.89,
+    "roi5Y": 10.92,
+    "roiAnnual": 5.140000000000001,
+    "roiTTM": 2.85,
+    "tangibleBookValuePerShareAnnual": 5.7589,
+    "tangibleBookValuePerShareQuarterly": 6.6919,
+    "tbvCagr5Y": -1.19,
+    "totalDebt/totalEquityAnnual": 0.7493,
+    "totalDebt/totalEquityQuarterly": 0.7418,
+    "yearToDatePriceReturnDaily": 14.257
+  },
+  "source_status": {
+    "local_research": false,
+    "local_news": false,
+    "local_sec_filings": false,
+    "finnhub_news": true,
+    "polygon_news": false,
+    "earnings": false,
+    "fundamentals": true
+  }
+}
+```
+
+## AAPL
+Trading candidate:
+```json
+{
+  "symbol": "AAPL",
+  "score": 81.45,
+  "direction": "LONG",
+  "sector": "Technology",
+  "components": {
+    "market": 100.0,
+    "sector": 55.47,
+    "relative_strength": 81.8012107844726,
+    "vwap": 100.0,
+    "trend": 100.0,
+    "volume": 47.71724543948731,
+    "momentum": 72.74439747986276,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
+}
+```
+Evidence packet (source-labelled; missing sources must remain uncertain):
+```json
+{
+  "local_research": [],
+  "local_news": [],
+  "local_sec_filings": [],
+  "finnhub_news": [
+    {
+      "category": "company",
+      "datetime": 1788793500,
+      "headline": "There Are Only a Handful of Nasdaq-100 Stocks That Yield Over 3%. Here's My Top Pick to Buy Now.",
+      "id": 141763725,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "AAPL",
       "source": "Yahoo",
-      "summary": "Apple (NasdaqGS:AAPL) faces a new \u00a32b lawsuit in the UK alleging its App Tracking Transparency feature favors its own advertising operations. The collective action claims ATT gives Apple an unfair advantage over third-party app developers and advertisers. The case adds to ongoing regulatory scrutiny of Apple\u2019s App Store and privacy practices across Europe. This lawsuit highlights how Apple is only one part of a wider group of large tech and platform stocks that are tightly linked to data,...",
-      "url": "https://finnhub.io/api/news?id=05c91b0250bd447583cf3e54e7a07aa669542e0140205e7d3070c6698ccefebf"
+      "summary": "For my money, Mondelez is the best bet of the Nasdaq-100's high-yield names.",
+      "url": "https://finnhub.io/api/news?id=2174d70a766081bdd8a73346df33a60a96c42372d1e9faef2a5fadd7bbf61936"
+    },
+    {
+      "category": "company",
+      "datetime": 1788793200,
+      "headline": "Is Apple Stock a Buy Now Ahead of its Product Launch Event?",
+      "id": 141763751,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AAPL",
+      "source": "Yahoo",
+      "summary": "Ahead of Wednesday's launch, AAPL faces a tricky mix: strong demand, rising costs, tight supply, and a premium stock valuation.",
+      "url": "https://finnhub.io/api/news?id=3ee56adc580aeb1cfdce31ba37534e7d5f9b8531f9126d2dfb8877003cf73321"
+    },
+    {
+      "category": "company",
+      "datetime": 1788792776,
+      "headline": "The S&P 100 ETF Just Dumped Nike and Colgate for 4 AI Stocks. Here\u2019s What That Means for Your Portfolio",
+      "id": 141763616,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AAPL",
+      "source": "Yahoo",
+      "summary": "The iShares S&P 100 ETF just swapped out a toothpaste giant and a mall REIT for four AI infrastructure plays, and the move reveals something uncomfortable about what this so-called blue-chip fund has quietly become.",
+      "url": "https://finnhub.io/api/news?id=42fbcd571f4e0ff319ea17c0fe94bd2d9085859a6a211459ff345ebc0a878b0d"
+    },
+    {
+      "category": "company",
+      "datetime": 1788792695,
+      "headline": "Apple Just Made a Move Most Investors Overlooked. This Is Why I Keep Buying The Stock",
+      "id": 141763434,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AAPL",
+      "source": "Yahoo",
+      "summary": "Apple quietly broke its own product release playbook, and most investors scrolled right past the announcement without realizing what it signals for the decade ahead.",
+      "url": "https://finnhub.io/api/news?id=159511197735622223a1ac598a177a9d78adfa4368e7ee238e0652b15dcff7aa"
+    },
+    {
+      "category": "company",
+      "datetime": 1788789628,
+      "headline": "Why Apple May Be the Safest AI Stock Nobody Calls an AI Stock",
+      "id": 141762760,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AAPL",
+      "source": "Yahoo",
+      "summary": "Wall Street obsesses over the hyperscalers burning billions on AI infrastructure, but one mega-cap with 2.5 billion active devices keeps getting left out of the conversation, and that oversight may be exactly where the opportunity hides.",
+      "url": "https://finnhub.io/api/news?id=e4892590c0acf4caf6687e6804e32ca4e16379ef5abc4560a18eb47e8d755755"
     }
   ],
   "polygon_news": [
+    {
+      "id": "6b8b11836a92751e7364a010dce3a2c1c55a4cfa025d86636006a6823b9f3bd4",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "Is Adobe's Stock Heading for $300?",
+      "author": "David Jagielski, Cpa",
+      "published_utc": "2026-09-07T16:02:29Z",
+      "article_url": "https://www.fool.com/investing/2026/09/07/is-adobe-s-stock-heading-for-300/?source=iedfolrf0000001",
+      "tickers": [
+        "ADBE",
+        "AAPL",
+        "NVDA"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fcdn.content.foolcdn.com%2Fimages%2F1umn9qeh%2Fproduction%2F6acb60eadf30fcaa13192897bd2c1c41552f7973-2000x1125.jpg%3Fw%3D800%26q%3D75%26fit%3Dmax%26auto%3Dformat&w=1200&op=resize",
+      "description": "Adobe's stock has fallen 24% year-to-date due to AI-related concerns, as AI chatbots threaten its core image creation software business. However, the stock has been rallying recently and trades at a discount (15x trailing earnings vs. S&P 500 average of 24x). Despite valid risks from potential demand erosion, the author believes Adobe's continued solid growth (11% revenue increase) and attractive valuation provide sufficient margin of safety for the stock to potentially finish the year above $300.",
+      "keywords": [
+        "artificial intelligence threat",
+        "software stocks",
+        "valuation discount",
+        "AI chatbots",
+        "subscription services",
+        "tech stock rally",
+        "margin of safety"
+      ],
+      "insights": [
+        {
+          "ticker": "ADBE",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Despite significant AI-related headwinds and a 24% year-to-date decline, Adobe trades at an attractive valuation discount (15x trailing earnings) compared to the broader market. The company continues to show solid revenue growth (11%) and is incorporating AI into its products. The author believes the stock has more upside than downside at current levels and could reach $300 by year-end."
+        },
+        {
+          "ticker": "AAPL",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Apple is mentioned as a high-flying tech stock that has hit record levels and is receiving significant investor focus, but it is not the subject of analysis in this article and no specific sentiment is expressed about its investment merits."
+        },
+        {
+          "ticker": "NVDA",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Nvidia is mentioned as a high-flying tech stock that has hit record levels, but it is not the subject of analysis in this article and no specific sentiment is expressed about its investment merits."
+        }
+      ]
+    },
     {
       "id": "3b34584ade763b81c1916f106859262eee211985f16bdac318e22b762efb84bb",
       "publisher": {
@@ -341,69 +870,6 @@ Evidence packet:
           "sentiment_reasoning": "The article recommends this ETF as an excellent alternative for investors seeking dividend income, positioning it as a better option than Apple for those prioritizing dividend yields over capital appreciation."
         }
       ]
-    },
-    {
-      "id": "e054e02351ff3221420c87751bae7382b4d570c48193e6d78dc513b30d0d118e",
-      "publisher": {
-        "name": "Zacks Investment Research",
-        "homepage_url": "https://www.zacks.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
-      },
-      "title": "Top Research Reports for Apple, Broadcom & Shell",
-      "author": "Mark Vickery",
-      "published_utc": "2026-09-04T21:16:00Z",
-      "article_url": "https://www.zacks.com/commentary/2985179/top-research-reports-for-apple-broadcom-shell?cid=CS-ZC-FT-research_daily-2985179",
-      "tickers": [
-        "AAPL",
-        "AVGO",
-        "SHEL",
-        "KVHI",
-        "HOOD",
-        "MDB"
-      ],
-      "image_url": "https://staticx-tuner.zacks.com/images/articles/main/6c/1151.jpg",
-      "description": "Zacks analysts published research on 16 major stocks on September 4, 2026. Apple received a Neutral rating despite strong iPhone and Mac demand, citing near-term risks from FX headwinds and tariff concerns. Broadcom also earned Neutral due to balanced AI growth opportunities against high customer concentration and margin pressures. Shell maintained Neutral as long-term strengths are offset by commodity volatility and execution risks. KVH Industries showed potential upside if it successfully monetizes its growing LEO connectivity recurring revenue base.",
-      "keywords": [
-        "stock research",
-        "analyst ratings",
-        "AI infrastructure",
-        "semiconductor",
-        "energy",
-        "microcap"
-      ],
-      "insights": [
-        {
-          "ticker": "AAPL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Strong Q3 results with broad iPhone and Mac demand and record Services installed base, but offset by expected Q4 slowdown, rising memory costs, FX headwinds, supply constraints, and regulatory risks to Services economics."
-        },
-        {
-          "ticker": "AVGO",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Benefiting from expanding AI infrastructure spending with multiyear customer engagements and strong free cash flow, but balanced by high customer concentration, declining gross margins, intense competition, and substantial debt burden."
-        },
-        {
-          "ticker": "SHEL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Benefits from higher commodity prices, robust LNG trading, and strong cash generation with shareholder rewards, but exposed to geopolitical disruptions, commodity volatility, underperforming business segments, and acquisition execution risks."
-        },
-        {
-          "ticker": "KVHI",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Valuation suggests potential upside if the company successfully converts its growing recurring LEO connectivity and managed services revenue base into stronger margins and cash generation, supported by debt-free balance sheet."
-        },
-        {
-          "ticker": "HOOD",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Product diversification and deeper wallet share expected to continue aiding growth, with business expansion initiatives deepening global presence."
-        },
-        {
-          "ticker": "MDB",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Atlas platform continues winning enterprise customers, but cloud-giant competition and consumption-based revenue model add uncertainty to the growth story."
-        }
-      ]
     }
   ],
   "earnings": [],
@@ -554,628 +1020,29 @@ Evidence packet:
 }
 ```
 
-## AMZN
-Trading candidate:
-```json
-{
-  "symbol": "AMZN",
-  "direction": "LONG",
-  "score": 51.78,
-  "boosted_score": 57.85,
-  "research": {
-    "symbol": "AMZN",
-    "research_score": 72,
-    "conviction": "High",
-    "catalysts": [
-      "AWS acceleration",
-      "AI monetization",
-      "Advertising growth",
-      "Retail operating-margin expansion",
-      "Stronger free cash flow"
-    ],
-    "risks": [
-      "AI and cloud capex pressure",
-      "AWS competition",
-      "Consumer slowdown",
-      "Regulatory and antitrust actions",
-      "Execution risk"
-    ],
-    "summary": "Diversified growth platform led by AWS, advertising, and retail efficiency, with risks from capex intensity, competition, regulation, and the weak technical trend."
-  },
-  "sector": "Consumer Discretionary",
-  "reasons": [
-    "market: 100.0",
-    "vwap: 100.0",
-    "extension: 100.0"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [
-    "[AMZN.md]\n# AMZN \u2014 Amazon.com, Inc.\n\n## Overview\nAmazon is a global technology and commerce platform spanning online marketplace, first-party retail, logistics, advertising, subscriptions, devices/media, and Amazon Web Services (AWS). The investment case is increasingly driven by AWS, high-margin advertising, fulfillment efficiency, and AI infrastructure/software adoption.\n\n## Sector / Industry\n- Sector: Consumer Discretionary / Communication Services / Information Technology exposure\n- Industry: Internet & Direct Marketing Retail; Cloud Infrastructure; Digital Advertising\n\n## Recent Developments / News / Earnings / Analyst / SEC / Product Notes\n- SEC EDGAR shows recent Amazon filings in July 2026, including 8-K current reports and prospectus/free-writing-prospectus filings tied to securities activity.\n- Public news flow continues to focus on AI/cloud capex, AWS competitive positioning, retail margin expansion, advertising growth, and the balance between investment spending and free cash flow.\n- Product/business themes: AWS generative-AI services, custom silicon, marketplace/Prime ecosystem, retail logistics automation, and expanding ad inventory across commerce and video.\n- Source blocker: Amazon IR earnings page was blocked by Cloudflare/403 via web_fetch, so this summary relies on SEC availability plus accessible public-news context rather than direct IR release text.\n\n## Bull Thesis\n- AWS remains a scaled, high-margin cloud platform with a long runway from AI workloads, enterprise migration, and proprietary chips/services.\n- Advertising is a structurally attractive, high-margin growth business embedded at the point of purchase.\n- Retail margins can keep improving as regionalized fulfillment, automation, and delivery density reduce cost-to-serve.\n- Prime, marketplace sellers, logistics, and media create a reinforcing ecosystem that is difficult to replicate.\n\n## Bear Thesis\n- AI and cloud infrastructure spending may pressure near-term free cash flow if returns lag expectations.\n- AWS faces intense competition from Microsoft Azure, Google Cloud, and specialized AI infrastructure providers.\n- Retail remains operationally complex and exposed to consumer demand, wage inflation, and regulatory scrutiny.\n- Valuation can compress if revenue growth decelerates or investors question the payback on capex.\n\n## Risks\nRegulatory/antitrust actions, cloud price competition, execution risk in AI infrastructure, margin pressure from logistics and wages, cybersecurity incidents, labor disputes, and macro-driven consumer slowdown.\n\n## Catalysts\nAWS acceleration, evidence of AI monetization, advertising growth, retail operating-margin expansion, stronger free cash flow, shareholder returns, and favorable outcomes in regulatory matters.\n\n## Long-Term Outlook\nAmazon remains a high-quality compounder if AWS and advertising continue to scale while retail efficiency improves. The key long-term debate is whether AI capex becomes a durable moat and profit pool or a lower-return arms race.\n\n## Conviction Rating\nHigh \u2014 strong multi-engine growth platform, though capex intensity and regulatory risk keep position sizing discipline important.\n"
-  ],
-  "local_news": [],
-  "local_sec_filings": [],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788683400,
-      "headline": "What I Found By Analyzing How Seeking Alpha Analysts Rated The Mag 7",
-      "id": 141590639,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1314220672/image_1314220672.jpg?io=getty-c-w1536",
-      "related": "AMZN",
-      "source": "SeekingAlpha",
-      "summary": "Mag 7 is fragmenting\u00e2\u0080\u0094stock picking matters. See Seeking Alpha analysts' upgrade trends, Nvidia vs Apple/Tesla outlooks, and options hedging signals.",
-      "url": "https://finnhub.io/api/news?id=eba233ff3388800a9f35b66ef6f1f68eff2afea31b642f11a07505e75d4043ea"
-    },
-    {
-      "category": "company",
-      "datetime": 1788637200,
-      "headline": "Prediction: Amazon Will Join Nvidia, Apple, and Alphabet in the $4 Trillion Club Before 2029",
-      "id": 141539840,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "AMZN",
-      "source": "Yahoo",
-      "summary": "Amazon stock has underperformed the S&P 500 over the last five years, but the company has incredible strengths.",
-      "url": "https://finnhub.io/api/news?id=372822162d1d5b0765b427b9a1dbf5610fd5ca95d7e01bdce5489b7ce7060f52"
-    },
-    {
-      "category": "company",
-      "datetime": 1788632447,
-      "headline": "Costco silently kills member perk that saved customers money",
-      "id": 141539871,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "AMZN",
-      "source": "Yahoo",
-      "summary": "The company has left members stranded with no notice, no apology, and no explanation.",
-      "url": "https://finnhub.io/api/news?id=e7cb5a21e08eff52ef37b0b5a2f62129ed0d37edeac34ce31335e7129e95da23"
-    },
-    {
-      "category": "company",
-      "datetime": 1788629593,
-      "headline": "Anthropic's $2 Trillion IPO Approaches: The Companies Poised to Benefit",
-      "id": 141552593,
-      "image": "https://cdn.benzinga.com/files/images/story/2026/09/05/Anthropic-Logo-Is-Displayed-On-The-Scree.jpg?width=2048&height=1536",
-      "related": "AMZN",
-      "source": "Benzinga",
-      "summary": "Anthropic, the creator of Claude, the popular AI chatbot, is set to launch its IPO in the coming weeks. Here are the companies to benefit",
-      "url": "https://finnhub.io/api/news?id=f88c67a8eb7e654a2e18acfe5ec3cd20b85ac37a2f40b73ee3c575d7171c36ca"
-    },
-    {
-      "category": "company",
-      "datetime": 1788626405,
-      "headline": "Michael Dell\u2019s Net Worth Up $110 Billion So Far 2026: Why the Surge May Continue",
-      "id": 141547893,
-      "image": "https://cdn.benzinga.com/files/images/story/2026/09/05/Shanghai-china-dec-12th-2021-Close-Up-De.jpg?width=2048&height=1536",
-      "related": "AMZN",
-      "source": "Benzinga",
-      "summary": "Michael Dell has added $110 billion this year as his net worth gains momentum amid the ongoing Dell stock surge.",
-      "url": "https://finnhub.io/api/news?id=5d8fde8474956130cb95bbe2618fb4e7954f56a1d0128a63995f07b867493262"
-    }
-  ],
-  "polygon_news": [
-    {
-      "id": "7170c8612d84fcc17b10e0c9e15fa17b7c10c8e1577c050bb0eccb5711b77eaa",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "What to Invest in for the Next 5 Years: My Prediction Is Boring, and That's the Point",
-      "author": "Marc Guberti",
-      "published_utc": "2026-09-06T16:08:00Z",
-      "article_url": "https://www.fool.com/investing/2026/09/06/what-to-invest-in-for-the-next-5-years-my-predicti/?source=iedfolrf0000001",
-      "tickers": [
-        "NVDA",
-        "AVGO",
-        "AMZN",
-        "MSFT",
-        "GOOG",
-        "GOOGL",
-        "GOOGM",
-        "GOOGN",
-        "NBIS",
-        "IREN"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F885951%2Fgetty-turbocharge-boost-rocket-take-off-investing-success-performance-piggy-bank-1200x900-e339a72.jpg&w=1200&op=resize",
-      "description": "The author predicts AI stocks will continue to rally over the next 5 years, citing strong growth from chipmakers like Nvidia and Broadcom, as well as hyperscalers investing heavily in AI infrastructure. Broadcom expects AI chip revenue to double to $115B in fiscal 2027 and again to $230B in fiscal 2028, while Nvidia anticipates 70% YoY revenue growth in fiscal 2028. The author also highlights smaller infrastructure companies like Nebius and Iren as potential opportunities in the AI supply chain.",
-      "keywords": [
-        "AI stocks",
-        "semiconductor growth",
-        "AI infrastructure",
-        "cloud computing",
-        "data centers",
-        "capital investment"
-      ],
-      "insights": [
-        {
-          "ticker": "NVDA",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Strong guidance with 70% YoY revenue growth anticipated in fiscal 2028, with potential for higher growth if supply chain constraints ease. Positioned as a key indicator of AI industry health."
-        },
-        {
-          "ticker": "AVGO",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Exceptional performance with 221% YoY AI semiconductor revenue growth. Rare two-year forward guidance showing AI chip revenue doubling to $115B in fiscal 2027 and again to $230B in fiscal 2028 demonstrates sustained parabolic growth."
-        },
-        {
-          "ticker": "AMZN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "AWS growth has reignited with best quarter in over 4 years, benefiting from increased hyperscaler AI infrastructure investments."
-        },
-        {
-          "ticker": "MSFT",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Azure cloud platform has $678 billion backlog, indicating strong sustained demand from AI infrastructure buildout."
-        },
-        {
-          "ticker": "GOOG",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud delivered 82% YoY revenue growth in Q2. CEO stated AI investments are 'lighting up every part of the business,' suggesting broad positive impact."
-        },
-        {
-          "ticker": "GOOGL",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud delivered 82% YoY revenue growth in Q2. CEO stated AI investments are 'lighting up every part of the business,' suggesting broad positive impact."
-        },
-        {
-          "ticker": "GOOGM",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud delivered 82% YoY revenue growth in Q2. CEO stated AI investments are 'lighting up every part of the business,' suggesting broad positive impact."
-        },
-        {
-          "ticker": "GOOGN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud delivered 82% YoY revenue growth in Q2. CEO stated AI investments are 'lighting up every part of the business,' suggesting broad positive impact."
-        },
-        {
-          "ticker": "NBIS",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Identified as a smaller infrastructure play providing compute capacity and power to hyperscalers, representing deeper AI supply chain opportunities."
-        },
-        {
-          "ticker": "IREN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Highlighted as a neoclould provider offering necessary compute capacity and power infrastructure for hyperscalers' AI operations."
-        }
-      ]
-    },
-    {
-      "id": "87674c6bd43fa7b5612f7eec9f2b347b5aa37807dee7f262b5f210b9697a5efb",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "Despite Revenue Skyrocketing More Than 100%, Nvidia Stock Trades at 24 Times Forward Earnings. Is the Market Warning Investors About What's to Come?",
-      "author": "Neil Patel",
-      "published_utc": "2026-09-06T13:15:00Z",
-      "article_url": "https://www.fool.com/investing/2026/09/06/skyrocket-nvidia-stock-valuation-market-warning/?source=iedfolrf0000001",
-      "tickers": [
-        "NVDA",
-        "GOOG",
-        "GOOGL",
-        "GOOGM",
-        "GOOGN",
-        "MSFT",
-        "AMZN"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F886398%2Fnvidia-name-and-logo-on-green-filter-with-office-in-background_the-motley-fool.png&w=1200&op=resize",
-      "description": "Nvidia's revenue surged 106% year-over-year with diluted EPS up 128%, yet the stock trades at a forward P/E of 24.2, suggesting the market is pricing in uncertainty about the durability of the AI boom. While hyperscaler capex and AI adoption metrics remain robust, investors worry about potential slowdowns in enterprise AI spending and the sustainability of current growth rates.",
-      "keywords": [
-        "Nvidia",
-        "AI infrastructure",
-        "forward P/E ratio",
-        "hyperscaler capex",
-        "AI boom sustainability",
-        "GPU demand",
-        "cloud backlogs",
-        "earnings growth"
-      ],
-      "insights": [
-        {
-          "ticker": "NVDA",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Exceptional financial performance with 106% revenue growth and 128% EPS growth. Strong demand for GPUs, projected 70% revenue growth for fiscal 2028, and expected $461 billion in operating income. However, valuation concerns temper enthusiasm."
-        },
-        {
-          "ticker": "GOOG",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Mentioned as a major hyperscaler with Google Cloud contributing to $1.7 trillion combined cloud backlogs. Strong AI token processing metrics (22 billion tokens per minute) indicate robust AI infrastructure investment."
-        },
-        {
-          "ticker": "GOOGL",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Mentioned as a major hyperscaler with Google Cloud contributing to $1.7 trillion combined cloud backlogs. Strong AI token processing metrics (22 billion tokens per minute) indicate robust AI infrastructure investment."
-        },
-        {
-          "ticker": "GOOGM",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Mentioned as a major hyperscaler with Google Cloud contributing to $1.7 trillion combined cloud backlogs. Strong AI token processing metrics (22 billion tokens per minute) indicate robust AI infrastructure investment."
-        },
-        {
-          "ticker": "GOOGN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Mentioned as a major hyperscaler with Google Cloud contributing to $1.7 trillion combined cloud backlogs. Strong AI token processing metrics (22 billion tokens per minute) indicate robust AI infrastructure investment."
-        },
-        {
-          "ticker": "MSFT",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Azure is identified as a major hyperscaler with significant cloud backlogs and continued gargantuan customer order amounts, indicating strong AI infrastructure spending."
-        },
-        {
-          "ticker": "AMZN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "AWS is highlighted as a major hyperscaler contributing to the $1.7 trillion combined cloud backlogs and demonstrating continued strong AI infrastructure investment."
-        }
-      ]
-    },
-    {
-      "id": "4d7feb52c8dcfa23ecb725209894d4377063885b7b280dfe84fe8a4d341ce859",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "Prediction: Amazon Will Join Nvidia, Apple, and Alphabet in the $4 Trillion Club Before 2029",
-      "author": "Keith Noonan",
-      "published_utc": "2026-09-05T19:20:00Z",
-      "article_url": "https://www.fool.com/investing/2026/09/05/prediction-amazon-will-join-nvidia-apple-and-alpha/?source=iedfolrf0000001",
-      "tickers": [
-        "AMZN",
-        "NVDA",
-        "AAPL",
-        "GOOG",
-        "GOOGL",
-        "GOOGM",
-        "GOOGN",
-        "TSLA"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F885421%2Fgettyimages-1200037244.jpg&w=1200&op=resize",
-      "description": "Amazon, currently valued at $2.75 trillion, is predicted to reach a $4 trillion market cap by 2029, requiring approximately 45.5% stock growth. Despite underperforming the S&P 500 over the past five years, Amazon's strong AWS cloud infrastructure growth (37% YoY), AI-driven demand, and e-commerce dominance position it well for future gains. The company's potential margin improvements through automation and robotics, combined with digital advertising growth, provide multiple growth engines.",
-      "keywords": [
-        "Amazon",
-        "market capitalization",
-        "artificial intelligence",
-        "cloud infrastructure",
-        "AWS",
-        "e-commerce",
-        "stock valuation",
-        "Magnificent Seven"
-      ],
-      "insights": [
-        {
-          "ticker": "AMZN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Strong AWS growth at 37% YoY exceeding analyst expectations, accelerating overall revenue growth at 20%, leadership in AI infrastructure, and multiple optimization opportunities in e-commerce and digital ads support bullish outlook for reaching $4 trillion valuation."
-        },
-        {
-          "ticker": "NVDA",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as already part of the $4 trillion club; no specific analysis or commentary provided in the article."
-        },
-        {
-          "ticker": "AAPL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as already part of the $4 trillion club; no specific analysis or commentary provided in the article."
-        },
-        {
-          "ticker": "GOOG",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as already part of the $4 trillion club; no specific analysis or commentary provided in the article."
-        },
-        {
-          "ticker": "GOOGL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as already part of the $4 trillion club; no specific analysis or commentary provided in the article."
-        },
-        {
-          "ticker": "GOOGM",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as already part of the $4 trillion club; no specific analysis or commentary provided in the article."
-        },
-        {
-          "ticker": "GOOGN",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as already part of the $4 trillion club; no specific analysis or commentary provided in the article."
-        },
-        {
-          "ticker": "TSLA",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as the lowest-performing Magnificent Seven stock with 46% five-year return; included for context but not analyzed."
-        }
-      ]
-    },
-    {
-      "id": "b61297e37a88520d0bba7bb4552e499c3b7f9733234c266ef7e73940158bc25b",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "Most Investors Overpay for AI Hype. Nvidia Is the Exception.",
-      "author": "Manali Pradhan, Cfa",
-      "published_utc": "2026-09-05T14:09:00Z",
-      "article_url": "https://www.fool.com/investing/2026/09/05/most-investors-overpay-for-ai-hype-nvidia-is-the-e/?source=iedfolrf0000001",
-      "tickers": [
-        "NVDA",
-        "MSFT",
-        "AMZN",
-        "GOOG",
-        "GOOGL",
-        "GOOGM",
-        "GOOGN"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F885954%2Fanalysts_studying_stock_charts_on_desktop_monitors.jpg&w=1200&op=resize",
-      "description": "Nvidia's AI business is delivering exceptional results with Q2 FY2027 revenue doubling to $96.2B and strong free cash flow of $69.9B. While the stock trades at 25x current earnings, the valuation becomes more reasonable at 15x forward FY2028 estimates. The company's upcoming Vera Rubin platform and expanding revenue per data center offer significant growth potential, but risks include massive future spending commitments ($366B), margin pressure, and dependence on customers achieving adequate returns from their AI infrastructure investments.",
-      "keywords": [
-        "Nvidia",
-        "AI infrastructure",
-        "data center",
-        "Vera Rubin platform",
-        "valuation",
-        "free cash flow",
-        "gross margins",
-        "hyperscalers"
-      ],
-      "insights": [
-        {
-          "ticker": "NVDA",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Strong financial performance with 106% revenue growth and $69.9B free cash flow. Vera Rubin platform shows significant growth potential with orders from all major hyperscalers. However, valuation is not cheap and depends on delivering expected growth, with substantial downside risks from large future commitments and margin pressure."
-        },
-        {
-          "ticker": "MSFT",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Azure revenue grew 43% year-over-year, demonstrating strong returns from AI infrastructure investments, which supports the viability of Nvidia's customer base and their ability to justify AI spending."
-        },
-        {
-          "ticker": "AMZN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "AWS net sales increased 37% year-over-year, indicating healthy returns from AI infrastructure investments and supporting the thesis that customers can generate attractive returns from their AI deployments."
-        },
-        {
-          "ticker": "GOOG",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud revenue surged 82% year-over-year driven by strong AI infrastructure and solutions demand, demonstrating that major cloud providers are successfully monetizing AI infrastructure investments."
-        },
-        {
-          "ticker": "GOOGL",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud revenue surged 82% year-over-year driven by strong AI infrastructure and solutions demand, demonstrating that major cloud providers are successfully monetizing AI infrastructure investments."
-        },
-        {
-          "ticker": "GOOGM",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud revenue surged 82% year-over-year driven by strong AI infrastructure and solutions demand, demonstrating that major cloud providers are successfully monetizing AI infrastructure investments."
-        },
-        {
-          "ticker": "GOOGN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Google Cloud revenue surged 82% year-over-year driven by strong AI infrastructure and solutions demand, demonstrating that major cloud providers are successfully monetizing AI infrastructure investments."
-        }
-      ]
-    },
-    {
-      "id": "bbb3681189d1caa0d0e164b12f94bb91e2bd9b9a560631877fdc681dcb8a5c4f",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "If You Buy Amazon With $10,000 at a 10% Discount From Its High, Here's What I Predict It Could Be Worth in 10 Years",
-      "author": "Neil Patel",
-      "published_utc": "2026-09-05T13:30:00Z",
-      "article_url": "https://www.fool.com/investing/2026/09/05/buy-amazon-10000-10-discount-predict-10-years/?source=iedfolrf0000001",
-      "tickers": [
-        "AMZN",
-        "WMT"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F885404%2Famazon-name-on-yellow-screen-filter-with-warehouse-and-truck-in-background_-the-motley-fool.png&w=1200&op=resize",
-      "description": "Amazon stock is trading 10% below its all-time high, presenting a buying opportunity for long-term investors. While the stock is unlikely to replicate its impressive 561% gain over the past decade, analyst Neil Patel predicts a 300% return over the next 10 years, driven by operating leverage and earnings growth outpacing revenue growth. Amazon's dominance in e-commerce, growing digital advertising business, and AWS cloud services position it as a compelling investment despite its current underperformance versus the S&P 500.",
-      "keywords": [
-        "Amazon stock",
-        "10-year prediction",
-        "operating leverage",
-        "earnings growth",
-        "e-commerce",
-        "digital advertising",
-        "AWS cloud services",
-        "valuation opportunity"
-      ],
-      "insights": [
-        {
-          "ticker": "AMZN",
-          "sentiment": "positive",
-          "sentiment_reasoning": "The article presents Amazon as an exceptional business with strong growth prospects. Despite underperformance relative to the S&P 500, the analyst predicts 300% returns over 10 years, citing favorable earnings growth dynamics, historically cheap valuation metrics (29.2x EBIT), and exposure to powerful technological trends including e-commerce, digital advertising, and AI-driven cloud services."
-        },
-        {
-          "ticker": "WMT",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Walmart is mentioned only in passing context, noting that Amazon recently surpassed it as the company with the highest sales figure. No investment recommendation or analysis is provided."
-        }
-      ]
-    }
-  ],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 32.00686,
-    "13WeekPriceReturnDaily": 1.8598,
-    "26WeekPriceReturnDaily": 23.849,
-    "3MonthADReturnStd": 43.733322,
-    "3MonthAverageTradingVolume": 46.83426,
-    "52WeekHigh": 287.2,
-    "52WeekHighDate": "2026-08-03",
-    "52WeekLow": 196,
-    "52WeekLowDate": "2026-02-17",
-    "52WeekPriceReturnDaily": 11.2685,
-    "5DayPriceReturnDaily": -0.485,
-    "assetTurnoverAnnual": 0.8764,
-    "assetTurnoverTTM": 0.872,
-    "beta": 1.5024469,
-    "bookValuePerShareAnnual": 38.3063,
-    "bookValuePerShareQuarterly": 51.1564,
-    "bookValueShareGrowth5Y": 32.77,
-    "capexCagr5Y": 26.85,
-    "cashFlowPerShareAnnual": 0.7171,
-    "cashFlowPerShareQuarterly": -1.0781,
-    "cashFlowPerShareTTM": 6.54859,
-    "cashPerSharePerShareAnnual": 11.4648,
-    "cashPerSharePerShareQuarterly": 11.4057,
-    "currentDividendYieldTTM": null,
-    "currentEv/freeCashFlowAnnual": 372.381,
-    "currentEv/freeCashFlowTTM": 115.2247,
-    "currentRatioAnnual": 1.0508,
-    "currentRatioQuarterly": 1.0331,
-    "dividendIndicatedAnnual": 0,
-    "dividendPerShareTTM": null,
-    "ebitdPerShareAnnual": 7.4621,
-    "ebitdPerShareTTM": 15.5375,
-    "ebitdaCagr5Y": 28.12,
-    "ebitdaInterimCagr5Y": 24.69,
-    "enterpriseValue": 2865472,
-    "epsAnnual": 7.1737,
-    "epsBasicExclExtraItemsAnnual": 7.1737,
-    "epsBasicExclExtraItemsTTM": 12.4325,
-    "epsExclExtraItemsAnnual": 7.1737,
-    "epsExclExtraItemsTTM": 12.4325,
-    "epsGrowth3Y": null,
-    "epsGrowth5Y": 27.96,
-    "epsGrowthQuarterlyYoy": 241.83,
-    "epsGrowthTTMYoy": 89.71,
-    "epsInclExtraItemsAnnual": 7.1737,
-    "epsInclExtraItemsTTM": 12.4325,
-    "epsNormalizedAnnual": 7.1737,
-    "epsTTM": 12.4325,
-    "evEbitdaTTM": 16.9643,
-    "evRevenueTTM": 3.6941,
-    "focfCagr5Y": -21.57,
-    "forwardPE": 24.69711,
-    "forwardPEG": 1.20181,
-    "grossMargin5Y": 46.39,
-    "grossMarginAnnual": 50.29,
-    "grossMarginTTM": 50.77,
-    "inventoryTurnoverAnnual": 9.8268,
-    "inventoryTurnoverTTM": 9.6665,
-    "longTermDebt/equityAnnual": 0.1597,
-    "longTermDebt/equityQuarterly": 0.2337,
-    "marketCapitalization": 2788370,
-    "monthToDatePriceReturnDaily": -0.485,
-    "netIncomeEmployeeAnnual": 0.0493,
-    "netIncomeEmployeeTTM": 0.0859,
-    "netInterestCoverageAnnual": 8.033,
-    "netInterestCoverageTTM": 0.6192,
-    "netMarginGrowth5Y": 14.39,
-    "netProfitMargin5Y": 6.4,
-    "netProfitMarginAnnual": 10.83,
-    "netProfitMarginTTM": 17.44,
-    "operatingMargin5Y": 7.2,
-    "operatingMarginAnnual": 11.16,
-    "operatingMarginTTM": 12.08,
-    "payoutRatioTTM": null,
-    "pb": 5.0549,
-    "pbAnnual": 6.0027,
-    "pbQuarterly": 4.6479,
-    "pcfShareAnnual": 19.9863,
-    "pcfShareTTM": 17.2758,
-    "peAnnual": 35.9002,
-    "peBasicExclExtraTTM": 20.6117,
-    "peExclExtraTTM": 20.6117,
-    "peInclExtraTTM": 20.6117,
-    "peNormalizedAnnual": 35.9002,
-    "peTTM": 20.6117,
-    "pegTTM": 1.36953,
-    "pfcfShareAnnual": 362.3613,
-    "pfcfShareTTM": 177.6145,
-    "pretaxMargin5Y": 7.57,
-    "pretaxMarginAnnual": 13.57,
-    "pretaxMarginTTM": 22.62,
-    "priceRelativeToS&P50013Week": 0.1295,
-    "priceRelativeToS&P50026Week": 10.6407,
-    "priceRelativeToS&P5004Week": -6.6735,
-    "priceRelativeToS&P50052Week": -7.7275,
-    "priceRelativeToS&P500Ytd": -0.9479,
-    "psAnnual": 3.8894,
-    "psTTM": 3.5947,
-    "ptbvAnnual": 6.1401,
-    "ptbvQuarterly": 8.0857,
-    "quickRatioAnnual": 0.8434,
-    "quickRatioQuarterly": 0.8442,
-    "receivablesTurnoverAnnual": 13.1025,
-    "receivablesTurnoverTTM": 11.8635,
-    "revenueEmployeeAnnual": 0.4552,
-    "revenueEmployeeTTM": 0.4925,
-    "revenueGrowth3Y": 11.73,
-    "revenueGrowth5Y": 13.18,
-    "revenueGrowthQuarterlyYoy": 19.62,
-    "revenueGrowthTTMYoy": 15.77,
-    "revenuePerShareAnnual": 66.2163,
-    "revenuePerShareTTM": 71.1437,
-    "revenueShareGrowth5Y": 11.84,
-    "roa5Y": 6.41,
-    "roaRfy": 9.49,
-    "roaTTM": 15.21,
-    "roe5Y": 15.39,
-    "roeRfy": 18.89,
-    "roeTTM": 30.5,
-    "roi5Y": 11.31,
-    "roiAnnual": 15.52,
-    "roiTTM": 24.19,
-    "tangibleBookValuePerShareAnnual": 37.4493,
-    "tangibleBookValuePerShareQuarterly": 18.7025,
-    "tbvCagr5Y": 35.36,
-    "totalDebt/totalEquityAnnual": 0.2172,
-    "totalDebt/totalEquityQuarterly": 0.2816,
-    "yearToDatePriceReturnDaily": 11.9964
-  },
-  "source_status": {
-    "local_research": true,
-    "local_news": false,
-    "local_sec_filings": false,
-    "finnhub_news": true,
-    "polygon_news": true,
-    "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
 ## BAC
 Trading candidate:
 ```json
 {
   "symbol": "BAC",
-  "direction": "LONG",
   "score": 78.57,
-  "boosted_score": 70.0,
-  "research": {
-    "symbol": "BAC",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
+  "direction": "LONG",
   "sector": "Financials",
-  "reasons": [
-    "market: 100.0",
-    "sector: 88.8",
-    "vwap: 100.0",
-    "trend: 100.0",
-    "extension: 100.0"
-  ]
+  "components": {
+    "market": 100.0,
+    "sector": 88.76,
+    "relative_strength": 52.62699670745095,
+    "vwap": 100.0,
+    "trend": 100.0,
+    "volume": 54.161419497273734,
+    "momentum": 62.507232401157204,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
 }
 ```
-Evidence packet:
+Evidence packet (source-labelled; missing sources must remain uncertain):
 ```json
 {
   "local_research": [
@@ -1189,6 +1056,39 @@ Evidence packet:
     "[2026-07-26.md]\n# SEC Filings \u2014 2026-07-26\n\n## Overview\n\nRecent filings for watchlisted tickers are concentrated in FY2026 10-K and FY2027 Q1 10-Q disclosures. Sector focus is centered on tech/semiconductors, defense, and nuclear energy names.\n\n## Key Disclosures\n\n- **NVIDIA Corporation (NVDA):** Filed Form 10-Q on 2026-05-20 (accession `0001045810-26-000052`). Shares outstanding reported at 24.2 billion shares. Public float rose to $4.0T as of 2025-07-25.\n- **Oracle Corporation (ORCL):** Pentagon/defense cloud contract discussions are material for its cloud services backlog and infrastructure segments.\n- **Shein:** (Pre-IPO) Disclosed a quarterly loss and warned of tariff risks in preliminary filings ahead of its planned Hong Kong IPO.\n- **Nuclear/Uranium names:** Micro-reactor and fuel names (OKLO, SMR, CCJ) are highlighting capacity additions and fuel contracts in recent SEC disclosures.\n"
   ],
   "finnhub_news": [
+    {
+      "category": "company",
+      "datetime": 1788797280,
+      "headline": "What's Powering Bank of America's Strong Capital Return Strategy?",
+      "id": 141765137,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "BAC",
+      "source": "Yahoo",
+      "summary": "Strong earnings momentum, a solid capital cushion and ample buyback capacity are underpinning BAC's shareholder-return strategy.",
+      "url": "https://finnhub.io/api/news?id=2ec7c71a0b634eb0cd0f102a57713f436e063a6e527e3acd994cc7c8f9e92b7d"
+    },
+    {
+      "category": "company",
+      "datetime": 1788783611,
+      "headline": "BofA Sees Clear Winner Between Adobe and Oracle",
+      "id": 141761949,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "BAC",
+      "source": "Yahoo",
+      "summary": "Wall Street sees opportunity in one and trouble in another",
+      "url": "https://finnhub.io/api/news?id=e77059e178d026f47db3771bc007a9a4633fac553c174e4ad8d07282dd79d7f7"
+    },
+    {
+      "category": "company",
+      "datetime": 1788764400,
+      "headline": "Gen Z and Millennials Had a Big Summer of Sports Betting",
+      "id": 141761950,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "BAC",
+      "source": "Yahoo",
+      "summary": "In 1967, Baby Boomers had the Summer of Love.  This year, Gen Z had a Summer of Sports Betting.  Researchers from Bank of America found that 88% of online bettors in July were Gen Zers and Millennials, a group that covers adults born after 1978.",
+      "url": "https://finnhub.io/api/news?id=6684d87edffb4ba805b96a96a244cb98d4c1b350a93010d6fa15ffa21e94f224"
+    },
     {
       "category": "company",
       "datetime": 1788642384,
@@ -1210,42 +1110,529 @@ Evidence packet:
       "source": "Yahoo",
       "summary": "Bank of America flagged September 11 CPI as the more decisive signal for the Fed rate path, Bitunix analysts said.",
       "url": "https://finnhub.io/api/news?id=c9e5ac009d9dd26f419e797f2399aea12083dec033c48b59f1923ee28cd90040"
-    },
-    {
-      "category": "company",
-      "datetime": 1788558600,
-      "headline": "Lower-income households outpaced higher earners: Bank of America",
-      "id": 141460753,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "BAC",
-      "source": "Yahoo",
-      "summary": "Bank of America Institute Senior Economist David Tinsley joins Market Domination Overtime Host Josh Lipton to talk about the bank's report showing that lower-income households outpaced higher-income households by nearly 1% in year-over-year wage growth.",
-      "url": "https://finnhub.io/api/news?id=2e3e8f904c8534c839e1a122c5d121d9e14be0c52783d3e0e34aa2e6f0db7e61"
-    },
-    {
-      "category": "company",
-      "datetime": 1788556800,
-      "headline": "Bank of America Announces Redemptions of $500,000,000 Floating Rate Senior Notes and $1,500,000,000 5.933% Fixed/Floating Rate Senior Notes, Due September 2027",
-      "id": 141460754,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "BAC",
-      "source": "Yahoo",
-      "summary": "Bank of America Corporation announced today that it will redeem on September 15, 2026 all $500,000,000 principal amount outstanding of its Floating Rate Senior Notes, due September 2027 (CUSIP No. 06051GLX5) (the \"Floating Rate Notes\"), and all $1,500,000,000 principal amount outstanding of its 5.933% Fixed/Floating Rate Senior Notes, due September 2027 (CUSIP No. 06051GLV9) (the \"Fixed/Floating Rate Notes\" and, together with the Floating Rate Notes, the \"Notes\").",
-      "url": "https://finnhub.io/api/news?id=44ca44c69fd46350422c24752011d1244598dd348cc04fbcca69e1545b32d771"
-    },
-    {
-      "category": "company",
-      "datetime": 1788556500,
-      "headline": "Bank of America Announces Redemptions of CAD425,000,000 Floating Rate Senior Notes and CAD1,000,000,000 1.978% Fixed/Floating Rate Senior Notes, Due September 2027",
-      "id": 141460755,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "BAC",
-      "source": "Yahoo",
-      "summary": "Bank of America Corporation announced today that it will redeem on September 15, 2026 all CAD425,000,000 principal amount outstanding of its Floating Rate Senior Notes, due September 2027 (CUSIP No. 060505FY5, ISIN: CA060505FY50) (the \"Floating Rate Notes\"), and all CAD1,000,000,000 principal amount outstanding of its 1.978% Fixed/Floating Rate Senior Notes, due September 2027 (CUSIP No. 060505FZ2, ISIN: CA060505FZ26) (the \"Fixed/Floating Rate Notes\" and, together with the Floating Rate Notes, t",
-      "url": "https://finnhub.io/api/news?id=f0e4284da930c5fcbcd943fb1ced75595e7d0fc49618e3d3164d7cbd2a6b1b7f"
     }
   ],
   "polygon_news": [
+    {
+      "id": "ac40caf97706a635e74a3e60c7e8fa3f9a0210944e11f55e57cfbd9d144e861f",
+      "publisher": {
+        "name": "Zacks Investment Research",
+        "homepage_url": "https://www.zacks.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
+      },
+      "title": "What's Powering Bank of America's Strong Capital Return Strategy?",
+      "author": "Na",
+      "published_utc": "2026-09-07T15:08:00Z",
+      "article_url": "https://www.zacks.com/stock/news/2985984/what-s-powering-bank-of-america-s-strong-capital-return-strategy?cid=CS-ZC-FT-analyst_blog|quick_take-2985984",
+      "tickers": [
+        "BAC",
+        "BACpB",
+        "BACpE",
+        "BACpK",
+        "BACpL",
+        "BACpM",
+        "BACpN",
+        "BACpO",
+        "BACpP",
+        "BACpQ",
+        "BACpS",
+        "BMLpG",
+        "BMLpH",
+        "BMLpJ",
+        "BMLpL",
+        "MERpK",
+        "AMJB",
+        "JPM",
+        "JPMpC",
+        "JPMpD",
+        "JPMpJ",
+        "JPMpK",
+        "JPMpL",
+        "JPMpM",
+        "VYLD",
+        "MS",
+        "MSpA",
+        "MSpE",
+        "MSpF",
+        "MSpI",
+        "MSpK",
+        "MSpL",
+        "MSpO",
+        "MSpP",
+        "MSpQ"
+      ],
+      "image_url": "https://staticx-tuner.zacks.com/images/articles/main/0b/57.jpg",
+      "description": "Bank of America demonstrates strong capacity for shareholder returns through robust earnings generation, healthy CET1 capital ratios, and disciplined balance-sheet management. The bank raised its quarterly dividend 14.3% to 32 cents per share and maintains $17 billion in remaining buyback authorization. Strong Q2 2026 results with $9.1 billion net income and 15% revenue growth support continued capital distributions, though a higher G-SIB surcharge from January 2027 may modestly increase capital requirements.",
+      "keywords": [
+        "capital returns",
+        "dividend increase",
+        "share buybacks",
+        "earnings growth",
+        "CET1 ratio",
+        "banking sector",
+        "shareholder returns"
+      ],
+      "insights": [
+        {
+          "ticker": "BAC",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpB",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpE",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpM",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpN",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpO",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpP",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpQ",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BACpS",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BMLpG",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BMLpH",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BMLpJ",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "BMLpL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "MERpK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings generation ($30.5B in 2025, $9.1B in Q2 2026), healthy CET1 capital ratio at 11.2% well above regulatory minimums, 14.3% dividend increase marking sixth consecutive annual hike, and $17B remaining in $40B buyback authorization demonstrate robust financial health and commitment to shareholder returns."
+        },
+        {
+          "ticker": "AMJB",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "JPM",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "JPMpC",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "JPMpD",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "JPMpJ",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "JPMpK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "JPMpL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "JPMpM",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "VYLD",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong earnings and regulatory capital position support 10% dividend increase to $1.65 per share, six dividend hikes over five years with 11.3% annualized growth rate, and $50B share repurchase program authorization effective July 2026."
+        },
+        {
+          "ticker": "MS",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpA",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpE",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpF",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpI",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpO",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpP",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        },
+        {
+          "ticker": "MSpQ",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Increased quarterly dividend 15% to $1.15 per share in Q3 2026 following 8% hike in 2025, reauthorized $20B multi-year share repurchase program without expiration date, and emphasis on disciplined capital allocation."
+        }
+      ]
+    },
+    {
+      "id": "2f9dbd7991fb08e5f497d0a26b7239b9057e1cfc06158f26f4543eefe8ed1d99",
+      "publisher": {
+        "name": "Zacks Investment Research",
+        "homepage_url": "https://www.zacks.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
+      },
+      "title": "Capital Markets Momentum Fades: What it Means for Big Banks in Q3",
+      "author": "Na",
+      "published_utc": "2026-09-07T15:08:00Z",
+      "article_url": "https://www.zacks.com/stock/news/2986006/capital-markets-momentum-fades-what-it-means-for-big-banks-in-q3?cid=CS-ZC-FT-analyst_blog|industry_focus-2986006",
+      "tickers": [
+        "GS",
+        "GSpA",
+        "GSpC",
+        "GSpD",
+        "MS",
+        "MSpA",
+        "MSpE",
+        "MSpF",
+        "MSpI",
+        "MSpK",
+        "MSpL",
+        "MSpO",
+        "MSpP",
+        "MSpQ",
+        "AMJB",
+        "JPM",
+        "JPMpC",
+        "JPMpD",
+        "JPMpJ",
+        "JPMpK",
+        "JPMpL",
+        "JPMpM",
+        "VYLD",
+        "BAC",
+        "BACpB",
+        "BACpE",
+        "BACpK",
+        "BACpL",
+        "BACpM",
+        "BACpN",
+        "BACpO",
+        "BACpP",
+        "BACpQ",
+        "BACpS",
+        "BMLpG",
+        "BMLpH",
+        "BMLpJ",
+        "BMLpL",
+        "MERpK",
+        "C",
+        "CpN",
+        "CpR"
+      ],
+      "image_url": "https://staticx-tuner.zacks.com/images/articles/main/2e/65031.jpg",
+      "description": "U.S. banks enter Q3 2026 with supportive lending conditions but face mixed capital markets trends. Investment banking volumes declined 6% YoY in July due to weak debt markets, though M&A and equity underwriting showed strength. Goldman Sachs and Morgan Stanley face greater sensitivity to capital markets weakness, while diversified banks like JPMorgan, Bank of America, and Citigroup benefit from broader revenue streams including loan and deposit growth.",
+      "keywords": [
+        "investment banking",
+        "capital markets",
+        "Q3 2026 earnings",
+        "debt capital markets",
+        "M&A activity",
+        "equity underwriting",
+        "trading revenues",
+        "loan growth",
+        "deposit growth"
+      ],
+      "insights": [
+        {
+          "ticker": "GS",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Most sensitive to weaker capital markets conditions. While benefits from M&A and equity underwriting strength, weakness in debt capital markets could offset gains and moderate investment banking revenue growth."
+        },
+        {
+          "ticker": "GSpA",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Most sensitive to weaker capital markets conditions. While benefits from M&A and equity underwriting strength, weakness in debt capital markets could offset gains and moderate investment banking revenue growth."
+        },
+        {
+          "ticker": "GSpC",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Most sensitive to weaker capital markets conditions. While benefits from M&A and equity underwriting strength, weakness in debt capital markets could offset gains and moderate investment banking revenue growth."
+        },
+        {
+          "ticker": "GSpD",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Most sensitive to weaker capital markets conditions. While benefits from M&A and equity underwriting strength, weakness in debt capital markets could offset gains and moderate investment banking revenue growth."
+        },
+        {
+          "ticker": "MS",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpA",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpE",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpF",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpI",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpK",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpL",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpO",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpP",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "MSpQ",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Similar capital markets exposure to Goldman Sachs, but Wealth Management franchise provides a more stable revenue base that could cushion softness in investment banking or trading."
+        },
+        {
+          "ticker": "AMJB",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "JPM",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "JPMpC",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "JPMpD",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "JPMpJ",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "JPMpK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "JPMpL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "JPMpM",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "VYLD",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Highly diversified business model across consumer/commercial banking, payments, and asset management reduces dependence on capital markets. Strong buffer against underwriting/trading revenue shortfalls with loan and deposit growth support."
+        },
+        {
+          "ticker": "BAC",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpB",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpE",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpM",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpN",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpO",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpP",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpQ",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BACpS",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BMLpG",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BMLpH",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BMLpJ",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "BMLpL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "MERpK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Large consumer banking and wealth-management franchises provide cushion against weaker capital markets fees. Balanced impact from both investment banking and traditional banking with loan/deposit growth support."
+        },
+        {
+          "ticker": "C",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Broader earnings mix including Services, Wealth, and U.S. Personal Banking provides balance. Loan and deposit growth momentum could support net interest income and offset capital markets softness."
+        },
+        {
+          "ticker": "CpN",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Broader earnings mix including Services, Wealth, and U.S. Personal Banking provides balance. Loan and deposit growth momentum could support net interest income and offset capital markets softness."
+        },
+        {
+          "ticker": "CpR",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Broader earnings mix including Services, Wealth, and U.S. Personal Banking provides balance. Loan and deposit growth momentum could support net interest income and offset capital markets softness."
+        }
+      ]
+    },
     {
       "id": "c56e737222de0b590e6f7589e0aafd603f51254a79f569b6e2a578d90b27b3de",
       "publisher": {
@@ -1838,446 +2225,6 @@ Evidence packet:
           "sentiment_reasoning": "Faces credible competitive risk to its USDC stablecoin from a bank-backed alternative with strong regulatory standing and distribution networks, potentially pressuring market share and reserve income which comprises 95% of revenues."
         }
       ]
-    },
-    {
-      "id": "c4cda2f665cbf686a90b2aa86fa2dfd1bdd3e58624ca5e57c34dd942606a27dc",
-      "publisher": {
-        "name": "Zacks Investment Research",
-        "homepage_url": "https://www.zacks.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
-      },
-      "title": "Will Kinexys Fuel JPMorgan's Next Leg of Payments Growth?",
-      "author": "Na",
-      "published_utc": "2026-09-02T13:27:00Z",
-      "article_url": "https://www.zacks.com/stock/news/2983616/will-kinexys-fuel-jpmorgan-s-next-leg-of-payments-growth?cid=CS-ZC-FT-analyst_blog|quick_take-2983616",
-      "tickers": [
-        "AMJB",
-        "JPM",
-        "JPMpC",
-        "JPMpD",
-        "JPMpJ",
-        "JPMpK",
-        "JPMpL",
-        "JPMpM",
-        "VYLD",
-        "BAC",
-        "BACpB",
-        "BACpE",
-        "BACpK",
-        "BACpL",
-        "BACpM",
-        "BACpN",
-        "BACpO",
-        "BACpP",
-        "BACpQ",
-        "BACpS",
-        "BMLpG",
-        "BMLpH",
-        "BMLpJ",
-        "BMLpL",
-        "MERpK",
-        "C",
-        "CpN",
-        "CpR"
-      ],
-      "image_url": "https://staticx-tuner.zacks.com/images/articles/main/ae/82.jpg",
-      "description": "JPMorgan's Kinexys blockchain platform has processed over $4 trillion in transactions and is gaining commercial adoption for institutional payments. EBANX recently adopted the platform, reducing fund transfer times from 24+ hours to minutes. JPMorgan's Payments business generated record revenues of $10.4 billion in H1 2026, up 12% year-over-year, with potential for further growth as blockchain adoption expands among large institutional clients.",
-      "keywords": [
-        "blockchain",
-        "institutional payments",
-        "Kinexys",
-        "treasury services",
-        "cross-border payments",
-        "settlement",
-        "digital transformation"
-      ],
-      "insights": [
-        {
-          "ticker": "AMJB",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "JPM",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "JPMpC",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "JPMpD",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "JPMpJ",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "JPMpK",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "JPMpL",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "JPMpM",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "VYLD",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Kinexys platform demonstrating strong commercial traction with $4 trillion in transactions processed, record Payments revenue of $10.4 billion (up 12% YoY), and expanding institutional adoption creating cross-selling opportunities and competitive differentiation."
-        },
-        {
-          "ticker": "BAC",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpB",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpE",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpK",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpM",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpN",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpO",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpP",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpQ",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BACpS",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BMLpG",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BMLpH",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BMLpJ",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "BMLpL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "MERpK",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer expanding payments capabilities through real-time cross-border payments and AI-driven solutions, but no specific performance metrics or developments provided to indicate positive or negative momentum."
-        },
-        {
-          "ticker": "C",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer developing blockchain-based tokenized deposits and instant cross-border payments, but no specific performance data or recent developments provided to differentiate sentiment."
-        },
-        {
-          "ticker": "CpN",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer developing blockchain-based tokenized deposits and instant cross-border payments, but no specific performance data or recent developments provided to differentiate sentiment."
-        },
-        {
-          "ticker": "CpR",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a peer developing blockchain-based tokenized deposits and instant cross-border payments, but no specific performance data or recent developments provided to differentiate sentiment."
-        }
-      ]
-    },
-    {
-      "id": "04ceeb79834d9d3a31d0080ff9a3516f25c0aa98fbb323c446622870b3d02f1a",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "Invesco KBW Bank ETF Wins on Yield and 1-Year Return. Is It a Better Financials Fund Than IYF?",
-      "author": "Sarah Sidlow",
-      "published_utc": "2026-09-02T11:25:01Z",
-      "article_url": "https://www.fool.com/coverage/etfs/2026/09/02/invesco-kbw-bank-etf-wins-on-yield-and-1-year-return-is-it-a-better-financials-fund-than-iyf/?source=iedfolrf0000001",
-      "tickers": [
-        "KBWB",
-        "IYF",
-        "AMJB",
-        "JPM",
-        "JPMpC",
-        "JPMpD",
-        "JPMpJ",
-        "JPMpK",
-        "JPMpL",
-        "JPMpM",
-        "VYLD",
-        "BAC",
-        "BACpB",
-        "BACpE",
-        "BACpK",
-        "BACpL",
-        "BACpM",
-        "BACpN",
-        "BACpO",
-        "BACpP",
-        "BACpQ",
-        "BACpS",
-        "BMLpG",
-        "BMLpH",
-        "BMLpJ",
-        "BMLpL",
-        "MERpK",
-        "WFC",
-        "WFCpA",
-        "WFCpC",
-        "WFCpD",
-        "WFCpL",
-        "WFCpY",
-        "WFCpZ",
-        "BRK.A",
-        "BRK.B"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fcdn.content.foolcdn.com%2Fimages%2F1umn9qeh%2Fproduction%2F93b56fbcd074a01f33741ab9a66bb5b3e30875ca-1401x1251.png%3Fw%3D800%26q%3D75%26fit%3Dmax%26auto%3Dformat&w=1200&op=resize",
-      "description": "The Invesco KBW Bank ETF (KBWB) outperforms iShares U.S. Financials ETF (IYF) on 1-year returns (26.7% vs 10.8%) and dividend yield (1.9% vs 1.4%), but carries higher volatility due to its concentrated focus on 26 banking stocks. IYF offers greater stability through diversification across 140+ financial holdings, making it suitable for risk-averse investors, while KBWB appeals to those seeking higher income and growth potential.",
-      "keywords": [
-        "ETF comparison",
-        "banking sector",
-        "financial sector",
-        "dividend yield",
-        "volatility",
-        "diversification",
-        "investment strategy"
-      ],
-      "insights": [
-        {
-          "ticker": "KBWB",
-          "sentiment": "positive",
-          "sentiment_reasoning": "KBWB demonstrates superior 1-year returns (26.7%), higher dividend yield (1.9%), and lower expense ratio (0.35%), making it attractive for income-focused investors seeking banking sector exposure."
-        },
-        {
-          "ticker": "IYF",
-          "sentiment": "positive",
-          "sentiment_reasoning": "IYF offers broader diversification across 140+ holdings, significantly lower volatility (beta 0.8 vs 1.2), and reduced maximum drawdown (25.1% vs 49.3%), making it suitable for risk-averse investors despite lower short-term returns."
-        },
-        {
-          "ticker": "AMJB",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "JPM",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "JPMpC",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "JPMpD",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "JPMpJ",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "JPMpK",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "JPMpL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "JPMpM",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "VYLD",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "JPMorgan Chase is a major holding in both ETFs (8.6% in KBWB, 11.2% in IYF) but is mentioned neutrally as a portfolio component without specific performance commentary."
-        },
-        {
-          "ticker": "BAC",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpB",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpE",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpK",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpM",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpN",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpO",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpP",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpQ",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BACpS",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BMLpG",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BMLpH",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BMLpJ",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "BMLpL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "MERpK",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Bank of America is a significant holding in both funds (8.7% in KBWB, 4.34% in IYF) but is referenced neutrally as part of the portfolio composition."
-        },
-        {
-          "ticker": "WFC",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Wells Fargo is mentioned as a top holding in KBWB (8.1%) but receives no specific performance evaluation in the article."
-        },
-        {
-          "ticker": "WFCpA",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Wells Fargo is mentioned as a top holding in KBWB (8.1%) but receives no specific performance evaluation in the article."
-        },
-        {
-          "ticker": "WFCpC",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Wells Fargo is mentioned as a top holding in KBWB (8.1%) but receives no specific performance evaluation in the article."
-        },
-        {
-          "ticker": "WFCpD",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Wells Fargo is mentioned as a top holding in KBWB (8.1%) but receives no specific performance evaluation in the article."
-        },
-        {
-          "ticker": "WFCpL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Wells Fargo is mentioned as a top holding in KBWB (8.1%) but receives no specific performance evaluation in the article."
-        },
-        {
-          "ticker": "WFCpY",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Wells Fargo is mentioned as a top holding in KBWB (8.1%) but receives no specific performance evaluation in the article."
-        },
-        {
-          "ticker": "WFCpZ",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Wells Fargo is mentioned as a top holding in KBWB (8.1%) but receives no specific performance evaluation in the article."
-        },
-        {
-          "ticker": "BRK.A",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Berkshire Hathaway is highlighted as a stabilizing force in IYF's portfolio (11.1% holding) that reduces risk, but is presented neutrally as a diversification benefit rather than a positive or negative recommendation."
-        },
-        {
-          "ticker": "BRK.B",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Berkshire Hathaway is highlighted as a stabilizing force in IYF's portfolio (11.1% holding) that reduces risk, but is presented neutrally as a diversification benefit rather than a positive or negative recommendation."
-        }
-      ]
     }
   ],
   "earnings": [],
@@ -2408,39 +2355,571 @@ Evidence packet:
 }
 ```
 
+## AMZN
+Trading candidate:
+```json
+{
+  "symbol": "AMZN",
+  "score": 51.78,
+  "direction": "LONG",
+  "sector": "Consumer Discretionary",
+  "components": {
+    "market": 100.0,
+    "sector": 53.67,
+    "relative_strength": 25.56105999703835,
+    "vwap": 100.0,
+    "trend": 0.0,
+    "volume": 36.23578589946771,
+    "momentum": 51.807562250230525,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
+}
+```
+Evidence packet (source-labelled; missing sources must remain uncertain):
+```json
+{
+  "local_research": [
+    "[AMZN.md]\n# AMZN \u2014 Amazon.com, Inc.\n\n## Overview\nAmazon is a global technology and commerce platform spanning online marketplace, first-party retail, logistics, advertising, subscriptions, devices/media, and Amazon Web Services (AWS). The investment case is increasingly driven by AWS, high-margin advertising, fulfillment efficiency, and AI infrastructure/software adoption.\n\n## Sector / Industry\n- Sector: Consumer Discretionary / Communication Services / Information Technology exposure\n- Industry: Internet & Direct Marketing Retail; Cloud Infrastructure; Digital Advertising\n\n## Recent Developments / News / Earnings / Analyst / SEC / Product Notes\n- SEC EDGAR shows recent Amazon filings in July 2026, including 8-K current reports and prospectus/free-writing-prospectus filings tied to securities activity.\n- Public news flow continues to focus on AI/cloud capex, AWS competitive positioning, retail margin expansion, advertising growth, and the balance between investment spending and free cash flow.\n- Product/business themes: AWS generative-AI services, custom silicon, marketplace/Prime ecosystem, retail logistics automation, and expanding ad inventory across commerce and video.\n- Source blocker: Amazon IR earnings page was blocked by Cloudflare/403 via web_fetch, so this summary relies on SEC availability plus accessible public-news context rather than direct IR release text.\n\n## Bull Thesis\n- AWS remains a scaled, high-margin cloud platform with a long runway from AI workloads, enterprise migration, and proprietary chips/services.\n- Advertising is a structurally attractive, high-margin growth business embedded at the point of purchase.\n- Retail margins can keep improving as regionalized fulfillment, automation, and delivery density reduce cost-to-serve.\n- Prime, marketplace sellers, logistics, and media create a reinforcing ecosystem that is difficult to replicate.\n\n## Bear Thesis\n- AI and cloud infrastructure spending may pressure near-term free cash flow if returns lag expectations.\n- AWS faces intense competition from Microsoft Azure, Google Cloud, and specialized AI infrastructure providers.\n- Retail remains operationally complex and exposed to consumer demand, wage inflation, and regulatory scrutiny.\n- Valuation can compress if revenue growth decelerates or investors question the payback on capex.\n\n## Risks\nRegulatory/antitrust actions, cloud price competition, execution risk in AI infrastructure, margin pressure from logistics and wages, cybersecurity incidents, labor disputes, and macro-driven consumer slowdown.\n\n## Catalysts\nAWS acceleration, evidence of AI monetization, advertising growth, retail operating-margin expansion, stronger free cash flow, shareholder returns, and favorable outcomes in regulatory matters.\n\n## Long-Term Outlook\nAmazon remains a high-quality compounder if AWS and advertising continue to scale while retail efficiency improves. The key long-term debate is whether AI capex becomes a durable moat and profit pool or a lower-return arms race.\n\n## Conviction Rating\nHigh \u2014 strong multi-engine growth platform, though capex intensity and regulatory risk keep position sizing discipline important.\n"
+  ],
+  "local_news": [],
+  "local_sec_filings": [],
+  "finnhub_news": [
+    {
+      "category": "company",
+      "datetime": 1788798000,
+      "headline": "Jabil Rises 36.2% Year to Date: Should You Buy the Stock?",
+      "id": 141765020,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AMZN",
+      "source": "Yahoo",
+      "summary": "JBL's AI infrastructure growth and diversified portfolio are fueling gains, but supply chain risks and customer concentration remain key concerns.",
+      "url": "https://finnhub.io/api/news?id=44dddb55bb0d7ed25552d7253c8bf8e890e65c33b8405b205c6779707d7fd853"
+    },
+    {
+      "category": "company",
+      "datetime": 1788796653,
+      "headline": "Bernie Sanders Wants to Ban Superintelligence. What It Means for Microsoft and Amazon",
+      "id": 141765118,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AMZN",
+      "source": "Yahoo",
+      "summary": "Senator Bernie Sanders and Representative Greg Casar announced forthcoming legislation on September 3 that would permanently ban artificial superintelligence and temporarily pause advanced AI development until a federal regulator sets safety rules. The proposal would also direct the United States to pursue international agreements and establish penalties for violations. Microsoft Corporation (NASDAQ:MSFT) and Amazon.com, Inc. [\u2026]",
+      "url": "https://finnhub.io/api/news?id=0c382cbcde9ba4178268a50dcc2b63d7dbc8013a1e3fd61d2e9e43c49ce4ea8e"
+    },
+    {
+      "category": "company",
+      "datetime": 1788794119,
+      "headline": "Microsoft Stock Is Building a Trillion-Dollar AI Opportunity. Is $600 Next?",
+      "id": 141765119,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AMZN",
+      "source": "Yahoo",
+      "summary": "Azure just crossed a revenue milestone that caught Wall Street off guard, and Microsoft's backlog tells a story the headline numbers barely hint at. Whether the stock can push toward $600 depends on one number that most investors are not watching closely enough.",
+      "url": "https://finnhub.io/api/news?id=cb0691a9cce468da03f653426f3bea8ca9143c1dd284f0365fe1f7bfe52756fc"
+    },
+    {
+      "category": "company",
+      "datetime": 1788792776,
+      "headline": "The S&P 100 ETF Just Dumped Nike and Colgate for 4 AI Stocks. Here\u2019s What That Means for Your Portfolio",
+      "id": 141763616,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AMZN",
+      "source": "Yahoo",
+      "summary": "The iShares S&P 100 ETF just swapped out a toothpaste giant and a mall REIT for four AI infrastructure plays, and the move reveals something uncomfortable about what this so-called blue-chip fund has quietly become.",
+      "url": "https://finnhub.io/api/news?id=42fbcd571f4e0ff319ea17c0fe94bd2d9085859a6a211459ff345ebc0a878b0d"
+    },
+    {
+      "category": "company",
+      "datetime": 1788792005,
+      "headline": "Are Retail-Wholesale Stocks Lagging  Amazon.com (AMZN) This Year?",
+      "id": 141763773,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AMZN",
+      "source": "Yahoo",
+      "summary": "Here is how Amazon (AMZN) and BJ's Restaurants (BJRI) have performed compared to their sector so far this year.",
+      "url": "https://finnhub.io/api/news?id=645bc31ee7bf59b926ae27a3fab502e63dfbde1d7da2e2829960510937f98c2a"
+    }
+  ],
+  "polygon_news": [
+    {
+      "id": "78850692ca8aa44969c6a542b1a6e7efabb5f9073aee93c04bce9863318d7784",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "Chewy vs. Uber Technologies: Which Consumer Stock Is a Better Buy in 2026?",
+      "author": "Brendan Coffey",
+      "published_utc": "2026-09-07T16:25:01Z",
+      "article_url": "https://www.fool.com/coverage/better-buy/2026/09/07/chewy-vs-uber-technologies-which-consumer-stock-is-a-better-buy-in-2026/?source=iedfolrf0000001",
+      "tickers": [
+        "CHWY",
+        "UBER",
+        "AMZN",
+        "LYFT",
+        "GOOG",
+        "GOOGL",
+        "GOOGM",
+        "GOOGN"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fcdn.content.foolcdn.com%2Fimages%2F1umn9qeh%2Fproduction%2F0c505d84cb72f436b60eccbf9455c368770fd2e7-1200x800.png%3Fw%3D800%26q%3D75%26fit%3Dmax%26auto%3Dformat&w=1200&op=resize",
+      "description": "The article compares Chewy and Uber Technologies as investment options for 2026. Chewy, a pet e-commerce leader with 21.3 million customers, shows steady 6% revenue growth and expanding veterinary services but faces intense competition and narrow margins. Uber, with $52 billion in revenue and strong profitability, dominates global mobility and delivery but faces regulatory risks regarding driver classification. The author recommends Uber for long-term investors due to its stronger competitive moat and profitability, despite Chewy's promising growth trajectory in pet health services.",
+      "keywords": [
+        "pet e-commerce",
+        "ride-sharing",
+        "delivery services",
+        "subscription revenue",
+        "veterinary services",
+        "platform business model",
+        "profitability",
+        "competitive moat",
+        "regulatory risk",
+        "free cash flow"
+      ],
+      "insights": [
+        {
+          "ticker": "CHWY",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong market position with 21.3 million active customers, predictable recurring revenue from Autoship subscriptions, expanding high-margin veterinary services, and expected 50% net income growth in 2026. However, faces competitive pressures and narrow margins."
+        },
+        {
+          "ticker": "UBER",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Demonstrates robust profitability with 19% net margin, strong free cash flow of $9.8 billion, 18% revenue growth, and a dominant global platform across mobility and delivery. Author's recommended pick due to stronger competitive moat, though faces regulatory risks regarding driver classification."
+        },
+        {
+          "ticker": "AMZN",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a competitive threat to Chewy in online retail and pet supplies, but not analyzed as an investment option in this article."
+        },
+        {
+          "ticker": "LYFT",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Identified as a competitor to Uber in ride-sharing, engaging in aggressive pricing strategies, but not evaluated as an investment option."
+        },
+        {
+          "ticker": "GOOG",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a strategic dependency for Uber's mapping services, representing a potential risk, but not analyzed as an investment option."
+        },
+        {
+          "ticker": "GOOGL",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a strategic dependency for Uber's mapping services, representing a potential risk, but not analyzed as an investment option."
+        },
+        {
+          "ticker": "GOOGM",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a strategic dependency for Uber's mapping services, representing a potential risk, but not analyzed as an investment option."
+        },
+        {
+          "ticker": "GOOGN",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a strategic dependency for Uber's mapping services, representing a potential risk, but not analyzed as an investment option."
+        }
+      ]
+    },
+    {
+      "id": "7d6bed2e75bdf028ec921b762c205aaaabd63ea4d50a226a5a6fdcc2c1e8df59",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "Why Does Amazon Trade at a Discount to Walmart and Costco? Here's the Only Answer That Makes Sense.",
+      "author": "James Brumley",
+      "published_utc": "2026-09-07T16:22:00Z",
+      "article_url": "https://www.fool.com/investing/2026/09/07/why-does-amazon-trade-at-a-discount-to-walmart-and/?source=iedfolrf0000001",
+      "tickers": [
+        "AMZN",
+        "WMT",
+        "COST"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F885115%2Ffinancial-analysis-company-filing-business-papers.jpg&w=1200&op=resize",
+      "description": "Amazon trades at a P/E multiple of ~20x compared to Walmart (37x) and Costco (44x) due to investor concerns over its massive $220 billion AI infrastructure spending. While the reasoning is sound, Walmart and Costco valuations may have become excessive as defensive plays. The author suggests investors may be overreacting to AI risks and recommends looking elsewhere.",
+      "keywords": [
+        "valuation",
+        "price-to-earnings ratio",
+        "artificial intelligence",
+        "capital expenditures",
+        "defensive stocks",
+        "cloud computing"
+      ],
+      "insights": [
+        {
+          "ticker": "AMZN",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Amazon's lower valuation is justified by significant AI infrastructure spending ($220B), but the author suggests this concern may be overblown and the discount could present opportunity. The company's long-term AI investments should eventually generate returns."
+        },
+        {
+          "ticker": "WMT",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Trading at 37x earnings as a defensive play against AI risks, but the author argues this valuation has become excessive and unjustified. High P/E multiples offer no guarantee of protection in a market correction."
+        },
+        {
+          "ticker": "COST",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Trading at 44x earnings as a defensive holding, but the author contends this valuation far exceeds its worth as a defensive stock. The premium pricing leaves it vulnerable if the broader market faces headwinds."
+        }
+      ]
+    },
+    {
+      "id": "e7a5a37b215fd8be0adb914a2d708db0ce4434c6a393ed2e9ed2649d7ac65798",
+      "publisher": {
+        "name": "Zacks Investment Research",
+        "homepage_url": "https://www.zacks.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
+      },
+      "title": "Is MercadoLibre Becoming Latin America's Leading Fintech?",
+      "author": "Na",
+      "published_utc": "2026-09-07T12:41:00Z",
+      "article_url": "https://www.zacks.com/stock/news/2985620/is-mercadolibre-becoming-latin-america-s-leading-fintech?cid=CS-ZC-FT-analyst_blog|quick_take-2985620",
+      "tickers": [
+        "MELI",
+        "AMZN",
+        "SE"
+      ],
+      "image_url": "https://staticx-tuner.zacks.com/images/articles/main/ea/308.jpg",
+      "description": "MercadoLibre's fintech segment Mercado Pago demonstrated strong growth in Q2 2026, with monthly active users surging 30% to 88 million, AUM jumping 68% to $23.2 billion, and total payment volume reaching $101 billion. The credit portfolio expanded 75% to $16.4 billion with stable asset quality. However, MELI stock trades at a premium valuation (P/E of 39.01) compared to industry peers, and recent earnings estimates have declined.",
+      "keywords": [
+        "fintech",
+        "Latin America",
+        "payment volume",
+        "credit expansion",
+        "user growth",
+        "valuation premium",
+        "earnings decline"
+      ],
+      "insights": [
+        {
+          "ticker": "MELI",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong operational metrics including 30% user growth, 68% AUM growth, 56% payment volume increase, and stable asset quality demonstrate robust business expansion and market leadership in Latin America's fintech sector."
+        },
+        {
+          "ticker": "AMZN",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a competitor with modest share gains (5.4% over three months) and lower valuation multiples (P/E 22.76) compared to MELI, indicating stable but less dynamic performance."
+        },
+        {
+          "ticker": "SE",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Cited as a competitor with stronger recent share performance (32.6% gain) but similar valuation metrics (P/E 22.82) to Amazon, suggesting competitive positioning without clear advantage over MELI operationally."
+        }
+      ]
+    },
+    {
+      "id": "7579d3032a6c7f0c199feeadbd34b818058dbf11185716c63a99ef5bfc82c7f6",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "The Stock Market Has Not Been This Expensive Since the Dot-com Bubble's Peak. History Says to Prepare for What Might Come Next.",
+      "author": "Brett Schafer",
+      "published_utc": "2026-09-07T11:30:00Z",
+      "article_url": "https://www.fool.com/investing/2026/09/07/the-stock-market-has-not-been-this-expensive-since/?source=iedfolrf0000001",
+      "tickers": [
+        "AMZN",
+        "GOOG",
+        "GOOGL",
+        "GOOGM",
+        "GOOGN",
+        "MSFT"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F885711%2Fai-6.jpg&w=1200&op=resize",
+      "description": "The S&P 500's Shiller CAPE ratio has reached its highest level since the dot-com bubble peak, driven by unsustainable AI-related earnings gains and massive capital expenditures. While super-intelligent AI could justify current valuations, the market faces significant downside risk. Investors should maintain diversified portfolios rather than betting heavily on either scenario.",
+      "keywords": [
+        "Shiller CAPE ratio",
+        "stock market valuation",
+        "AI bubble",
+        "dot-com bubble comparison",
+        "earnings growth",
+        "free cash flow",
+        "market risk",
+        "diversification"
+      ],
+      "insights": [
+        {
+          "ticker": "AMZN",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Company is spending at torrid rates on capital expenditures and is close to generating zero free cash flow, indicating unsustainable spending patterns that could pressure future profitability."
+        },
+        {
+          "ticker": "GOOG",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Similar to Amazon, Alphabet is approaching zero free cash flow generation due to high capital expenditure rates, raising concerns about long-term value creation."
+        },
+        {
+          "ticker": "GOOGL",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Similar to Amazon, Alphabet is approaching zero free cash flow generation due to high capital expenditure rates, raising concerns about long-term value creation."
+        },
+        {
+          "ticker": "GOOGM",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Similar to Amazon, Alphabet is approaching zero free cash flow generation due to high capital expenditure rates, raising concerns about long-term value creation."
+        },
+        {
+          "ticker": "GOOGN",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Similar to Amazon, Alphabet is approaching zero free cash flow generation due to high capital expenditure rates, raising concerns about long-term value creation."
+        },
+        {
+          "ticker": "MSFT",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Microsoft faces the same issue as Amazon and Alphabet, with capital expenditures threatening free cash flow generation and creating precariousness in the current bull market."
+        }
+      ]
+    },
+    {
+      "id": "380f93feb7ad8ce6421db30a235183a44317930c1a52449f45eb322da4e26dd2",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "Nuclear Stock Face-Off: Is Constellation Energy or Vistra the Better Buy Right Now?",
+      "author": "Manali Pradhan, Cfa",
+      "published_utc": "2026-09-07T02:02:00Z",
+      "article_url": "https://www.fool.com/investing/2026/09/06/nuclear-stock-face-off-is-stock-or-stock-the-bette/?source=iedfolrf0000001",
+      "tickers": [
+        "CEG",
+        "VST",
+        "MSFT",
+        "META",
+        "AMZN"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F885440%2Fprofessionals_discussing_in_a_meeting.jpg&w=1200&op=resize",
+      "description": "Constellation Energy operates the largest U.S. nuclear portfolio with over 22 GW capacity and has signed major 20-year power agreements with Microsoft and Meta. Vistra has a smaller 6.4 GW nuclear portfolio but has secured substantial long-term contracts with Meta and AWS. While Constellation deserves a premium valuation, Vistra offers a stronger risk-reward proposition at 14.4x forward earnings compared to Constellation's 22.4x, combined with aggressive share buybacks and additional growth catalysts.",
+      "keywords": [
+        "nuclear energy",
+        "power generation",
+        "data center demand",
+        "long-term contracts",
+        "valuation comparison",
+        "earnings growth",
+        "technology partnerships"
+      ],
+      "insights": [
+        {
+          "ticker": "CEG",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Largest U.S. nuclear portfolio with 22+ GW capacity, secured major 20-year agreements with Microsoft (835 MW) and Meta (1,121 MW), and expects base EPS to grow 20%+ annually through 2029. However, premium valuation at 22.4x forward earnings limits upside."
+        },
+        {
+          "ticker": "VST",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Secured substantial long-term contracts with Meta (2,609 MW) and AWS (1,200 MW), expects 2027 adjusted EBITDA of $7.4-7.8 billion, reduced share count by 30% since 2021 to boost EPS, and trades at attractive 14.4x forward earnings. Offers stronger risk-reward proposition despite smaller nuclear portfolio."
+        },
+        {
+          "ticker": "MSFT",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a major customer signing 20-year power agreement with Constellation Energy for data center operations, but article focuses on nuclear energy companies rather than Microsoft's business implications."
+        },
+        {
+          "ticker": "META",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Signed significant long-term power agreements with both Constellation Energy (1,121 MW) and Vistra (2,609 MW) for data center needs, but article focuses on nuclear energy companies' perspectives rather than Meta's operations."
+        },
+        {
+          "ticker": "AMZN",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "AWS signed 20-year agreement with Vistra for up to 1,200 MW of power, but article focuses on nuclear energy companies rather than Amazon's business implications."
+        }
+      ]
+    }
+  ],
+  "earnings": [],
+  "fundamentals": {
+    "10DayAverageTradingVolume": 32.00686,
+    "13WeekPriceReturnDaily": 1.8598,
+    "26WeekPriceReturnDaily": 23.849,
+    "3MonthADReturnStd": 43.733322,
+    "3MonthAverageTradingVolume": 46.83426,
+    "52WeekHigh": 287.2,
+    "52WeekHighDate": "2026-08-03",
+    "52WeekLow": 196,
+    "52WeekLowDate": "2026-02-17",
+    "52WeekPriceReturnDaily": 11.2685,
+    "5DayPriceReturnDaily": -0.485,
+    "assetTurnoverAnnual": 0.8764,
+    "assetTurnoverTTM": 0.872,
+    "beta": 1.5024469,
+    "bookValuePerShareAnnual": 38.3063,
+    "bookValuePerShareQuarterly": 51.1564,
+    "bookValueShareGrowth5Y": 32.77,
+    "capexCagr5Y": 26.85,
+    "cashFlowPerShareAnnual": 0.7171,
+    "cashFlowPerShareQuarterly": -1.0781,
+    "cashFlowPerShareTTM": 6.54859,
+    "cashPerSharePerShareAnnual": 11.4648,
+    "cashPerSharePerShareQuarterly": 11.4057,
+    "currentDividendYieldTTM": null,
+    "currentEv/freeCashFlowAnnual": 372.381,
+    "currentEv/freeCashFlowTTM": 115.2247,
+    "currentRatioAnnual": 1.0508,
+    "currentRatioQuarterly": 1.0331,
+    "dividendIndicatedAnnual": 0,
+    "dividendPerShareTTM": null,
+    "ebitdPerShareAnnual": 7.4621,
+    "ebitdPerShareTTM": 15.5375,
+    "ebitdaCagr5Y": 28.12,
+    "ebitdaInterimCagr5Y": 24.69,
+    "enterpriseValue": 2865472,
+    "epsAnnual": 7.1737,
+    "epsBasicExclExtraItemsAnnual": 7.1737,
+    "epsBasicExclExtraItemsTTM": 12.4325,
+    "epsExclExtraItemsAnnual": 7.1737,
+    "epsExclExtraItemsTTM": 12.4325,
+    "epsGrowth3Y": null,
+    "epsGrowth5Y": 27.96,
+    "epsGrowthQuarterlyYoy": 241.83,
+    "epsGrowthTTMYoy": 89.71,
+    "epsInclExtraItemsAnnual": 7.1737,
+    "epsInclExtraItemsTTM": 12.4325,
+    "epsNormalizedAnnual": 7.1737,
+    "epsTTM": 12.4325,
+    "evEbitdaTTM": 16.9643,
+    "evRevenueTTM": 3.6941,
+    "focfCagr5Y": -21.57,
+    "forwardPE": 24.69711,
+    "forwardPEG": 1.20181,
+    "grossMargin5Y": 46.39,
+    "grossMarginAnnual": 50.29,
+    "grossMarginTTM": 50.77,
+    "inventoryTurnoverAnnual": 9.8268,
+    "inventoryTurnoverTTM": 9.6665,
+    "longTermDebt/equityAnnual": 0.1597,
+    "longTermDebt/equityQuarterly": 0.2337,
+    "marketCapitalization": 2788370,
+    "monthToDatePriceReturnDaily": -0.485,
+    "netIncomeEmployeeAnnual": 0.0493,
+    "netIncomeEmployeeTTM": 0.0859,
+    "netInterestCoverageAnnual": 8.033,
+    "netInterestCoverageTTM": 0.6192,
+    "netMarginGrowth5Y": 14.39,
+    "netProfitMargin5Y": 6.4,
+    "netProfitMarginAnnual": 10.83,
+    "netProfitMarginTTM": 17.44,
+    "operatingMargin5Y": 7.2,
+    "operatingMarginAnnual": 11.16,
+    "operatingMarginTTM": 12.08,
+    "payoutRatioTTM": null,
+    "pb": 5.0549,
+    "pbAnnual": 6.0027,
+    "pbQuarterly": 4.6479,
+    "pcfShareAnnual": 19.9863,
+    "pcfShareTTM": 17.2758,
+    "peAnnual": 35.9002,
+    "peBasicExclExtraTTM": 20.6117,
+    "peExclExtraTTM": 20.6117,
+    "peInclExtraTTM": 20.6117,
+    "peNormalizedAnnual": 35.9002,
+    "peTTM": 20.6117,
+    "pegTTM": 1.36953,
+    "pfcfShareAnnual": 362.3613,
+    "pfcfShareTTM": 177.6145,
+    "pretaxMargin5Y": 7.57,
+    "pretaxMarginAnnual": 13.57,
+    "pretaxMarginTTM": 22.62,
+    "priceRelativeToS&P50013Week": 0.1295,
+    "priceRelativeToS&P50026Week": 10.6407,
+    "priceRelativeToS&P5004Week": -6.6735,
+    "priceRelativeToS&P50052Week": -7.7275,
+    "priceRelativeToS&P500Ytd": -0.9479,
+    "psAnnual": 3.8894,
+    "psTTM": 3.5947,
+    "ptbvAnnual": 6.1401,
+    "ptbvQuarterly": 8.0857,
+    "quickRatioAnnual": 0.8434,
+    "quickRatioQuarterly": 0.8442,
+    "receivablesTurnoverAnnual": 13.1025,
+    "receivablesTurnoverTTM": 11.8635,
+    "revenueEmployeeAnnual": 0.4552,
+    "revenueEmployeeTTM": 0.4925,
+    "revenueGrowth3Y": 11.73,
+    "revenueGrowth5Y": 13.18,
+    "revenueGrowthQuarterlyYoy": 19.62,
+    "revenueGrowthTTMYoy": 15.77,
+    "revenuePerShareAnnual": 66.2163,
+    "revenuePerShareTTM": 71.1437,
+    "revenueShareGrowth5Y": 11.84,
+    "roa5Y": 6.41,
+    "roaRfy": 9.49,
+    "roaTTM": 15.21,
+    "roe5Y": 15.39,
+    "roeRfy": 18.89,
+    "roeTTM": 30.5,
+    "roi5Y": 11.31,
+    "roiAnnual": 15.52,
+    "roiTTM": 24.19,
+    "tangibleBookValuePerShareAnnual": 37.4493,
+    "tangibleBookValuePerShareQuarterly": 18.7025,
+    "tbvCagr5Y": 35.36,
+    "totalDebt/totalEquityAnnual": 0.2172,
+    "totalDebt/totalEquityQuarterly": 0.2816,
+    "yearToDatePriceReturnDaily": 11.9964
+  },
+  "source_status": {
+    "local_research": true,
+    "local_news": false,
+    "local_sec_filings": false,
+    "finnhub_news": true,
+    "polygon_news": true,
+    "earnings": false,
+    "fundamentals": true
+  }
+}
+```
+
 ## BSX
 Trading candidate:
 ```json
 {
   "symbol": "BSX",
-  "direction": "WATCH",
   "score": 46.91,
-  "boosted_score": 47.84,
-  "research": {
-    "symbol": "BSX",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
+  "direction": "WATCH",
   "sector": "Healthcare",
-  "reasons": [
-    "market: 100.0",
-    "sector: 86.3",
-    "extension: 100.0"
-  ]
+  "components": {
+    "market": 100.0,
+    "sector": 86.35,
+    "relative_strength": 57.46919904561053,
+    "vwap": 0.0,
+    "trend": 0.0,
+    "volume": 32.11504852896883,
+    "momentum": 60.66044001660444,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
 }
 ```
-Evidence packet:
+Evidence packet (source-labelled; missing sources must remain uncertain):
 ```json
 {
   "local_research": [],
   "local_news": [],
   "local_sec_filings": [],
   "finnhub_news": [
+    {
+      "category": "company",
+      "datetime": 1788796260,
+      "headline": "ISRG's Ion Platform Is Quietly Becoming a Second Growth Engine",
+      "id": 141765193,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "BSX",
+      "source": "Yahoo",
+      "summary": "Intuitive Surgical's Ion platform is gaining momentum, with rising procedures, a larger installed base and global expansion fueling a second growth engine.",
+      "url": "https://finnhub.io/api/news?id=30f82c3d71c728c02b8284a8860ea904bbbc22691e7920cba19df99641cdfb6e"
+    },
     {
       "category": "company",
       "datetime": 1788546339,
@@ -2484,20 +2963,78 @@ Evidence packet:
       "source": "Benzinga",
       "summary": "Boston Scientific recalls Infinion CX SCS leads following 1,081 injury reports. Health authorities urge immediate return of unused inventory.",
       "url": "https://finnhub.io/api/news?id=4595326a6a8093c576238d4fffe33477d69e8468b34008143ded118f32a14fc0"
-    },
-    {
-      "category": "company",
-      "datetime": 1788521400,
-      "headline": "Boston Scientific begins to restore shipping after cyberattack",
-      "id": 141437829,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "BSX",
-      "source": "Yahoo",
-      "summary": "The company is working through a backlog after the cyberattack hampered manufacturing, order processing and shipping.",
-      "url": "https://finnhub.io/api/news?id=ab5a803f9fdec9632073552d65b882523d850dc2da683d48b2074c92f72a3cba"
     }
   ],
   "polygon_news": [
+    {
+      "id": "035ea264374f70758e22dbdbae34de99e082a779630bd6eedc11cd0372379f73",
+      "publisher": {
+        "name": "Zacks Investment Research",
+        "homepage_url": "https://www.zacks.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
+      },
+      "title": "Novocure Reports Patient Data Exposure in Cybersecurity Incident",
+      "author": "Na",
+      "published_utc": "2026-09-07T15:12:00Z",
+      "article_url": "https://www.zacks.com/stock/news/2986010/novocure-reports-patient-data-exposure-in-cybersecurity-incident?cid=CS-ZC-FT-analyst_blog|company_news_medical_sector-2986010",
+      "tickers": [
+        "NVCR",
+        "BSX",
+        "MCK",
+        "ABT",
+        "WST",
+        "MDT",
+        "SYK"
+      ],
+      "image_url": "https://staticx-tuner.zacks.com/images/articles/main/d6/3739.jpg",
+      "description": "Novocure Limited (NVCR) disclosed unauthorized access to internal systems in mid-August 2026, exposing internal patient ID numbers for over 1,400 U.S. patients and contact information for healthcare providers and employees. The company stated that medical devices were not accessed, systems remained functional, and no material financial impact is expected. NVCR shares rose 3.2% since the September 1 disclosure.",
+      "keywords": [
+        "cybersecurity incident",
+        "data breach",
+        "patient records",
+        "healthcare security",
+        "medical technology",
+        "unauthorized access"
+      ],
+      "insights": [
+        {
+          "ticker": "NVCR",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "While the cybersecurity incident is concerning, the company's proactive disclosure, containment measures, and assurance that devices were not compromised and no material financial impact is expected mitigate negative sentiment. Stock performance has been positive post-disclosure."
+        },
+        {
+          "ticker": "BSX",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Experienced a cybersecurity incident in August that disrupted access to systems and business applications, affecting order processing and shipping operations."
+        },
+        {
+          "ticker": "MCK",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Disclosed a data breach involving unauthorized access to third-party applications with alleged theft of data from Oncology & Multispecialty and Medical-Surgical business units."
+        },
+        {
+          "ticker": "ABT",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Reported two separate cyber incidents but stated they did not affect products, manufacturing, or patient services, limiting material impact."
+        },
+        {
+          "ticker": "WST",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Faced a cyberattack in May with data exfiltration and encryption, but the article notes it carries a Zacks Rank #2 with strong earnings performance."
+        },
+        {
+          "ticker": "MDT",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Reported unauthorized access to corporate IT systems, but products and patient care were not compromised."
+        },
+        {
+          "ticker": "SYK",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Experienced a cyberattack affecting Microsoft environment and temporarily disrupting manufacturing and shipping, but products and patient care were not compromised."
+        }
+      ]
+    },
     {
       "id": "6b6dec635c7036735a6a9876900e9c968108bf688c8425a6cd5f09d7a3aafb4a",
       "publisher": {
@@ -2715,65 +3252,6 @@ Evidence packet:
           "sentiment_reasoning": "Johnson & Johnson is listed among the prominent companies operating in the market. The company is positioned to capitalize on market expansion driven by aging populations, rising AF prevalence, and increased demand for minimally invasive treatment options."
         }
       ]
-    },
-    {
-      "id": "a3fe8f6c40b4041b19b040ea9f29614ed33acce4a5eed1c5862243ae6db782f1",
-      "publisher": {
-        "name": "GlobeNewswire Inc.",
-        "homepage_url": "https://www.globenewswire.com",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/globenewswire.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/globenewswire.ico"
-      },
-      "title": "Intravascular Lithotripsy Market Size to Reach USD 4.19 Billion by 2035 as Coronary and Peripheral IVL Adoption Accelerates \u2013 SNS Insider",
-      "author": "Sns Insider",
-      "published_utc": "2026-08-25T15:59:00Z",
-      "article_url": "https://www.globenewswire.com/news-release/2026/08/25/3350749/0/en/intravascular-lithotripsy-market-size-to-reach-usd-4-19-billion-by-2035-as-coronary-and-peripheral-ivl-adoption-accelerates-sns-insider.html",
-      "tickers": [
-        "JNJ",
-        "BSX",
-        "ABT",
-        "MDT",
-        "SYK"
-      ],
-      "image_url": "https://ml.globenewswire.com/Resource/Download/d6272c2e-d204-41b8-b545-a6e2e24f85c2",
-      "description": "The global Intravascular Lithotripsy (IVL) market is projected to grow from USD 1.01 billion in 2025 to USD 4.19 billion by 2035, expanding at a 15.3% CAGR. Growth is driven by increasing prevalence of calcified coronary and peripheral artery disease, adoption of minimally invasive procedures, and expanding peripheral IVL applications. North America leads with 58% market share, while Asia-Pacific is the fastest-growing region.",
-      "keywords": [
-        "Intravascular Lithotripsy",
-        "IVL Market",
-        "Calcified Lesions",
-        "Coronary Artery Disease",
-        "Peripheral Artery Disease",
-        "Minimally Invasive Procedures",
-        "Medical Devices",
-        "Interventional Cardiology"
-      ],
-      "insights": [
-        {
-          "ticker": "JNJ",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Recent product launch of Javelin Peripheral IVL Catheter in 2025 demonstrates active market participation and innovation in the growing IVL segment, positioning the company favorably in an expanding market."
-        },
-        {
-          "ticker": "BSX",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Completed acquisition of Bolt Medical and introduced Seismiq intravascular lithotripsy system in 2025, indicating strategic expansion and strengthened presence in the high-growth IVL technology market."
-        },
-        {
-          "ticker": "ABT",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Listed as a leading market player but no specific recent developments or product launches mentioned in the article, warranting a neutral stance."
-        },
-        {
-          "ticker": "MDT",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Identified as a leading market player but no specific recent developments or product launches mentioned in the article."
-        },
-        {
-          "ticker": "SYK",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Listed as a leading market player but no specific recent developments or product launches mentioned in the article."
-        }
-      ]
     }
   ],
   "earnings": [],
@@ -2921,495 +3399,29 @@ Evidence packet:
 }
 ```
 
-## CCL
+## WMT
 Trading candidate:
 ```json
 {
-  "symbol": "CCL",
+  "symbol": "WMT",
+  "score": 41.81,
   "direction": "WATCH",
-  "score": 31.5,
-  "boosted_score": 37.05,
-  "research": {
-    "symbol": "CCL",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
   "sector": "Consumer Discretionary",
-  "reasons": [
-    "market: 100.0",
-    "extension: 100.0"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [],
-  "local_news": [],
-  "local_sec_filings": [],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788530160,
-      "headline": "Carnival Stock Just Hit a 52-Week Low. Why It\u2019s Time to Buy.",
-      "id": 141438151,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CCL",
-      "source": "Yahoo",
-      "summary": "Carnival  is caught in a perfect storm.  Carnival\u2019s stock hit a 52-week low on Tuesday, as the debt-logged cruise line navigates higher oil prices, a hantavirus scare for the cruise industry, and a geopolitical environment that\u2019s keeping more travelers close to home.",
-      "url": "https://finnhub.io/api/news?id=c5510488bad0060711d6ae1f68d050b698cd5fefa626256f6a589d7e6804bc07"
-    },
-    {
-      "category": "company",
-      "datetime": 1788496800,
-      "headline": "Software Rebound Extends Moat Index Gains",
-      "id": 141410253,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1725655946/image_1725655946.jpg?io=getty-c-w1536",
-      "related": "CCL",
-      "source": "SeekingAlpha",
-      "summary": "The S&P 500 gained 2.72% and reached a record high in August, with energy leading the market as crude prices rose. Read more here.",
-      "url": "https://finnhub.io/api/news?id=814e73db5d703af98ad84b037219310746d8c95d98095282138f68b72379680b"
-    },
-    {
-      "category": "company",
-      "datetime": 1788429780,
-      "headline": "Reimagined Ocean Bar Debuts on Oosterdam with Expanded Entertainment",
-      "id": 141399334,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CCL",
-      "source": "Yahoo",
-      "summary": "Holland America Line Evolution is bringing a new chapter to Ocean Bar aboard Oosterdam. Inspired by the glamour of the golden age of ocean travel, the redesigned venue brings live entertainment, cocktails and conversation together in a sophisticated new setting, featuring a new stage, refreshed lounge spaces and a reimagined layout designed to connect guests more closely with the performances.",
-      "url": "https://finnhub.io/api/news?id=1b1c67aacc17124d699105cc9f7d0bf58fbe52885bcc64c0f8e5afbcef058ae4"
-    },
-    {
-      "category": "company",
-      "datetime": 1788393863,
-      "headline": "3 S&P 500 Stocks That Fall Short",
-      "id": 141388067,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CCL",
-      "source": "Yahoo",
-      "summary": "The S&P 500 (^GSPC) is home to the biggest and most well-known companies in the market, making it a go-to index for investors seeking stability. But not all large-cap stocks are created equal - some are struggling with slowing growth, declining margins, or increased competition.",
-      "url": "https://finnhub.io/api/news?id=04556937173c6b929cbe355d04281b67fc53b5223be4696cbb0647e417f9920f"
-    },
-    {
-      "category": "company",
-      "datetime": 1788380675,
-      "headline": "Norwegian Cruise Line Just Dropped 16% in a Month: Sell Now, or Buy More?",
-      "id": 141381307,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CCL",
-      "source": "Yahoo",
-      "summary": "Norwegian Cruise Line shares shed a significant chunk of their value in a single month, but the culprit behind the selloff has nothing to do with the company itself, and that distinction changes the calculus entirely for investors deciding what to do next.",
-      "url": "https://finnhub.io/api/news?id=b5f8285fcd313f1b88a38bb88d6809553d210a708473385d5c7ff2d793923408"
-    }
-  ],
-  "polygon_news": [
-    {
-      "id": "4b5c2335283d323322152d3cae6801b238df81ab97491174488625ba2deeb7e0",
-      "publisher": {
-        "name": "Zacks Investment Research",
-        "homepage_url": "https://www.zacks.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
-      },
-      "title": "Carnival (CCL) Sees a More Significant Dip Than Broader Market: Some Facts to Know",
-      "author": "Zacks.Com",
-      "published_utc": "2026-08-31T21:45:01Z",
-      "article_url": "https://www.zacks.com/stock/news/2982824/carnival-ccl-sees-a-more-significant-dip-than-broader-market-some-facts-to-know?cid=CS-ZC-FT-fundamental_analysis|yseop_template_6-2982824",
-      "tickers": [
-        "CCL"
-      ],
-      "image_url": "https://staticx-tuner.zacks.com/images/default_article_images/default122.jpg",
-      "description": "Carnival stock declined 3.51% to $23.89, significantly underperforming the S&P 500's 0.33% loss. The cruise operator has fallen 10.97% over the past month while the broader market gained 3.87%. Analysts expect upcoming earnings of $1.36 per share (down 4.9% YoY) with revenue of $8.36 billion (up 2.59% YoY). Carnival holds a Zacks Rank of #3 (Hold) with a Forward P/E of 11.1, trading at a discount to its industry average.",
-      "keywords": [
-        "cruise operator",
-        "earnings decline",
-        "stock underperformance",
-        "valuation discount",
-        "consumer discretionary",
-        "leisure and recreation"
-      ],
-      "insights": [
-        {
-          "ticker": "CCL",
-          "sentiment": "negative",
-          "sentiment_reasoning": "Stock significantly underperformed the broader market with a 3.51% daily decline and 10.97% monthly decline. Expected earnings are declining 4.9% year-over-year despite modest revenue growth. The company's industry ranks in the bottom 29% of all industries. While the stock trades at a valuation discount, the negative earnings trajectory and weak industry positioning support a negative outlook."
-        }
-      ]
-    },
-    {
-      "id": "9012464911dbd7d004c39b721386a4cc4ba41b963ef6ed1bbe87eafe7a9dd5f1",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "Boomers Are Getting Rich and Retiring Early. 1 No-Brainer Stock To Buy Now",
-      "author": "Jeremy Bowman",
-      "published_utc": "2026-08-12T02:32:18Z",
-      "article_url": "https://www.fool.com/investing/2026/08/11/boomers-are-getting-rich-and-retiring-early-1-no-b/?source=iedfolrf0000001",
-      "tickers": [
-        "VIK",
-        "CCL",
-        "RCL",
-        "NCLH",
-        "ABNB"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F882933%2Flongship-vidar-rhine-river-koblenz.jpg&w=1200&op=resize",
-      "description": "Rising stock markets and home prices are giving baby boomers significant disposable income, leading many to retire early. This demographic shift creates investment opportunities for companies targeting affluent older travelers. Viking Holdings, a luxury cruise line focused on adults 55+, is positioned to capitalize on this trend with strong revenue growth and differentiated offerings compared to traditional cruise competitors.",
-      "keywords": [
-        "baby boomers",
-        "early retirement",
-        "disposable income",
-        "cruise lines",
-        "luxury travel",
-        "demographic trends",
-        "stock market wealth"
-      ],
-      "insights": [
-        {
-          "ticker": "VIK",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Strong financial performance with 17.5% revenue growth and 43.9% EBITDA growth in Q1. Stock has appreciated significantly since IPO ($24 to $101+). Well-positioned to benefit from growing boomer wealth and spending power. Differentiated business model targeting underserved affluent 55+ demographic with expected 30% EPS compound annual growth rate."
-        },
-        {
-          "ticker": "CCL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a traditional cruise line peer but not highlighted as a primary investment opportunity. Article emphasizes Viking's differentiation from Carnival and other competitors."
-        },
-        {
-          "ticker": "RCL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a traditional cruise line peer but not highlighted as a primary investment opportunity. Article emphasizes Viking's differentiation from Royal Caribbean and other competitors."
-        },
-        {
-          "ticker": "NCLH",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as a traditional cruise line peer but not highlighted as a primary investment opportunity. Article emphasizes Viking's differentiation from Norwegian and other competitors."
-        },
-        {
-          "ticker": "ABNB",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Referenced as evidence that travel demand continues to boom despite economic concerns, supporting the broader thesis of strong discretionary spending by affluent demographics."
-        }
-      ]
-    },
-    {
-      "id": "b434f83f312f4ead1dbb035d0667c31ac70444fd6815b50472ee0833c7c35680",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "Norwegian Cruise Line Is Down 19% This Year and Reports Earnings July 30. Is Now the Time to Buy?",
-      "author": "Thomas Niel",
-      "published_utc": "2026-07-27T18:15:00Z",
-      "article_url": "https://www.fool.com/investing/2026/07/27/norwegian-cruise-line-is-down-19-this-year-and-rep/?source=iedfolrf0000001",
-      "tickers": [
-        "NCLH",
-        "CCL",
-        "RCL"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F880212%2Fcruise-ship-luxury-travel-1200x675-128554e.jpg&w=1200&op=resize",
-      "description": "Norwegian Cruise Line shares have declined 19% this year due to Mideast geopolitical tensions affecting fuel prices and passenger demand. While the company reports earnings on July 30, analyst Thomas Niel recommends Carnival as a stronger alternative in the cruise industry, citing Carnival's lower leverage, dividend yield of 1.7%, and better risk/reward proposition compared to Norwegian's steeper valuation discount.",
-      "keywords": [
-        "cruise lines",
-        "earnings report",
-        "geopolitical tensions",
-        "fuel prices",
-        "dividend yield",
-        "leverage",
-        "valuation"
-      ],
-      "insights": [
-        {
-          "ticker": "NCLH",
-          "sentiment": "negative",
-          "sentiment_reasoning": "Stock down 19% year-to-date; management lowered 2026 earnings guidance significantly; analyst recommends skipping the stock despite potential post-earnings rally; trades at steep discount but with higher leverage and no dividend"
-        },
-        {
-          "ticker": "CCL",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Recommended as stronger alternative to Norwegian; trades at similar forward earnings multiple but with lower leverage; currently pays dividend with 1.7% yield; represents better risk/reward proposition for cruise industry investors"
-        },
-        {
-          "ticker": "RCL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned as competitor trading at premium valuation (17x forward earnings vs Norwegian's 11x); no specific recommendation or criticism provided"
-        }
-      ]
-    },
-    {
-      "id": "3bb455085ff5f093c0207d1c2594970b8ee212d575da56517e5eab07f61935b4",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "Carnival Reported Earnings on June 23, Royal Caribbean Is Next on July 28, Then Norwegian Cruise Line on July 30. Here's My Top Buy of the Bunch.",
-      "author": "Jeff Siegel",
-      "published_utc": "2026-07-19T11:05:00Z",
-      "article_url": "https://www.fool.com/investing/2026/07/19/carnival-reports-earnings-on-july-23-followed-by-r/?source=iedfolrf0000001",
-      "tickers": [
-        "RCL",
-        "CCL",
-        "NCLH"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F878825%2Fcruise-vacation-travel-boat-water-ocean.jpg&w=1200&op=resize",
-      "description": "The cruise industry has completed its post-pandemic recovery with healthy occupancy rates and pricing. Among the three largest cruise operators, Royal Caribbean is recommended as the top buy due to its strongest financial results, industry-leading profitability, record bookings, and healthier balance sheet compared to Carnival and Norwegian Cruise Line, which both carry higher debt levels relative to their earnings.",
-      "keywords": [
-        "cruise industry",
-        "earnings reports",
-        "post-pandemic recovery",
-        "occupancy rates",
-        "balance sheet",
-        "debt management",
-        "booking trends",
-        "profitability",
-        "onboard spending"
-      ],
-      "insights": [
-        {
-          "ticker": "RCL",
-          "sentiment": "positive",
-          "sentiment_reasoning": "Strongest financial performer with $4.54B Q1 revenue, highest profitability margins, record bookings at higher prices, accelerating demand, and the healthiest balance sheet among the three competitors."
-        },
-        {
-          "ticker": "CCL",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Turnaround gaining momentum with record operating income and strong bookings, but carries significantly higher debt ($23.4B) relative to peers, creating execution risk despite positive operational trends."
-        },
-        {
-          "ticker": "NCLH",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Fleet modernization and occupancy recovery are positive, but the company operates with substantial leverage ($15.2B debt) and generates considerably less revenue and EBITDA than competitors, leaving limited margin for error."
-        }
-      ]
-    },
-    {
-      "id": "bb1edfe1e38601a9ea4f62b7e614b38d44a8678bbaeb4c867b31d27c5e20ea5e",
-      "publisher": {
-        "name": "The Motley Fool",
-        "homepage_url": "https://www.fool.com/",
-        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
-        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
-      },
-      "title": "3 Reasons You Should Buy Carnival Stock in July",
-      "author": "Neil Patel",
-      "published_utc": "2026-07-03T20:17:00Z",
-      "article_url": "https://www.fool.com/investing/2026/07/03/reasons-you-should-buy-carnival-stock-in-july/?source=iedfolrf0000001",
-      "tickers": [
-        "CCL",
-        "SPGI"
-      ],
-      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F877008%2Fcarnival-corporation-name-and-logo-on-blue-filter-with-cruise-ship-in-background_-the-motley-fool.png&w=1200&op=resize",
-      "description": "Carnival Corporation is presented as an attractive investment opportunity following its recovery from the COVID-19 pandemic. The article highlights three key reasons: strong demand trends with record Q2 sales and growing younger demographics in the cruise market; improving financial health with debt reduced to $24.9 billion and an investment-grade credit rating upgrade; and compelling valuation at a forward P/E ratio of 13.1 with projected 11.2% annual earnings growth through 2028.",
-      "keywords": [
-        "cruise industry recovery",
-        "demand tailwinds",
-        "debt reduction",
-        "financial discipline",
-        "valuation opportunity",
-        "dividend payments",
-        "stock buybacks",
-        "discretionary spending"
-      ],
-      "insights": [
-        {
-          "ticker": "CCL",
-          "sentiment": "positive",
-          "sentiment_reasoning": "The article presents multiple bullish factors including record sales, strong demand trends, significant debt reduction from $35.1B to $24.9B, investment-grade credit rating upgrade, growing free cash flow ($2.5B in 6 months), resumed dividend payments, and attractive valuation at 13.1x forward P/E with 11.2% projected earnings growth through 2028."
-        },
-        {
-          "ticker": "SPGI",
-          "sentiment": "neutral",
-          "sentiment_reasoning": "Mentioned only for upgrading Carnival's credit rating to investment grade, which is a factual statement of their rating action rather than an investment recommendation or analysis of S&P Global itself."
-        }
-      ]
-    }
-  ],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 20.60838,
-    "13WeekPriceReturnDaily": -15.5835,
-    "26WeekPriceReturnDaily": -17.5955,
-    "3MonthADReturnStd": 42.478516,
-    "3MonthAverageTradingVolume": 23.51452,
-    "52WeekHigh": 34.03,
-    "52WeekHighDate": "2026-02-06",
-    "52WeekLow": 23.075,
-    "52WeekLowDate": "2026-09-01",
-    "52WeekPriceReturnDaily": -25.5306,
-    "5DayPriceReturnDaily": -1.5906,
-    "assetTurnoverAnnual": 0.5151,
-    "assetTurnoverTTM": 0.5295,
-    "beta": 2.5201573,
-    "bookValuePerShareAnnual": 9.3628,
-    "bookValuePerShareQuarterly": 9.4519,
-    "bookValueShareGrowth5Y": -13.12,
-    "capexCagr5Y": -0.05,
-    "cashFlowPerShareAnnual": 1.987,
-    "cashFlowPerShareQuarterly": 2.3316,
-    "cashFlowPerShareTTM": 0.55476,
-    "cashPerSharePerShareAnnual": 1.4695,
-    "cashPerSharePerShareQuarterly": 1.6348,
-    "currentDividendYieldTTM": 1.2857,
-    "currentEv/freeCashFlowAnnual": 21.0381,
-    "currentEv/freeCashFlowTTM": 17.1449,
-    "currentRatioAnnual": 0.3223,
-    "currentRatioQuarterly": 0.3344,
-    "dividendGrowthRate5Y": null,
-    "dividendIndicatedAnnual": 0.6,
-    "dividendPerShareAnnual": null,
-    "dividendPerShareTTM": 0.3085,
-    "ebitdPerShareAnnual": 4.8959,
-    "ebitdPerShareTTM": 5.1348,
-    "ebitdaCagr5Y": null,
-    "ebitdaInterimCagr5Y": null,
-    "enterpriseValue": 54846.451,
-    "epsAnnual": 1.9686,
-    "epsBasicExclExtraItemsAnnual": 1.9686,
-    "epsBasicExclExtraItemsTTM": 2.193,
-    "epsExclExtraItemsAnnual": 1.9686,
-    "epsExclExtraItemsTTM": 2.193,
-    "epsGrowth3Y": null,
-    "epsGrowth5Y": null,
-    "epsGrowthQuarterlyYoy": -4.31,
-    "epsGrowthTTMYoy": 21.77,
-    "epsInclExtraItemsAnnual": 1.9686,
-    "epsInclExtraItemsTTM": 2.193,
-    "epsNormalizedAnnual": 1.9686,
-    "epsTTM": 2.193,
-    "evEbitdaTTM": 7.6473,
-    "evRevenueTTM": 2.0082,
-    "focfCagr5Y": null,
-    "forwardPE": 11.13169,
-    "forwardPEG": 1.20669,
-    "grossMargin5Y": 29.18,
-    "grossMarginAnnual": 54.76,
-    "grossMarginTTM": 54.91,
-    "inventoryTurnoverAnnual": 23.8004,
-    "inventoryTurnoverTTM": 23.9591,
-    "longTermDebt/equityAnnual": 1.9568,
-    "longTermDebt/equityQuarterly": 1.8058,
-    "marketCapitalization": 32200.451,
-    "monthToDatePriceReturnDaily": -1.5906,
-    "netIncomeEmployeeAnnual": 0.0242,
-    "netIncomeEmployeeTTM": 0.0269,
-    "netInterestCoverageAnnual": 3.6875,
-    "netInterestCoverageTTM": 3.1356,
-    "netMarginGrowth5Y": null,
-    "netProfitMargin5Y": -106.07,
-    "netProfitMarginAnnual": 10.37,
-    "netProfitMarginTTM": 11.23,
-    "operatingMargin5Y": -80.97,
-    "operatingMarginAnnual": 15.3,
-    "operatingMarginTTM": 15.78,
-    "payoutRatioTTM": 52.08,
-    "pb": 2.4831,
-    "pbAnnual": 2.746,
-    "pbQuarterly": 2.6284,
-    "pcfShareAnnual": 5.1786,
-    "pcfShareTTM": 4.7402,
-    "peAnnual": 11.6668,
-    "peBasicExclExtraTTM": 10.4956,
-    "peExclExtraTTM": 10.4956,
-    "peInclExtraTTM": 10.4956,
-    "peNormalizedAnnual": 11.6668,
-    "peTTM": 10.4956,
-    "pegTTM": 1.341,
-    "pfcfShareAnnual": 12.3515,
-    "pfcfShareTTM": 10.0658,
-    "pretaxMargin5Y": -106.25,
-    "pretaxMarginAnnual": 10.41,
-    "pretaxMarginTTM": 11.34,
-    "priceRelativeToS&P50013Week": -17.3138,
-    "priceRelativeToS&P50026Week": -30.8038,
-    "priceRelativeToS&P5004Week": -14.9119,
-    "priceRelativeToS&P50052Week": -44.5266,
-    "priceRelativeToS&P500Ytd": -35.9633,
-    "psAnnual": 1.2095,
-    "psTTM": 1.179,
-    "ptbvAnnual": 3.037,
-    "ptbvQuarterly": 2.8917,
-    "quickRatioAnnual": 0.2013,
-    "quickRatioQuarterly": 0.2154,
-    "receivablesTurnoverAnnual": 41.9905,
-    "receivablesTurnoverTTM": 45.4426,
-    "revenueEmployeeAnnual": 0.2335,
-    "revenueEmployeeTTM": 0.2396,
-    "revenueGrowth3Y": 29.82,
-    "revenueGrowth5Y": 36.61,
-    "revenueGrowthQuarterlyYoy": 5.29,
-    "revenueGrowthTTMYoy": 5.16,
-    "revenuePerShareAnnual": 18.9886,
-    "revenuePerShareTTM": 19.6765,
-    "revenueShareGrowth5Y": 21.34,
-    "roa5Y": -4.1,
-    "roaRfy": 5.34,
-    "roaTTM": 5.949999999999999,
-    "roe5Y": -24.48,
-    "roeRfy": 22.470000000000002,
-    "roeTTM": 24.44,
-    "roi5Y": -4.7,
-    "roiAnnual": 7.090000000000001,
-    "roiTTM": 7.99,
-    "tangibleBookValuePerShareAnnual": 8.4657,
-    "tangibleBookValuePerShareQuarterly": 8.5911,
-    "tbvCagr5Y": -10.53,
-    "totalDebt/totalEquityAnnual": 2.1687,
-    "totalDebt/totalEquityQuarterly": 1.9193,
-    "yearToDatePriceReturnDaily": -23.019
-  },
-  "source_status": {
-    "local_research": false,
-    "local_news": false,
-    "local_sec_filings": false,
-    "finnhub_news": true,
-    "polygon_news": true,
-    "earnings": false,
-    "fundamentals": true
+  "components": {
+    "market": 100.0,
+    "sector": 53.67,
+    "relative_strength": 46.22500545872455,
+    "vwap": 0.0,
+    "trend": 0.0,
+    "volume": 38.3679403679244,
+    "momentum": 58.59382787042358,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
   }
 }
 ```
-
-## CMG
-Trading candidate:
-```json
-{
-  "symbol": "CMG",
-  "direction": "LONG",
-  "score": 72.44,
-  "boosted_score": 65.71,
-  "research": {
-    "symbol": "CMG",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
-  "sector": "Consumer Discretionary",
-  "reasons": [
-    "market: 100.0",
-    "vwap: 100.0",
-    "trend: 100.0",
-    "extension: 90.5"
-  ]
-}
-```
-Evidence packet:
+Evidence packet (source-labelled; missing sources must remain uncertain):
 ```json
 {
   "local_research": [],
@@ -3418,442 +3430,208 @@ Evidence packet:
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788577812,
-      "headline": "How Investors May Respond To Chipotle Mexican Grill (CMG) Using South Korea As Its Asian Testbed",
-      "id": 141489503,
+      "datetime": 1788791760,
+      "headline": "Walmart's Ad Business Expands: Can High-Margin Growth Lift Profits?",
+      "id": 141763862,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CMG",
+      "related": "WMT",
       "source": "Yahoo",
-      "summary": "Chipotle Mexican Grill has opened its first restaurant in Asia at 423 Gangnam-daero in Seoul, partnering with Sangmidang Holdings to launch a joint venture, S&C Restaurants Holdings, that will lead its South Korean operations and serve as a model for future regional growth. By using South Korea as a reference market and planning further locations in the country and Singapore, Chipotle is testing how its fast-casual format, supply chain and training standards can translate into a new culinary...",
-      "url": "https://finnhub.io/api/news?id=e0059111bdcbf23edeaa10a91d9df2a9d03adc8ae9f001b6f14dd56824028d22"
+      "summary": "Walmart's fast-growing ad business boosts its higher-margin mix as digital sales scale, though Vibe costs are likely to pressure fiscal 2027 profit growth.",
+      "url": "https://finnhub.io/api/news?id=be4e68e76cfc51b72a6c35e93877a63480bf4f2d3bc064a8852d7cbd2fa825b4"
     },
     {
       "category": "company",
-      "datetime": 1788566714,
-      "headline": "Chipotle (CMG) Enters Asia With First Seoul Restaurant And A New Growth Test",
-      "id": 141472811,
+      "datetime": 1788775200,
+      "headline": "Weight loss is just the beginning of GLP-1's: Novo Nordisk CEO",
+      "id": 141761854,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CMG",
+      "related": "WMT",
       "source": "Yahoo",
-      "summary": "Chipotle Mexican Grill (NYSE: CMG) has opened its first restaurant in Asia, launching in Seoul, South Korea, through a joint venture. The Seoul location marks the start of Chipotle's broader expansion plan across Asian markets. The South Korean joint venture is intended to act as a reference market for future international growth in the region. This kind of measured international move highlights a wider theme of global brands looking for resilient growth, which some investors may want to...",
-      "url": "https://finnhub.io/api/news?id=8c231934e49614e2b6395dc109bd5267407996e5e3ce75bd36a8d9f2349b7c6d"
+      "summary": "Yahoo Finance Executive Editor Brian Sozzi chats with Novo Nordisk CEO Mike Doustdar about the true timeline for how GLP-1s will impact the food and airline industries, and what the future of weight loss and preventative health looks like over the next decade.",
+      "url": "https://finnhub.io/api/news?id=b46f69d07e94378e750f3d2f11bd8b2436d620a7118b7c75308ea6ee80253b62"
     },
     {
       "category": "company",
-      "datetime": 1788535836,
-      "headline": "Why Is Dutch Bros (BROS) Down 13.3% Since Last Earnings Report?",
-      "id": 141437953,
+      "datetime": 1788772380,
+      "headline": "Agentic Commerce Optimisation: Azoma on Which Platforms Help Brands Get Recommended by AI Shopping Agents",
+      "id": 141762273,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CMG",
+      "related": "WMT",
       "source": "Yahoo",
-      "summary": "Dutch Bros (BROS) reported earnings 30 days ago. What's next for the stock? We take a look at earnings estimates for some clues.",
-      "url": "https://finnhub.io/api/news?id=e28a2590828925c1ccc232e0f863f74c2e7d37aada91a2361482752bd6f3f709"
+      "summary": "Harvard Business Review reports that 90% of B2B purchases could flow through AI agent exchanges by 2028. Azoma sets out what agentic commerce optimisation platforms should deliver for enterprise brands and digital shelf teamsLondon, Sept. 07, 2026 (GLOBE NEWSWIRE) -- Azoma, the Agentic Commerce Optimisation platform that helps brands drive revenue through AI shopping agents like ChatGPT, Google Gemini, Amazon Rufus and Walmart Sparky, today set out what enterprise brands and digital shelf teams",
+      "url": "https://finnhub.io/api/news?id=6505a24d500a7b597e4eef69527ff58ac5358256f26b2407de3d1d9dd4c7f41d"
     },
     {
       "category": "company",
-      "datetime": 1788534420,
-      "headline": "McDonald's Trades at 19.15X P/E: Is This a Discounted Opportunity?",
-      "id": 141431625,
+      "datetime": 1788771600,
+      "headline": "Amazon made fast delivery the norm. Now rivals want in",
+      "id": 141761915,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CMG",
+      "related": "WMT",
       "source": "Yahoo",
-      "summary": "MCD trades below the restaurant industry's average P/E as U.S. weakness weighs on shares, while global growth and new initiatives offer hope.",
-      "url": "https://finnhub.io/api/news?id=4166a6a3879c35839a1fd19bcfcdef4953ee38f07aa3ee8a5601f42b242c6cf6"
+      "summary": "Retailers are turning stores into local delivery hubs, making waiting for an order feel increasingly outdated",
+      "url": "https://finnhub.io/api/news?id=ac8519e585e71157db8c222e0c13c577c1ef624d80747747ad5b3fdcc0cb0a1f"
     },
     {
       "category": "company",
-      "datetime": 1788533700,
-      "headline": "CAVA Stock Slips 15% in 3 Months: Should You Buy, Sell or Hold?",
-      "id": 141431734,
+      "datetime": 1788738988,
+      "headline": "Retailers are Handling Tariff Refunds in Very Different Ways: Walmart and Home Depot",
+      "id": 141593660,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "CMG",
+      "related": "WMT",
       "source": "Yahoo",
-      "summary": "CAVA's 15% pullback puts its strong traffic and expansion story in focus, but margin pressure and premium valuation complicate the buy case.",
-      "url": "https://finnhub.io/api/news?id=5cdb4c2a492010994880dec0cc66185c887f1f386b9cbc164eb277aad8ec7753"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 12.25969,
-    "13WeekPriceReturnDaily": 31.1568,
-    "26WeekPriceReturnDaily": 0.0812,
-    "3MonthADReturnStd": 49.746353,
-    "3MonthAverageTradingVolume": 18.80561,
-    "52WeekHigh": 42.82,
-    "52WeekHighDate": "2025-10-15",
-    "52WeekLow": 28.035,
-    "52WeekLowDate": "2026-06-04",
-    "52WeekPriceReturnDaily": -9.9854,
-    "5DayPriceReturnDaily": -2.8136,
-    "assetTurnoverAnnual": 1.3259,
-    "assetTurnoverTTM": 1.3826,
-    "beta": 0.9858801,
-    "bookValuePerShareAnnual": 2.1701,
-    "bookValuePerShareQuarterly": 1.7351,
-    "bookValueShareGrowth5Y": 8.5,
-    "capexCagr5Y": 12.28,
-    "cashFlowPerShareAnnual": 1.1098,
-    "cashFlowPerShareQuarterly": 1.2375,
-    "cashFlowPerShareTTM": 53.21617,
-    "cashPerSharePerShareAnnual": 0.8043,
-    "cashPerSharePerShareQuarterly": 0.5347,
-    "currentDividendYieldTTM": null,
-    "currentEv/freeCashFlowAnnual": 32.1511,
-    "currentEv/freeCashFlowTTM": 29.6635,
-    "currentRatioAnnual": 1.2347,
-    "currentRatioQuarterly": 0.7153,
-    "dividendPerShareTTM": null,
-    "ebitdPerShareAnnual": 1.711,
-    "ebitdPerShareTTM": 1.678,
-    "ebitdaCagr5Y": 34.15,
-    "ebitdaInterimCagr5Y": 15.19,
-    "enterpriseValue": 46541.649,
-    "epsAnnual": 1.1439,
-    "epsBasicExclExtraItemsAnnual": 1.1439,
-    "epsBasicExclExtraItemsTTM": 1.0840999999999998,
-    "epsExclExtraItemsAnnual": 1.1439,
-    "epsExclExtraItemsTTM": 1.0840999999999998,
-    "epsGrowth3Y": 21.31,
-    "epsGrowth5Y": 35.5,
-    "epsGrowthQuarterlyYoy": -2.32,
-    "epsGrowthTTMYoy": -4.17,
-    "epsInclExtraItemsAnnual": 1.1439,
-    "epsInclExtraItemsTTM": 1.0840999999999998,
-    "epsNormalizedAnnual": 1.1439,
-    "epsTTM": 1.0840999999999998,
-    "evEbitdaTTM": 21.1705,
-    "evRevenueTTM": 3.7462,
-    "focfCagr5Y": 37.88,
-    "forwardPE": 32.162539169813165,
-    "grossMargin5Y": 33.01,
-    "grossMarginAnnual": 33.68,
-    "grossMarginTTM": 29.48,
-    "inventoryTurnoverAnnual": 160.6774,
-    "inventoryTurnoverTTM": 201.3463,
-    "longTermDebt/equityAnnual": null,
-    "longTermDebt/equityQuarterly": null,
-    "marketCapitalization": 46769.848,
-    "monthToDatePriceReturnDaily": -2.8136,
-    "netIncomeEmployeeAnnual": 0.0118,
-    "netIncomeEmployeeTTM": 0.0109,
-    "netInterestCoverageAnnual": 1268.1445,
-    "netInterestCoverageTTM": 409.0572,
-    "netMarginGrowth5Y": 16.74,
-    "netProfitMargin5Y": 11.59,
-    "netProfitMarginAnnual": 12.88,
-    "netProfitMarginTTM": 11.42,
-    "operatingMargin5Y": 14.61,
-    "operatingMarginAnnual": 16.23,
-    "operatingMarginTTM": 14.65,
-    "payoutRatioAnnual": null,
-    "payoutRatioTTM": null,
-    "pb": 21.261,
-    "pbAnnual": 17.284,
-    "pbQuarterly": 19.826,
-    "pcfShareAnnual": 22.1246,
-    "pcfShareTTM": 20.0942,
-    "peAnnual": 30.4539,
-    "peBasicExclExtraTTM": 32.9503,
-    "peExclExtraAnnual": 69.27852,
-    "peExclExtraTTM": 32.9503,
-    "peInclExtraTTM": 32.9503,
-    "peNormalizedAnnual": 30.4539,
-    "peTTM": 32.9503,
-    "pfcfShareAnnual": 32.3088,
-    "pfcfShareTTM": 29.809,
-    "pretaxMargin5Y": 15.1,
-    "pretaxMarginAnnual": 16.85,
-    "pretaxMarginTTM": 15.05,
-    "priceRelativeToS&P50013Week": 29.4265,
-    "priceRelativeToS&P50026Week": -13.1271,
-    "priceRelativeToS&P5004Week": 15.3643,
-    "priceRelativeToS&P50052Week": -28.9814,
-    "priceRelativeToS&P500Ytd": -13.0524,
-    "psAnnual": 3.9218,
-    "psTTM": 3.7645,
-    "ptbvAnnual": 25.96586,
-    "ptbvQuarterly": 21.2675,
-    "quickRatioAnnual": 1.1104,
-    "quickRatioQuarterly": 0.5917,
-    "receivablesTurnoverAnnual": 79.3905,
-    "receivablesTurnoverTTM": 121.0238,
-    "revenueEmployeeAnnual": 0.0915,
-    "revenueEmployeeTTM": 0.0953,
-    "revenueGrowth3Y": 11.36,
-    "revenueGrowth5Y": 14.79,
-    "revenueGrowthQuarterlyYoy": 9.31,
-    "revenueGrowthTTMYoy": 7.31,
-    "revenuePerShareAnnual": 8.8824,
-    "revenuePerShareTTM": 9.7132,
-    "revenueShareGrowth5Y": 16.09,
-    "roa5Y": 14.36,
-    "roaRfy": 17.07,
-    "roaTTM": 15.8,
-    "roe5Y": 40.55,
-    "roeRfy": 54.26,
-    "roeTTM": 53.26,
-    "roi5Y": 40.55,
-    "roiAnnual": 54.26,
-    "roiTTM": 53.26,
-    "tangibleBookValuePerShareAnnual": 84.91997,
-    "tangibleBookValuePerShareQuarterly": 104.2159,
-    "tbvCagr5Y": 11.81124,
-    "totalDebt/totalEquityAnnual": 0,
-    "totalDebt/totalEquityQuarterly": 0,
-    "yearToDatePriceReturnDaily": -0.1081
-  },
-  "source_status": {
-    "local_research": false,
-    "local_news": false,
-    "local_sec_filings": false,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
-## HPQ
-Trading candidate:
-```json
-{
-  "symbol": "HPQ",
-  "direction": "LONG",
-  "score": 80.19,
-  "boosted_score": 71.13,
-  "research": {
-    "symbol": "HPQ",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
-  "sector": "Technology",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.8",
-    "relative_strength: 85.9",
-    "vwap: 100.0",
-    "trend: 100.0"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [],
-  "local_news": [],
-  "local_sec_filings": [],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788606000,
-      "headline": "Oracle, Adobe Results In Focus As Earnings Season Winds Down",
-      "id": 141523339,
-      "image": "https://static.seekingalpha.com/assets/og_image_1200-29b2bfe1a595477db6826bd2126c63ac2091efb7ec76347a8e7f81ba17e3de6c.png",
-      "related": "HPQ",
-      "source": "SeekingAlpha",
-      "summary": "Stay ahead with Wall Street Week Ahead: key earnings (Oracle, Adobe, Kroger), IPOs & CPI/PPI data, plus volatility/dividend watch. See more here.",
-      "url": "https://finnhub.io/api/news?id=9c32ce6f0eb581f7b60ca97c305608c705b2e1b42a63fa49e66076905defd8c8"
-    },
-    {
-      "category": "company",
-      "datetime": 1788562641,
-      "headline": "Dividend Champion, Contender, And Challenger Highlights: Week September 6",
-      "id": 141485601,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1072593728/image_1072593728.jpg?io=getty-c-w1536",
-      "related": "HPQ",
-      "source": "SeekingAlpha",
-      "summary": "Explore this week\u00e2\u0080\u0099s dividend updates for Dividend Champions, Contenders & Challengers\u00e2\u0080\u0094see dividend changes, upcoming ex-dividend and pay dates.",
-      "url": "https://finnhub.io/api/news?id=a14fa2d71c991d1424c650e89ccc0365f647e29aec84a754bdf9a4133b2e0743"
-    },
-    {
-      "category": "company",
-      "datetime": 1788545700,
-      "headline": "DELL Stock Hits 52-Week High: Does it Have More Room to Run?",
-      "id": 141455201,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "HPQ",
-      "source": "Yahoo",
-      "summary": "Dell Technologies hits a 52-week high as record AI server orders, a $95B backlog and broad IT refresh demand fuel hopes for further stock upside.",
-      "url": "https://finnhub.io/api/news?id=7ad0f26117446a8555e4ee2e9436f1734358f7043ca8ca0b2c819048437392b9"
-    },
-    {
-      "category": "company",
-      "datetime": 1788544800,
-      "headline": "HP Announces New OmniBook PCs to Help Build the Next Generation of AI Experiences",
-      "id": 141447136,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "HPQ",
-      "source": "Yahoo",
-      "summary": "The World\u2019s Thinnest NVIDIA RTX Spark\u2122 laptops bring personal agents, local AI and advanced creation experiences to premium, highly portable designs HP OmniBook Ultra 16 powered by NVIDIA RTX Spark The HP OmniBook Ultra 16 powered by NVIDIA RTX Spark delivers the performance, scale and immersive experiences needed to bring ambitious ideas to life. HP OmniBook X 14 powered by NVIDIA RTX Spark The HP OmniBook X 14 powered by NVIDIA RTX Spark is designed for users who move fluidly between work, cre",
-      "url": "https://finnhub.io/api/news?id=8c21f5047ae7163c5e6bf50173b67bf97bf25a2cc0c6dcf1063a8d3334e4183a"
-    },
-    {
-      "category": "company",
-      "datetime": 1788531303,
-      "headline": "Dell Technologies Inc. (DELL) Hit a 52 Week High, Can the Run Continue?",
-      "id": 141431654,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "HPQ",
-      "source": "Yahoo",
-      "summary": "Dell Technologies (DELL) is at a 52-week high, but can investors hope for more gains in the future? We take a look at the company's fundamentals for clues.",
-      "url": "https://finnhub.io/api/news?id=016c96ad8e71272a069fcd39ebb8ec998bf0574692933b0bd18a5a5d89d2a24c"
+      "summary": "Walmart Inc. (NASDAQ:WMT) and The Home Depot, Inc. (NYSE:HD) are both booking real tariff refund windfalls, but reporting and using the money in noticeably different ways, CNBC reported. Walmart CFO John David Rainey said the company is eligible for roughly $2.9 billion in refunds, has yet to receive just under $100 million of that, and [\u2026]",
+      "url": "https://finnhub.io/api/news?id=dab219b647819749dd7929fc00e006cccd3252d851db791e2dcf83c7e5a810ed"
     }
   ],
   "polygon_news": [],
   "earnings": [
     {
-      "symbol": "HPQ",
-      "date": "2026-11-23",
-      "hour": "amc",
-      "quarter": 4,
-      "year": 2026,
-      "epsEstimate": 0.7038,
+      "symbol": "WMT",
+      "date": "2026-11-19",
+      "hour": "",
+      "quarter": 3,
+      "year": 2027,
+      "epsEstimate": 0.6428,
       "epsActual": null,
-      "revenueEstimate": 15418810399,
+      "revenueEstimate": 189031752661,
       "revenueActual": null
     }
   ],
   "fundamentals": {
-    "10DayAverageTradingVolume": 18.1084,
-    "13WeekPriceReturnDaily": 24.1065,
-    "26WeekPriceReturnDaily": 71.6991,
-    "3MonthADReturnStd": 44.1315,
-    "3MonthAverageTradingVolume": 17.64388,
-    "52WeekHigh": 32.78,
-    "52WeekHighDate": "2026-09-04",
-    "52WeekLow": 17.56,
-    "52WeekLowDate": "2026-02-25",
-    "52WeekPriceReturnDaily": 11.2474,
-    "5DayPriceReturnDaily": 8.7275,
-    "assetTurnoverAnnual": 1.3238,
-    "assetTurnoverTTM": 1.3763,
-    "beta": 1.2074418,
-    "bookValuePerShareAnnual": 15.3925,
-    "bookValuePerShareQuarterly": 15.3925,
-    "bookValueShareGrowth5Y": -3.46,
-    "capexCagr5Y": 9.11,
-    "cashFlowPerShareAnnual": 3.0402,
-    "cashFlowPerShareQuarterly": 4.2437,
-    "cashFlowPerShareTTM": 4.11043,
-    "cashPerSharePerShareAnnual": 4.0065,
-    "cashPerSharePerShareQuarterly": 4.5587,
-    "currentDividendYieldTTM": 3.7201,
-    "currentEv/freeCashFlowAnnual": 12.2948,
-    "currentEv/freeCashFlowTTM": 8.8703,
-    "currentRatioAnnual": 0.7674,
-    "currentRatioQuarterly": 0.7875,
-    "dividendGrowthRate5Y": 10.14,
-    "dividendIndicatedAnnual": 1.2,
-    "dividendPerShareAnnual": 1.1699,
-    "dividendPerShareTTM": 1.1815,
-    "dividendYieldIndicatedAnnual": 3.84916,
-    "ebitdPerShareAnnual": 3.6789,
-    "ebitdPerShareTTM": 3.718,
-    "ebitdaCagr5Y": -0.16,
-    "ebitdaInterimCagr5Y": -7.23,
-    "enterpriseValue": 34425.459,
-    "epsAnnual": 2.6537,
-    "epsBasicExclExtraItemsAnnual": 2.6537,
-    "epsBasicExclExtraItemsTTM": 2.6239,
-    "epsExclExtraItemsAnnual": 2.6537,
-    "epsExclExtraItemsTTM": 2.6239,
-    "epsGrowth3Y": -3.82,
-    "epsGrowth5Y": 5.79,
-    "epsGrowthQuarterlyYoy": -10.84,
-    "epsGrowthTTMYoy": -4.42,
-    "epsInclExtraItemsAnnual": 2.6537,
-    "epsInclExtraItemsTTM": 2.6239,
-    "epsNormalizedAnnual": 2.6537,
-    "epsTTM": 2.6239,
-    "evEbitdaTTM": 9.9266,
-    "evRevenueTTM": 0.5819,
-    "focfCagr5Y": -5.6,
-    "forwardPE": 8.9253,
-    "forwardPEG": 2.66427,
-    "grossMargin5Y": 20.94,
-    "grossMarginAnnual": 20.6,
-    "grossMarginTTM": 19.87,
-    "inventoryTurnoverAnnual": 5.4094,
-    "inventoryTurnoverTTM": 5.0759,
-    "longTermDebt/equityAnnual": 0.2405,
-    "longTermDebt/equityQuarterly": 0.2405,
-    "marketCapitalization": 29434.459,
-    "monthToDatePriceReturnDaily": 8.7275,
-    "netIncomeEmployeeAnnual": 0.046,
-    "netIncomeEmployeeTTM": 0.0446,
-    "netInterestCoverageAnnual": 8.1327,
-    "netInterestCoverageTTM": 8.824,
-    "netMarginGrowth5Y": -1.86,
-    "netProfitMargin5Y": 6.22,
-    "netProfitMarginAnnual": 4.57,
-    "netProfitMarginTTM": 4.14,
-    "operatingMargin5Y": 7.78,
-    "operatingMarginAnnual": 5.83,
-    "operatingMarginTTM": 5.45,
-    "payoutRatioAnnual": 43.02,
-    "payoutRatioTTM": 44.68,
-    "pb": 1.06,
-    "pbAnnual": 0.8956,
-    "pbQuarterly": 0.8956,
-    "pcfShareAnnual": 7.9617,
-    "pcfShareTTM": 6.3056,
-    "peAnnual": 11.6388,
-    "peBasicExclExtraTTM": 12.0092,
-    "peExclExtraAnnual": 8.7772,
-    "peExclExtraTTM": 12.0092,
-    "peInclExtraTTM": 12.0092,
-    "peNormalizedAnnual": 11.6388,
-    "peTTM": 12.0092,
-    "pegTTM": 2.95806,
-    "pfcfShareAnnual": 10.5123,
-    "pfcfShareTTM": 7.5842,
-    "pretaxMargin5Y": 7.04,
-    "pretaxMarginAnnual": 4.83,
-    "pretaxMarginTTM": 4.73,
-    "priceRelativeToS&P50013Week": 22.3762,
-    "priceRelativeToS&P50026Week": 58.4908,
-    "priceRelativeToS&P5004Week": 9.8976,
-    "priceRelativeToS&P50052Week": -7.7486,
-    "priceRelativeToS&P500Ytd": 33.5548,
-    "psAnnual": 0.5323,
-    "psTTM": 0.4975,
-    "ptbvAnnual": 2.7217,
-    "ptbvQuarterly": 2.2243,
-    "quickRatioAnnual": 0.4226,
-    "quickRatioQuarterly": 0.4836,
-    "receivablesTurnoverAnnual": 10.2313,
-    "receivablesTurnoverTTM": 9.6269,
-    "revenueEmployeeAnnual": 1.0054,
-    "revenueEmployeeTTM": 1.0757,
-    "revenueGrowth3Y": -4.21,
-    "revenueGrowth5Y": -0.48,
-    "revenueGrowthQuarterlyYoy": 12.53,
-    "revenueGrowthTTMYoy": 8.14,
-    "revenuePerShareAnnual": 58.022,
-    "revenuePerShareTTM": 63.8209,
-    "revenueShareGrowth5Y": 7.78,
-    "roa5Y": 9.38,
-    "roaRfy": 6.05,
-    "roaTTM": 5.7,
-    "roe5Y": 3.17,
-    "roeRfy": 16.400000000000002,
-    "roeTTM": 16.85,
-    "roi5Y": 3.77,
-    "roiAnnual": 12.43,
-    "roiTTM": 9.98,
-    "tangibleBookValuePerShareAnnual": 13.3764,
-    "tangibleBookValuePerShareQuarterly": 13.7624,
-    "tbvCagr5Y": -6.22,
-    "totalDebt/totalEquityAnnual": 0.3195,
-    "totalDebt/totalEquityQuarterly": 0.3195,
-    "yearToDatePriceReturnDaily": 46.4991
+    "10DayAverageTradingVolume": 26.78224,
+    "13WeekPriceReturnDaily": -9.0029,
+    "26WeekPriceReturnDaily": -16.238,
+    "3MonthADReturnStd": 28.070448,
+    "3MonthAverageTradingVolume": 23.83652,
+    "52WeekHigh": 135.16,
+    "52WeekHighDate": "2026-05-19",
+    "52WeekLow": 98.88,
+    "52WeekLowDate": "2025-11-14",
+    "52WeekPriceReturnDaily": 6.5964,
+    "5DayPriceReturnDaily": 2.1646,
+    "assetTurnoverAnnual": 2.5052,
+    "assetTurnoverTTM": 2.5443,
+    "beta": 0.5638519,
+    "bookValuePerShareAnnual": 12.5006,
+    "bookValuePerShareQuarterly": 12.3444,
+    "bookValueShareGrowth5Y": 5.51,
+    "capexCagr5Y": 21.02,
+    "cashFlowPerShareAnnual": 1.8726,
+    "cashFlowPerShareQuarterly": 1.6975,
+    "cashFlowPerShareTTM": 10.33484,
+    "cashPerSharePerShareAnnual": 1.3461,
+    "cashPerSharePerShareQuarterly": 1.4487,
+    "currentDividendYieldTTM": 0.9027,
+    "currentEv/freeCashFlowAnnual": 60.1985,
+    "currentEv/freeCashFlowTTM": 66.4996,
+    "currentRatioAnnual": 0.7898,
+    "currentRatioQuarterly": 0.7671,
+    "dividendGrowthRate5Y": 5.41,
+    "dividendIndicatedAnnual": 0.99,
+    "dividendPerShareAnnual": 0.9388,
+    "dividendPerShareTTM": 0.9662,
+    "dividendYieldIndicatedAnnual": 0.7596102202102354,
+    "ebitdPerShareAnnual": 5.4884,
+    "ebitdPerShareTTM": 5.922,
+    "ebitdaCagr5Y": 11.72,
+    "ebitdaInterimCagr5Y": 5.89,
+    "enterpriseValue": 898342.7,
+    "epsAnnual": 2.7291,
+    "epsBasicExclExtraItemsAnnual": 2.7291,
+    "epsBasicExclExtraItemsTTM": 2.76,
+    "epsExclExtraItemsAnnual": 2.7291,
+    "epsExclExtraItemsTTM": 2.76,
+    "epsGrowth3Y": 24.21,
+    "epsGrowth5Y": 11.53,
+    "epsGrowthQuarterlyYoy": -8.97,
+    "epsGrowthTTMYoy": 4.13,
+    "epsInclExtraItemsAnnual": 2.7291,
+    "epsInclExtraItemsTTM": 2.76,
+    "epsNormalizedAnnual": 2.7291,
+    "epsTTM": 2.76,
+    "evEbitdaTTM": 18.9632,
+    "evRevenueTTM": 1.2208,
+    "focfCagr5Y": -10.38,
+    "forwardPE": 35.98552,
+    "forwardPEG": 3.68232,
+    "grossMargin5Y": 24.68,
+    "grossMarginAnnual": 24.93,
+    "grossMarginTTM": 25.23,
+    "inventoryTurnoverAnnual": 9.2881,
+    "inventoryTurnoverTTM": 9.2213,
+    "longTermDebt/equityAnnual": 0.3476,
+    "longTermDebt/equityQuarterly": 0.3712,
+    "marketCapitalization": 852628.7,
+    "monthToDatePriceReturnDaily": 2.1646,
+    "netIncomeEmployeeAnnual": 0.0104,
+    "netIncomeEmployeeTTM": 0.0105,
+    "netInterestCoverageAnnual": 8.7913,
+    "netInterestCoverageTTM": 90.0302,
+    "netMarginGrowth5Y": 4.87,
+    "netProfitMargin5Y": 2.52,
+    "netProfitMarginAnnual": 3.07,
+    "netProfitMarginTTM": 3,
+    "operatingMargin5Y": 3.99,
+    "operatingMarginAnnual": 4.18,
+    "operatingMarginTTM": 4.39,
+    "payoutRatioAnnual": 34.29,
+    "payoutRatioTTM": 34.87,
+    "pb": 8.6792,
+    "pbAnnual": 9.9258,
+    "pbQuarterly": 9.0081,
+    "pcfShareAnnual": 20.5131,
+    "pcfShareTTM": 19.8641,
+    "peAnnual": 38.9453,
+    "peBasicExclExtraTTM": 38.6224,
+    "peExclExtraAnnual": 36.52979,
+    "peExclExtraTTM": 38.6224,
+    "peInclExtraTTM": 38.6224,
+    "peNormalizedAnnual": 38.9453,
+    "peTTM": 38.6224,
+    "pegTTM": 4.005,
+    "pfcfShareAnnual": 57.1352,
+    "pfcfShareTTM": 55.1685,
+    "pretaxMargin5Y": 3.48,
+    "pretaxMarginAnnual": 4.13,
+    "pretaxMarginTTM": 3.98,
+    "priceRelativeToS&P50013Week": -10.7332,
+    "priceRelativeToS&P50026Week": -29.4463,
+    "priceRelativeToS&P5004Week": -4.5323,
+    "priceRelativeToS&P50052Week": -12.3996,
+    "priceRelativeToS&P500Ytd": -16.777,
+    "psAnnual": 1.1956,
+    "psTTM": 1.1587,
+    "ptbvAnnual": 10.3736,
+    "ptbvQuarterly": 8.16558,
+    "quickRatioAnnual": 0.2038,
+    "quickRatioQuarterly": 0.1955,
+    "receivablesTurnoverAnnual": 67.4481,
+    "receivablesTurnoverTTM": 68.1554,
+    "revenueEmployeeAnnual": 0.3396,
+    "revenueEmployeeTTM": 0.3504,
+    "revenueGrowth3Y": 5.27,
+    "revenueGrowth5Y": 4.99,
+    "revenueGrowthQuarterlyYoy": 5.94,
+    "revenueGrowthTTMYoy": 6.16,
+    "revenuePerShareAnnual": 88.9009,
+    "revenuePerShareTTM": 92.2336,
+    "revenueShareGrowth5Y": 6.31,
+    "roa5Y": 6.33,
+    "roaRfy": 7.6899999999999995,
+    "roaTTM": 7.630000000000001,
+    "roe5Y": 18.7,
+    "roeRfy": 21.98,
+    "roeTTM": 22.74,
+    "roi5Y": 12.21,
+    "roiAnnual": 14.49,
+    "roiTTM": 14.52,
+    "tangibleBookValuePerShareAnnual": 11.961,
+    "tangibleBookValuePerShareQuarterly": 19.11194,
+    "tbvCagr5Y": -4.03922,
+    "totalDebt/totalEquityAnnual": 0.5172,
+    "totalDebt/totalEquityQuarterly": 0.5827,
+    "yearToDatePriceReturnDaily": -3.8327
   },
   "source_status": {
     "local_research": false,
@@ -3867,503 +3645,29 @@ Evidence packet:
 }
 ```
 
-## INTC
-Trading candidate:
-```json
-{
-  "symbol": "INTC",
-  "direction": "LONG",
-  "score": 70.04,
-  "boosted_score": 64.03,
-  "research": {
-    "symbol": "INTC",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
-  "sector": "Technology",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.8",
-    "vwap: 100.0",
-    "momentum: 85.7",
-    "extension: 100.0"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [],
-  "local_news": [],
-  "local_sec_filings": [],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788651617,
-      "headline": "Why Intel Stock Climbed This Week",
-      "id": 141550045,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "INTC",
-      "source": "Yahoo",
-      "summary": "Dell's torrid revenue growth bodes well for the semiconductor leader.",
-      "url": "https://finnhub.io/api/news?id=22bff04a20fd1d3ba4d0f28a80cb7c98ce591c0efe05ebb6ee79a8561452afdd"
-    },
-    {
-      "category": "company",
-      "datetime": 1788649105,
-      "headline": "Intel\u2019s AI Tailwinds Are Real. Mizuho Cut the Target Anyway.",
-      "id": 141554035,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "INTC",
-      "source": "Yahoo",
-      "summary": "On September 3, Mizuho lowered the price target on Intel Corporation (NASDAQ:INTC) to $92 from $109. Mizuho\u2019s note reads more bullish on INTC\u2019s business than the price target suggests, but the firm is stopping short of turning bullish. The firm noted multiple operating tailwinds working in favor of Intel, namely Agentic AI demand, enterprise server [\u2026]",
-      "url": "https://finnhub.io/api/news?id=dadc7b05d095430e3e55886cd7ddef973a22e38f5a910fdd46ea1bdd14eedcb7"
-    },
-    {
-      "category": "company",
-      "datetime": 1788566113,
-      "headline": "Coatue Opened Positions in Intel and Cerebras. Is the AI Chip Trade Broadening Beyond NVIDIA?",
-      "id": 141472592,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "INTC",
-      "source": "Yahoo",
-      "summary": "Coatue Management\u2019s Q2 filing disclosed a new position in Intel and, for the first time, a reportable position in newly public Cerebras. Coatue reported 12,084,027 Intel shares and roughly 7.01 million Cerebras shares at June 30. Intel Corporation (NASDAQ:INTC) offers manufacturing and established distribution, while Cerebras Systems Inc. (NASDAQ:CBRS) offers a radically different wafer-scale architecture. [\u2026]",
-      "url": "https://finnhub.io/api/news?id=f9dd7c83e09f821cfb11546d263bb0df470ca36bd8f1c4bc717fa4ede41c4c85"
-    },
-    {
-      "category": "company",
-      "datetime": 1788557272,
-      "headline": "Marvell Stock Had A Huge Year And Still Sits Well Below Its High",
-      "id": 141460508,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "INTC",
-      "source": "Yahoo",
-      "summary": "Marvell Technology (MRVL) stock returned 235.9% over the past year, climbing from $62.18 to $208.83. The company kept raising what it expects to sell, and buyers repriced it each time. Then the shares pulled back, and they now sit well below their best.",
-      "url": "https://finnhub.io/api/news?id=33a19c727a8e65adfa057a149bcbbd12eabac6a3f64ffc7c9bdb04767afab37c"
-    },
-    {
-      "category": "company",
-      "datetime": 1788551543,
-      "headline": "Mizuho Resets Intel Target For the Rest of 2026",
-      "id": 141455038,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "INTC",
-      "source": "Yahoo",
-      "summary": "Mizuho resets Intel's target, but its outlook is hardly bearish",
-      "url": "https://finnhub.io/api/news?id=7e4fe45071f147ab081db0216118154770e5e22dd27ad677f0fb1baf4832b0df"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 81.95262,
-    "13WeekPriceReturnDaily": -14.2959,
-    "26WeekPriceReturnDaily": 122.2738,
-    "3MonthADReturnStd": 81.34328,
-    "3MonthAverageTradingVolume": 122.10119,
-    "52WeekHigh": 142.35,
-    "52WeekHighDate": "2026-06-30",
-    "52WeekLow": 24.05,
-    "52WeekLowDate": "2025-09-12",
-    "52WeekPriceReturnDaily": 291.1801,
-    "5DayPriceReturnDaily": 7.0271,
-    "assetTurnoverAnnual": 0.25,
-    "assetTurnoverTTM": 0.277,
-    "beta": 2.3932192,
-    "bookValuePerShareAnnual": 22.8837,
-    "bookValuePerShareQuarterly": 17.3591,
-    "bookValueShareGrowth5Y": 2.78,
-    "capexCagr5Y": 0.27,
-    "cashFlowPerShareAnnual": -0.991,
-    "cashFlowPerShareQuarterly": 0.5614,
-    "cashFlowPerShareTTM": 2.09114,
-    "cashPerSharePerShareAnnual": 7.4922,
-    "cashPerSharePerShareQuarterly": 5.8947,
-    "currentDividendYieldTTM": 2.8485,
-    "currentEv/freeCashFlowTTM": 191.115,
-    "currentRatioAnnual": 2.017,
-    "currentRatioQuarterly": 1.604,
-    "dividendGrowthRate5Y": null,
-    "dividendIndicatedAnnual": 0,
-    "dividendPerShareAnnual": 0,
-    "dividendPerShareTTM": 3.0444,
-    "dividendYieldIndicatedAnnual": 1.1374,
-    "ebitdPerShareAnnual": 3.0611,
-    "ebitdPerShareTTM": 3.4296,
-    "ebitdaCagr5Y": -10.31,
-    "ebitdaInterimCagr5Y": -9.66,
-    "enterpriseValue": 541046.62,
-    "epsAnnual": -0.0589,
-    "epsBasicExclExtraItemsAnnual": -0.0589,
-    "epsBasicExclExtraItemsTTM": -2.1202,
-    "epsExclExtraItemsAnnual": -0.0589,
-    "epsExclExtraItemsTTM": -2.1202,
-    "epsGrowth3Y": null,
-    "epsGrowth5Y": null,
-    "epsGrowthQuarterlyYoy": null,
-    "epsGrowthTTMYoy": null,
-    "epsInclExtraItemsAnnual": -0.0589,
-    "epsInclExtraItemsTTM": -2.1202,
-    "epsNormalizedAnnual": -0.0589,
-    "epsTTM": -2.1202,
-    "evEbitdaTTM": 32.2512,
-    "evRevenueTTM": 9.4867,
-    "focfCagr5Y": null,
-    "forwardPE": 51.38288,
-    "forwardPEG": 0.64132,
-    "grossMargin5Y": 41.4,
-    "grossMarginAnnual": 34.77,
-    "grossMarginTTM": 38.6,
-    "inventoryTurnoverAnnual": 2.8954,
-    "inventoryTurnoverTTM": 2.9339,
-    "longTermDebt/equityAnnual": 0.3858,
-    "longTermDebt/equityQuarterly": 0.5546,
-    "marketCapitalization": 503383.62,
-    "monthToDatePriceReturnDaily": 7.0271,
-    "netIncomeEmployeeAnnual": -0.0032,
-    "netIncomeEmployeeTTM": -0.1357,
-    "netInterestCoverageAnnual": 0.3599,
-    "netInterestCoverageTTM": 2.1398,
-    "netMarginGrowth5Y": null,
-    "netProfitMargin5Y": 1.03,
-    "netProfitMarginAnnual": -0.51,
-    "netProfitMarginTTM": -19.79,
-    "operatingMargin5Y": 2.79,
-    "operatingMarginAnnual": 5.88,
-    "operatingMarginTTM": 9.36,
-    "payoutRatioAnnual": 74.83154,
-    "pb": 5.7502,
-    "pbAnnual": 1.531,
-    "pbQuarterly": 7.5624,
-    "pcfShareAnnual": 51.9113,
-    "pcfShareTTM": 33.7027,
-    "peAnnual": null,
-    "peBasicExclExtraTTM": null,
-    "peExclExtraAnnual": 22.61631,
-    "peExclExtraTTM": null,
-    "peInclExtraTTM": null,
-    "peNormalizedAnnual": null,
-    "peTTM": null,
-    "pfcfShareAnnual": 55.1532,
-    "pfcfShareTTM": 93.7225,
-    "pretaxMargin5Y": 4.61,
-    "pretaxMarginAnnual": 2.95,
-    "pretaxMarginTTM": -17.28,
-    "priceRelativeToS&P50013Week": -16.0262,
-    "priceRelativeToS&P50026Week": 109.0655,
-    "priceRelativeToS&P5004Week": -1.3963,
-    "priceRelativeToS&P50052Week": 272.1841,
-    "priceRelativeToS&P500Ytd": 146.6763,
-    "psAnnual": 9.5242,
-    "psTTM": 8.8263,
-    "ptbvAnnual": 1.5691,
-    "ptbvQuarterly": 7.7888,
-    "quickRatioAnnual": 1.6491,
-    "quickRatioQuarterly": 1.2537,
-    "receivablesTurnoverAnnual": 14.4466,
-    "receivablesTurnoverTTM": 17.842,
-    "revenueEmployeeAnnual": 0.6353,
-    "revenueEmployeeTTM": 0.6855,
-    "revenueGrowth3Y": -5.71,
-    "revenueGrowth5Y": -7.46,
-    "revenueGrowthQuarterlyYoy": 25.42,
-    "revenueGrowthTTMYoy": 7.47,
-    "revenuePerShareAnnual": 11.6673,
-    "revenuePerShareTTM": 11.174,
-    "revenueShareGrowth5Y": -8.71,
-    "roa5Y": 1.48,
-    "roaRfy": -0.13,
-    "roaTTM": -5.48,
-    "roe5Y": 2.24,
-    "roeRfy": -0.22999999999999998,
-    "roeTTM": -10.76,
-    "roi5Y": 1.77,
-    "roiAnnual": -0.16999999999999998,
-    "roiTTM": -7.42,
-    "tangibleBookValuePerShareAnnual": 22.3286,
-    "tangibleBookValuePerShareQuarterly": 16.8545,
-    "tbvCagr5Y": 9.14,
-    "totalDebt/totalEquityAnnual": 0.4076,
-    "totalDebt/totalEquityQuarterly": 0.5773,
-    "yearToDatePriceReturnDaily": 159.6206
-  },
-  "source_status": {
-    "local_research": false,
-    "local_news": false,
-    "local_sec_filings": false,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
-## NFLX
-Trading candidate:
-```json
-{
-  "symbol": "NFLX",
-  "direction": "LONG",
-  "score": 71.46,
-  "boosted_score": 65.02,
-  "research": {
-    "symbol": "NFLX",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
-  "sector": "Communication Services",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.0",
-    "trend: 100.0",
-    "extension: 95.8"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [],
-  "local_news": [],
-  "local_sec_filings": [],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788587310,
-      "headline": "Netflix: Advertising Alone Won't Justify A Higher Multiple",
-      "id": 141508053,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2254004225/image_2254004225.jpg?io=getty-c-w1536",
-      "related": "NFLX",
-      "source": "SeekingAlpha",
-      "summary": "Netflix's growth is slowing as pricing power nears its ceiling and ads remain unproven. Click for this latest update on the NFLX stock.",
-      "url": "https://finnhub.io/api/news?id=534fb0f3a5086c9ba1113ffcad5a8c33124c4a46b74cf4af552ab4d4886d6c0f"
-    },
-    {
-      "category": "company",
-      "datetime": 1788563929,
-      "headline": "S&P 500, Dow End Lower As Blowout Jobs Report Fans Rate Hike Fears, While Chipmaker Strength Aids Nasdaq \u2014TSLA, NFLX, BE, NVDA In Focus",
-      "id": 141472602,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "NFLX",
-      "source": "Yahoo",
-      "summary": "Nonfarm payrolls grew by 162,000 in August, while the unemployment rate held steady at 4.1%.",
-      "url": "https://finnhub.io/api/news?id=edf096e6792c207b0d0c8ecea67ebbe33d0294943b3f3486d6969b08c6574e5d"
-    },
-    {
-      "category": "company",
-      "datetime": 1788545102,
-      "headline": "These S&P500 stocks are the most active in today's session",
-      "id": 141448067,
-      "image": "https://www.chartmill.com/images/uploads/CM_Most_Active_Stocks_Small_free_fec0650b7f.webp",
-      "related": "NFLX",
-      "source": "ChartMill",
-      "summary": "Stay informed about the most active S&P500 stocks in today's session as we take a closer look at what's happening on the US markets on Friday. Discover the stocks that are generating the highest trading volume and driving market activity.",
-      "url": "https://finnhub.io/api/news?id=1139f0a9b5cae48fa39f337dfe60d02ded1241a1ffee1eeb21cb4f8344a9d2ec"
-    },
-    {
-      "category": "company",
-      "datetime": 1788543602,
-      "headline": "Walt Disney vs. Netflix: Which Media Stock Is a Better Buy in 2026?",
-      "id": 141446663,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "NFLX",
-      "source": "Yahoo",
-      "summary": "Netflix trades at a significant valuation premium, while Disney's diversified revenue streams offer different risk-reward profiles for 2026.",
-      "url": "https://finnhub.io/api/news?id=fd87142dfb662ca7d1e6d78c3495e42bd6e121a3a639fd30ae65fee33b27de0c"
-    },
-    {
-      "category": "company",
-      "datetime": 1788543339,
-      "headline": "NFLX Stock Falls 4% As Netflix Hikes UK Subscription Prices \u2014 Region Accounts For About 20% Of EMEA Revenue",
-      "id": 141446664,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "NFLX",
-      "source": "Yahoo",
-      "summary": "Netflix has announced a major subscription price increase in the United Kingdom, raising its lowest-priced, ad-supported tier by a third alongside cost increases for standard and premium offerings.",
-      "url": "https://finnhub.io/api/news?id=0f2e538a946a594595669961068b5e7f0fb0a669e16077e2c1000dc78e744191"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 26.78692,
-    "13WeekPriceReturnDaily": -4.0584,
-    "26WeekPriceReturnDaily": -19.9079,
-    "3MonthADReturnStd": 36.923897,
-    "3MonthAverageTradingVolume": 39.30624,
-    "52WeekHigh": 126.71,
-    "52WeekHighDate": "2025-09-05",
-    "52WeekLow": 65.08,
-    "52WeekLowDate": "2026-07-17",
-    "52WeekPriceReturnDaily": -37.088,
-    "5DayPriceReturnDaily": -3.4547,
-    "assetTurnoverAnnual": 0.8127,
-    "assetTurnoverTTM": 0.8412,
-    "beta": 1.5998827,
-    "bookValuePerShareAnnual": 6.3038,
-    "bookValuePerShareQuarterly": 7.2412,
-    "bookValueShareGrowth5Y": 20.33,
-    "capexCagr5Y": 6.69,
-    "cashFlowPerShareAnnual": 2.2408,
-    "cashFlowPerShareQuarterly": 2.6782,
-    "cashFlowPerShareTTM": 41.88707,
-    "cashPerSharePerShareAnnual": 2.1464,
-    "cashPerSharePerShareQuarterly": 2.1921,
-    "currentDividendYieldTTM": null,
-    "currentEv/freeCashFlowAnnual": 34.9896,
-    "currentEv/freeCashFlowTTM": 29.6842,
-    "currentRatioAnnual": 1.1857,
-    "currentRatioQuarterly": 1.1416,
-    "dividendIndicatedAnnual": 0,
-    "dividendPerShareTTM": null,
-    "ebitdPerShareAnnual": 3.1447,
-    "ebitdPerShareTTM": 4.072,
-    "ebitdaCagr5Y": 23.78,
-    "ebitdaInterimCagr5Y": 17.88,
-    "enterpriseValue": 331038.354,
-    "epsAnnual": 2.528,
-    "epsBasicExclExtraItemsAnnual": 2.528,
-    "epsBasicExclExtraItemsTTM": 3.1742,
-    "epsExclExtraItemsAnnual": 2.528,
-    "epsExclExtraItemsTTM": 3.1742,
-    "epsGrowth3Y": 36.44,
-    "epsGrowth5Y": 32.98,
-    "epsGrowthQuarterlyYoy": 11.06,
-    "epsGrowthTTMYoy": 35.26,
-    "epsInclExtraItemsAnnual": 2.528,
-    "epsInclExtraItemsTTM": 3.1742,
-    "epsNormalizedAnnual": 2.528,
-    "epsTTM": 3.1742,
-    "evEbitdaTTM": 18.8874,
-    "evRevenueTTM": 6.8438,
-    "focfCagr5Y": 37.44,
-    "forwardPE": 19.66124,
-    "forwardPEG": 0.93319,
-    "grossMargin5Y": 43.42,
-    "grossMarginAnnual": 48.49,
-    "grossMarginTTM": 49.12,
-    "longTermDebt/equityAnnual": 0.5059,
-    "longTermDebt/equityQuarterly": 0.3922,
-    "marketCapitalization": 325828.28,
-    "monthToDatePriceReturnDaily": -3.4547,
-    "netIncomeEmployeeAnnual": 0.6863,
-    "netIncomeEmployeeTTM": 0.8531,
-    "netInterestCoverageAnnual": 25.9252,
-    "netInterestCoverageTTM": 22.062,
-    "netMarginGrowth5Y": 17.07,
-    "netProfitMargin5Y": 18.82,
-    "netProfitMarginAnnual": 24.3,
-    "netProfitMarginTTM": 28.22,
-    "operatingMargin5Y": 23.1,
-    "operatingMarginAnnual": 29.49,
-    "operatingMarginTTM": 35.46,
-    "payoutRatioAnnual": null,
-    "payoutRatioTTM": null,
-    "pb": 10.8062,
-    "pbAnnual": 16.0972,
-    "pbQuarterly": 9.8602,
-    "pcfShareAnnual": 32.1036,
-    "pcfShareTTM": 27.2185,
-    "peAnnual": 29.6715,
-    "peBasicExclExtraTTM": 23.8708,
-    "peExclExtraAnnual": 52.4917,
-    "peExclExtraTTM": 23.8708,
-    "peInclExtraTTM": 23.8708,
-    "peNormalizedAnnual": 29.6715,
-    "peTTM": 23.8708,
-    "pegTTM": 1.09409,
-    "pfcfShareAnnual": 34.4389,
-    "pfcfShareTTM": 29.217,
-    "pretaxMargin5Y": 21.69,
-    "pretaxMarginAnnual": 28.16,
-    "pretaxMarginTTM": 34.1,
-    "priceRelativeToS&P50013Week": -5.7887,
-    "priceRelativeToS&P50026Week": -33.1162,
-    "priceRelativeToS&P5004Week": 2.9365,
-    "priceRelativeToS&P50052Week": -56.084,
-    "priceRelativeToS&P500Ytd": -29.4865,
-    "psAnnual": 7.2113,
-    "psTTM": 6.7361,
-    "ptbvAnnual": 84.0879,
-    "ptbvQuarterly": 159.7585,
-    "quickRatioAnnual": 1.1404,
-    "quickRatioQuarterly": 1.0934,
-    "receivablesTurnoverAnnual": 26.8405,
-    "receivablesTurnoverTTM": 26.994,
-    "revenueEmployeeAnnual": 2.8239,
-    "revenueEmployeeTTM": 3.0232,
-    "revenueGrowth3Y": 12.64,
-    "revenueGrowth5Y": 12.57,
-    "revenueGrowthQuarterlyYoy": 13.37,
-    "revenueGrowthTTMYoy": 16.02,
-    "revenuePerShareAnnual": 10.4016,
-    "revenuePerShareTTM": 11.3512,
-    "revenueShareGrowth5Y": 13.58,
-    "roa5Y": 13.56,
-    "roaRfy": 19.75,
-    "roaTTM": 23.74,
-    "roe5Y": 31.33,
-    "roeRfy": 41.260000000000005,
-    "roeTTM": 47.96,
-    "roi5Y": 18.58,
-    "roiAnnual": 26.729999999999997,
-    "roiTTM": 31.85,
-    "tangibleBookValuePerShareAnnual": 0.0296,
-    "tangibleBookValuePerShareQuarterly": 0.0213,
-    "tbvCagr5Y": -8.34,
-    "totalDebt/totalEquityAnnual": 0.5434,
-    "totalDebt/totalEquityQuarterly": 0.4746,
-    "yearToDatePriceReturnDaily": -16.5422
-  },
-  "source_status": {
-    "local_research": false,
-    "local_news": false,
-    "local_sec_filings": false,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
 ## NKE
 Trading candidate:
 ```json
 {
   "symbol": "NKE",
-  "direction": "WATCH",
   "score": 34.21,
-  "boosted_score": 38.95,
-  "research": {
-    "symbol": "NKE",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
+  "direction": "WATCH",
   "sector": "Unknown",
-  "reasons": [
-    "market: 100.0",
-    "extension: 100.0"
-  ]
+  "components": {
+    "market": 100.0,
+    "sector": 50.0,
+    "relative_strength": 22.370131740700913,
+    "vwap": 0.0,
+    "trend": 0.0,
+    "volume": 36.19827565757765,
+    "momentum": 36.16580310880823,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
 }
 ```
-Evidence packet:
+Evidence packet (source-labelled; missing sources must remain uncertain):
 ```json
 {
   "local_research": [
@@ -4380,58 +3684,58 @@ Evidence packet:
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788630163,
-      "headline": "Lululemon (LULU) Struggles as Analysts Cut Targets, But Is the Story Over?",
-      "id": 141533244,
+      "datetime": 1788798480,
+      "headline": "NIKE's China Business: Recovery Story or Ongoing Challenge?",
+      "id": 141765247,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NKE",
       "source": "Yahoo",
-      "summary": "On September 4, UBS cut its price target on lululemon athletica inc. (NASDAQ:LULU) from $120 to $106 and maintained a Neutral rating on the stock after the company announced financial results for Q2 of fiscal 2026. UBS noted that there are multiple factors that could limit upside and create downside risk to earnings over the [\u2026]",
-      "url": "https://finnhub.io/api/news?id=6cbd9b4798008dbc9b474c0a445ab53592e52467e4cd74b3bd9e2eeceb77fade"
+      "summary": "NIKE sees early China traction in running, football and premium retail, but steep sales declines and inventory cleanup show the recovery remains at an early stage.",
+      "url": "https://finnhub.io/api/news?id=a54cdb665002dabdf22bc898d5239bd6d33f30c783922be8cbec31a98c28d57d"
     },
     {
       "category": "company",
-      "datetime": 1788604896,
-      "headline": "MicroStrategy Drops $250 Bitcoin Jordans. But You Can\u2019t Buy With Crypto",
-      "id": 141514792,
+      "datetime": 1788796201,
+      "headline": "Has Nike's Stock Bottomed Out?",
+      "id": 141765114,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NKE",
       "source": "Yahoo",
-      "summary": "MicroStrategy now sells $250 Bitcoin Jordans. Nike stock has lost almost half its value in a year. Can crypto fans help?",
-      "url": "https://finnhub.io/api/news?id=7febcb814d74b3a89e23ad441e3b3cf8a4c4ca66c7780daf0fd2c627bcd22bd2"
+      "summary": "The footwear and apparel stock has been in a free fall over the past few years.",
+      "url": "https://finnhub.io/api/news?id=e975fd90f7b798480493cc314dccf3ca1f6659db1ed151380c8712c762c87b12"
     },
     {
       "category": "company",
-      "datetime": 1788581825,
-      "headline": "NIKE (NKE), What Is Behind Its Latest Update?",
-      "id": 141496460,
+      "datetime": 1788792776,
+      "headline": "The S&P 100 ETF Just Dumped Nike and Colgate for 4 AI Stocks. Here\u2019s What That Means for Your Portfolio",
+      "id": 141763616,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NKE",
       "source": "Yahoo",
-      "summary": "Custom Strength Equipment Pushes NIKE (NKE) Deeper Into Elite Training Spaces NIKE (NKE) has expanded its Nike Strength Pro Equipment line with a customizable Power Rack ecosystem now installed across several high profile training centers for U.S. Soccer, USC football, and professional women's teams. The rollout includes tailored racks and weights at the Arthur M. Blank U.S. Soccer National Training Center, USC's Bloom Football Performance Center, and the Kaiser Permanente Performance Center...",
-      "url": "https://finnhub.io/api/news?id=d6f0812de96bfb94a7f425e5603c74894b2a2ad75db19904d4fa4c67ebe6400f"
+      "summary": "The iShares S&P 100 ETF just swapped out a toothpaste giant and a mall REIT for four AI infrastructure plays, and the move reveals something uncomfortable about what this so-called blue-chip fund has quietly become.",
+      "url": "https://finnhub.io/api/news?id=42fbcd571f4e0ff319ea17c0fe94bd2d9085859a6a211459ff345ebc0a878b0d"
     },
     {
       "category": "company",
-      "datetime": 1788574284,
-      "headline": "SanDisk (SNDK) Soars on S&P 100 Inclusion; Hedge Fund Ownership More-Than-Doubles",
-      "id": 141489247,
+      "datetime": 1788784565,
+      "headline": "Nike Exits S&P 100 After Nearly 18 Years. Dell, SanDisk and 2 Tech Giants Take Its Place",
+      "id": 141762235,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NKE",
       "source": "Yahoo",
-      "summary": "SanDisk Corp. (NASDAQ:SNDK) rallied for a third consecutive day on Friday, jumping 11.9 percent to close at $1,740 apiece as investors gobbled up shares ahead of its addition to the S&P 100 index later this month. As part of its latest quarterly index rebalancing, the S&P Dow Jones Indices announced that SanDisk Corp. (NASDAQ:SNDK) will [\u2026]",
-      "url": "https://finnhub.io/api/news?id=0940a221f2babd4098ad9bbc93003c3f63a99ef279f2dbfffa14334acb4291c8"
+      "summary": "Nike stock suffers a new setback. Nearly 18 years in the S&P 100 comes to an end",
+      "url": "https://finnhub.io/api/news?id=f4ae093e4b51ff35a08d1072df57e96306373b501686e859f5db7ec851178bd0"
     },
     {
       "category": "company",
-      "datetime": 1788568200,
-      "headline": "Nike: Just Not Doing It",
-      "id": 141491619,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1391545555/image_1391545555.jpg?io=getty-c-w1536",
+      "datetime": 1788784268,
+      "headline": "62-Year-Old Retail Giant Gets Booted Off S&P 500",
+      "id": 141762236,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NKE",
-      "source": "SeekingAlpha",
-      "summary": "With the lagging performance aside, there have been some notable big winners among the index's 30 components. Read more here.",
-      "url": "https://finnhub.io/api/news?id=c3748497894521a11c661f28144f376bd12e723c1080964e7ff112ad03c70ae4"
+      "source": "Yahoo",
+      "summary": "One familiar name is losing its place among market royalty",
+      "url": "https://finnhub.io/api/news?id=8a04f350677aae1404810d71248a9eb592ff5688c8e474d884fee14521a675f3"
     }
   ],
   "polygon_news": [],
@@ -4583,301 +3887,29 @@ Evidence packet:
 }
 ```
 
-## NVDA
-Trading candidate:
-```json
-{
-  "symbol": "NVDA",
-  "direction": "LONG",
-  "score": 84.32,
-  "boosted_score": 75.52,
-  "research": {
-    "symbol": "NVDA",
-    "research_score": 55,
-    "conviction": "Medium",
-    "catalysts": [
-      "Next earnings and guidance",
-      "AI and data-center spending",
-      "Customer wins and backlog"
-    ],
-    "risks": [
-      "Crowded AI positioning",
-      "Execution risk",
-      "Valuation compression",
-      "No ticker-specific filing independently verified"
-    ],
-    "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
-  },
-  "sector": "Technology",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.8",
-    "relative_strength: 93.9",
-    "vwap: 100.0",
-    "trend: 100.0",
-    "momentum: 86.9"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [
-    "[NVDA.md]\n# NVDA \u2014 2026-08-12\n\n**View:** Watchlist coverage; conviction is conditional on valuation and company-specific verification. **Theme:** AI/infrastructure, software, fintech, mobility or space depending on issuer.\n\n**Bull case:** Continued AI/data-center spending, easing inflation, and resilient equity demand can support growth names and infrastructure suppliers.\n\n**Bear case:** 4.68% long yields, Brent near $89, geopolitical disruption, crowded AI positioning, execution risk and any financing/dilution could compress multiples.\n\n**Catalysts / checks:** next earnings, guidance, customer wins, backlog, margins, cash burn and SEC filings. No ticker-specific filing was independently verified in today\u2019s collection window.\n\n**Rating:** Medium conviction only after fresh company-level verification; not investment advice.\n"
-  ],
-  "local_news": [
-    "[2026-08-14.md]\n# Market News \u2014 2026-08-14\n\n- U.S. index futures were mixed before the open: S&P 500 futures +0.1%, Nasdaq futures +0.1%, Dow futures -0.1% (AP, 05:58 UTC).\n- Thursday closed at records after softer July PPI and falling oil supported growth shares.\n- Oil rebounded into Friday after reports that two UAE tankers were attacked while crossing the Strait of Hormuz; geopolitical energy risk remains active.\n- Applied Materials' record quarter and stronger outlook remain a positive read-through for AI infrastructure, semiconductors, servers, and storage, although the stock's weak reaction highlights elevated expectations.\n- Watchlist market snapshots around 11:45 UTC: NVDA $225.30 (+0.5%), ORCL $156.22 (+1.9%), SMCI $39.16 (+4.0%), WDC $487.29 (+7.3%), VST $146.40 (-0.2%). Quotes are time-stamped snapshots, not end-of-day closes.\n\nSources: https://apnews.com/article/5d9870d6c5ae735f9b74bf4ceefaa3ec ; https://ir.appliedmaterials.com/\n",
-    "[2026-08-13.md]\n# Market News \u2014 2026-08-13\n\n## Executive read\n\nU.S. stocks closed at records as benign July PPI and lower oil supported growth shares. AI and semiconductor leadership remained dominant, while Applied Materials\u2019 post-close results reinforced the equipment and AI-capex thesis. The tape is constructive but expectations and geopolitical risks are elevated.\n\n## Market-moving developments\n\n1. The S&P 500 rose 0.7% to 7,798.99 and the Nasdaq rose 0.8% to 26,803.03; both set record closes. The Dow gained 0.1% and Russell 2000 gained 0.2%. [AP](https://apnews.com/article/892c5409d8ed26bfd5965eb2a89d9005)\n2. July PPI was flat month over month and core PPI rose 0.2%, slightly below forecasts, supporting hopes that rate pressure can ease. [Axios](https://www.axios.com/2026/08/13/inflation-july-ppi)\n3. Brent fell 2.1%, helping duration-sensitive equities, but the Iran/Hormuz disruption remains a material inflation and supply-chain risk.\n4. Applied Materials reported record Q3 revenue of about $9.12B and adjusted EPS of about $3.50, above consensus, with above-estimate forward guidance reported in market coverage. The read-through is positive for semiconductor equipment and AI infrastructure, though after-hours weakness highlights valuation risk.\n\n## Watchlist implications\n\n- Favor profitable AI infrastructure, cloud, storage, and power names.\n- Treat speculative space, EV, leveraged crypto, and fintech as satellite exposures.\n- No additions or removals; raise priority on NVDA, AMD, AVGO, SMCI, WDC, and ORCL.\n"
-  ],
-  "local_sec_filings": [
-    "[2026-08-31.md]\n# SEC Filing Review \u2014 2026-08-31\n\n- AMD: SEC EDGAR filing index shows an August 13, 2026 filing with associated XBRL exhibits; this is the only fresh ticker-specific filing independently verified in the current collection window.\n- NVDA: an August 26, 2026 8-K is listed by a secondary filing index; verify the primary EDGAR document before relying on details.\n- For the remaining watchlist names, no new material filing was independently verified in this run. Treat filing status as unavailable rather than clean.\n- Source: https://www.sec.gov/Archives/edgar/data/2488/000119312526354029/0001193125-26-354029-index.htm\n",
-    "[2026-08-13.md]\n# SEC Filings \u2014 2026-08-13\n\nNo fresh ticker-specific SEC filing was independently verified for the watchlist in this collection window. This is a data-quality limitation, not evidence that no filing exists. Priority checks remain SMCI, NVDA, ORCL, AMD, AVGO, and financing/dilution disclosures for MSTR, ASTS, RKLB, RIVN, UPST, and POET.\n"
-  ],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788691800,
-      "headline": "Nvidia: 70% Growth Guidance Makes This A Strong Buy",
-      "id": 141591435,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2286309982/image_2286309982.jpg?io=getty-c-w1536",
-      "related": "NVDA",
-      "source": "SeekingAlpha",
-      "summary": "NVIDIA (NVDA) remains a Strong Buy as revenue more than doubled to $96.2B and growth continues to accelerate at massive scale.",
-      "url": "https://finnhub.io/api/news?id=fdf5d51f3a9aae5ead5a1f75b77a161f52b5363e1555c9b2b80d641dfb56e383"
-    },
-    {
-      "category": "company",
-      "datetime": 1788687000,
-      "headline": "It's Not Worth Buying VOO Or QQQ Anymore",
-      "id": 141590932,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2170310670/image_2170310670.jpg?io=getty-c-w1536",
-      "related": "NVDA",
-      "source": "SeekingAlpha",
-      "summary": "Concerned about VOO/QQQ valuations? See why CAPE, earnings adjustments, mega-cap concentration, and thin equity risk premium make me nervous. Click for more.",
-      "url": "https://finnhub.io/api/news?id=44f3fe11fe61c2b78958df16f3840894fea030b437964de520df95e3c637730e"
-    },
-    {
-      "category": "company",
-      "datetime": 1788683400,
-      "headline": "What I Found By Analyzing How Seeking Alpha Analysts Rated The Mag 7",
-      "id": 141590639,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1314220672/image_1314220672.jpg?io=getty-c-w1536",
-      "related": "NVDA",
-      "source": "SeekingAlpha",
-      "summary": "Mag 7 is fragmenting\u00e2\u0080\u0094stock picking matters. See Seeking Alpha analysts' upgrade trends, Nvidia vs Apple/Tesla outlooks, and options hedging signals.",
-      "url": "https://finnhub.io/api/news?id=eba233ff3388800a9f35b66ef6f1f68eff2afea31b642f11a07505e75d4043ea"
-    },
-    {
-      "category": "company",
-      "datetime": 1788676640,
-      "headline": "Wall Street Week Ahead",
-      "id": 141586678,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2287002303/image_2287002303.jpg?io=getty-c-w1536",
-      "related": "NVDA",
-      "source": "SeekingAlpha",
-      "summary": "August CPI and key earnings are in focus: Oracle, Adobe, Macy\u00e2\u0080\u0099s, and more.",
-      "url": "https://finnhub.io/api/news?id=4de66b41d29d7cc8504256e7940888d6e859ba6698d1168700339f11da8722be"
-    },
-    {
-      "category": "company",
-      "datetime": 1788676462,
-      "headline": "Nvidia's $279 Billion Bet Changes Everything",
-      "id": 141586679,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2279998571/image_2279998571.jpg?io=getty-c-w1536",
-      "related": "NVDA",
-      "source": "SeekingAlpha",
-      "summary": "Nvidia revenue hit $96.2B as AI demand stays strong; supply limits FY2028 growth. Click for more on NVDA stock.",
-      "url": "https://finnhub.io/api/news?id=7c894a3a8d556b8d736a1e286c9cc55bc7c49c8203ca8ab596d47ff8eb33e2ab"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [
-    {
-      "symbol": "NVDA",
-      "date": "2026-11-17",
-      "hour": "amc",
-      "quarter": 3,
-      "year": 2027,
-      "epsEstimate": 2.4659,
-      "epsActual": null,
-      "revenueEstimate": 108129157692,
-      "revenueActual": null
-    }
-  ],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 159.30202,
-    "13WeekPriceReturnDaily": 5.3508,
-    "26WeekPriceReturnDaily": 27.9422,
-    "3MonthADReturnStd": 42.17823,
-    "3MonthAverageTradingVolume": 146.35042,
-    "52WeekHigh": 236.54,
-    "52WeekHighDate": "2026-05-14",
-    "52WeekLow": 164.07,
-    "52WeekLowDate": "2025-09-05",
-    "52WeekPriceReturnDaily": 37.9236,
-    "5DayPriceReturnDaily": 4.3392,
-    "assetTurnoverAnnual": 1.0442,
-    "assetTurnoverTTM": 1.2788,
-    "beta": 2.2200592,
-    "bookValuePerShareAnnual": 6.4719,
-    "bookValuePerShareQuarterly": 9.4829,
-    "bookValueShareGrowth5Y": 56.87,
-    "capexCagr5Y": 39.89,
-    "cashFlowPerShareAnnual": 3.9778,
-    "cashFlowPerShareQuarterly": 5.2597,
-    "cashFlowPerShareTTM": 8.20683,
-    "cashPerSharePerShareAnnual": 2.5739,
-    "cashPerSharePerShareQuarterly": 4.1152,
-    "currentDividendYieldTTM": 0.1221,
-    "currentEv/freeCashFlowAnnual": 57.5386,
-    "currentEv/freeCashFlowTTM": 43.7979,
-    "currentRatioAnnual": 3.9053,
-    "currentRatioQuarterly": 4.5889,
-    "dividendGrowthRate5Y": 20.05,
-    "dividendIndicatedAnnual": 1,
-    "dividendPerShareAnnual": 0.0399,
-    "dividendPerShareTTM": 0.2795,
-    "dividendYieldIndicatedAnnual": 0.03349,
-    "ebitdPerShareAnnual": 5.4349,
-    "ebitdPerShareTTM": 8.2446,
-    "ebitdaCagr5Y": 88.29,
-    "ebitdaInterimCagr5Y": 88.37,
-    "enterpriseValue": 5562599,
-    "epsAnnual": 4.8979,
-    "epsBasicExclExtraItemsAnnual": 4.8979,
-    "epsBasicExclExtraItemsTTM": 7.9108,
-    "epsExclExtraItemsAnnual": 4.8979,
-    "epsExclExtraItemsTTM": 7.9108,
-    "epsGrowth3Y": 204.08,
-    "epsGrowth5Y": 95.27,
-    "epsGrowthQuarterlyYoy": 128.21,
-    "epsGrowthTTMYoy": 125.15,
-    "epsInclExtraItemsAnnual": 4.8979,
-    "epsInclExtraItemsTTM": 7.9108,
-    "epsNormalizedAnnual": 4.8979,
-    "epsTTM": 7.9108,
-    "evEbitdaTTM": 27.6547,
-    "evRevenueTTM": 18.3603,
-    "focfCagr5Y": 83.13,
-    "forwardPE": 18.10034,
-    "forwardPEG": 0.34983,
-    "grossMargin5Y": 68.54,
-    "grossMarginAnnual": 73.15,
-    "grossMarginTTM": 74.67,
-    "inventoryTurnoverAnnual": 3.6829,
-    "inventoryTurnoverTTM": 3.2975,
-    "longTermDebt/equityAnnual": 0.0475,
-    "longTermDebt/equityQuarterly": 0.1413,
-    "marketCapitalization": 5551676,
-    "monthToDatePriceReturnDaily": 4.3392,
-    "netIncomeEmployeeAnnual": 2.8587,
-    "netIncomeEmployeeTTM": 4.5924,
-    "netInterestCoverageAnnual": 29.0975,
-    "netInterestCoverageTTM": 75.6607,
-    "netMarginGrowth5Y": 16.44,
-    "netProfitMargin5Y": 42.54,
-    "netProfitMarginAnnual": 55.6,
-    "netProfitMarginTTM": 63.66,
-    "operatingMargin5Y": 45.98,
-    "operatingMarginAnnual": 60.38,
-    "operatingMarginTTM": 65.17,
-    "payoutRatioAnnual": 0.81,
-    "payoutRatioTTM": 3.51,
-    "pb": 24.2448,
-    "pbAnnual": 28.8075,
-    "pbQuarterly": 20.768,
-    "pcfShareAnnual": 54.0477,
-    "pcfShareTTM": 41.3194,
-    "peAnnual": 46.2382,
-    "peBasicExclExtraTTM": 28.7832,
-    "peExclExtraAnnual": 274.2091,
-    "peExclExtraTTM": 28.7832,
-    "peInclExtraTTM": 28.7832,
-    "peNormalizedAnnual": 46.2382,
-    "peTTM": 28.7832,
-    "pegTTM": 0.57728,
-    "pfcfShareAnnual": 57.4256,
-    "pfcfShareTTM": 43.7119,
-    "pretaxMargin5Y": 47.57,
-    "pretaxMarginAnnual": 65.5,
-    "pretaxMarginTTM": 75.83,
-    "priceRelativeToS&P50013Week": 3.6205,
-    "priceRelativeToS&P50026Week": 14.7339,
-    "priceRelativeToS&P5004Week": 6.2557,
-    "priceRelativeToS&P50052Week": 18.9276,
-    "priceRelativeToS&P500Ytd": 10.5731,
-    "psAnnual": 25.7096,
-    "psTTM": 18.3242,
-    "ptbvAnnual": 29.426,
-    "ptbvQuarterly": 21.0435,
-    "quickRatioAnnual": 3.1409,
-    "quickRatioQuarterly": 3.7757,
-    "receivablesTurnoverAnnual": 7.0188,
-    "receivablesTurnoverTTM": 6.6684,
-    "revenueEmployeeAnnual": 5.1414,
-    "revenueEmployeeTTM": 7.2135,
-    "revenueGrowth3Y": 100.05,
-    "revenueGrowth5Y": 66.9,
-    "revenueGrowthQuarterlyYoy": 105.85,
-    "revenueGrowthTTMYoy": 83.38,
-    "revenuePerShareAnnual": 8.8088,
-    "revenuePerShareTTM": 12.4756,
-    "revenueShareGrowth5Y": 67.72,
-    "roa5Y": 40.26,
-    "roaRfy": 58.06,
-    "roaTTM": 81.41000000000001,
-    "roe5Y": 58.77,
-    "roeRfy": 76.33,
-    "roeTTM": 110.11,
-    "roi5Y": 50.22,
-    "roiAnnual": 72.43,
-    "roiTTM": 101.59,
-    "tangibleBookValuePerShareAnnual": 6.3359,
-    "tangibleBookValuePerShareQuarterly": 9.3588,
-    "tbvCagr5Y": 61.18,
-    "totalDebt/totalEquityAnnual": 0.0538,
-    "totalDebt/totalEquityQuarterly": 0.1457,
-    "yearToDatePriceReturnDaily": 23.5174
-  },
-  "source_status": {
-    "local_research": true,
-    "local_news": true,
-    "local_sec_filings": true,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": true,
-    "fundamentals": true
-  }
-}
-```
-
 ## PCG
 Trading candidate:
 ```json
 {
   "symbol": "PCG",
-  "direction": "WATCH",
   "score": 33.46,
-  "boosted_score": 38.42,
-  "research": {
-    "symbol": "PCG",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
+  "direction": "WATCH",
   "sector": "Utilities",
-  "reasons": [
-    "market: 100.0",
-    "volume: 100.0",
-    "extension: 100.0"
-  ]
+  "components": {
+    "market": 100.0,
+    "sector": 59.58,
+    "relative_strength": 0.0,
+    "vwap": 0.0,
+    "trend": 0.0,
+    "volume": 100.0,
+    "momentum": 0.0,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
 }
 ```
-Evidence packet:
+Evidence packet (source-labelled; missing sources must remain uncertain):
 ```json
 {
   "local_research": [],
@@ -5084,34 +4116,29 @@ Evidence packet:
 }
 ```
 
-## PFE
+## CCL
 Trading candidate:
 ```json
 {
-  "symbol": "PFE",
-  "direction": "LONG",
-  "score": 79.61,
-  "boosted_score": 70.73,
-  "research": {
-    "symbol": "PFE",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the strong technical setup."
-  },
-  "sector": "Healthcare",
-  "reasons": [
-    "market: 100.0",
-    "sector: 81.6",
-    "vwap: 100.0",
-    "trend: 100.0"
-  ]
+  "symbol": "CCL",
+  "score": 31.5,
+  "direction": "WATCH",
+  "sector": "Consumer Discretionary",
+  "components": {
+    "market": 100.0,
+    "sector": 53.67,
+    "relative_strength": 0.0,
+    "vwap": 0.0,
+    "trend": 0.0,
+    "volume": 63.908081840973644,
+    "momentum": 22.400664192225083,
+    "volatility": 50.0,
+    "options": 50.0,
+    "extension": 100.0
+  }
 }
 ```
-Evidence packet:
+Evidence packet (source-labelled; missing sources must remain uncertain):
 ```json
 {
   "local_research": [],
@@ -5120,1179 +4147,420 @@ Evidence packet:
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788547801,
-      "headline": "AbbVie vs. Pfizer: Which Healthcare Stock Is a Better Buy in 2026?",
-      "id": 141455037,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "PFE",
-      "source": "Yahoo",
-      "summary": "AbbVie's immunology pivot is offsetting Humira's decline, while Pfizer trades at half the valuation despite patent risks ahead.",
-      "url": "https://finnhub.io/api/news?id=882e78db4092ee8e4a4f8c9153c570608198427b13f54f3413147816ac706bb2"
-    },
-    {
-      "category": "company",
-      "datetime": 1788541047,
-      "headline": "Was JNJ Stock Rally Actually Its Own?",
-      "id": 141444058,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "PFE",
-      "source": "Yahoo",
-      "summary": "Johnson & Johnson (JNJ) stock returned 59.9% over the past year, against 21.1% for the S&P 500. The company has a clean story for it. The biosimilar hit it had been bracing for arrived and was absorbed, and its talc litigation now has a proposed ending. Both are real. The first does not explain a move that size, and the second is not finished.",
-      "url": "https://finnhub.io/api/news?id=905919b186b2cb70f624aa1750860bd8a239d54c5d4daa0db9581cc8254fae21"
-    },
-    {
-      "category": "company",
-      "datetime": 1788532931,
-      "headline": "Pfizer\u2019s Stock Has Been Crushed\u2014Is Its 6% Dividend Finally Worth Buying?",
-      "id": 141431642,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "PFE",
-      "source": "Yahoo",
-      "summary": "Pfizer shareholders are collecting a 6% yield while the stock bleeds value, and the CEO just made a bold promise about keeping that payout alive through what could be the company's toughest stretch in years.",
-      "url": "https://finnhub.io/api/news?id=30c88d515f9a37e92b3066e6f44c71beb646245c32bfe22b3b84e95acef516c2"
-    },
-    {
-      "category": "company",
-      "datetime": 1788530700,
-      "headline": "AMGN's MariTide: Can Convenience Drive its Obesity Market Share?",
-      "id": 141431557,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "PFE",
-      "source": "Yahoo",
-      "summary": "Amgen's MariTide could target obesity with less frequent dosing, offering a convenience edge as competition from Lilly and Novo Nordisk intensifies.",
-      "url": "https://finnhub.io/api/news?id=313180c035e4932f2abc58e42e6e670c0e2e69ccec43a80dfb30eb8824b93639"
-    },
-    {
-      "category": "company",
-      "datetime": 1788523200,
-      "headline": "Trailing rivals, AbbVie scores win with dual-acting myeloma drug",
-      "id": 141446631,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "PFE",
-      "source": "Yahoo",
-      "summary": "The drugmaker is leaning on a better side effect profile compared to drugs from J&J, Pfizer and Regeneron as it pushes etentamig toward FDA submission.",
-      "url": "https://finnhub.io/api/news?id=acc97bf164cbb510d5f95d4dd90bb12e4789e33a92896040efbc52ce5956ac8f"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 32.73994,
-    "13WeekPriceReturnDaily": 10.7435,
-    "26WeekPriceReturnDaily": 7.0354,
-    "3MonthADReturnStd": 22.492231,
-    "3MonthAverageTradingVolume": 40.13358,
-    "52WeekHigh": 29.21,
-    "52WeekHighDate": "2026-09-03",
-    "52WeekLow": 23.58,
-    "52WeekLowDate": "2025-09-25",
-    "52WeekPriceReturnDaily": 14.3489,
-    "5DayPriceReturnDaily": -0.0351,
-    "assetTurnoverAnnual": 0.3006,
-    "assetTurnoverTTM": 0.3086,
-    "beta": 0.27623326,
-    "bookValuePerShareAnnual": 15.2086,
-    "bookValuePerShareQuarterly": 14.9482,
-    "bookValueShareGrowth5Y": 6.01,
-    "capexCagr5Y": -1.19,
-    "cashFlowPerShareAnnual": 1.5962,
-    "cashFlowPerShareQuarterly": 1.9277,
-    "cashFlowPerShareTTM": 2.91656,
-    "cashPerSharePerShareAnnual": 2.3911,
-    "cashPerSharePerShareQuarterly": 2.0528,
-    "currentDividendYieldTTM": 6.0343,
-    "currentEv/freeCashFlowAnnual": 24.7217,
-    "currentEv/freeCashFlowTTM": 20.4236,
-    "currentRatioAnnual": 1.1599,
-    "currentRatioQuarterly": 1.2669,
-    "dividendGrowthRate5Y": 2.51,
-    "dividendIndicatedAnnual": 1.72,
-    "dividendPerShareAnnual": 1.7213,
-    "dividendPerShareTTM": 1.7191,
-    "dividendYieldIndicatedAnnual": 5.37705,
-    "ebitdPerShareAnnual": 2.4968,
-    "ebitdPerShareTTM": 1.6023,
-    "ebitdaCagr5Y": 5.56,
-    "ebitdaInterimCagr5Y": null,
-    "enterpriseValue": 224373.7,
-    "epsAnnual": 1.3601,
-    "epsBasicExclExtraItemsAnnual": 1.3601,
-    "epsBasicExclExtraItemsTTM": 0.7554000000000001,
-    "epsExclExtraItemsAnnual": 1.3601,
-    "epsExclExtraItemsTTM": 0.7554000000000001,
-    "epsGrowth3Y": -37.13,
-    "epsGrowth5Y": -3.51,
-    "epsGrowthQuarterlyYoy": null,
-    "epsGrowthTTMYoy": -59.91,
-    "epsInclExtraItemsAnnual": 1.3601,
-    "epsInclExtraItemsTTM": 0.7554000000000001,
-    "epsNormalizedAnnual": 1.3601,
-    "epsTTM": 0.7554000000000001,
-    "evEbitdaTTM": 24.5351,
-    "evRevenueTTM": 3.5226,
-    "focfCagr5Y": -4.81,
-    "forwardPE": 8.64266,
-    "grossMargin5Y": 69.76,
-    "grossMarginAnnual": 75.81,
-    "grossMarginTTM": 74.71,
-    "inventoryTurnoverAnnual": 1.408,
-    "inventoryTurnoverTTM": 1.4903,
-    "longTermDebt/equityAnnual": 0.7128,
-    "longTermDebt/equityQuarterly": 0.7101,
-    "marketCapitalization": 162155.7,
-    "monthToDatePriceReturnDaily": -0.0351,
-    "netIncomeEmployeeAnnual": 0.1036,
-    "netIncomeEmployeeTTM": 0.0578,
-    "netInterestCoverageAnnual": 5.3511,
-    "netInterestCoverageTTM": 5.0214,
-    "netMarginGrowth5Y": -10.8,
-    "netProfitMargin5Y": 17.33,
-    "netProfitMarginAnnual": 12.42,
-    "netProfitMarginTTM": 6.8,
-    "operatingMargin5Y": 18.78,
-    "operatingMarginAnnual": 15.01,
-    "operatingMarginTTM": 6.79,
-    "payoutRatioAnnual": 125.75,
-    "payoutRatioTTM": 80.25,
-    "pb": 1.9035,
-    "pbAnnual": 1.6371,
-    "pbQuarterly": 1.6304,
-    "pcfShareAnnual": 13.8535,
-    "pcfShareTTM": 12.0994,
-    "peAnnual": 20.8695,
-    "peBasicExclExtraTTM": 37.4234,
-    "peExclExtraAnnual": 5.57472,
-    "peExclExtraTTM": 37.4234,
-    "peInclExtraTTM": 37.4234,
-    "peNormalizedAnnual": 20.8695,
-    "peTTM": 37.4234,
-    "pegTTM": -2.72351,
-    "pfcfShareAnnual": 17.8664,
-    "pfcfShareTTM": 14.7602,
-    "pretaxMargin5Y": 18.13,
-    "pretaxMarginAnnual": 12.02,
-    "pretaxMarginTTM": 6.61,
-    "priceRelativeToS&P50013Week": 9.0132,
-    "priceRelativeToS&P50026Week": -6.1729,
-    "priceRelativeToS&P5004Week": 5.543,
-    "priceRelativeToS&P50052Week": -4.6471,
-    "priceRelativeToS&P500Ytd": 1.3127,
-    "psAnnual": 2.5912,
-    "psTTM": 2.5458,
-    "ptbvAnnual": 4.3235,
-    "ptbvQuarterly": 3.642,
-    "quickRatioAnnual": 0.8718,
-    "quickRatioQuarterly": 0.9622,
-    "receivablesTurnoverAnnual": 5.3631,
-    "receivablesTurnoverTTM": 5.1852,
-    "revenueEmployeeAnnual": 0.8344,
-    "revenueEmployeeTTM": 0.8493,
-    "revenueGrowth3Y": -14.8,
-    "revenueGrowth5Y": 8.48,
-    "revenueGrowthQuarterlyYoy": 2.6,
-    "revenueGrowthTTMYoy": -0.22,
-    "revenuePerShareAnnual": 10.9538,
-    "revenuePerShareTTM": 11.1765,
-    "revenueShareGrowth5Y": 8.17,
-    "roa5Y": 7.29,
-    "roaRfy": 3.73,
-    "roaTTM": 2.1,
-    "roe5Y": 16.35,
-    "roeRfy": 8.99,
-    "roeTTM": 4.89,
-    "roi5Y": 10.92,
-    "roiAnnual": 5.140000000000001,
-    "roiTTM": 2.85,
-    "tangibleBookValuePerShareAnnual": 5.7589,
-    "tangibleBookValuePerShareQuarterly": 6.6919,
-    "tbvCagr5Y": -1.19,
-    "totalDebt/totalEquityAnnual": 0.7493,
-    "totalDebt/totalEquityQuarterly": 0.7418,
-    "yearToDatePriceReturnDaily": 14.257
-  },
-  "source_status": {
-    "local_research": false,
-    "local_news": false,
-    "local_sec_filings": false,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
-## SMCI
-Trading candidate:
-```json
-{
-  "symbol": "SMCI",
-  "direction": "LONG",
-  "score": 81.77,
-  "boosted_score": 73.74,
-  "research": {
-    "symbol": "SMCI",
-    "research_score": 55,
-    "conviction": "Medium",
-    "catalysts": [
-      "Next earnings and guidance",
-      "AI and data-center spending",
-      "Customer wins and backlog"
-    ],
-    "risks": [
-      "Crowded AI positioning",
-      "Execution risk",
-      "Valuation compression",
-      "No ticker-specific filing independently verified"
-    ],
-    "summary": "Existing research supports the AI and infrastructure thesis but remains conditional on fresh company-level verification, valuation, margins, backlog, and filings."
-  },
-  "sector": "Technology",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.8",
-    "relative_strength: 100.0",
-    "vwap: 100.0",
-    "trend: 100.0",
-    "momentum: 84.8"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [
-    "[SMCI.md]\n# SMCI \u2014 2026-08-12\n\n**View:** Watchlist coverage; conviction is conditional on valuation and company-specific verification. **Theme:** AI/infrastructure, software, fintech, mobility or space depending on issuer.\n\n**Bull case:** Continued AI/data-center spending, easing inflation, and resilient equity demand can support growth names and infrastructure suppliers.\n\n**Bear case:** 4.68% long yields, Brent near $89, geopolitical disruption, crowded AI positioning, execution risk and any financing/dilution could compress multiples.\n\n**Catalysts / checks:** next earnings, guidance, customer wins, backlog, margins, cash burn and SEC filings. No ticker-specific filing was independently verified in today\u2019s collection window.\n\n**Rating:** Medium conviction only after fresh company-level verification; not investment advice.\n"
-  ],
-  "local_news": [
-    "[2026-08-14.md]\n# Market News \u2014 2026-08-14\n\n- U.S. index futures were mixed before the open: S&P 500 futures +0.1%, Nasdaq futures +0.1%, Dow futures -0.1% (AP, 05:58 UTC).\n- Thursday closed at records after softer July PPI and falling oil supported growth shares.\n- Oil rebounded into Friday after reports that two UAE tankers were attacked while crossing the Strait of Hormuz; geopolitical energy risk remains active.\n- Applied Materials' record quarter and stronger outlook remain a positive read-through for AI infrastructure, semiconductors, servers, and storage, although the stock's weak reaction highlights elevated expectations.\n- Watchlist market snapshots around 11:45 UTC: NVDA $225.30 (+0.5%), ORCL $156.22 (+1.9%), SMCI $39.16 (+4.0%), WDC $487.29 (+7.3%), VST $146.40 (-0.2%). Quotes are time-stamped snapshots, not end-of-day closes.\n\nSources: https://apnews.com/article/5d9870d6c5ae735f9b74bf4ceefaa3ec ; https://ir.appliedmaterials.com/\n",
-    "[2026-08-13.md]\n# Market News \u2014 2026-08-13\n\n## Executive read\n\nU.S. stocks closed at records as benign July PPI and lower oil supported growth shares. AI and semiconductor leadership remained dominant, while Applied Materials\u2019 post-close results reinforced the equipment and AI-capex thesis. The tape is constructive but expectations and geopolitical risks are elevated.\n\n## Market-moving developments\n\n1. The S&P 500 rose 0.7% to 7,798.99 and the Nasdaq rose 0.8% to 26,803.03; both set record closes. The Dow gained 0.1% and Russell 2000 gained 0.2%. [AP](https://apnews.com/article/892c5409d8ed26bfd5965eb2a89d9005)\n2. July PPI was flat month over month and core PPI rose 0.2%, slightly below forecasts, supporting hopes that rate pressure can ease. [Axios](https://www.axios.com/2026/08/13/inflation-july-ppi)\n3. Brent fell 2.1%, helping duration-sensitive equities, but the Iran/Hormuz disruption remains a material inflation and supply-chain risk.\n4. Applied Materials reported record Q3 revenue of about $9.12B and adjusted EPS of about $3.50, above consensus, with above-estimate forward guidance reported in market coverage. The read-through is positive for semiconductor equipment and AI infrastructure, though after-hours weakness highlights valuation risk.\n\n## Watchlist implications\n\n- Favor profitable AI infrastructure, cloud, storage, and power names.\n- Treat speculative space, EV, leveraged crypto, and fintech as satellite exposures.\n- No additions or removals; raise priority on NVDA, AMD, AVGO, SMCI, WDC, and ORCL.\n"
-  ],
-  "local_sec_filings": [
-    "[2026-08-13.md]\n# SEC Filings \u2014 2026-08-13\n\nNo fresh ticker-specific SEC filing was independently verified for the watchlist in this collection window. This is a data-quality limitation, not evidence that no filing exists. Priority checks remain SMCI, NVDA, ORCL, AMD, AVGO, and financing/dilution disclosures for MSTR, ASTS, RKLB, RIVN, UPST, and POET.\n",
-    "[2026-08-12.md]\n# SEC Filings \u2014 2026-08-12\n\nNo ticker-specific filing was independently verified in today\u2019s collection window. Treat this as a data-quality limitation, not evidence that no filing exists. Priority checks for the next run: 10-Q/8-K for SMCI, NVDA, AMD, ORCL, CRM and financing/ATM disclosures for MSTR, ASTS, RKLB, RIVN and UPST.\n"
-  ],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788548701,
-      "headline": "Exploring the top movers within the S&P500 index during today's session.",
-      "id": 141452824,
-      "image": "https://www.chartmill.com/images/uploads/CM_Top_Movers_Small_free_2b4ff2fc22.webp",
-      "related": "SMCI",
-      "source": "ChartMill",
-      "summary": "Let's have a look at the top S&P500 gainers and losers one hour before the close of the markets of today's session.",
-      "url": "https://finnhub.io/api/news?id=3efa247763ccb82bb432983509e2a71efe32dcd5773a037e2a6257e90876b9ce"
-    },
-    {
-      "category": "company",
-      "datetime": 1788545700,
-      "headline": "DELL Stock Hits 52-Week High: Does it Have More Room to Run?",
-      "id": 141455201,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "SMCI",
-      "source": "Yahoo",
-      "summary": "Dell Technologies hits a 52-week high as record AI server orders, a $95B backlog and broad IT refresh demand fuel hopes for further stock upside.",
-      "url": "https://finnhub.io/api/news?id=7ad0f26117446a8555e4ee2e9436f1734358f7043ca8ca0b2c819048437392b9"
-    },
-    {
-      "category": "company",
-      "datetime": 1788545114,
-      "headline": "Super Micro Surges 7% as Semiconductors Lead a Flat Tape; Hewlett Packard Enterprise Falls 3%, Dell Edges Higher",
-      "id": 141455202,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "SMCI",
-      "source": "Yahoo",
-      "summary": "Semiconductors are ripping while the broader tape barely moves, and that gap is splitting three major AI server stocks in completely different directions at midday Friday.",
-      "url": "https://finnhub.io/api/news?id=62e47e3fd670cd03d73dfd947a5bdf112982e3515f6c610844bb6488bca49db4"
-    },
-    {
-      "category": "company",
-      "datetime": 1788545102,
-      "headline": "These S&P500 stocks are the most active in today's session",
-      "id": 141448067,
-      "image": "https://www.chartmill.com/images/uploads/CM_Most_Active_Stocks_Small_free_fec0650b7f.webp",
-      "related": "SMCI",
-      "source": "ChartMill",
-      "summary": "Stay informed about the most active S&P500 stocks in today's session as we take a closer look at what's happening on the US markets on Friday. Discover the stocks that are generating the highest trading volume and driving market activity.",
-      "url": "https://finnhub.io/api/news?id=1139f0a9b5cae48fa39f337dfe60d02ded1241a1ffee1eeb21cb4f8344a9d2ec"
-    },
-    {
-      "category": "company",
-      "datetime": 1788542986,
-      "headline": "Supermicro's Revenue Boom Just Ran Into a Profit Test",
-      "id": 141447239,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "SMCI",
-      "source": "Yahoo",
-      "summary": "Revenue jumped 78% to $39.1 billion last year, but investors are still waiting for more consistent margins.",
-      "url": "https://finnhub.io/api/news?id=1a77a8c1f688fba5bf60a39da76533c7b60b93c6269dded8d993790be697c926"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 36.36662,
-    "13WeekPriceReturnDaily": -15.5864,
-    "26WeekPriceReturnDaily": 29.0417,
-    "3MonthADReturnStd": 113.19198,
-    "3MonthAverageTradingVolume": 52.92452,
-    "52WeekHigh": 58.78,
-    "52WeekHighDate": "2025-10-09",
-    "52WeekLow": 19.48,
-    "52WeekLowDate": "2026-03-23",
-    "52WeekPriceReturnDaily": -2.0292,
-    "5DayPriceReturnDaily": 6.1964,
-    "assetTurnoverAnnual": 1.3045,
-    "assetTurnoverTTM": 1.6313,
-    "beta": 2.1902804,
-    "bookValuePerShareAnnual": 22.3852,
-    "bookValuePerShareQuarterly": 22.3852,
-    "bookValueShareGrowth5Y": 59.52,
-    "capexCagr5Y": 22.8,
-    "cashFlowPerShareAnnual": -10.7785,
-    "cashFlowPerShareQuarterly": -10.7785,
-    "cashFlowPerShareTTM": 11.5173,
-    "cashPerSharePerShareAnnual": 11.6282,
-    "cashPerSharePerShareQuarterly": 11.6282,
-    "currentDividendYieldTTM": null,
-    "currentEv/freeCashFlowAnnual": 23.49868,
-    "currentEv/freeCashFlowTTM": 23.83992,
-    "currentRatioAnnual": 3.8723,
-    "currentRatioQuarterly": 3.8723,
-    "dividendIndicatedAnnual": 0,
-    "dividendPerShareTTM": null,
-    "ebitdPerShareAnnual": 4.0499,
-    "ebitdPerShareTTM": 4.1013,
-    "ebitdaCagr5Y": 79.36,
-    "ebitdaInterimCagr5Y": 100.86,
-    "enterpriseValue": 27208.073,
-    "epsAnnual": 3.1985,
-    "epsBasicExclExtraItemsAnnual": 3.1985,
-    "epsBasicExclExtraItemsTTM": 3.2003999999999997,
-    "epsExclExtraItemsAnnual": 3.1985,
-    "epsExclExtraItemsTTM": 3.2003999999999997,
-    "epsGrowth3Y": 40.9,
-    "epsGrowth5Y": 72.55,
-    "epsGrowthQuarterlyYoy": 446.14,
-    "epsGrowthTTMYoy": 94.1,
-    "epsInclExtraItemsAnnual": 3.1985,
-    "epsInclExtraItemsTTM": 3.2003999999999997,
-    "epsNormalizedAnnual": 3.1985,
-    "epsTTM": 3.2003999999999997,
-    "evEbitdaTTM": 9.634,
-    "evRevenueTTM": 0.6965,
-    "focfCagr5Y": null,
-    "forwardPE": 8.36473,
-    "forwardPEG": 0.17247,
-    "grossMargin5Y": 13.81,
-    "grossMarginAnnual": 10.82,
-    "grossMarginTTM": 10.82,
-    "inventoryTurnoverAnnual": 3.9639,
-    "inventoryTurnoverTTM": 3.9639,
-    "longTermDebt/equityAnnual": 0.4614,
-    "longTermDebt/equityQuarterly": 0.4614,
-    "marketCapitalization": 26009.26,
-    "monthToDatePriceReturnDaily": 6.1964,
-    "netIncomeEmployeeAnnual": 0.3576,
-    "netIncomeEmployeeTTM": 0.3576,
-    "netInterestCoverageAnnual": 28.0274,
-    "netInterestCoverageTTM": 365.4191,
-    "netMarginGrowth5Y": 12.7,
-    "netProfitMargin5Y": 6.53,
-    "netProfitMarginAnnual": 5.71,
-    "netProfitMarginTTM": 5.71,
-    "operatingMargin5Y": 7.57,
-    "operatingMarginAnnual": 7.09,
-    "operatingMarginTTM": 7.09,
-    "payoutRatioAnnual": null,
-    "payoutRatioTTM": null,
-    "pb": 1.7963,
-    "pbAnnual": 1.3102,
-    "pbQuarterly": 1.3102,
-    "pcfShareAnnual": null,
-    "pcfShareTTM": null,
-    "peAnnual": 11.661,
-    "peBasicExclExtraTTM": 11.661,
-    "peExclExtraAnnual": 24.98282,
-    "peExclExtraTTM": 11.661,
-    "peInclExtraTTM": 11.661,
-    "peNormalizedAnnual": 11.661,
-    "peTTM": 11.661,
-    "pegTTM": 0.31154,
-    "pfcfShareAnnual": 16.9739,
-    "pfcfShareTTM": 36.1878,
-    "pretaxMargin5Y": 7.57,
-    "pretaxMarginAnnual": 7.14,
-    "pretaxMarginTTM": 7.14,
-    "priceRelativeToS&P50013Week": -17.3167,
-    "priceRelativeToS&P50026Week": 15.8334,
-    "priceRelativeToS&P5004Week": 26.2097,
-    "priceRelativeToS&P50052Week": -21.0252,
-    "priceRelativeToS&P500Ytd": 22.3136,
-    "psAnnual": 0.6658,
-    "psTTM": 0.6658,
-    "ptbvAnnual": 7.72314,
-    "ptbvQuarterly": 7.03345,
-    "quickRatioAnnual": 1.906,
-    "quickRatioQuarterly": 1.906,
-    "receivablesTurnoverAnnual": 9.3796,
-    "receivablesTurnoverTTM": 9.3796,
-    "revenueEmployeeAnnual": 6.2621,
-    "revenueEmployeeTTM": 6.2621,
-    "revenueGrowth3Y": 76.34,
-    "revenueGrowth5Y": 61.48,
-    "revenueGrowthQuarterlyYoy": 93.16,
-    "revenueGrowthTTMYoy": 77.79,
-    "revenuePerShareAnnual": 56.0166,
-    "revenuePerShareTTM": 55.4085,
-    "revenueShareGrowth5Y": 53.15,
-    "roa5Y": 10.6,
-    "roaRfy": 7.449999999999999,
-    "roaTTM": 9.31,
-    "roe5Y": 21.15,
-    "roeRfy": 15.4,
-    "roeTTM": 25.080000000000002,
-    "roi5Y": 15.33,
-    "roiAnnual": 9.610000000000001,
-    "roiTTM": 14.23,
-    "tangibleBookValuePerShareAnnual": 37.27727,
-    "tangibleBookValuePerShareQuarterly": 40.63004,
-    "tbvCagr5Y": 18.51276,
-    "totalDebt/totalEquityAnnual": 0.6023,
-    "totalDebt/totalEquityQuarterly": 0.6023,
-    "yearToDatePriceReturnDaily": 35.2579
-  },
-  "source_status": {
-    "local_research": true,
-    "local_news": true,
-    "local_sec_filings": true,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
-## T
-Trading candidate:
-```json
-{
-  "symbol": "T",
-  "direction": "LONG",
-  "score": 78.91,
-  "boosted_score": 70.24,
-  "research": {
-    "symbol": "T",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
-  "sector": "Communication Services",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.0",
-    "vwap: 100.0",
-    "trend: 100.0"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [
-    "[WDC.md]\n# WDC \u2014 Western Digital Corporation\n\n**As of:** 2026-08-31  \n**Sector / industry:** Technology / Computer hardware and data storage  \n**Conviction:** Medium \u2014 strong AI-driven HDD cycle and improving economics, but highly cyclical and customer-concentrated\n\n## Snapshot\n\nWestern Digital is now primarily a hard-disk-drive company following the 2025 separation of its Flash business into SanDisk. It supplies high-capacity HDDs to hyperscale cloud providers, neoclouds, enterprises, OEMs, distributors, and consumers. The central thesis is that AI creates enormous volumes of data that must be stored economically, while HDDs remain attractive for high-capacity, lower-cost archival and nearline storage.\n\nWDC closed around **$450.55** on August 31, 2026. With approximately 360.5 million shares, implied market capitalization is about **$162.5 billion**. FY26 non-GAAP EPS was $10.22, but the current valuation is better judged against forward earnings because the business is in a sharp upcycle. The company ended FY26 with $1.58B of cash and $1.06B of debt, including $350M drawn on its revolver.\n\n## Latest operating results\n\nQ4 FY26 revenue was **$3.747B, up 44% year over year** and 12% sequentially. GAAP gross margin was 54.1%, GAAP operating margin was 41.7%, and non-GAAP operating margin was 44.2%. Non-GAAP diluted EPS was **$3.56**, up 109% year over year. Operating cash flow was $1.39B and free cash flow was $1.28B.\n\nFor full FY26, revenue rose 36% to **$12.919B**, non-GAAP operating income rose 107% to $4.817B, and non-GAAP EPS rose 104% to $10.22. The company declared a quarterly dividend of $0.15 per share.\n\nQ1 FY27 guidance is particularly strong: revenue is expected to be about **$4.1B at the midpoint**, up 42%\u201349% year over year, with non-GAAP gross margin of 55.5% and non-GAAP EPS of $4.00. Management expects FY27 capital expenditures to rise from FY26 as it invests in heads, media, and automation; long-term capex is expected to average 4%\u20136% of revenue.\n\n## Bull thesis\n\n- AI and cloud workloads are creating a secular need for cheap, dense, reliable storage. HDDs remain difficult to replace economically for hyperscale nearline and archival capacity.\n- The HDD market is structurally concentrated, giving Western Digital and Seagate scale, customer relationships, and engineering advantages.\n- Higher-capacity ePMR and future HAMR-related products can improve areal density, reduce customers\u2019 total storage cost, and support better pricing and margins.\n- The company has moved from a low-margin, leveraged storage cycle into a high-cash-flow period: Q4 free-cash-flow margin was about 34%, and debt has been substantially reduced since the Flash separation.\n- Cloud represented 89% of FY26 revenue, making WDC a direct beneficiary of hyperscaler infrastructure spending rather than a broad consumer-electronics bet.\n\n## Bear thesis\n\n- This is still a cyclical hardware manufacturer. Cloud customers can pause purchases, digest inventory, or reduce AI infrastructure spending, causing abrupt revenue and margin declines.\n- Customer concentration is very high: the top 10 customers represented **73%** of FY26 revenue, and three individual customers each represented at least 10%.\n- The current stock price appears to discount sustained peak-to-near-peak profitability. A return toward historical HDD margins could make headline trailing earnings look far less attractive.\n- NAND/flash is no longer consolidated inside WDC, so the company has less diversification; the remaining business is more dependent on HDD technology and cloud demand.\n- Seagate is a powerful competitor, while SSDs continue to improve in density, performance, power efficiency, and total-cost economics for some workloads.\n- Supply-chain disruptions, component shortages, manufacturing transitions, export controls, foreign exchange, and large fixed costs can amplify both upside and downside.\n\n## Catalysts\n\n1. Q1 FY27 revenue and EPS meeting or exceeding the $4.1B / $4.00 midpoint guidance.\n2. Additional cloud capacity commitments and evidence that AI data growth is increasing HDD demand rather than merely accelerating SSD adoption.\n3. Successful high-capacity product ramps with sustained gross margin above 50%.\n4. Debt reduction, share repurchases, and dividend growth funded by free cash flow.\n5. Industry supply discipline and continued favorable pricing in nearline HDDs.\n\n## What would change the view\n\n**Upgrade:** cloud growth remains strong, revenue stays above $4B quarterly, gross margins hold near the mid-50s, customer concentration does not translate into pricing pressure, and free cash flow compounds after higher capex.  \n**Downgrade:** hyperscaler orders or capex plans weaken, inventory corrections emerge, gross margin falls sharply, SSD substitution accelerates, or the stock continues to rerate upward faster than forward EPS.\n\n## Bottom line\n\nWDC is a compelling way to own the storage side of the AI infrastructure buildout. The latest quarter showed operating l",
-    "[VST.md]\n# VST \u2014 Vistra Corp.\n\n**As of:** 2026-08-27  \n**Sector / industry:** Utilities / Independent power producer and electricity generation  \n**Conviction:** Medium \u2014 attractive power-demand exposure and cash flow, but cyclical prices, regulation, and valuation matter\n\n## Snapshot\n\nVistra is a competitive power producer and electricity retailer with a large U.S. generation portfolio, including nuclear, natural gas, and renewable assets. It is not a regulated utility in the traditional sense: earnings depend substantially on wholesale power prices, capacity markets, hedging, fuel economics, and retail demand.\n\nVST was about **$139.81** on August 27, 2026, with a market capitalization of approximately **$47.4 billion** and a trailing P/E near **23.6x**. The stock is a premium-priced way to access the U.S. power shortage and data-center load-growth theme, but the valuation already reflects a meaningful part of that opportunity.\n\n## Latest operating results\n\nQ2 2026 net income was **$305 million**. Ongoing Operations Adjusted EBITDA was **$1.767 billion**, up more than 30% year over year, driven by higher realized energy and capacity prices plus the contribution from the Lotus generation acquisition. Net income was reduced by a $472 million unrealized hedge loss expected to settle in future years.\n\nVistra reaffirmed 2026 guidance for Ongoing Operations Adjusted EBITDA of **$6.8\u2013$7.6 billion** and Ongoing Operations Adjusted Free Cash Flow before Growth of **$3.925\u2013$4.725 billion**. The company had hedged approximately 100% of expected 2026 generation, 94% for 2027, and 72% for 2028 as of August 3. Management's 2027 EBITDA midpoint opportunity range is $7.4\u2013$7.8 billion, excluding potential benefits from the pending Cogentrix acquisition and Meta PPAs.\n\nVistra had approximately **$6.3 billion of available liquidity** at June 30, including $435 million of cash, $4.4 billion under its corporate revolver, and $1.45 billion under its commodity-linked facility. It has repurchased approximately $6.5 billion of stock since November 2021, reducing shares outstanding by about 30%; roughly $1.2 billion remained under the authorization as of August 3.\n\n## Bull thesis\n\n- AI data centers, industrial reshoring, EV adoption, and electrification are increasing the value of reliable, dispatchable power. Existing nuclear plants are particularly scarce and difficult to replace.\n- Vistra has long-duration nuclear PPAs with hyperscalers: a 20-year agreement with AWS for 1,200 MW from Comanche Peak and agreements with Meta covering more than 2,600 MW from PJM nuclear plants.\n- Higher capacity prices and constrained regional supply can support earnings even before new generation is built.\n- The Lotus acquisition adds approximately 2,600 MW of natural-gas generation and expands Vistra's ability to serve load growth and benefit from Texas/ERCOT demand.\n- Hedging provides substantial near-term earnings visibility, while disciplined repurchases can drive per-share growth.\n- Helix Digital Infrastructure, established with KKR, KIA, and NVIDIA, could create an additional platform for power and data-center infrastructure investment; Vistra's initial commitment is up to $1 billion.\n\n## Bear thesis\n\n- Wholesale power prices and capacity revenues are cyclical. A mild summer, weaker load, lower gas prices, transmission improvements, or new generation could reduce realized prices.\n- Nuclear operations carry outage, regulatory, maintenance, fuel, and decommissioning risks. A major forced outage can materially affect quarterly cash flow.\n- The data-center theme is powerful but not guaranteed to translate into Vistra earnings quickly; PPAs, grid interconnection, permitting, and data-center construction can take years.\n- Hedging reduces upside as well as downside. If power prices rise sharply, much of the near-term generation may already be sold forward.\n- Vistra carries meaningful debt and commodity-linked collateral requirements. Liquidity can be pressured when prices rise and margin-posting needs increase.\n- Competition for nuclear assets and AI-power exposure has pushed the valuation higher. If the market rotates away from utilities, nuclear, or AI infrastructure, multiple compression is possible even with stable earnings.\n- Environmental, nuclear-safety, market-design, and political decisions can materially change economics across ERCOT, PJM, and other markets.\n\n## Catalysts\n\n1. Higher PJM capacity prices and continued ERCOT load growth from data centers and industrial demand.\n2. Closing and integration of the Cogentrix acquisition.\n3. Initial earnings contribution from the Meta nuclear PPAs and continued execution of the AWS agreement.\n4. Helix fund investments that connect Vistra's generation assets with hyperscale data-center development.\n5. Continued share repurchases, rising free cash flow, and positive 2027 guidance revisions.\n\n## What would change the view\n\n**Upgrade:** sustained power-price and capacity-market strength, Cogentrix accretion, vi"
-  ],
-  "local_news": [
-    "[2026-09-03.md]\n# Market News \u2014 2026-09-03\n\n- U.S. futures were broadly muted early Thursday as investors weighed higher oil prices and Middle East escalation; Brent was near $97 and WTI near $93.\n- Wall Street recovered Wednesday: the Nasdaq gained about 0.5%, while Nvidia rose more than 3%; breadth remains sensitive to rates and energy prices.\n- Broadcom fell in premarket trading after its fourth-quarter revenue forecast missed lofty expectations, reinforcing the high bar for AI-infrastructure earnings.\n- The market remains vulnerable to an oil-driven inflation shock and higher Treasury yields; leadership is concentrated in AI/technology and energy.\n- Sources: https://apnews.com/article/7e1bffd68c53b54806be950f01181994 ; https://apnews.com/article/7cb0aefedfd933d048b8b3e5843449f8 ; https://www.investing.com/news/economy-news/wall-st-futures-subdued-as-investors-weigh-earnings-oil-prices-4887340\n",
-    "[2026-08-31.md]\n# Market News \u2014 2026-08-31\n\n- U.S. futures were modestly lower Monday as geopolitical escalation around the Strait of Hormuz pushed Brent crude above $91 and WTI above $86; European equities were mixed.\n- Nasdaq had recently shown relative strength, helped by Nvidia, but breadth remained uneven and late-summer liquidity raises volatility risk.\n- AI infrastructure remains the dominant leadership theme, with semiconductor and cybersecurity names showing the strongest recent participation.\n- Sources: https://apnews.com/article/00f872327d65e5330598054a234dc25a ; https://apnews.com/article/b4216a1f191d0304b4ed59e6912e23a ; https://articles.dailytickers.com/daily/20260827/\n"
-  ],
-  "local_sec_filings": [
-    "[2026-09-03.md]\n# SEC Filing Review \u2014 2026-09-03\n\n- No fresh ticker-specific SEC filing was independently verified in this collection window for the watchlist.\n- Filing status: unavailable for a complete same-day watchlist sweep; treat company-specific filing catalysts as unconfirmed until checked in EDGAR.\n",
-    "[2026-08-31.md]\n# SEC Filing Review \u2014 2026-08-31\n\n- AMD: SEC EDGAR filing index shows an August 13, 2026 filing with associated XBRL exhibits; this is the only fresh ticker-specific filing independently verified in the current collection window.\n- NVDA: an August 26, 2026 8-K is listed by a secondary filing index; verify the primary EDGAR document before relying on details.\n- For the remaining watchlist names, no new material filing was independently verified in this run. Treat filing status as unavailable rather than clean.\n- Source: https://www.sec.gov/Archives/edgar/data/2488/000119312526354029/0001193125-26-354029-index.htm\n"
-  ],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788649284,
-      "headline": "Dividends vs. Annuity: Which Turns $930,000 Into More Monthly Income for Life?",
-      "id": 141550144,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "T",
-      "source": "Yahoo",
-      "summary": "Turning $930,000 into a lifetime income stream sounds simple until you realize an annuity payout and a dividend yield are not measuring the same thing, and that gap changes everything about which strategy actually wins.",
-      "url": "https://finnhub.io/api/news?id=602a1ed11cc72016b6d13870259645f3075a66b65765c0023c4fc91be618a0ad"
-    },
-    {
-      "category": "company",
-      "datetime": 1788600890,
-      "headline": "AT&T Preferred Cumulative Shares Series A And C Seeking A Bid",
-      "id": 141519407,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/874102792/image_874102792.jpg?io=getty-c-w1536",
-      "related": "T",
+      "datetime": 1788738273,
+      "headline": "I'm Buying Consumer Experience Like Delta, Carnival, And Avoiding Discretionary Stocks",
+      "id": 141652147,
+      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2128192721/image_2128192721.jpg?io=getty-c-w1536",
+      "related": "CCL",
       "source": "SeekingAlpha",
-      "summary": "AT&T preferred shares, series A and C, currently offer a 7.1% yield. With secure-looking dividends, the preferreds are rated a Buy; click to read more.",
-      "url": "https://finnhub.io/api/news?id=989955c8ed33d4e69e3bc3b2e059d2b2f385d302adf943a93ccfb3a1e555ace6"
+      "summary": "Travel demand is robust among boomers, and inflation risks are monitored. Click here to see why consumer experience stocks are constructive.",
+      "url": "https://finnhub.io/api/news?id=1582ef2d0582b3ed5928ab2cc1a284c1b649982bd24e5b3d62a524023d8373cd"
     },
     {
       "category": "company",
-      "datetime": 1788599227,
-      "headline": "Tutor Perini (TPC) Stock Trades Below Fair Value Despite A Huge Run",
-      "id": 141508710,
+      "datetime": 1788530160,
+      "headline": "Carnival Stock Just Hit a 52-Week Low. Why It\u2019s Time to Buy.",
+      "id": 141438151,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "T",
+      "related": "CCL",
       "source": "Yahoo",
-      "summary": "Tutor Perini stock has logged a very strong multi year run, yet the current intrinsic value estimate based on a Discounted Cash Flow, or DCF, approach still points to a meaningful valuation gap. Market based multiples also screen the shares as undervalued. That mixed but generally supportive setup on the checks sits alongside a value score that suggests neither a clear bargain nor an obvious overpricing. Over the past three years, Tutor Perini has delivered a cumulative return that is very...",
-      "url": "https://finnhub.io/api/news?id=33687e02c55f07ff3e6700e68c6e8635c28055a700da87026285872ebeedd0b2"
+      "summary": "Carnival  is caught in a perfect storm.  Carnival\u2019s stock hit a 52-week low on Tuesday, as the debt-logged cruise line navigates higher oil prices, a hantavirus scare for the cruise industry, and a geopolitical environment that\u2019s keeping more travelers close to home.",
+      "url": "https://finnhub.io/api/news?id=c5510488bad0060711d6ae1f68d050b698cd5fefa626256f6a589d7e6804bc07"
     },
     {
       "category": "company",
-      "datetime": 1788558303,
-      "headline": "Why AT&T (T) Dipped More Than Broader Market Today",
-      "id": 141464608,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "T",
-      "source": "Yahoo",
-      "summary": "AT&T (T) concluded the recent trading session at $25.72, signifying a -1.81% move from its prior day's close.",
-      "url": "https://finnhub.io/api/news?id=62ffaeb064217f7f256ae53cb5f15d960f945dfd348cf7b382827e1818c43168"
+      "datetime": 1788496800,
+      "headline": "Software Rebound Extends Moat Index Gains",
+      "id": 141410253,
+      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1725655946/image_1725655946.jpg?io=getty-c-w1536",
+      "related": "CCL",
+      "source": "SeekingAlpha",
+      "summary": "The S&P 500 gained 2.72% and reached a record high in August, with energy leading the market as crude prices rose. Read more here.",
+      "url": "https://finnhub.io/api/news?id=814e73db5d703af98ad84b037219310746d8c95d98095282138f68b72379680b"
     },
     {
       "category": "company",
-      "datetime": 1788535800,
-      "headline": "AST SpaceMobile Stock Soared 12%\u2014This Was the Catalyst",
-      "id": 141525121,
+      "datetime": 1788429780,
+      "headline": "Reimagined Ocean Bar Debuts on Oosterdam with Expanded Entertainment",
+      "id": 141399334,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "T",
+      "related": "CCL",
       "source": "Yahoo",
-      "summary": "AST SpaceMobile shares jumped nearly 12% after Berenberg initiated coverage with a Buy rating and $92 price target, even as regulatory hurdles and cash burn remain key challenges.",
-      "url": "https://finnhub.io/api/news?id=05028865515d169d684043035b222e47e73fa2ec6976aee35695c2532ef95368"
+      "summary": "Holland America Line Evolution is bringing a new chapter to Ocean Bar aboard Oosterdam. Inspired by the glamour of the golden age of ocean travel, the redesigned venue brings live entertainment, cocktails and conversation together in a sophisticated new setting, featuring a new stage, refreshed lounge spaces and a reimagined layout designed to connect guests more closely with the performances.",
+      "url": "https://finnhub.io/api/news?id=1b1c67aacc17124d699105cc9f7d0bf58fbe52885bcc64c0f8e5afbcef058ae4"
+    },
+    {
+      "category": "company",
+      "datetime": 1788393863,
+      "headline": "3 S&P 500 Stocks That Fall Short",
+      "id": 141388067,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "CCL",
+      "source": "Yahoo",
+      "summary": "The S&P 500 (^GSPC) is home to the biggest and most well-known companies in the market, making it a go-to index for investors seeking stability. But not all large-cap stocks are created equal - some are struggling with slowing growth, declining margins, or increased competition.",
+      "url": "https://finnhub.io/api/news?id=04556937173c6b929cbe355d04281b67fc53b5223be4696cbb0647e417f9920f"
     }
   ],
-  "polygon_news": [],
+  "polygon_news": [
+    {
+      "id": "b48c89cd1f2c0a3aff01c748ec2d68ee205558ae20ffc2110ef3bef29b26ceac",
+      "publisher": {
+        "name": "Zacks Investment Research",
+        "homepage_url": "https://www.zacks.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
+      },
+      "title": "Will Carnival (CCL) Beat Estimates Again in Its Next Earnings Report?",
+      "author": "Zacks.Com",
+      "published_utc": "2026-09-07T16:10:01Z",
+      "article_url": "https://www.zacks.com/stock/news/2986007/will-carnival-ccl-beat-estimates-again-in-its-next-earnings-report?cid=CS-ZC-FT-fundamental_analysis|yseop_template_7-2986007",
+      "tickers": [
+        "CCL"
+      ],
+      "image_url": "https://staticx-tuner.zacks.com/images/default_article_images/default194.jpg",
+      "description": "Carnival (CCL) has demonstrated a strong track record of beating earnings estimates, surpassing consensus by an average of 14.13% over the last two quarters. With a positive Earnings ESP of +0.32% and a Zacks Rank #3 (Hold), the cruise operator appears positioned for another earnings beat, as stocks with this combination historically beat estimates nearly 70% of the time.",
+      "keywords": [
+        "earnings beat",
+        "Carnival",
+        "cruise operator",
+        "Earnings ESP",
+        "earnings estimates",
+        "Zacks Rank"
+      ],
+      "insights": [
+        {
+          "ticker": "CCL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Carnival has consistently beaten earnings estimates in recent quarters (17.14% and 11.11% surprises), maintains a positive Earnings ESP of +0.32%, and holds a Zacks Rank #3 (Hold). The combination of these factors suggests strong potential for another earnings beat, with historical data showing ~70% success rate for stocks with similar metrics."
+        }
+      ]
+    },
+    {
+      "id": "4b5c2335283d323322152d3cae6801b238df81ab97491174488625ba2deeb7e0",
+      "publisher": {
+        "name": "Zacks Investment Research",
+        "homepage_url": "https://www.zacks.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/zacks.png",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/zacks.ico"
+      },
+      "title": "Carnival (CCL) Sees a More Significant Dip Than Broader Market: Some Facts to Know",
+      "author": "Zacks.Com",
+      "published_utc": "2026-08-31T21:45:01Z",
+      "article_url": "https://www.zacks.com/stock/news/2982824/carnival-ccl-sees-a-more-significant-dip-than-broader-market-some-facts-to-know?cid=CS-ZC-FT-fundamental_analysis|yseop_template_6-2982824",
+      "tickers": [
+        "CCL"
+      ],
+      "image_url": "https://staticx-tuner.zacks.com/images/default_article_images/default122.jpg",
+      "description": "Carnival stock declined 3.51% to $23.89, significantly underperforming the S&P 500's 0.33% loss. The cruise operator has fallen 10.97% over the past month while the broader market gained 3.87%. Analysts expect upcoming earnings of $1.36 per share (down 4.9% YoY) with revenue of $8.36 billion (up 2.59% YoY). Carnival holds a Zacks Rank of #3 (Hold) with a Forward P/E of 11.1, trading at a discount to its industry average.",
+      "keywords": [
+        "cruise operator",
+        "earnings decline",
+        "stock underperformance",
+        "valuation discount",
+        "consumer discretionary",
+        "leisure and recreation"
+      ],
+      "insights": [
+        {
+          "ticker": "CCL",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Stock significantly underperformed the broader market with a 3.51% daily decline and 10.97% monthly decline. Expected earnings are declining 4.9% year-over-year despite modest revenue growth. The company's industry ranks in the bottom 29% of all industries. While the stock trades at a valuation discount, the negative earnings trajectory and weak industry positioning support a negative outlook."
+        }
+      ]
+    },
+    {
+      "id": "9012464911dbd7d004c39b721386a4cc4ba41b963ef6ed1bbe87eafe7a9dd5f1",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "Boomers Are Getting Rich and Retiring Early. 1 No-Brainer Stock To Buy Now",
+      "author": "Jeremy Bowman",
+      "published_utc": "2026-08-12T02:32:18Z",
+      "article_url": "https://www.fool.com/investing/2026/08/11/boomers-are-getting-rich-and-retiring-early-1-no-b/?source=iedfolrf0000001",
+      "tickers": [
+        "VIK",
+        "CCL",
+        "RCL",
+        "NCLH",
+        "ABNB"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F882933%2Flongship-vidar-rhine-river-koblenz.jpg&w=1200&op=resize",
+      "description": "Rising stock markets and home prices are giving baby boomers significant disposable income, leading many to retire early. This demographic shift creates investment opportunities for companies targeting affluent older travelers. Viking Holdings, a luxury cruise line focused on adults 55+, is positioned to capitalize on this trend with strong revenue growth and differentiated offerings compared to traditional cruise competitors.",
+      "keywords": [
+        "baby boomers",
+        "early retirement",
+        "disposable income",
+        "cruise lines",
+        "luxury travel",
+        "demographic trends",
+        "stock market wealth"
+      ],
+      "insights": [
+        {
+          "ticker": "VIK",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strong financial performance with 17.5% revenue growth and 43.9% EBITDA growth in Q1. Stock has appreciated significantly since IPO ($24 to $101+). Well-positioned to benefit from growing boomer wealth and spending power. Differentiated business model targeting underserved affluent 55+ demographic with expected 30% EPS compound annual growth rate."
+        },
+        {
+          "ticker": "CCL",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a traditional cruise line peer but not highlighted as a primary investment opportunity. Article emphasizes Viking's differentiation from Carnival and other competitors."
+        },
+        {
+          "ticker": "RCL",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a traditional cruise line peer but not highlighted as a primary investment opportunity. Article emphasizes Viking's differentiation from Royal Caribbean and other competitors."
+        },
+        {
+          "ticker": "NCLH",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as a traditional cruise line peer but not highlighted as a primary investment opportunity. Article emphasizes Viking's differentiation from Norwegian and other competitors."
+        },
+        {
+          "ticker": "ABNB",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Referenced as evidence that travel demand continues to boom despite economic concerns, supporting the broader thesis of strong discretionary spending by affluent demographics."
+        }
+      ]
+    },
+    {
+      "id": "b434f83f312f4ead1dbb035d0667c31ac70444fd6815b50472ee0833c7c35680",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "Norwegian Cruise Line Is Down 19% This Year and Reports Earnings July 30. Is Now the Time to Buy?",
+      "author": "Thomas Niel",
+      "published_utc": "2026-07-27T18:15:00Z",
+      "article_url": "https://www.fool.com/investing/2026/07/27/norwegian-cruise-line-is-down-19-this-year-and-rep/?source=iedfolrf0000001",
+      "tickers": [
+        "NCLH",
+        "CCL",
+        "RCL"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F880212%2Fcruise-ship-luxury-travel-1200x675-128554e.jpg&w=1200&op=resize",
+      "description": "Norwegian Cruise Line shares have declined 19% this year due to Mideast geopolitical tensions affecting fuel prices and passenger demand. While the company reports earnings on July 30, analyst Thomas Niel recommends Carnival as a stronger alternative in the cruise industry, citing Carnival's lower leverage, dividend yield of 1.7%, and better risk/reward proposition compared to Norwegian's steeper valuation discount.",
+      "keywords": [
+        "cruise lines",
+        "earnings report",
+        "geopolitical tensions",
+        "fuel prices",
+        "dividend yield",
+        "leverage",
+        "valuation"
+      ],
+      "insights": [
+        {
+          "ticker": "NCLH",
+          "sentiment": "negative",
+          "sentiment_reasoning": "Stock down 19% year-to-date; management lowered 2026 earnings guidance significantly; analyst recommends skipping the stock despite potential post-earnings rally; trades at steep discount but with higher leverage and no dividend"
+        },
+        {
+          "ticker": "CCL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Recommended as stronger alternative to Norwegian; trades at similar forward earnings multiple but with lower leverage; currently pays dividend with 1.7% yield; represents better risk/reward proposition for cruise industry investors"
+        },
+        {
+          "ticker": "RCL",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Mentioned as competitor trading at premium valuation (17x forward earnings vs Norwegian's 11x); no specific recommendation or criticism provided"
+        }
+      ]
+    },
+    {
+      "id": "3bb455085ff5f093c0207d1c2594970b8ee212d575da56517e5eab07f61935b4",
+      "publisher": {
+        "name": "The Motley Fool",
+        "homepage_url": "https://www.fool.com/",
+        "logo_url": "https://s3.polygon.io/public/assets/news/logos/themotleyfool.svg",
+        "favicon_url": "https://s3.polygon.io/public/assets/news/favicons/themotleyfool.ico"
+      },
+      "title": "Carnival Reported Earnings on June 23, Royal Caribbean Is Next on July 28, Then Norwegian Cruise Line on July 30. Here's My Top Buy of the Bunch.",
+      "author": "Jeff Siegel",
+      "published_utc": "2026-07-19T11:05:00Z",
+      "article_url": "https://www.fool.com/investing/2026/07/19/carnival-reports-earnings-on-july-23-followed-by-r/?source=iedfolrf0000001",
+      "tickers": [
+        "RCL",
+        "CCL",
+        "NCLH"
+      ],
+      "image_url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F878825%2Fcruise-vacation-travel-boat-water-ocean.jpg&w=1200&op=resize",
+      "description": "The cruise industry has completed its post-pandemic recovery with healthy occupancy rates and pricing. Among the three largest cruise operators, Royal Caribbean is recommended as the top buy due to its strongest financial results, industry-leading profitability, record bookings, and healthier balance sheet compared to Carnival and Norwegian Cruise Line, which both carry higher debt levels relative to their earnings.",
+      "keywords": [
+        "cruise industry",
+        "earnings reports",
+        "post-pandemic recovery",
+        "occupancy rates",
+        "balance sheet",
+        "debt management",
+        "booking trends",
+        "profitability",
+        "onboard spending"
+      ],
+      "insights": [
+        {
+          "ticker": "RCL",
+          "sentiment": "positive",
+          "sentiment_reasoning": "Strongest financial performer with $4.54B Q1 revenue, highest profitability margins, record bookings at higher prices, accelerating demand, and the healthiest balance sheet among the three competitors."
+        },
+        {
+          "ticker": "CCL",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Turnaround gaining momentum with record operating income and strong bookings, but carries significantly higher debt ($23.4B) relative to peers, creating execution risk despite positive operational trends."
+        },
+        {
+          "ticker": "NCLH",
+          "sentiment": "neutral",
+          "sentiment_reasoning": "Fleet modernization and occupancy recovery are positive, but the company operates with substantial leverage ($15.2B debt) and generates considerably less revenue and EBITDA than competitors, leaving limited margin for error."
+        }
+      ]
+    }
+  ],
   "earnings": [],
   "fundamentals": {
-    "10DayAverageTradingVolume": 29.32582,
-    "13WeekPriceReturnDaily": 12.78,
-    "26WeekPriceReturnDaily": -10.429,
-    "3MonthADReturnStd": 29.400875,
-    "3MonthAverageTradingVolume": 53.91477,
-    "52WeekHigh": 29.79,
-    "52WeekHighDate": "2025-09-15",
-    "52WeekLow": 19.89,
-    "52WeekLowDate": "2026-07-02",
-    "52WeekPriceReturnDaily": -13.2139,
-    "5DayPriceReturnDaily": -0.8111,
-    "assetTurnoverAnnual": 0.299,
-    "assetTurnoverTTM": 0.3006,
-    "beta": 0.27361485,
-    "bookValuePerShareAnnual": 15.7063,
-    "bookValuePerShareQuarterly": 16.0552,
-    "bookValueShareGrowth5Y": -7.09,
-    "capexCagr5Y": 7.25,
-    "cashFlowPerShareAnnual": 2.7626,
-    "cashFlowPerShareQuarterly": 2.5664,
-    "cashFlowPerShareTTM": 1.14693,
-    "cashPerSharePerShareAnnual": 2.591,
-    "cashPerSharePerShareQuarterly": 2.5542,
-    "currentDividendYieldTTM": 4.5565,
-    "currentEv/freeCashFlowAnnual": 15.5516,
-    "currentEv/freeCashFlowTTM": 17.1266,
-    "currentRatioAnnual": 0.9061,
-    "currentRatioQuarterly": 0.971,
-    "dividendGrowthRate5Y": -11.16,
-    "dividendIndicatedAnnual": 1.11,
-    "dividendPerShareAnnual": 1.151,
-    "dividendPerShareTTM": 1.1421,
-    "dividendYieldIndicatedAnnual": 6.84762,
-    "ebitdPerShareAnnual": 6.275,
-    "ebitdPerShareTTM": 6.5107,
-    "ebitdaCagr5Y": 7.83,
-    "ebitdaInterimCagr5Y": 0,
-    "enterpriseValue": 302353.27,
-    "epsAnnual": 3.0579,
-    "epsBasicExclExtraItemsAnnual": 3.0579,
-    "epsBasicExclExtraItemsTTM": 3.0432,
-    "epsExclExtraItemsAnnual": 3.0579,
-    "epsExclExtraItemsTTM": 3.0432,
+    "10DayAverageTradingVolume": 20.60838,
+    "13WeekPriceReturnDaily": -15.5835,
+    "26WeekPriceReturnDaily": -17.5955,
+    "3MonthADReturnStd": 42.478516,
+    "3MonthAverageTradingVolume": 23.51452,
+    "52WeekHigh": 34.03,
+    "52WeekHighDate": "2026-02-06",
+    "52WeekLow": 23.075,
+    "52WeekLowDate": "2026-09-01",
+    "52WeekPriceReturnDaily": -25.5306,
+    "5DayPriceReturnDaily": -1.5906,
+    "assetTurnoverAnnual": 0.5151,
+    "assetTurnoverTTM": 0.5295,
+    "beta": 2.5201573,
+    "bookValuePerShareAnnual": 9.3628,
+    "bookValuePerShareQuarterly": 9.4519,
+    "bookValueShareGrowth5Y": -13.12,
+    "capexCagr5Y": -0.05,
+    "cashFlowPerShareAnnual": 1.987,
+    "cashFlowPerShareQuarterly": 2.3316,
+    "cashFlowPerShareTTM": 0.55476,
+    "cashPerSharePerShareAnnual": 1.4695,
+    "cashPerSharePerShareQuarterly": 1.6348,
+    "currentDividendYieldTTM": 1.2857,
+    "currentEv/freeCashFlowAnnual": 21.0381,
+    "currentEv/freeCashFlowTTM": 17.1449,
+    "currentRatioAnnual": 0.3223,
+    "currentRatioQuarterly": 0.3344,
+    "dividendGrowthRate5Y": null,
+    "dividendIndicatedAnnual": 0.6,
+    "dividendPerShareAnnual": null,
+    "dividendPerShareTTM": 0.3085,
+    "ebitdPerShareAnnual": 4.8959,
+    "ebitdPerShareTTM": 5.1348,
+    "ebitdaCagr5Y": null,
+    "ebitdaInterimCagr5Y": null,
+    "enterpriseValue": 54846.451,
+    "epsAnnual": 1.9686,
+    "epsBasicExclExtraItemsAnnual": 1.9686,
+    "epsBasicExclExtraItemsTTM": 2.193,
+    "epsExclExtraItemsAnnual": 1.9686,
+    "epsExclExtraItemsTTM": 2.193,
     "epsGrowth3Y": null,
     "epsGrowth5Y": null,
-    "epsGrowthQuarterlyYoy": 6.85,
-    "epsGrowthTTMYoy": 72.22,
-    "epsInclExtraItemsAnnual": 3.0579,
-    "epsInclExtraItemsTTM": 3.0432,
-    "epsNormalizedAnnual": 3.0579,
-    "epsTTM": 3.0432,
-    "evEbitdaTTM": 6.5758,
-    "evRevenueTTM": 2.3763,
-    "focfCagr5Y": -7.32,
-    "forwardPE": 9.39139,
-    "forwardPEG": 0.87402,
-    "grossMargin5Y": 58.24,
-    "grossMarginAnnual": 59.55,
-    "grossMarginTTM": 59.72,
-    "inventoryTurnoverAnnual": 21.6716,
-    "inventoryTurnoverTTM": 21.6931,
-    "longTermDebt/equityAnnual": 1.139,
-    "longTermDebt/equityQuarterly": 1.219,
-    "marketCapitalization": 175969.27,
-    "monthToDatePriceReturnDaily": -0.8111,
-    "netIncomeEmployeeAnnual": 0.1656,
-    "netIncomeEmployeeTTM": 0.1626,
-    "netInterestCoverageAnnual": 4.6419,
-    "netInterestCoverageTTM": 6.5973,
+    "epsGrowthQuarterlyYoy": -4.31,
+    "epsGrowthTTMYoy": 21.77,
+    "epsInclExtraItemsAnnual": 1.9686,
+    "epsInclExtraItemsTTM": 2.193,
+    "epsNormalizedAnnual": 1.9686,
+    "epsTTM": 2.193,
+    "evEbitdaTTM": 7.6473,
+    "evRevenueTTM": 2.0082,
+    "focfCagr5Y": null,
+    "forwardPE": 11.13169,
+    "forwardPEG": 1.20669,
+    "grossMargin5Y": 29.18,
+    "grossMarginAnnual": 54.76,
+    "grossMarginTTM": 54.91,
+    "inventoryTurnoverAnnual": 23.8004,
+    "inventoryTurnoverTTM": 23.9591,
+    "longTermDebt/equityAnnual": 1.9568,
+    "longTermDebt/equityQuarterly": 1.8058,
+    "marketCapitalization": 32200.451,
+    "monthToDatePriceReturnDaily": -1.5906,
+    "netIncomeEmployeeAnnual": 0.0242,
+    "netIncomeEmployeeTTM": 0.0269,
+    "netInterestCoverageAnnual": 3.6875,
+    "netInterestCoverageTTM": 3.1356,
     "netMarginGrowth5Y": null,
-    "netProfitMargin5Y": 9.22,
-    "netProfitMarginAnnual": 17.47,
-    "netProfitMarginTTM": 16.94,
-    "operatingMargin5Y": 13.9,
-    "operatingMarginAnnual": 19.23,
-    "operatingMarginTTM": 20.12,
-    "payoutRatioAnnual": 37.26,
-    "payoutRatioTTM": 37.19,
-    "pb": 1.5933,
-    "pbAnnual": 1.5932,
-    "pbQuarterly": 1.3023,
-    "pcfShareAnnual": 4.3682,
-    "pcfShareTTM": 4.4104,
-    "peAnnual": 8.0157,
-    "peBasicExclExtraTTM": 8.1626,
-    "peExclExtraTTM": 8.1626,
-    "peInclExtraTTM": 8.1626,
-    "peNormalizedAnnual": 8.0157,
-    "peTTM": 8.1626,
-    "pegTTM": 0.712,
-    "pfcfShareAnnual": 9.051,
-    "pfcfShareTTM": 9.9677,
-    "pretaxMargin5Y": 14.11,
-    "pretaxMarginAnnual": 21.49,
-    "pretaxMarginTTM": 20.54,
-    "priceRelativeToS&P50013Week": 11.0497,
-    "priceRelativeToS&P50026Week": -23.6373,
-    "priceRelativeToS&P5004Week": 7.1449,
-    "priceRelativeToS&P50052Week": -32.2099,
-    "priceRelativeToS&P500Ytd": -9.5627,
-    "psAnnual": 1.4005,
-    "psTTM": 1.383,
-    "ptbvAnnual": 3.7288,
-    "ptbvQuarterly": 16.5315,
-    "quickRatioAnnual": 0.6838,
-    "quickRatioQuarterly": 0.6761,
-    "receivablesTurnoverAnnual": 9.4983,
-    "receivablesTurnoverTTM": 9.8792,
-    "revenueEmployeeAnnual": 0.9476,
-    "revenueEmployeeTTM": 0.9596,
-    "revenueGrowth3Y": 1.34,
-    "revenueGrowth5Y": -2.56,
-    "revenueGrowthQuarterlyYoy": 2.3,
-    "revenueGrowthTTMYoy": 2.63,
-    "revenuePerShareAnnual": 17.5022,
-    "revenuePerShareTTM": 18.3183,
-    "revenueShareGrowth5Y": -2.62,
-    "roa5Y": 2.61,
-    "roaRfy": 5.220000000000001,
-    "roaTTM": 5.09,
-    "roe5Y": 9.52,
-    "roeRfy": 19.86,
-    "roeTTM": 19.54,
-    "roi5Y": 4.38,
-    "roiAnnual": 8.9,
-    "roiTTM": 8.63,
-    "tangibleBookValuePerShareAnnual": 6.5972,
-    "tangibleBookValuePerShareQuarterly": 1.4262,
-    "tbvCagr5Y": 49.66,
-    "totalDebt/totalEquityAnnual": 1.2313,
-    "totalDebt/totalEquityQuarterly": 1.3034,
-    "yearToDatePriceReturnDaily": 3.3816
-  },
-  "source_status": {
-    "local_research": true,
-    "local_news": true,
-    "local_sec_filings": true,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
-## WBD
-Trading candidate:
-```json
-{
-  "symbol": "WBD",
-  "direction": "LONG",
-  "score": 75.26,
-  "boosted_score": 67.68,
-  "research": {
-    "symbol": "WBD",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
-  "sector": "Communication Services",
-  "reasons": [
-    "market: 100.0",
-    "sector: 82.0",
-    "vwap: 100.0",
-    "trend: 100.0",
-    "extension: 100.0"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [],
-  "local_news": [],
-  "local_sec_filings": [],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788539080,
-      "headline": "Netflix Falls 4% as Rate Repricing Pressures Long-Duration Growth; Disney Dips, Warner Bros. Discovery Sits Tight",
-      "id": 141446665,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WBD",
-      "source": "Yahoo",
-      "summary": "Rising Treasury yields are carving a sharp divide inside the streaming sector, and not every media stock is absorbing the pressure equally. The gap between the biggest loser and the name sitting virtually unchanged tells you something important about how rate risk hides in plain sight.",
-      "url": "https://finnhub.io/api/news?id=7ae8d905f4cc86b73360d8676ca26d8821c4b152c54cbf48bab49b90d4449625"
-    },
-    {
-      "category": "company",
-      "datetime": 1788469173,
-      "headline": "DIS Is Priced Like The Best Of Its Group. Is It?",
-      "id": 141405303,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WBD",
-      "source": "Yahoo",
-      "summary": "The market is charging a premium for Walt Disney stock, but its growth and profit metrics currently trail key rivals. Is this a bet on a magical future, or just a storybook valuation.",
-      "url": "https://finnhub.io/api/news?id=d3ca2480cdf4102d28394ec135e9dbee8dc83136c52f5d51ed0fcd7a06a2f0c8"
-    },
-    {
-      "category": "company",
-      "datetime": 1788397703,
-      "headline": "1 Stock Under $50 to Target This Week and 2 We Find Risky",
-      "id": 141385939,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WBD",
-      "source": "Yahoo",
-      "summary": "Stocks trading between $10 and $50 can be particularly interesting as they frequently represent businesses that have survived their early challenges. However, investors should remain vigilant as some may still have unproven business models, leaving them vulnerable to the ebbs and flows of the broader market.",
-      "url": "https://finnhub.io/api/news?id=c1d609aaab913c7e42875b2fed39a13981d9514cc3b793995f6e81d443d84001"
-    },
-    {
-      "category": "company",
-      "datetime": 1788375180,
-      "headline": "Wall Street Is Putting Close to 85% Odds of Paramount- Warner Deal Getting Done",
-      "id": 141385940,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WBD",
-      "source": "Yahoo",
-      "summary": "Investors are betting that Paramount, led by CEO David Ellison, will work out a deal to avert an antitrust lawsuit filed by a group of state attorney generals.",
-      "url": "https://finnhub.io/api/news?id=27208f22eb9f3e9dc2eb8e3165b0b8b60ef47bd74dc30b89d5b45e6077c7d78c"
-    },
-    {
-      "category": "company",
-      "datetime": 1788367415,
-      "headline": "FuboTV Rallies 7%, Disney Ticks Up: Is the Hulu Live TV Deal Finally Getting Credit?",
-      "id": 141379642,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WBD",
-      "source": "Yahoo",
-      "summary": "FuboTV is surging midday with no earnings release, no filing, and no corporate announcement to explain it. Something is shifting in how the market values the combined live TV bundle, and it shows up very differently across three tickers.",
-      "url": "https://finnhub.io/api/news?id=181b2f1dec03dda85d97a197bbc2c56b1ac0386e7de20ea90a18c30fbaadd1ec"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 16.97469,
-    "13WeekPriceReturnDaily": 4.6296,
-    "26WeekPriceReturnDaily": 0.1773,
-    "3MonthADReturnStd": 20.285341,
-    "3MonthAverageTradingVolume": 20.68744,
-    "52WeekHigh": 30,
-    "52WeekHighDate": "2025-12-12",
-    "52WeekLow": 11.77,
-    "52WeekLowDate": "2025-09-05",
-    "52WeekPriceReturnDaily": 133.2783,
-    "5DayPriceReturnDaily": -0.9814,
-    "assetTurnoverAnnual": 0.3726,
-    "assetTurnoverTTM": 0.3651,
-    "beta": 1.650373,
-    "bookValuePerShareAnnual": 14.4835,
-    "bookValuePerShareQuarterly": 13.0933,
-    "bookValueShareGrowth5Y": 9.82223,
-    "capexCagr5Y": 25.09,
-    "cashFlowPerShareAnnual": 1.2452,
-    "cashFlowPerShareQuarterly": 0.8692,
-    "cashFlowPerShareTTM": 6.85075,
-    "cashPerSharePerShareAnnual": 1.8411,
-    "cashPerSharePerShareQuarterly": 1.3433,
-    "currentDividendYieldTTM": null,
-    "currentEv/freeCashFlowAnnual": 32.2479,
-    "currentEv/freeCashFlowTTM": 45.6795,
-    "currentRatioAnnual": 1.0565,
-    "currentRatioQuarterly": 0.7767,
-    "dividendIndicatedAnnual": 0,
-    "dividendPerShareTTM": null,
-    "ebitdPerShareAnnual": 3.7024,
-    "ebitdPerShareTTM": 1.4728,
-    "ebitdaCagr5Y": 19.91,
-    "ebitdaInterimCagr5Y": 3.37,
-    "enterpriseValue": 99581.37,
-    "epsAnnual": 0.2874,
-    "epsBasicExclExtraItemsAnnual": 0.2874,
-    "epsBasicExclExtraItemsTTM": -1.2734999999999999,
-    "epsExclExtraItemsAnnual": 0.2874,
-    "epsExclExtraItemsTTM": -1.2734999999999999,
-    "epsGrowth3Y": null,
-    "epsGrowth5Y": -30.82,
-    "epsGrowthQuarterlyYoy": -90.84,
-    "epsGrowthTTMYoy": null,
-    "epsInclExtraItemsAnnual": 0.2874,
-    "epsInclExtraItemsTTM": -1.2734999999999999,
-    "epsNormalizedAnnual": 0.2874,
-    "epsTTM": -1.2734999999999999,
-    "evEbitdaTTM": 26.9722,
-    "evRevenueTTM": 2.7573,
-    "focfCagr5Y": 5.73,
-    "grossMargin5Y": 46.05,
-    "grossMarginAnnual": 44,
-    "grossMarginTTM": 47.67,
-    "longTermDebt/equityAnnual": 0.9028,
-    "longTermDebt/equityQuarterly": 0.9297,
-    "marketCapitalization": 70927.37,
-    "monthToDatePriceReturnDaily": -0.9814,
-    "netIncomeEmployeeAnnual": 0.0205,
-    "netIncomeEmployeeTTM": -0.0892,
-    "netInterestCoverageAnnual": -0.6698,
-    "netInterestCoverageTTM": 1.7771,
-    "netMarginGrowth5Y": -29.78,
-    "netProfitMargin5Y": -9.59,
-    "netProfitMarginAnnual": 1.95,
-    "netProfitMarginTTM": -8.77,
-    "operatingMargin5Y": -4.62,
-    "operatingMarginAnnual": 9.88,
-    "operatingMarginTTM": -3.83,
-    "pb": 2.1599,
-    "pbAnnual": 1.9886,
-    "pbQuarterly": 2.0355,
-    "pcfShareAnnual": 16.4222,
-    "pcfShareTTM": 20.7208,
-    "peAnnual": 97.5617,
-    "peBasicExclExtraTTM": null,
-    "peExclExtraTTM": null,
-    "peInclExtraTTM": null,
-    "peNormalizedAnnual": 97.5617,
-    "peTTM": null,
-    "pfcfShareAnnual": 22.9687,
-    "pfcfShareTTM": 26.7046,
-    "pretaxMargin5Y": -9.73,
-    "pretaxMarginAnnual": 4.39,
-    "pretaxMarginTTM": -10.44,
-    "priceRelativeToS&P50013Week": 2.8993,
-    "priceRelativeToS&P50026Week": -13.031,
-    "priceRelativeToS&P5004Week": 5.5032,
-    "priceRelativeToS&P50052Week": 114.2823,
-    "priceRelativeToS&P500Ytd": -14.9221,
-    "psAnnual": 1.9017,
-    "psTTM": 1.9639,
-    "ptbvQuarterly": 5.6953,
-    "quickRatioAnnual": 0.7888,
-    "quickRatioQuarterly": 0.5157,
-    "receivablesTurnoverAnnual": 7.2837,
-    "receivablesTurnoverTTM": 6.9889,
-    "revenueEmployeeAnnual": 1.0506,
-    "revenueEmployeeTTM": 1.0173,
-    "revenueGrowth3Y": 3.32,
-    "revenueGrowth5Y": 28.44,
-    "revenueGrowthQuarterlyYoy": -11.16,
-    "revenueGrowthTTMYoy": -6.05,
-    "revenuePerShareAnnual": 14.7415,
-    "revenuePerShareTTM": 14.0252,
-    "revenueShareGrowth5Y": -1.48,
-    "roa5Y": -3.04,
-    "roaRfy": 0.73,
-    "roaTTM": -3.2,
-    "roe5Y": -9.02,
-    "roeRfy": 2.02,
-    "roeTTM": -9.22,
-    "roi5Y": -4.32,
-    "roiAnnual": 1.06,
-    "roiTTM": -4.73,
-    "tangibleBookValuePerShareAnnual": -24.27037,
-    "tangibleBookValuePerShareQuarterly": 4.3811,
-    "totalDebt/totalEquityAnnual": 0.9067,
-    "totalDebt/totalEquityQuarterly": 0.9752,
-    "yearToDatePriceReturnDaily": -1.9778
+    "netProfitMargin5Y": -106.07,
+    "netProfitMarginAnnual": 10.37,
+    "netProfitMarginTTM": 11.23,
+    "operatingMargin5Y": -80.97,
+    "operatingMarginAnnual": 15.3,
+    "operatingMarginTTM": 15.78,
+    "payoutRatioTTM": 52.08,
+    "pb": 2.4831,
+    "pbAnnual": 2.746,
+    "pbQuarterly": 2.6284,
+    "pcfShareAnnual": 5.1786,
+    "pcfShareTTM": 4.7402,
+    "peAnnual": 11.6668,
+    "peBasicExclExtraTTM": 10.4956,
+    "peExclExtraTTM": 10.4956,
+    "peInclExtraTTM": 10.4956,
+    "peNormalizedAnnual": 11.6668,
+    "peTTM": 10.4956,
+    "pegTTM": 1.341,
+    "pfcfShareAnnual": 12.3515,
+    "pfcfShareTTM": 10.0658,
+    "pretaxMargin5Y": -106.25,
+    "pretaxMarginAnnual": 10.41,
+    "pretaxMarginTTM": 11.34,
+    "priceRelativeToS&P50013Week": -17.3138,
+    "priceRelativeToS&P50026Week": -30.8038,
+    "priceRelativeToS&P5004Week": -14.9119,
+    "priceRelativeToS&P50052Week": -44.5266,
+    "priceRelativeToS&P500Ytd": -35.9633,
+    "psAnnual": 1.2095,
+    "psTTM": 1.179,
+    "ptbvAnnual": 3.037,
+    "ptbvQuarterly": 2.8917,
+    "quickRatioAnnual": 0.2013,
+    "quickRatioQuarterly": 0.2154,
+    "receivablesTurnoverAnnual": 41.9905,
+    "receivablesTurnoverTTM": 45.4426,
+    "revenueEmployeeAnnual": 0.2335,
+    "revenueEmployeeTTM": 0.2396,
+    "revenueGrowth3Y": 29.82,
+    "revenueGrowth5Y": 36.61,
+    "revenueGrowthQuarterlyYoy": 5.29,
+    "revenueGrowthTTMYoy": 5.16,
+    "revenuePerShareAnnual": 18.9886,
+    "revenuePerShareTTM": 19.6765,
+    "revenueShareGrowth5Y": 21.34,
+    "roa5Y": -4.1,
+    "roaRfy": 5.34,
+    "roaTTM": 5.949999999999999,
+    "roe5Y": -24.48,
+    "roeRfy": 22.470000000000002,
+    "roeTTM": 24.44,
+    "roi5Y": -4.7,
+    "roiAnnual": 7.090000000000001,
+    "roiTTM": 7.99,
+    "tangibleBookValuePerShareAnnual": 8.4657,
+    "tangibleBookValuePerShareQuarterly": 8.5911,
+    "tbvCagr5Y": -10.53,
+    "totalDebt/totalEquityAnnual": 2.1687,
+    "totalDebt/totalEquityQuarterly": 1.9193,
+    "yearToDatePriceReturnDaily": -23.019
   },
   "source_status": {
     "local_research": false,
     "local_news": false,
     "local_sec_filings": false,
     "finnhub_news": true,
-    "polygon_news": false,
+    "polygon_news": true,
     "earnings": false,
-    "fundamentals": true
-  }
-}
-```
-
-## WMT
-Trading candidate:
-```json
-{
-  "symbol": "WMT",
-  "direction": "WATCH",
-  "score": 41.81,
-  "boosted_score": 44.27,
-  "research": {
-    "symbol": "WMT",
-    "research_score": 50,
-    "conviction": "Low",
-    "catalysts": [],
-    "risks": [
-      "Insufficient company-specific research data"
-    ],
-    "summary": "No local research or provider-specific fundamental information was supplied; conviction is limited to the technical setup."
-  },
-  "sector": "Consumer Discretionary",
-  "reasons": [
-    "market: 100.0",
-    "extension: 100.0"
-  ]
-}
-```
-Evidence packet:
-```json
-{
-  "local_research": [],
-  "local_news": [],
-  "local_sec_filings": [],
-  "finnhub_news": [
-    {
-      "category": "company",
-      "datetime": 1788630420,
-      "headline": "T-Mobile drops new phone plan for customers after raising prices",
-      "id": 141532989,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WMT",
-      "source": "Yahoo",
-      "summary": "T-Mobile is ramping up its efforts to attract and retain price-conscious customers with a new low-priced offering.",
-      "url": "https://finnhub.io/api/news?id=9e232921a7c4f6ca0c5bf0fb6f2c178f776bcc09cc2fdcc1609861c16be9444e"
-    },
-    {
-      "category": "company",
-      "datetime": 1788617719,
-      "headline": "Walmart to build $1.3 billion fulfillment facility in Franklin County | WATCH",
-      "id": 141525607,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WMT",
-      "source": "Yahoo",
-      "summary": "Walmart will build a $1.3 billion fulfillment facility in Franklin County, creating 1,000 jobs near Carnesville.",
-      "url": "https://finnhub.io/api/news?id=39c413759c28a70d4b7ae392f8655f0ddb45290abfe0da144b0b97019d0386ce"
-    },
-    {
-      "category": "company",
-      "datetime": 1788605174,
-      "headline": "Why Walmart is moving in on DoorDash, Uber Eats\u00a0delivery action, starting with donuts, coffee and sandwiches ",
-      "id": 141531646,
-      "image": "https://image.cnbcfm.com/api/v1/image/108359299-1788616463523-gettyimages-2207804900-20250403_jlc_car_dealers_6319.jpeg?v=1788616486&w=1920&h=1080",
-      "related": "WMT",
-      "source": "CNBC",
-      "summary": "Walmart's deal to deliver for Dunkin' follows one earlier this year for Subway sandwiches, as the nation's largest retailer targets Uber Eats and DoorDash.",
-      "url": "https://finnhub.io/api/news?id=8d2f38a2483962a88749c2b9be10f7917cfee945c9c0b739827c3a454c4c39cb"
-    },
-    {
-      "category": "company",
-      "datetime": 1788566232,
-      "headline": "Trump Says Tariff-Free Beef From Brazil, Argentina Coming \u2014 Also Targets 'Monopoly' in Industry",
-      "id": 141534522,
-      "image": "https://cdn.benzinga.com/files/images/story/2026/09/05/President-Donald-J--Trump-Signs-An-Execu.jpg?width=2048&height=1536",
-      "related": "WMT",
-      "source": "Benzinga",
-      "summary": "Trump announced tariff-free beef imports from Argentina, Brazil and other countries to help lower record U.S. beef prices.",
-      "url": "https://finnhub.io/api/news?id=e2a368ebbcd286e1fa0dab7cc8996c153bb8e2626aea5415e20411894cb6a655"
-    },
-    {
-      "category": "company",
-      "datetime": 1788564780,
-      "headline": "Walmart, Target, and Kroger face growing retail crime issue",
-      "id": 141472670,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WMT",
-      "source": "Yahoo",
-      "summary": "Shoplifting and retail theft aren\u2019t the only dangerous problems hurting retailers.",
-      "url": "https://finnhub.io/api/news?id=fc13dce42e6b5e98dec221d5c6d73788f9a474f3888638b310cfed10cd6503ac"
-    }
-  ],
-  "polygon_news": [],
-  "earnings": [
-    {
-      "symbol": "WMT",
-      "date": "2026-11-19",
-      "hour": "",
-      "quarter": 3,
-      "year": 2027,
-      "epsEstimate": 0.6428,
-      "epsActual": null,
-      "revenueEstimate": 189031752661,
-      "revenueActual": null
-    }
-  ],
-  "fundamentals": {
-    "10DayAverageTradingVolume": 26.78224,
-    "13WeekPriceReturnDaily": -9.0029,
-    "26WeekPriceReturnDaily": -16.238,
-    "3MonthADReturnStd": 28.070448,
-    "3MonthAverageTradingVolume": 23.83652,
-    "52WeekHigh": 135.16,
-    "52WeekHighDate": "2026-05-19",
-    "52WeekLow": 98.88,
-    "52WeekLowDate": "2025-11-14",
-    "52WeekPriceReturnDaily": 6.5964,
-    "5DayPriceReturnDaily": 2.1646,
-    "assetTurnoverAnnual": 2.5052,
-    "assetTurnoverTTM": 2.5443,
-    "beta": 0.5638519,
-    "bookValuePerShareAnnual": 12.5006,
-    "bookValuePerShareQuarterly": 12.3444,
-    "bookValueShareGrowth5Y": 5.51,
-    "capexCagr5Y": 21.02,
-    "cashFlowPerShareAnnual": 1.8726,
-    "cashFlowPerShareQuarterly": 1.6975,
-    "cashFlowPerShareTTM": 10.33484,
-    "cashPerSharePerShareAnnual": 1.3461,
-    "cashPerSharePerShareQuarterly": 1.4487,
-    "currentDividendYieldTTM": 0.9027,
-    "currentEv/freeCashFlowAnnual": 60.1985,
-    "currentEv/freeCashFlowTTM": 66.4996,
-    "currentRatioAnnual": 0.7898,
-    "currentRatioQuarterly": 0.7671,
-    "dividendGrowthRate5Y": 5.41,
-    "dividendIndicatedAnnual": 0.99,
-    "dividendPerShareAnnual": 0.9388,
-    "dividendPerShareTTM": 0.9662,
-    "dividendYieldIndicatedAnnual": 0.7596102202102354,
-    "ebitdPerShareAnnual": 5.4884,
-    "ebitdPerShareTTM": 5.922,
-    "ebitdaCagr5Y": 11.72,
-    "ebitdaInterimCagr5Y": 5.89,
-    "enterpriseValue": 898342.7,
-    "epsAnnual": 2.7291,
-    "epsBasicExclExtraItemsAnnual": 2.7291,
-    "epsBasicExclExtraItemsTTM": 2.76,
-    "epsExclExtraItemsAnnual": 2.7291,
-    "epsExclExtraItemsTTM": 2.76,
-    "epsGrowth3Y": 24.21,
-    "epsGrowth5Y": 11.53,
-    "epsGrowthQuarterlyYoy": -8.97,
-    "epsGrowthTTMYoy": 4.13,
-    "epsInclExtraItemsAnnual": 2.7291,
-    "epsInclExtraItemsTTM": 2.76,
-    "epsNormalizedAnnual": 2.7291,
-    "epsTTM": 2.76,
-    "evEbitdaTTM": 18.9632,
-    "evRevenueTTM": 1.2208,
-    "focfCagr5Y": -10.38,
-    "forwardPE": 35.98552,
-    "forwardPEG": 3.68232,
-    "grossMargin5Y": 24.68,
-    "grossMarginAnnual": 24.93,
-    "grossMarginTTM": 25.23,
-    "inventoryTurnoverAnnual": 9.2881,
-    "inventoryTurnoverTTM": 9.2213,
-    "longTermDebt/equityAnnual": 0.3476,
-    "longTermDebt/equityQuarterly": 0.3712,
-    "marketCapitalization": 852628.7,
-    "monthToDatePriceReturnDaily": 2.1646,
-    "netIncomeEmployeeAnnual": 0.0104,
-    "netIncomeEmployeeTTM": 0.0105,
-    "netInterestCoverageAnnual": 8.7913,
-    "netInterestCoverageTTM": 90.0302,
-    "netMarginGrowth5Y": 4.87,
-    "netProfitMargin5Y": 2.52,
-    "netProfitMarginAnnual": 3.07,
-    "netProfitMarginTTM": 3,
-    "operatingMargin5Y": 3.99,
-    "operatingMarginAnnual": 4.18,
-    "operatingMarginTTM": 4.39,
-    "payoutRatioAnnual": 34.29,
-    "payoutRatioTTM": 34.87,
-    "pb": 8.6792,
-    "pbAnnual": 9.9258,
-    "pbQuarterly": 9.0081,
-    "pcfShareAnnual": 20.5131,
-    "pcfShareTTM": 19.8641,
-    "peAnnual": 38.9453,
-    "peBasicExclExtraTTM": 38.6224,
-    "peExclExtraAnnual": 36.52979,
-    "peExclExtraTTM": 38.6224,
-    "peInclExtraTTM": 38.6224,
-    "peNormalizedAnnual": 38.9453,
-    "peTTM": 38.6224,
-    "pegTTM": 4.005,
-    "pfcfShareAnnual": 57.1352,
-    "pfcfShareTTM": 55.1685,
-    "pretaxMargin5Y": 3.48,
-    "pretaxMarginAnnual": 4.13,
-    "pretaxMarginTTM": 3.98,
-    "priceRelativeToS&P50013Week": -10.7332,
-    "priceRelativeToS&P50026Week": -29.4463,
-    "priceRelativeToS&P5004Week": -4.5323,
-    "priceRelativeToS&P50052Week": -12.3996,
-    "priceRelativeToS&P500Ytd": -16.777,
-    "psAnnual": 1.1956,
-    "psTTM": 1.1587,
-    "ptbvAnnual": 10.3736,
-    "ptbvQuarterly": 8.16558,
-    "quickRatioAnnual": 0.2038,
-    "quickRatioQuarterly": 0.1955,
-    "receivablesTurnoverAnnual": 67.4481,
-    "receivablesTurnoverTTM": 68.1554,
-    "revenueEmployeeAnnual": 0.3396,
-    "revenueEmployeeTTM": 0.3504,
-    "revenueGrowth3Y": 5.27,
-    "revenueGrowth5Y": 4.99,
-    "revenueGrowthQuarterlyYoy": 5.94,
-    "revenueGrowthTTMYoy": 6.16,
-    "revenuePerShareAnnual": 88.9009,
-    "revenuePerShareTTM": 92.2336,
-    "revenueShareGrowth5Y": 6.31,
-    "roa5Y": 6.33,
-    "roaRfy": 7.6899999999999995,
-    "roaTTM": 7.630000000000001,
-    "roe5Y": 18.7,
-    "roeRfy": 21.98,
-    "roeTTM": 22.74,
-    "roi5Y": 12.21,
-    "roiAnnual": 14.49,
-    "roiTTM": 14.52,
-    "tangibleBookValuePerShareAnnual": 11.961,
-    "tangibleBookValuePerShareQuarterly": 19.11194,
-    "tbvCagr5Y": -4.03922,
-    "totalDebt/totalEquityAnnual": 0.5172,
-    "totalDebt/totalEquityQuarterly": 0.5827,
-    "yearToDatePriceReturnDaily": -3.8327
-  },
-  "source_status": {
-    "local_research": false,
-    "local_news": false,
-    "local_sec_filings": false,
-    "finnhub_news": true,
-    "polygon_news": false,
-    "earnings": true,
     "fundamentals": true
   }
 }

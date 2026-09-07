@@ -89,6 +89,96 @@
         "options": 50.0,
         "extension": 100.0
       }
+    },
+    {
+      "symbol": "BSX",
+      "score": 46.91,
+      "direction": "WATCH",
+      "sector": "Healthcare",
+      "components": {
+        "market": 100.0,
+        "sector": 86.35,
+        "relative_strength": 57.46919904561053,
+        "vwap": 0.0,
+        "trend": 0.0,
+        "volume": 32.11504852896883,
+        "momentum": 60.66044001660444,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      }
+    },
+    {
+      "symbol": "WMT",
+      "score": 41.81,
+      "direction": "WATCH",
+      "sector": "Consumer Discretionary",
+      "components": {
+        "market": 100.0,
+        "sector": 53.67,
+        "relative_strength": 46.22500545872455,
+        "vwap": 0.0,
+        "trend": 0.0,
+        "volume": 38.3679403679244,
+        "momentum": 58.59382787042358,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      }
+    },
+    {
+      "symbol": "NKE",
+      "score": 34.21,
+      "direction": "WATCH",
+      "sector": "Unknown",
+      "components": {
+        "market": 100.0,
+        "sector": 50.0,
+        "relative_strength": 22.370131740700913,
+        "vwap": 0.0,
+        "trend": 0.0,
+        "volume": 36.19827565757765,
+        "momentum": 36.16580310880823,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      }
+    },
+    {
+      "symbol": "PCG",
+      "score": 33.46,
+      "direction": "WATCH",
+      "sector": "Utilities",
+      "components": {
+        "market": 100.0,
+        "sector": 59.58,
+        "relative_strength": 0.0,
+        "vwap": 0.0,
+        "trend": 0.0,
+        "volume": 100.0,
+        "momentum": 0.0,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      }
+    },
+    {
+      "symbol": "CCL",
+      "score": 31.5,
+      "direction": "WATCH",
+      "sector": "Consumer Discretionary",
+      "components": {
+        "market": 100.0,
+        "sector": 53.67,
+        "relative_strength": 0.0,
+        "vwap": 0.0,
+        "trend": 0.0,
+        "volume": 63.908081840973644,
+        "momentum": 22.400664192225083,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      }
     }
   ]
 }

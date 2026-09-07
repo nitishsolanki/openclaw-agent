@@ -1,311 +1,160 @@
 {
   "research": [
     {
-      "symbol": "AAPL",
-      "research_score": 52,
-      "conviction": "Low",
-      "catalysts": [
-        "Upcoming iPhone launch",
-        "Strong iPhone and Mac demand",
-        "Services installed-base growth"
-      ],
-      "risks": [
-        "Near-term slowdown",
-        "FX and tariff pressure",
-        "Regulatory and ATT lawsuit exposure",
-        "No local research, SEC filings, earnings, or independently verified company-specific filings"
-      ],
-      "summary": "Provider news and fundamentals indicate durable demand and growth, but valuation, regulatory exposure, and limited source coverage constrain conviction."
-    },
-    {
-      "symbol": "AMZN",
-      "research_score": 72,
-      "conviction": "High",
-      "catalysts": [
-        "AWS acceleration",
-        "AI monetization",
-        "Advertising growth",
-        "Retail margin expansion",
-        "Free-cash-flow improvement"
-      ],
-      "risks": [
-        "AI and cloud capex pressure",
-        "AWS competition",
-        "Consumer slowdown",
-        "Antitrust and regulatory actions",
-        "Direct IR earnings release unavailable"
-      ],
-      "summary": "Diversified growth platform with strong AWS, advertising, and retail-efficiency themes; capex, competition, regulation, and weaker technical trend remain key risks."
-    },
-    {
-      "symbol": "BAC",
-      "research_score": 43,
-      "conviction": "Low",
-      "catalysts": [
-        "Potential bank-backed stablecoin initiative",
-        "Payments and treasury-service opportunities",
-        "Strong recent earnings and valuation metrics in supplied fundamentals"
-      ],
-      "risks": [
-        "Berkshire has reduced its BAC position for eight consecutive quarters",
-        "Valuation concerns",
-        "No local company-specific research, filings, or earnings supplied",
-        "Rate, credit, and regulatory uncertainty"
-      ],
-      "summary": "Fundamentals and payments themes are supportive, but Berkshire reductions and incomplete company-specific research weaken conviction."
-    },
-    {
-      "symbol": "BSX",
-      "research_score": 48,
-      "conviction": "Low",
-      "catalysts": [
-        "ICVT sales momentum",
-        "Cardiovascular device growth",
-        "Renal-denervation and IVL market exposure",
-        "Atrial-fibrillation device demand"
-      ],
-      "risks": [
-        "Spinal-cord-stimulator recall and injury reports",
-        "Cyberattack disrupted manufacturing and shipping",
-        "Zacks Strong Sell designation and earnings-estimate cuts",
-        "No local research, SEC filings, or earnings supplied"
-      ],
-      "summary": "Long-term device-market exposure and recent sales momentum are offset by operational disruptions, recall risk, and negative estimate revisions."
-    },
-    {
-      "symbol": "CCL",
-      "research_score": 45,
-      "conviction": "Low",
-      "catalysts": [
-        "Debt reduction",
-        "Investment-grade rating upgrade",
-        "Record sales and bookings",
-        "Resumed dividend",
-        "Valuation discount"
-      ],
-      "risks": [
-        "52-week low and significant recent underperformance",
-        "Expected earnings decline",
-        "High leverage and low liquidity ratios",
-        "Oil, geopolitical, and travel-demand sensitivity",
-        "No local research, SEC filings, or earnings supplied"
-      ],
-      "summary": "Recovery and deleveraging evidence is constructive, but recent weakness, leverage, earnings pressure, and macro sensitivity limit conviction."
-    },
-    {
-      "symbol": "CMG",
-      "research_score": 57,
-      "conviction": "Medium",
-      "catalysts": [
-        "First Seoul restaurant and Asian expansion test",
-        "Potential South Korea and Singapore growth"
-      ],
-      "risks": [
-        "Recent EPS and TTM EPS contraction",
-        "Premium valuation",
-        "Recent five-day decline",
-        "No Polygon news, local research, SEC filings, or earnings supplied"
-      ],
-      "summary": "International expansion offers a company-specific catalyst, but valuation and declining recent earnings metrics create uncertainty."
-    },
-    {
-      "symbol": "HPQ",
-      "research_score": 55,
-      "conviction": "Medium",
-      "catalysts": [
-        "New AI-focused OmniBook products",
-        "Upcoming Q4 earnings",
-        "Recent revenue growth and strong relative performance",
-        "Attractive forward valuation"
-      ],
-      "risks": [
-        "Negative TTM and quarterly EPS growth",
-        "Long-term revenue and EBITDA pressure",
-        "High recent momentum may reverse",
-        "No local research, SEC filings, or Polygon news supplied"
-      ],
-      "summary": "AI-PC launches, earnings visibility, and valuation support the setup, while declining profitability trends and limited company-specific sourcing temper conviction."
-    },
-    {
-      "symbol": "INTC",
-      "research_score": 51,
-      "conviction": "Low",
-      "catalysts": [
-        "Agentic-AI and enterprise-server demand",
-        "Potentially broadening AI-chip investor interest",
-        "Recent revenue growth"
-      ],
-      "risks": [
-        "Loss-making TTM results",
-        "Very high forward valuation",
-        "Negative long-term revenue and EBITDA trends",
-        "Mizuho target reduction",
-        "High volatility",
-        "No local research, SEC filings, Polygon news, or earnings supplied"
-      ],
-      "summary": "News identifies AI and server tailwinds, but profitability, valuation, execution, and volatility risks remain substantial."
-    },
-    {
-      "symbol": "NFLX",
-      "research_score": 46,
-      "conviction": "Low",
-      "catalysts": [
-        "Subscription price increases",
-        "Advertising expansion potential",
-        "Strong margins and cash-flow growth"
-      ],
-      "risks": [
-        "Growth slowing and pricing power concerns",
-        "Advertising remains unproven",
-        "Premium valuation",
-        "Recent UK price increase triggered a decline",
-        "No local research, SEC filings, Polygon news, or earnings supplied"
-      ],
-      "summary": "Strong profitability and pricing actions are offset by slowing growth, uncertain advertising economics, and valuation risk."
-    },
-    {
-      "symbol": "NKE",
-      "research_score": 39,
-      "conviction": "Low",
-      "catalysts": [
-        "Nike Strength expansion into elite training facilities"
-      ],
-      "risks": [
-        "Large multi-period price decline",
-        "Negative revenue and earnings-growth trends",
-        "Margin and cash-flow deterioration",
-        "Limited direct company-specific evidence",
-        "No local research, SEC filings, earnings, or Polygon news supplied"
-      ],
-      "summary": "A product-expansion item is constructive, but the supplied fundamentals and news indicate a weak and uncertain recovery profile."
-    },
-    {
       "symbol": "NVDA",
-      "research_score": 62,
+      "research_score": 78,
       "conviction": "Medium",
       "catalysts": [
-        "Strong AI and data-center demand",
-        "Next earnings and guidance",
-        "Customer wins and backlog",
-        "Projected revenue growth"
+        "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
+        "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
       ],
       "risks": [
-        "Crowded AI positioning",
-        "Valuation and multiple-compression risk",
-        "Execution and supply constraints",
-        "No independently verified ticker-specific filing",
-        "High volatility"
+        "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
+        "No independently verified ticker-specific filing details",
+        "High valuation and crowded AI positioning noted in 2026-08-12 research"
       ],
-      "summary": "Evidence supports exceptional AI growth and upcoming earnings catalysts, but expectations, valuation, crowding, and filing-verification gaps require caution."
-    },
-    {
-      "symbol": "PCG",
-      "research_score": 38,
-      "conviction": "Low",
-      "catalysts": [
-        "Potential wildfire-liability reform",
-        "Strategic review and preparedness initiatives"
-      ],
-      "risks": [
-        "Wildfire-liability framework and unresolved financing risk",
-        "Truist downgrade to Hold",
-        "Heavy debt and low interest coverage",
-        "Recent underperformance",
-        "No local research, SEC filings, earnings, or Polygon news supplied"
-      ],
-      "summary": "Wildfire-liability uncertainty dominates the evidence; valuation and fundamentals do not offset the regulatory and financing risks."
+      "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
     },
     {
       "symbol": "PFE",
-      "research_score": 44,
+      "research_score": 43,
       "conviction": "Low",
       "catalysts": [
-        "Low valuation relative to peers",
-        "Approximately 6% dividend yield",
-        "Pipeline and portfolio repositioning potential"
+        "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
+        "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
       ],
       "risks": [
-        "Patent and exclusivity risks",
-        "Sharp TTM EPS decline",
-        "Weak revenue and cash-flow growth",
-        "High payout ratio and dividend sustainability concerns",
-        "No local research, SEC filings, earnings, or Polygon news supplied"
+        "No local research, news, SEC filings, or earnings source",
+        "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
+        "Fundamentals show declining TTM EPS and revenue growth"
       ],
-      "summary": "Low valuation and income are potential supports, but earnings deterioration, patent exposure, and payout sustainability keep conviction low."
+      "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
     },
     {
-      "symbol": "SMCI",
-      "research_score": 54,
+      "symbol": "AAPL",
+      "research_score": 61,
       "conviction": "Medium",
       "catalysts": [
-        "AI and data-center spending",
-        "Revenue growth",
-        "Next earnings and guidance",
-        "Customer wins and backlog"
+        "2026-09-07 Yahoo: product launch event is a near-term catalyst",
+        "2026-09-04 Motley Fool: reported renewed iPhone momentum and Apple Intelligence focus"
       ],
       "risks": [
-        "Inconsistent margins",
-        "Crowded AI positioning",
-        "Execution and financing risk",
-        "High volatility",
-        "No fresh ticker-specific filing independently verified"
+        "No earnings or SEC filing source in the packet",
+        "2026-09-05 Motley Fool: valuation near 32x P/E versus a reported five-year average of 28x",
+        "News evidence is largely commentary rather than primary company disclosure"
       ],
-      "summary": "Rapid revenue and earnings growth support the AI-server thesis, but margin quality, volatility, execution, and filing gaps limit conviction."
+      "summary": "Product-launch and platform narratives are constructive, but premium valuation and missing primary earnings and filing verification reduce confidence."
     },
     {
-      "symbol": "T",
-      "research_score": 48,
-      "conviction": "Low",
+      "symbol": "BAC",
+      "research_score": 67,
+      "conviction": "Medium",
       "catalysts": [
-        "Potential benefit from telecom cash flow",
-        "Preferred-share market interest"
+        "2026-09-07 Zacks: Q2 2026 net income of $9.1B, 14.3% dividend increase, and $17B buyback authorization remaining",
+        "2026-09-02 Zacks: proposed bank-backed stablecoin could expand payment and treasury opportunities"
       ],
       "risks": [
-        "Negative multi-period price performance",
-        "Declining long-term revenue growth",
-        "High leverage",
-        "Weak liquidity ratios",
-        "Dividend-growth deterioration",
-        "No local company-specific research, SEC filings, earnings, or Polygon news supplied"
+        "No earnings or primary SEC filing source in the packet",
+        "2026-09-03/04 Motley Fool: Berkshire reportedly reduced its BAC position for valuation reasons",
+        "2026-09-07 Zacks: higher G-SIB surcharge may increase capital requirements"
       ],
-      "summary": "Income and valuation metrics are somewhat supportive, but leverage, weak growth, and incomplete company-specific research constrain conviction."
+      "summary": "Dated news supports capital returns and strategic optionality, but valuation concerns and missing primary earnings verification temper the research score."
     },
     {
-      "symbol": "WBD",
-      "research_score": 40,
-      "conviction": "Low",
+      "symbol": "AMZN",
+      "research_score": 64,
+      "conviction": "Medium",
       "catalysts": [
-        "Potential Paramount-Warner transaction",
-        "Recent price appreciation",
-        "Streaming-sector positioning"
+        "2026-08-12 local research: AWS, advertising, and retail-efficiency growth themes",
+        "2026-09-07 Motley Fool: reported discount valuation and potential AI-capex opportunity",
+        "2026-09-06 Motley Fool: AWS agreement with Vistra supports data-center power access"
       ],
       "risks": [
-        "Negative TTM EPS and operating margin",
-        "Declining revenue and quarterly earnings",
-        "High debt and weak interest coverage",
-        "Deal and antitrust uncertainty",
-        "No local research, SEC filings, earnings, or Polygon news supplied"
+        "Local research states Amazon IR earnings text was inaccessible",
+        "No independently verified earnings or ticker-specific SEC filing in the packet",
+        "2026-09-07 Motley Fool: approximately $220B AI infrastructure spending may pressure free cash flow",
+        "Technical trend and relative-strength components are weak"
       ],
-      "summary": "Deal speculation and price momentum provide catalysts, but negative profitability, declining revenue, leverage, and transaction uncertainty dominate."
+      "summary": "Business evidence supports long-term quality, but heavy AI capex, incomplete primary-source verification, and weak technical confirmation limit near-term conviction."
+    },
+    {
+      "symbol": "BSX",
+      "research_score": 49,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-09-04 Yahoo: ICVT sales reportedly grew 15%",
+        "2026-09-04 GlobeNewswire: renal-denervation market forecast identifies BSX as a participant",
+        "2026-08-26 GlobeNewswire: atrial-fibrillation device market growth supports WATCHMAN exposure"
+      ],
+      "risks": [
+        "2026-09-04 Benzinga: recall involving Infinion CX spinal-cord-stimulator leads and 1,081 injury reports",
+        "2026-09-07 Zacks: BSX placed on Strong Sell list after a 1.8% earnings-estimate reduction",
+        "No earnings or SEC filing source; technical trend and VWAP are negative"
+      ],
+      "summary": "Growth-market exposure exists, but dated recall and estimate-revision risks plus weak technical conditions argue for low research conviction."
     },
     {
       "symbol": "WMT",
       "research_score": 53,
-      "conviction": "Medium",
+      "conviction": "Low",
       "catalysts": [
-        "$1.3 billion fulfillment facility",
-        "Expansion of delivery partnerships",
-        "Upcoming earnings",
-        "Scale and consumer-value positioning"
+        "2026-09-07 Yahoo: expanding advertising business may improve mix",
+        "2026-11-19 earnings estimate: EPS 0.6428 and revenue estimate $189.0B",
+        "2026-09-07 Yahoo: reported eligibility for approximately $2.9B in tariff refunds"
       ],
       "risks": [
-        "Premium valuation and high forward P/E",
-        "Weak recent relative performance",
-        "Low margins and cash-flow growth pressure",
-        "Retail-crime and execution risks",
-        "No local research, SEC filings, or Polygon news supplied"
+        "No local research, news, or SEC filing source",
+        "2026-09-07 Yahoo: Vibe costs may pressure fiscal 2027 profit growth",
+        "Fundamentals show premium valuation and negative 13- and 26-week returns"
       ],
-      "summary": "Fulfillment investment, delivery expansion, and earnings visibility are constructive, but premium valuation, thin margins, and recent weakness limit conviction."
+      "summary": "Advertising and tariff-refund items are potential catalysts, but premium valuation, margin pressure, and weak medium-term performance limit conviction."
+    },
+    {
+      "symbol": "NKE",
+      "research_score": 28,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-09-07 Yahoo: early traction reported in China running, football, and premium retail"
+      ],
+      "risks": [
+        "Local research and SEC filing material is unrelated to NKE",
+        "2026-09-07 Yahoo: steep China sales declines and inventory cleanup remain unresolved",
+        "2026-09-07 Yahoo: removal from the S&P 100 was reported",
+        "Fundamentals show negative multi-period returns and declining earnings trends"
+      ],
+      "summary": "The packet contains one early recovery signal but predominantly negative dated evidence and no reliable primary company filing or earnings source."
+    },
+    {
+      "symbol": "PCG",
+      "research_score": 22,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-09-04 Seeking Alpha: company strategic-review and wildfire-liability presentation was reported",
+        "2026-09-02 Yahoo: proposed California legislation could improve wildfire recovery processes"
+      ],
+      "risks": [
+        "2026-09-04 Fintel: Truist downgraded PCG to Hold from Buy",
+        "2026-09-02 Yahoo: wildfire-liability reform failed to advance",
+        "2026-09-01 Yahoo: financing risk from the wildfire-liability framework remains unresolved",
+        "No earnings, local research, SEC filing, or primary regulatory source"
+      ],
+      "summary": "Wildfire-liability and financing uncertainty dominate the evidence, while technical conditions are severely weak."
+    },
+    {
+      "symbol": "CCL",
+      "research_score": 39,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-09-07 Zacks: positive Earnings ESP of 0.32% and recent estimate-beat history",
+        "2026-07-27 Motley Fool: Carnival was presented as a stronger alternative to Norwegian"
+      ],
+      "risks": [
+        "2026-09-07 Zacks: expected EPS decline of 4.9% year over year",
+        "2026-09-01 Yahoo: 52-week-low context, higher oil, geopolitical, and health concerns",
+        "2026-07-19 Motley Fool: approximately $23.4B debt creates execution risk",
+        "No earnings or SEC filing source in the packet"
+      ],
+      "summary": "Potential earnings upside and relative peer appeal are outweighed by leverage, cost/geopolitical risks, negative price trend, and limited primary evidence."
     }
   ]
 }
