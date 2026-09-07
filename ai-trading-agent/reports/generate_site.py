@@ -77,7 +77,17 @@ def render(report: dict) -> str:
         chart_lines.append(f"<polyline data-sector='{escape(str(sector['sector']))}' fill='none' stroke='{colors[index % len(colors)]}' stroke-width='2' points='{ ' '.join(points) }'/>")
     legend = "".join(f"<span class='sector-legend'><i style='background:{colors[i % len(colors)]}'></i>{escape(str(sector['sector']))}</span>" for i, sector in enumerate(sectors))
     chart = f"<div class='chart-scroll'><svg viewBox='0 0 {width + 40} {height}' role='img' aria-label='Sector momentum score history'><line x1='{pad}' y1='{height-pad}' x2='{width}' y2='{height-pad}' stroke='#52627d'/><line x1='{pad}' y1='{pad}' x2='{pad}' y2='{height-pad}' stroke='#52627d'/><text x='8' y='{height-pad+4}' fill='#8e9bb0' font-size='11'>0</text><text x='8' y='{height/2+4}' fill='#8e9bb0' font-size='11'>50</text><text x='8' y='{pad+4}' fill='#8e9bb0' font-size='11'>100</text>{''.join(chart_lines)}{''.join(f"<text x='{pad + (width - 2*pad) * i / max(len(dates)-1,1):.1f}' y='{height-10}' fill='#8e9bb0' font-size='10'>{escape(format_date(date))}</text>" for i, date in enumerate(dates))}</svg></div><div class='sector-legend-wrap'>{legend}</div>"
-    heatmap_rows = "".join(f"<tr><th>{escape(str(sector['sector']))}</th>{''.join(f'<td class=\"heat-{int(float(day.get(\"scores\", {}).get(sector[\"sector\"], 0)) // 10) * 10}\" title=\"{escape(str(sector[\"sector\"]))} · {escape(str(day.get(\"date\", \"\")))} · {day.get(\"scores\", {}).get(sector[\"sector\"], \"N/A\")}\">{day.get(\"scores\", {}).get(sector[\"sector\"], \"—\")}</td>' for day in history)}</tr>" for sector in sorted(sectors, key=lambda item: float(item.get('score', 0)), reverse=True))
+    heatmap_rows_parts = []
+    for sector in sorted(sectors, key=lambda item: float(item.get("score", 0)), reverse=True):
+        cells = []
+        for day in history:
+            value = day.get("scores", {}).get(sector["sector"])
+            display = "—" if value is None else f"{float(value):.1f}"
+            bucket = 0 if value is None else min(100, max(0, int(float(value) // 10) * 10))
+            title = f"{sector['sector']} · {day.get('date', '')} · {display}"
+            cells.append(f"<td class='heat-{bucket}' title='{escape(title)}'>{display}</td>")
+        heatmap_rows_parts.append(f"<tr><th>{escape(str(sector['sector']))}</th>{''.join(cells)}</tr>")
+    heatmap_rows = "".join(heatmap_rows_parts)
     heatmap = f"<div class='table-scroll'><table class='sector-heatmap'><thead><tr><th>Sector</th>{''.join(f'<th>{escape(format_date(date))}</th>' for date in dates)}</tr></thead><tbody>{heatmap_rows}</tbody></table></div>"
     latest = history[-1] if history else {}
     previous = history[-2] if len(history) > 1 else {}
