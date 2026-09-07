@@ -33,7 +33,8 @@ def _render_base(report: dict) -> str:
         trends[item["sector"]] = (label, slope, forecast)
         prices = [float(day.get("prices", {}).get(item["sector"], 0)) for day in display_history if day.get("prices", {}).get(item["sector"]) is not None]
         price_trends[item["sector"]] = ((prices[-1] / prices[0] - 1) * 100 if len(prices) >= 2 and prices[0] else 0.0)
-    history_sectors = sorted(ranked_sectors, key=lambda item: trends[item["sector"]][1], reverse=True)
+    ranked_sectors = sorted(ranked_sectors, key=lambda item: trends[item["sector"]][1], reverse=True)
+    history_sectors = ranked_sectors
     history_headers = "".join(f"<th>{escape(str(item.get('date', '')))}</th>" for item in display_history)
     history_rows = "".join(f"<tr><td>{item['rank']}</td><td>{escape(str(item['sector']))}</td><td>{escape(str(item['symbol']))}</td>" + "".join(f"<td>{float(day.get('scores', {}).get(item['sector'], 0)):.1f}</td>" for day in display_history) + f"<td>{float(item['score']) - float(oldest.get(item['sector'], item['score'])):+.1f}</td><td>{float(current_prices.get(item['sector'], 0)):.2f}</td><td>{price_trends[item['sector']]:+.2f}%</td><td>{trends[item['sector']][0]} {'↑' if trends[item['sector']][0] == 'Gaining' else '↓' if trends[item['sector']][0] == 'Losing' else '→'}</td></tr>" for item in history_sectors)
     def candidate_sector(item):
@@ -60,28 +61,35 @@ def render(report: dict) -> str:
             return str(value)
 
     html = _render_base(report)
+    html = html.replace("Current sector score, price change, and five-day trend.", "Current sector score, price change, and trend.")
     history = report.get("sector_history", [])
     sectors = report.get("sectors", [])
     width, height, pad = 900, 360, 42
     dates = [str(item.get("date", "")) for item in history]
     chart_lines = []
     colors = ["#70d6c3", "#f6c85f", "#ff7f66", "#8ea7ff", "#c792ea", "#7bdff2", "#f29e4c", "#9be564"]
-    chart_min, chart_max = 45.0, 100.0
-    log_min, log_max = math.log(chart_min), math.log(chart_max)
+    momentum_values = [value for sector in sectors for value in [((float(day.get("prices", {}).get(sector["sector"])) / float(previous.get("prices", {}).get(sector["sector"])) - 1.0) * 100.0) for previous, day in zip(history, history[1:]) if day.get("prices", {}).get(sector["sector"]) is not None and previous.get("prices", {}).get(sector["sector"]) not in (None, 0)]]
+    chart_min, chart_max = min([-5.0] + momentum_values), max([5.0] + momentum_values)
     for index, sector in enumerate(sectors):
-        values = [float(day.get("scores", {}).get(sector["sector"], 0)) for day in history]
+        values = []
+        previous_price = None
+        for day in history:
+            price = day.get("prices", {}).get(sector["sector"])
+            values.append(0.0 if price is None or previous_price in (None, 0) else (float(price) / previous_price - 1.0) * 100.0)
+            if price is not None:
+                previous_price = float(price)
         if not values:
             continue
         points = []
         for pos, value in enumerate(values):
             x = pad + (width - 2 * pad) * pos / max(len(values) - 1, 1)
             bounded = max(chart_min, min(chart_max, value))
-            y = height - pad - (height - 2 * pad) * (math.log(bounded) - log_min) / (log_max - log_min)
+            y = height - pad - (height - 2 * pad) * (bounded - chart_min) / max(chart_max - chart_min, 1)
             points.append(f"{x:.1f},{y:.1f}")
         chart_lines.append(f"<polyline data-sector='{escape(str(sector['sector']))}' fill='none' stroke='{colors[index % len(colors)]}' stroke-width='2' points='{ ' '.join(points) }'/>")
     legend = "".join(f"<span class='sector-legend'><i style='background:{colors[i % len(colors)]}'></i>{escape(str(sector['sector']))}</span>" for i, sector in enumerate(sectors))
-    ticks = [45, 50, 60, 75, 100]
-    tick_labels = "".join(f"<text x='8' y='{height - pad - (height - 2 * pad) * (math.log(tick) - log_min) / (log_max - log_min) + 4:.1f}' fill='#8e9bb0' font-size='11'>{tick}</text>" for tick in ticks)
+    ticks = [chart_min, (chart_min + chart_max) / 2, chart_max]
+    tick_labels = "".join(f"<text x='8' y='{height - pad - (height - 2 * pad) * (tick - chart_min) / max(chart_max - chart_min, 1) + 4:.1f}' fill='#8e9bb0' font-size='11'>{tick:+.1f}%</text>" for tick in ticks)
     chart = f"<div class='chart-scroll'><svg viewBox='0 0 {width + 40} {height}' role='img' aria-label='Sector momentum score history'><line x1='{pad}' y1='{height-pad}' x2='{width}' y2='{height-pad}' stroke='#52627d'/><line x1='{pad}' y1='{pad}' x2='{pad}' y2='{height-pad}' stroke='#52627d'/>{tick_labels}{''.join(chart_lines)}{''.join(f"<text x='{pad + (width - 2*pad) * i / max(len(dates)-1,1):.1f}' y='{height-10}' fill='#8e9bb0' font-size='10'>{escape(format_date(date))}</text>" for i, date in enumerate(dates))}</svg></div><div class='sector-legend-wrap'>{legend}</div>"
     heatmap_rows_parts = []
     for sector in sorted(sectors, key=lambda item: float(item.get("score", 0)), reverse=True):
@@ -100,7 +108,7 @@ def render(report: dict) -> str:
     ranking = "".join(f"<div class='ranking-row'><span>{escape(str(sector['sector']))}</span><div class='ranking-bar'><b style='width:{float(sector.get('score', 0)):.1f}%'></b></div><strong>{float(sector.get('score', 0)):.1f}</strong><em>{float(latest.get('scores', {}).get(sector['sector'], 0)) - float(previous.get('scores', {}).get(sector['sector'], latest.get('scores', {}).get(sector['sector'], 0))):+.1f}</em></div>" for sector in sorted(sectors, key=lambda item: float(item.get('score', 0)), reverse=True))
     ranking_html = f"<div class='sector-ranking'>{ranking}</div>"
     marker = "<section><h2>Sector Rotation</h2>"
-    replacement = f"<section><h2>Sector Rotation</h2><p class='muted'>Track strength, momentum, and current sector leadership.</p><h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Sector Momentum</h3>{chart}<h3>Sector Ranking</h3>{ranking_html}"
+    replacement = f"<section><h2>Sector Rotation</h2><p class='muted'>Track strength, momentum, and current sector leadership.</p><h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Sector Momentum</h3><p class='muted'>Day-over-day percentage change in current sector prices.</p>{chart}"
     return html.replace(marker, replacement, 1)
 
 def build(input_path: Path, output_dir: Path) -> None:
