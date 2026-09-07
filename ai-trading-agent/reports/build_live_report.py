@@ -35,7 +35,7 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     today = datetime.now(timezone.utc).date().isoformat()
     history = [item for item in history if item.get("date") != today]
     history.append({"date": today, "scores": {item["sector"]: item["score"] for item in sectors}, "prices": current_prices})
-    history = history[-5:]
+    history = sorted(history, key=lambda item: str(item.get("date", "")))
     history_path.write_text(json.dumps(history, indent=2) + "\n", encoding="utf-8")
     signals = run_scan(root, require_live=True) if signals is None else signals
     profile_results = {"day": run_scan(root, require_live=True, profile="day"),
