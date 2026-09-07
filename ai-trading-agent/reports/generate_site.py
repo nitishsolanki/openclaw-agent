@@ -51,6 +51,13 @@ def _render_base(report: dict) -> str:
     return f"""<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AI Trading Market Report</title><link rel='stylesheet' href='assets/styles.css'></head><body><main><header><p class='eyebrow'>AI TRADING AGENT · PAPER MODE</p><h1>Market Intelligence</h1><p class='muted'>Generated {escape(report.get('generated_at', 'unknown'))} · Source: {escape(str(report.get('data_source', 'unknown')))}</p></header><section class='hero'><div><span class='eyebrow'>MARKET REGIME</span><strong>{escape(report['market']['label'])}</strong><span class='score'>{report['market']['score']}/100</span></div><div><span class='eyebrow'>ACTIVE THEME</span><strong>{escape(report['theme']['name'])}</strong><span class='muted'>{', '.join(report['theme'].get('sectors', []))}</span></div></section><section><h2>Sector Rotation</h2><p class='muted'>Current sector score, price change, and five-day trend.</p><div class='table-scroll'><table><thead><tr><th>Sector</th><th>ETF</th><th>Score</th><th>Current Price</th><th>Price Δ</th><th>Trend</th></tr></thead><tbody>{''.join(f"<tr><td>{escape(str(item['sector']))}</td><td>{escape(str(item['symbol']))}</td><td>{float(item['score']):.1f}</td><td>{float(current_prices.get(item['sector'], 0)):.2f}</td><td>{price_trends[item['sector']]:+.2f}%</td><td>{trends[item['sector']][0]}</td></tr>" for item in ranked_sectors)}</tbody></table></div></section>{candidate_sections}<footer>{escape(report.get('disclaimer', ''))}</footer></main></body></html>"""
 
 def render(report: dict) -> str:
+    def format_date(value: str) -> str:
+        try:
+            parsed = datetime.strptime(str(value), "%Y-%m-%d")
+            return f"{parsed.strftime('%b')} {parsed.day}"
+        except (TypeError, ValueError):
+            return str(value)
+
     html = _render_base(report)
     history = report.get("sector_history", [])
     sectors = report.get("sectors", [])
@@ -67,10 +74,17 @@ def render(report: dict) -> str:
             x = pad + (width - 2 * pad) * pos / max(len(values) - 1, 1)
             y = height - pad - (height - 2 * pad) * max(0, min(100, value)) / 100
             points.append(f"{x:.1f},{y:.1f}")
-        chart_lines.append(f"<polyline fill='none' stroke='{colors[index % len(colors)]}' stroke-width='2' points='{ ' '.join(points) }'/><text x='{width - pad + 5}' y='{points[-1].split(',')[1]}' fill='{colors[index % len(colors)]}' font-size='11'>{escape(str(sector['sector']))}</text>")
-    chart = f"<div class='table-scroll'><svg viewBox='0 0 {width + 150} {height}' role='img' aria-label='Sector rotation score history'><line x1='{pad}' y1='{height-pad}' x2='{width}' y2='{height-pad}' stroke='#52627d'/><line x1='{pad}' y1='{pad}' x2='{pad}' y2='{height-pad}' stroke='#52627d'/><text x='8' y='{height-pad+4}' fill='#8e9bb0' font-size='11'>0</text><text x='8' y='{height/2+4}' fill='#8e9bb0' font-size='11'>50</text><text x='8' y='{pad+4}' fill='#8e9bb0' font-size='11'>100</text>{''.join(chart_lines)}{''.join(f"<text x='{pad + (width - 2*pad) * i / max(len(dates)-1,1):.1f}' y='{height-10}' fill='#8e9bb0' font-size='10'>{escape(date)}</text>" for i, date in enumerate(dates))}</svg></div>"
+        chart_lines.append(f"<polyline data-sector='{escape(str(sector['sector']))}' fill='none' stroke='{colors[index % len(colors)]}' stroke-width='2' points='{ ' '.join(points) }'/>")
+    legend = "".join(f"<span class='sector-legend'><i style='background:{colors[i % len(colors)]}'></i>{escape(str(sector['sector']))}</span>" for i, sector in enumerate(sectors))
+    chart = f"<div class='chart-scroll'><svg viewBox='0 0 {width + 40} {height}' role='img' aria-label='Sector momentum score history'><line x1='{pad}' y1='{height-pad}' x2='{width}' y2='{height-pad}' stroke='#52627d'/><line x1='{pad}' y1='{pad}' x2='{pad}' y2='{height-pad}' stroke='#52627d'/><text x='8' y='{height-pad+4}' fill='#8e9bb0' font-size='11'>0</text><text x='8' y='{height/2+4}' fill='#8e9bb0' font-size='11'>50</text><text x='8' y='{pad+4}' fill='#8e9bb0' font-size='11'>100</text>{''.join(chart_lines)}{''.join(f"<text x='{pad + (width - 2*pad) * i / max(len(dates)-1,1):.1f}' y='{height-10}' fill='#8e9bb0' font-size='10'>{escape(format_date(date))}</text>" for i, date in enumerate(dates))}</svg></div><div class='sector-legend-wrap'>{legend}</div>"
+    heatmap_rows = "".join(f"<tr><th>{escape(str(sector['sector']))}</th>{''.join(f'<td class=\"heat-{int(float(day.get(\"scores\", {}).get(sector[\"sector\"], 0)) // 10) * 10}\" title=\"{escape(str(sector[\"sector\"]))} · {escape(str(day.get(\"date\", \"\")))} · {day.get(\"scores\", {}).get(sector[\"sector\"], \"N/A\")}\">{day.get(\"scores\", {}).get(sector[\"sector\"], \"—\")}</td>' for day in history)}</tr>" for sector in sorted(sectors, key=lambda item: float(item.get('score', 0)), reverse=True))
+    heatmap = f"<div class='table-scroll'><table class='sector-heatmap'><thead><tr><th>Sector</th>{''.join(f'<th>{escape(format_date(date))}</th>' for date in dates)}</tr></thead><tbody>{heatmap_rows}</tbody></table></div>"
+    latest = history[-1] if history else {}
+    previous = history[-2] if len(history) > 1 else {}
+    ranking = "".join(f"<div class='ranking-row'><span>{escape(str(sector['sector']))}</span><div class='ranking-bar'><b style='width:{float(sector.get('score', 0)):.1f}%'></b></div><strong>{float(sector.get('score', 0)):.1f}</strong><em>{float(latest.get('scores', {}).get(sector['sector'], 0)) - float(previous.get('scores', {}).get(sector['sector'], latest.get('scores', {}).get(sector['sector'], 0))):+.1f}</em></div>" for sector in sorted(sectors, key=lambda item: float(item.get('score', 0)), reverse=True))
+    ranking_html = f"<div class='sector-ranking'>{ranking}</div>"
     marker = "<section><h2>Sector Rotation</h2>"
-    replacement = f"<section><h2>Sector Rotation</h2>{chart}"
+    replacement = f"<section><h2>Sector Rotation</h2><p class='muted'>Track strength, momentum, and current sector leadership.</p><h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Sector Momentum</h3>{chart}<h3>Sector Ranking</h3>{ranking_html}"
     return html.replace(marker, replacement, 1)
 
 def build(input_path: Path, output_dir: Path) -> None:
@@ -80,7 +94,10 @@ def build(input_path: Path, output_dir: Path) -> None:
     (output_dir / "data").mkdir(exist_ok=True)
     (output_dir / "data" / "latest.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     css = Path(__file__).parent / "styles.css"
-    (output_dir / "assets" / "styles.css").write_text(css.read_text(encoding="utf-8"), encoding="utf-8")
+    extra_css = """
+.sector-heatmap th,.sector-heatmap td{padding:9px 10px;text-align:center;white-space:nowrap}.sector-heatmap th:first-child{text-align:left;position:sticky;left:0;background:#131d30}.sector-heatmap td{border:1px solid #263650}.heat-0,.heat-10,.heat-20,.heat-30,.heat-40{background:#7d3f46}.heat-50,.heat-60{background:#665f3d}.heat-70,.heat-80{background:#35655e}.heat-90,.heat-100{background:#1f806f}.chart-scroll{overflow-x:auto}.sector-legend-wrap{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 20px}.sector-legend{font-size:.8rem;color:#b5c0d2}.sector-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.sector-ranking{display:grid;gap:8px}.ranking-row{display:grid;grid-template-columns:minmax(110px,1.2fr) 3fr 45px 45px;gap:10px;align-items:center;font-size:.9rem}.ranking-bar{height:10px;background:#263650;border-radius:99px;overflow:hidden}.ranking-bar b{display:block;height:100%;background:#70d6c3;border-radius:99px}.ranking-row em{font-style:normal;color:#8e9bb0}@media(max-width:650px){.ranking-row{grid-template-columns:90px 1.5fr 38px 38px;font-size:.78rem}}
+"""
+    (output_dir / "assets" / "styles.css").write_text(css.read_text(encoding="utf-8") + extra_css, encoding="utf-8")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
