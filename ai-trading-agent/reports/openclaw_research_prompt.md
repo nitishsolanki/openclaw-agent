@@ -47,58 +47,58 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788818335,
-      "headline": "Palantir Stock Leads August Rally -- Nvidia, Salesforce and Super Micro Jump",
-      "id": 141771358,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "SMCI",
-      "source": "Yahoo",
-      "summary": "Palantir Crushes Tech Stocks in August: Salesforce Nears 40% Gain, Super Micro Jumps",
-      "url": "https://finnhub.io/api/news?id=89ee1437c35b1ea43ff04c0695734f1b0ef289bd07ced8822ca70a45052719c9"
-    },
-    {
-      "category": "company",
-      "datetime": 1788801623,
-      "headline": "Palantir Surged 51% in August. The Rest of Tech Wasn't Even Close",
-      "id": 141767430,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "SMCI",
-      "source": "Yahoo",
-      "summary": "Strong earnings and a bigger full-year outlook pushed Palantir far ahead of the broader technology sector.",
-      "url": "https://finnhub.io/api/news?id=aa9eb4fe642f504f634dcae8d06df547f4ca83de56f0d7e206a1d48d4ff4f56a"
-    },
-    {
-      "category": "company",
-      "datetime": 1788796208,
-      "headline": "Super Micro Has Gained 35% in 2026. What Would It Take to Get SMCI Stock Up to $50?",
-      "id": 141767418,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "SMCI",
-      "source": "Yahoo",
-      "summary": "Super Micro has outpaced the S&P 500 this year, yet its peers left it far behind, and a key cash flow problem explains why the $50 price target remains out of reach for now.",
-      "url": "https://finnhub.io/api/news?id=26f1f5255487c64afb878baabbe35acee1c1b0b2457e461748555f94b2a9012a"
-    },
-    {
-      "category": "company",
-      "datetime": 1788784203,
-      "headline": "Here's How Much You'd Have If You Invested $1000 in Super Micro Computer a Decade Ago",
-      "id": 141762943,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "SMCI",
-      "source": "Yahoo",
-      "summary": "Investing in certain stocks can pay off in the long run, especially if you hold on for a decade or more.",
-      "url": "https://finnhub.io/api/news?id=2975a6c9b9bbb112142c161b362f8bce6d8c92eb4528f32c574e6985dcdb08c7"
-    },
-    {
-      "category": "company",
-      "datetime": 1788773563,
-      "headline": "Super Micro Computer (NASDAQ:SMCI): High Growth Momentum and a Breakout Setup",
-      "id": 141759804,
-      "image": "https://www.chartmill.com/images/uploads/HGM_Breakout_19d1a7df53.webp",
+      "datetime": 1788890700,
+      "headline": "Which S&P500 stocks are the most active on Tuesday?",
+      "id": 141952860,
+      "image": "https://www.chartmill.com/images/uploads/CM_Most_Active_Stocks_Small_free_fec0650b7f.webp",
       "related": "SMCI",
       "source": "ChartMill",
-      "summary": "SMCI shows strong growth momentum (7/10) with solid technicals and setup, making it a standout high-growth stock pick. Discover the full analysis.",
-      "url": "https://finnhub.io/api/news?id=b6b4a1505fec0dc6ded260829357f112aed8aa8cd58f183aee0565b12fc09de0"
+      "summary": "Stay informed about the most active stocks in the S&P500 index on Tuesday's session. Discover the stocks that are generating the highest trading volume and driving market activity.",
+      "url": "https://finnhub.io/api/news?id=71df634472679672cbba113b47bdb93092bfd0fa038e96e7e1e616b1bf5b7146"
+    },
+    {
+      "category": "company",
+      "datetime": 1788881597,
+      "headline": "Super Micro Climbs 4%, Hewlett Packard Enterprise Advances 5%: Is the Margin Beat Already Guided Away?",
+      "id": 141950612,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "SMCI",
+      "source": "Yahoo",
+      "summary": "AI server stocks are surging while the broader market sits flat, but the margin beat driving the biggest gain carries a built-in expiration date that management already acknowledged on the earnings call.",
+      "url": "https://finnhub.io/api/news?id=c33631a4e58a0d6eb5c8c0a9dbf3bbd26cc9f3016563fda923f9edfb171be5b1"
+    },
+    {
+      "category": "company",
+      "datetime": 1788877229,
+      "headline": "SMCI Outworks Its Peers And Costs Less",
+      "id": 141950100,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "SMCI",
+      "source": "Yahoo",
+      "summary": "In the world of AI hardware, one company is delivering top-tier growth from the bargain bin, forcing investors to ask if the market sees a flaw they are missing.",
+      "url": "https://finnhub.io/api/news?id=2eec56b8e8bbea93472ac3ae78a7f43f0f48d04a4298a23b5549b645ad238e7b"
+    },
+    {
+      "category": "company",
+      "datetime": 1788874521,
+      "headline": "10 Information Technology Stocks Whale Activity In Today\u2019s Session",
+      "id": 141953002,
+      "image": "https://cdn.benzinga.com/files/images/story/2025/11/06/aggregated_options_1.jpg?width=2048&height=1536",
+      "related": "SMCI",
+      "source": "Benzinga",
+      "summary": "This whale alert can help traders discover the next big trading opportunities.\nWhales are entities with large sums of money and we track their transactions here at Benzinga on our options activity scanner.\nTraders will",
+      "url": "https://finnhub.io/api/news?id=e0b852f5173246d14fa26532ac5af45a58c2c5529e897f666f55e5e3c90b2557"
+    },
+    {
+      "category": "company",
+      "datetime": 1788872405,
+      "headline": "Investors Heavily Search Super Micro Computer, Inc. (SMCI): Here is What You Need to Know",
+      "id": 141951249,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "SMCI",
+      "source": "Yahoo",
+      "summary": "Super Micro (SMCI) has been one of the stocks most watched by Zacks.com users lately. So, it is worth exploring what lies ahead for the stock.",
+      "url": "https://finnhub.io/api/news?id=2cbaaae008f811736a236aa5c4daa973914d11cd7b9d73e6d0f88987a0bad0b1"
     }
   ],
   "polygon_news": [],
@@ -278,58 +278,58 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788878101,
-      "headline": "These S&P500 stocks are gapping in today's session",
-      "id": 141949424,
-      "image": "https://www.chartmill.com/images/uploads/CM_Gap_Stocks_Small_free_ad767b11cf.webp",
+      "datetime": 1788890700,
+      "headline": "Which S&P500 stocks are the most active on Tuesday?",
+      "id": 141952860,
+      "image": "https://www.chartmill.com/images/uploads/CM_Most_Active_Stocks_Small_free_fec0650b7f.webp",
       "related": "INTC",
       "source": "ChartMill",
-      "summary": "Curious about the market action on Tuesday? Dive into the US markets to explore the gap up and gap down stocks in the S&P500 index during today's session.",
-      "url": "https://finnhub.io/api/news?id=e2298894073c51c74836efc46f018b354d3be515b46afc56384ad9e22797cc5f"
+      "summary": "Stay informed about the most active stocks in the S&P500 index on Tuesday's session. Discover the stocks that are generating the highest trading volume and driving market activity.",
+      "url": "https://finnhub.io/api/news?id=71df634472679672cbba113b47bdb93092bfd0fa038e96e7e1e616b1bf5b7146"
     },
     {
       "category": "company",
-      "datetime": 1788870900,
-      "headline": "These S&P500 stocks are moving in today's pre-market session",
-      "id": 141949006,
-      "image": "https://www.chartmill.com/images/uploads/CM_Premarket_Movers_Small_free_90289f6b81.webp",
+      "datetime": 1788890400,
+      "headline": "Curious about the most active stocks on Tuesday?",
+      "id": 141952859,
+      "image": "https://www.chartmill.com/images/uploads/CM_Most_Active_Stocks_Small_free_fec0650b7f.webp",
       "related": "INTC",
       "source": "ChartMill",
-      "summary": "Stay updated with the S&P500 stocks that are on the move in today's pre-market session.",
-      "url": "https://finnhub.io/api/news?id=00df6df6df67101935570b3d09b4f6fb117c7f4bf5fcbd493dfc9d008f76108f"
+      "summary": "These stocks are making the most noise in today's session. Stay tuned for the latest updates!",
+      "url": "https://finnhub.io/api/news?id=e7ff2c19b1ea0dd0b5fc7c743285265a03298aa5dceb13fe5ea04cab8325a641"
     },
     {
       "category": "company",
-      "datetime": 1788861788,
-      "headline": "Roivant Sciences, Pharvaris, IonQ And Other Big Stocks Moving Higher On Tuesday",
-      "id": 141949530,
-      "image": "https://cdn.benzinga.com/files/images/story/2026/09/08/Display-Of-Stock-Market-Quotes.jpg?width=2048&height=1536",
+      "datetime": 1788889306,
+      "headline": "Sector Update: Tech Stocks Gain Tuesday Afternoon",
+      "id": 141952526,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "INTC",
-      "source": "Benzinga",
-      "summary": "U.S. stocks fell Tuesday, but Roivant surged 16% on positive PH-ILD trial data. Pharvaris, Solaris, IonQ and quantum stocks also posted strong gains.",
-      "url": "https://finnhub.io/api/news?id=a4b85fb554a6fc1cc365a2cf88bfe4fe9a653883b671ed409d42e42be50082a2"
+      "source": "Yahoo",
+      "summary": "Tech stocks were higher Tuesday afternoon, with the State Street Technology Select Sector SPDR ETF (",
+      "url": "https://finnhub.io/api/news?id=36fcd8baf08f803b3dfd780713c80799ffe2fc5d5abc3464db5d761d1a0c9975"
     },
     {
       "category": "company",
-      "datetime": 1788861600,
-      "headline": "American Century Value Fund Q2 2026 Contributors And Detractors",
-      "id": 141949289,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2182047027/image_2182047027.jpg?io=getty-c-w1536",
+      "datetime": 1788888467,
+      "headline": "Top Midday Gainers",
+      "id": 141952587,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "INTC",
-      "source": "SeekingAlpha",
-      "summary": "Key contributors include Infineon Technologies, Teradyne and Walmart. Learn more about key detractors.",
-      "url": "https://finnhub.io/api/news?id=4d692700574c5bd991de1cb46707cbbc7162de9134cc7fb87a13d812a326409e"
+      "source": "Yahoo",
+      "summary": "Roivant Sciences (ROIV) shares soared 19% after the company said its Pulmovant unit's phase 2 PHocus",
+      "url": "https://finnhub.io/api/news?id=0847765489fd164b7ba68471321ee4879f1e66ee636697799778159c6a302678"
     },
     {
       "category": "company",
-      "datetime": 1788860429,
-      "headline": "What's Going On With Arm Holdings Stock Tuesday?",
-      "id": 141949488,
-      "image": "https://cdn.benzinga.com/files/images/story/2026/09/08/Konskie--Poland---November-12--2024-Arm-.jpg?width=2048&height=1536",
+      "datetime": 1788888396,
+      "headline": "Intel Stock Jumps on Major Analyst Upgrade",
+      "id": 141952548,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "INTC",
-      "source": "Benzinga",
-      "summary": "Arm stock (NASDAQ: ARM) rises as chip shares outperform. Read technical levels, price predictions, and key support targets.",
-      "url": "https://finnhub.io/api/news?id=1c83fea0b958898e6a6f30deb00344225f86cc65ee2af3502e544d5fef3a8b11"
+      "source": "Yahoo",
+      "summary": "Intel Stock Jumps as Northland Turns Bullish and CPU Price Hike Looms",
+      "url": "https://finnhub.io/api/news?id=49a3447dff7403c9eca797433ba74d6f3d682c62f57a8bcc013d2782d463f1f3"
     }
   ],
   "polygon_news": [
@@ -744,6 +744,50 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
+      "datetime": 1788885301,
+      "headline": "These S&P500 stocks are moving in today's session",
+      "id": 141952072,
+      "image": "https://www.chartmill.com/images/uploads/CM_Top_Movers_Small_free_2b4ff2fc22.webp",
+      "related": "HPE",
+      "source": "ChartMill",
+      "summary": "Uncover the latest developments among S&P500 stocks in today's session. Stay tuned to the S&P500 index's top gainers and losers on Tuesday.",
+      "url": "https://finnhub.io/api/news?id=4f341f3695cce0e1c75c9e82065703aa89431c0b92533b280737ef8d0233cb27"
+    },
+    {
+      "category": "company",
+      "datetime": 1788881597,
+      "headline": "Super Micro Climbs 4%, Hewlett Packard Enterprise Advances 5%: Is the Margin Beat Already Guided Away?",
+      "id": 141950612,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "HPE",
+      "source": "Yahoo",
+      "summary": "AI server stocks are surging while the broader market sits flat, but the margin beat driving the biggest gain carries a built-in expiration date that management already acknowledged on the earnings call.",
+      "url": "https://finnhub.io/api/news?id=c33631a4e58a0d6eb5c8c0a9dbf3bbd26cc9f3016563fda923f9edfb171be5b1"
+    },
+    {
+      "category": "company",
+      "datetime": 1788879858,
+      "headline": "Hewlett Packard Enterprise Company (HPE) Jumps on Surging AI Infrastructure Demand",
+      "id": 141950933,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "HPE",
+      "source": "Yahoo",
+      "summary": "Harbor Funds, an investment management company, released its Q2 2026 investor letter for \u201cHarbor Mid Cap Value Fund\u201d. The letter can be downloaded here. Global equities experienced a sharp rally in Q2 2026, with the S&P 500 returning 15.2%, its strongest quarter since 2020, driven by a shift from software to hardware in the Artificial [\u2026]",
+      "url": "https://finnhub.io/api/news?id=0450b50ae0be1e92d967dde8e4a0f783dfc774967ef325404d3f43880c659c02"
+    },
+    {
+      "category": "company",
+      "datetime": 1788877229,
+      "headline": "SMCI Outworks Its Peers And Costs Less",
+      "id": 141950100,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "HPE",
+      "source": "Yahoo",
+      "summary": "In the world of AI hardware, one company is delivering top-tier growth from the bargain bin, forcing investors to ask if the market sees a flaw they are missing.",
+      "url": "https://finnhub.io/api/news?id=2eec56b8e8bbea93472ac3ae78a7f43f0f48d04a4298a23b5549b645ad238e7b"
+    },
+    {
+      "category": "company",
       "datetime": 1788798960,
       "headline": "NetApp Q1 Beat and Raised Guidance Put AI Storage Growth in Focus",
       "id": 141772583,
@@ -752,50 +796,6 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
       "source": "Yahoo",
       "summary": "NetApp's fiscal Q1 beat and raised 2027 outlook spotlight AI storage demand, record flash and cloud sales, and the margin test ahead.",
       "url": "https://finnhub.io/api/news?id=4824c960c8e42964504600f596bb569e370fa1cc4f80ea9594e07e0a2b3f7d59"
-    },
-    {
-      "category": "company",
-      "datetime": 1788798180,
-      "headline": "Should You Buy NetApp Stock as AI Growth Meets a Premium Valuation?",
-      "id": 141772584,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "HPE",
-      "source": "Yahoo",
-      "summary": "NetApp enters fiscal 2027 with stronger AI, flash and cloud demand, but premium valuation and margin pressure leave less room for execution missteps.",
-      "url": "https://finnhub.io/api/news?id=80f4ccecd9b62b7c6168609092a1bb13befc7da004cab5e936829b0e5ca95c4a"
-    },
-    {
-      "category": "company",
-      "datetime": 1788797880,
-      "headline": "NTAP Stock Up 14.8% in 3 Months Can AI Momentum Keep It Climbing?",
-      "id": 141772585,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "HPE",
-      "source": "Yahoo",
-      "summary": "NetApp's 14.8% three-month gain rides record all-flash growth, rising AI deal sizes and a higher fiscal 2027 outlook, even as margin risks build.",
-      "url": "https://finnhub.io/api/news?id=a93daba9638fe349fa8d78e492fa55dc805d22fe0641545d37ef1e475d1fbb84"
-    },
-    {
-      "category": "company",
-      "datetime": 1788796208,
-      "headline": "Super Micro Has Gained 35% in 2026. What Would It Take to Get SMCI Stock Up to $50?",
-      "id": 141767418,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "HPE",
-      "source": "Yahoo",
-      "summary": "Super Micro has outpaced the S&P 500 this year, yet its peers left it far behind, and a key cash flow problem explains why the $50 price target remains out of reach for now.",
-      "url": "https://finnhub.io/api/news?id=26f1f5255487c64afb878baabbe35acee1c1b0b2457e461748555f94b2a9012a"
-    },
-    {
-      "category": "company",
-      "datetime": 1788790502,
-      "headline": "Interpreting Hewlett Packard Enterprise (HPE) International Revenue Trends",
-      "id": 141764002,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "HPE",
-      "source": "Yahoo",
-      "summary": "Explore Hewlett Packard Enterprise's (HPE) international revenue trends and how these numbers impact Wall Street's forecasts and what's ahead for the stock.",
-      "url": "https://finnhub.io/api/news?id=615cd6bd2c6150cff42caafc0ba8cde768905e6162d8d32c8bc9233ab7768705"
     }
   ],
   "polygon_news": [
@@ -1255,58 +1255,58 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788867516,
-      "headline": "Nvidia: Unusual Visibility, Unusual Value",
-      "id": 141949679,
-      "image": "",
+      "datetime": 1788890700,
+      "headline": "Which S&P500 stocks are the most active on Tuesday?",
+      "id": 141952860,
+      "image": "https://www.chartmill.com/images/uploads/CM_Most_Active_Stocks_Small_free_fec0650b7f.webp",
       "related": "NVDA",
-      "source": "SeekingAlpha",
-      "summary": "",
-      "url": "https://finnhub.io/api/news?id=70e9f46debfe7b8c43ab21a89477fdd81ea4f839726230e005ca6727dd890476"
+      "source": "ChartMill",
+      "summary": "Stay informed about the most active stocks in the S&P500 index on Tuesday's session. Discover the stocks that are generating the highest trading volume and driving market activity.",
+      "url": "https://finnhub.io/api/news?id=71df634472679672cbba113b47bdb93092bfd0fa038e96e7e1e616b1bf5b7146"
     },
     {
       "category": "company",
-      "datetime": 1788867000,
-      "headline": "Micron vs. Sandisk: 1 Artificial Intelligence (AI) Memory Winner Is Down 20% and Clearly the Superior Buy Today",
-      "id": 141939994,
+      "datetime": 1788890400,
+      "headline": "Curious about the most active stocks on Tuesday?",
+      "id": 141952859,
+      "image": "https://www.chartmill.com/images/uploads/CM_Most_Active_Stocks_Small_free_fec0650b7f.webp",
+      "related": "NVDA",
+      "source": "ChartMill",
+      "summary": "These stocks are making the most noise in today's session. Stay tuned for the latest updates!",
+      "url": "https://finnhub.io/api/news?id=e7ff2c19b1ea0dd0b5fc7c743285265a03298aa5dceb13fe5ea04cab8325a641"
+    },
+    {
+      "category": "company",
+      "datetime": 1788889797,
+      "headline": "Does Michael Burry Have It Wrong? Nvidia Chips Retain Value, Data Shows",
+      "id": 141952505,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NVDA",
       "source": "Yahoo",
-      "summary": "Both stocks are growing at an unreal pace.",
-      "url": "https://finnhub.io/api/news?id=df9407e0a8dffe9ecf7bc29c65174d27dbdc17d6666131b99fb96e092bed7c3d"
+      "summary": "Six-year-old A100 chips from Nvidia Corp. (NASDAQ:NVDA) are still valued at nearly $5,000 each, complicating Michael Burry\u2019s warning that Big Tech may be overstating profits by depreciating AI hardware over five or six years. Silicon Data estimates the A100\u2019s residual...",
+      "url": "https://finnhub.io/api/news?id=a620b1afece6eac95e5ea96128771a32ec6085f430adeab8403f7c5d1b0bb56c"
     },
     {
       "category": "company",
-      "datetime": 1788867000,
-      "headline": "Quantum Cyber Acquires NVIDIA A100 AI Compute Cluster to Power Its Swarm Operating System",
-      "id": 141939990,
+      "datetime": 1788888901,
+      "headline": "The Earnings Report That Could Move the Market",
+      "id": 141952491,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NVDA",
       "source": "Yahoo",
-      "summary": "Establishes In-House AI Backbone at the Company's Bridgeport, Connecticut Facility; Positions Quantum Cyber as an AI-Native, Vertically Integrated Autonomous Defense ManufacturerNorwalk, CT, Sept. 08, 2026 (GLOBE NEWSWIRE) -- Quantum Cyber N.V. (Nasdaq: QUCY) (\u201cQuantum Cyber\u201d or the \u201cCompany\u201d), a Nasdaq-listed autonomous defense technology company assembling an AI-powered System-of-Systems platform for drone warfare, counter-UAS, and border security applications, today announced that it has acqu",
-      "url": "https://finnhub.io/api/news?id=1974437e9e333c761dfc81d65185fce7311cef2f0d19b9170c49844781b9c2c4"
+      "summary": "The earnings report for Nvidia, the world's most valuable company, could have huge economic ramifications.",
+      "url": "https://finnhub.io/api/news?id=fe8f338510a9436ca464629f930125d69fbab8a9f51f1c7db990cde157ab9092"
     },
     {
       "category": "company",
-      "datetime": 1788866820,
-      "headline": "Why Archer Aviation Skyrocketed 24.6% Last Month",
-      "id": 141940002,
+      "datetime": 1788888900,
+      "headline": "Forget Occidental Petroleum. Buy This Pipeline Stock in September Instead.",
+      "id": 141952500,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "NVDA",
       "source": "Yahoo",
-      "summary": "Archer recently made a deal that's poised to have a transformative impact on the company.",
-      "url": "https://finnhub.io/api/news?id=42b0fa89a18c5f953890f47eeb2eb8aaa6bda8baf69f16361f27869ff77a4f62"
-    },
-    {
-      "category": "company",
-      "datetime": 1788866817,
-      "headline": "Sandisk: NAND Just Had A Game-Changing Week",
-      "id": 141949685,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/471505909/image_471505909.jpg?io=getty-c-w1536",
-      "related": "NVDA",
-      "source": "SeekingAlpha",
-      "summary": "Sandisk Corporation is poised for an AI-driven NAND flash supercycle as agentic inference boosts storage demand. Click for this SNDK stock update.",
-      "url": "https://finnhub.io/api/news?id=96b6711cf535d8591e7643d00c3b5d213b2c2d97883c27638a00ec6cc8e08f5a"
+      "summary": "The Williams Companies is a more stable investment than the upstream company.",
+      "url": "https://finnhub.io/api/news?id=d7b4b1d7a2a84e52d0b3f55ca76193f9b883d73bdc64d683d17fb5459e91c0a5"
     }
   ],
   "polygon_news": [],
@@ -1501,6 +1501,28 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
+      "datetime": 1788873000,
+      "headline": "Best Income Stocks to Buy for September 8th",
+      "id": 141951207,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "HPQ",
+      "source": "Yahoo",
+      "summary": "HPQ, E and VAC made it to the Zacks Rank #1 (Strong Buy) income stocks list on September 8, 2026.",
+      "url": "https://finnhub.io/api/news?id=489571dd3f7e575abd3edee9fa5ca36f177d1da2b5e4e9d3a5cfe3f89dbf56d3"
+    },
+    {
+      "category": "company",
+      "datetime": 1788871638,
+      "headline": "3 Reasons HPQ is Risky and 1 Stock to Buy Instead",
+      "id": 141951208,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "HPQ",
+      "source": "Yahoo",
+      "summary": "What a fantastic six months it\u2019s been for HP. Shares of the company have skyrocketed 72.5%, setting a new 52-week high of $32.65. This was partly due to its solid quarterly results, and the run-up might have investors contemplating their next move.",
+      "url": "https://finnhub.io/api/news?id=af0e42462bc96858cd3e2547f3af93ca20836858d2d390f90cb5edc689be331c"
+    },
+    {
+      "category": "company",
       "datetime": 1788850202,
       "headline": "Why Lenovo Is A Better Buy Than Dell And HP Inc.",
       "id": 141925484,
@@ -1531,28 +1553,6 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
       "source": "SeekingAlpha",
       "summary": "Listen on the go! A daily podcast of Wall Street Breakfast will be available by 8:00 a.m.",
       "url": "https://finnhub.io/api/news?id=07e2229b955b49ac631b54d0a8f3eab1902e7f0d9aaa160b4e9c708385a77726"
-    },
-    {
-      "category": "company",
-      "datetime": 1788606000,
-      "headline": "Oracle, Adobe Results In Focus As Earnings Season Winds Down",
-      "id": 141523339,
-      "image": "https://static.seekingalpha.com/assets/og_image_1200-29b2bfe1a595477db6826bd2126c63ac2091efb7ec76347a8e7f81ba17e3de6c.png",
-      "related": "HPQ",
-      "source": "SeekingAlpha",
-      "summary": "Stay ahead with Wall Street Week Ahead: key earnings (Oracle, Adobe, Kroger), IPOs & CPI/PPI data, plus volatility/dividend watch. See more here.",
-      "url": "https://finnhub.io/api/news?id=9c32ce6f0eb581f7b60ca97c305608c705b2e1b42a63fa49e66076905defd8c8"
-    },
-    {
-      "category": "company",
-      "datetime": 1788562641,
-      "headline": "Dividend Champion, Contender, And Challenger Highlights: Week September 6",
-      "id": 141485601,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/1072593728/image_1072593728.jpg?io=getty-c-w1536",
-      "related": "HPQ",
-      "source": "SeekingAlpha",
-      "summary": "Explore this week\u00e2\u0080\u0099s dividend updates for Dividend Champions, Contenders & Challengers\u00e2\u0080\u0094see dividend changes, upcoming ex-dividend and pay dates.",
-      "url": "https://finnhub.io/api/news?id=a14fa2d71c991d1424c650e89ccc0365f647e29aec84a754bdf9a4133b2e0743"
     }
   ],
   "polygon_news": [
@@ -2381,58 +2381,58 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788799215,
-      "headline": "Which Telecom Stock Has Dominated in 2026: AT&T, Verizon, or T-Mobile? (It\u2019s Not Even Close)",
-      "id": 141765169,
+      "datetime": 1788889245,
+      "headline": "EchoStar Shares Could Follow SpaceX's Catalyst Path, UBS Securities Says",
+      "id": 141952669,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "T",
       "source": "Yahoo",
-      "summary": "The 2026 telecom sector just produced a shocking reordering, with the stock everyone wrote off surging past both its rivals and the broader market by a margin that demands explanation.",
-      "url": "https://finnhub.io/api/news?id=840e20fd15d059be1f0c9ca2f583a8f8524a1a9547f86bf6291d770156d84d77"
+      "summary": "EchoStar's (ECHO) stock upside could be primarily driven by its expected 2% stake in SpaceX's (SPCX)",
+      "url": "https://finnhub.io/api/news?id=c2c8b77511d2839e7a6ef609201b212db53ea175af963f6a1d1a76efef38375f"
     },
     {
       "category": "company",
-      "datetime": 1788745492,
-      "headline": "Cell Tower REITs: No Threat From Above",
-      "id": 141735949,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2186986473/image_2186986473.jpg?io=getty-c-w1536",
-      "related": "T",
-      "source": "SeekingAlpha",
-      "summary": "Cell tower REITs (SBAC, AMT, CCI) now trade at 12-year low multiples, reflecting trough earnings and fully baked-in Dish and satellite risks.",
-      "url": "https://finnhub.io/api/news?id=3873a540b155b690910bfad885297ae468e613350ec7710251db74651866a1f0"
-    },
-    {
-      "category": "company",
-      "datetime": 1788695940,
-      "headline": "Like Jamie Dimon, AT&T CEO says if you attend a meeting, you need to show up prepared\u2014he \u2018craves\u2019 people who don\u2019t just sit back and observe",
-      "id": 141593724,
+      "datetime": 1788887012,
+      "headline": "T, AMZN Stocks In Focus \u2014 AT&T, Amazon Leo Partner To Expand Satellite Broadband For Businesses",
+      "id": 141952520,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "T",
       "source": "Yahoo",
-      "summary": "AT&T\u2019s John Stankey and JPMorgan\u2019s Jamie Dimon agree: Meetings should be worth everyone\u2019s time\u2014and attendees shouldn\u2019t be afraid to disagree.",
-      "url": "https://finnhub.io/api/news?id=310dbb3ef1a3fe12863858096d185d0607ab9f4eb0d3c936af5c96704dfa9d26"
+      "summary": "AT&T says it will be the first major U.S. telecom provider to integrate Leo satellite services with fiber and 5G.",
+      "url": "https://finnhub.io/api/news?id=d6fc5e09f0abc2e9a89105bf9a273cf915a182bb2146a3e24e640c1485f1b38c"
     },
     {
       "category": "company",
-      "datetime": 1788649284,
-      "headline": "Dividends vs. Annuity: Which Turns $930,000 Into More Monthly Income for Life?",
-      "id": 141550144,
+      "datetime": 1788878940,
+      "headline": "Can AT&T's Latest Smartphone Offers Boost Customer Satisfaction?",
+      "id": 141950414,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "T",
       "source": "Yahoo",
-      "summary": "Turning $930,000 into a lifetime income stream sounds simple until you realize an annuity payout and a dividend yield are not measuring the same thing, and that gap changes everything about which strategy actually wins.",
-      "url": "https://finnhub.io/api/news?id=602a1ed11cc72016b6d13870259645f3075a66b65765c0023c4fc91be618a0ad"
+      "summary": "T expands its smartphone lineup with the Samsung Galaxy S26 FE, pairing flexible pricing, upgrade options and customer-focused benefits.",
+      "url": "https://finnhub.io/api/news?id=52c97abe3a3c6fd6902b9588d33822be6ae1883a0d8adbc38733b8971feae220"
     },
     {
       "category": "company",
-      "datetime": 1788600890,
-      "headline": "AT&T Preferred Cumulative Shares Series A And C Seeking A Bid",
-      "id": 141519407,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/874102792/image_874102792.jpg?io=getty-c-w1536",
+      "datetime": 1788877080,
+      "headline": "The Zacks Analyst Blog Highlights SpaceX, Verizon and AT&T",
+      "id": 141950420,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "T",
-      "source": "SeekingAlpha",
-      "summary": "AT&T preferred shares, series A and C, currently offer a 7.1% yield. With secure-looking dividends, the preferreds are rated a Buy; click to read more.",
-      "url": "https://finnhub.io/api/news?id=989955c8ed33d4e69e3bc3b2e059d2b2f385d302adf943a93ccfb3a1e555ace6"
+      "source": "Yahoo",
+      "summary": "SpaceX briefly reclaimed a $2 trillion valuation as Starlink growth, launch dominance and AI investments bolster its long-term growth story.",
+      "url": "https://finnhub.io/api/news?id=71c7f65aa12ff9faa4f265dd20664e88b58866c254c8fee35ae8ad58f2aab3f7"
+    },
+    {
+      "category": "company",
+      "datetime": 1788875467,
+      "headline": "Amazon and AT&T partner to challenge SpaceX Starlink dominance",
+      "id": 141949837,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "T",
+      "source": "Yahoo",
+      "summary": "AT&T becomes the first U.S. wireless carrier to use Amazon Leo's low-Earth-orbit satellite network to serve business customers",
+      "url": "https://finnhub.io/api/news?id=2ca545d0c1ccab4b40622058ae6b9ccc0033129447009f825319fe58e2880bbe"
     }
   ],
   "polygon_news": [],
@@ -2614,6 +2614,28 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
+      "datetime": 1788872404,
+      "headline": "Investors Heavily Search Warner Bros. Discovery, Inc. (WBD): Here is What You Need to Know",
+      "id": 141950926,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "WBD",
+      "source": "Yahoo",
+      "summary": "Recently, Zacks.com users have been paying close attention to Warner Bros. Discovery (WBD). This makes it worthwhile to examine what the stock has in store.",
+      "url": "https://finnhub.io/api/news?id=613156c50304ef03432caeab07671da8d38acccbdca68cc66b82a98e9eabb804"
+    },
+    {
+      "category": "company",
+      "datetime": 1788869388,
+      "headline": "Netflix: The Buying Opportunity Of The Last Five Years",
+      "id": 141951829,
+      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2258061480/image_2258061480.jpg?io=getty-c-w1536",
+      "related": "WBD",
+      "source": "SeekingAlpha",
+      "summary": "Netflix (NFLX) has lagged the S&P 500\u00e2\u0080\u0094explore fundamentals, risks, valuation, and a best-case $132 fair value target.",
+      "url": "https://finnhub.io/api/news?id=82dc76bdd1d35c94731ffd74dfa060583ebad50c4b96e6fe93be4c74958679e6"
+    },
+    {
+      "category": "company",
       "datetime": 1788784435,
       "headline": "Netflix Has Momentum Despite Being Down in 2026. One Analyst\u2019s Price Target Implies 70% Upside",
       "id": 141762398,
@@ -2644,28 +2666,6 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
       "source": "Yahoo",
       "summary": "Gemmy Industries and Warner Bros. Discovery (WBD) are expanding their Gremlins partnership with new animatronic Halloween decorations at The Home Depot, putting fresh attention on how WBD monetizes its classic intellectual property. For investors, the Gremlins expansion comes during a mixed stretch for Warner Bros. Discovery, with the share price down over the past week but showing a 30 day share price return of 5.49% and a 90 day share price return of 6.72%. Over longer horizons, total...",
       "url": "https://finnhub.io/api/news?id=b24f9e21478c82bf0344511f1d895be5c1998bfff01eb4d2cf4b22307241df41"
-    },
-    {
-      "category": "company",
-      "datetime": 1788539080,
-      "headline": "Netflix Falls 4% as Rate Repricing Pressures Long-Duration Growth; Disney Dips, Warner Bros. Discovery Sits Tight",
-      "id": 141446665,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WBD",
-      "source": "Yahoo",
-      "summary": "Rising Treasury yields are carving a sharp divide inside the streaming sector, and not every media stock is absorbing the pressure equally. The gap between the biggest loser and the name sitting virtually unchanged tells you something important about how rate risk hides in plain sight.",
-      "url": "https://finnhub.io/api/news?id=7ae8d905f4cc86b73360d8676ca26d8821c4b152c54cbf48bab49b90d4449625"
-    },
-    {
-      "category": "company",
-      "datetime": 1788469173,
-      "headline": "DIS Is Priced Like The Best Of Its Group. Is It?",
-      "id": 141405303,
-      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
-      "related": "WBD",
-      "source": "Yahoo",
-      "summary": "The market is charging a premium for Walt Disney stock, but its growth and profit metrics currently trail key rivals. Is this a bet on a magical future, or just a storybook valuation.",
-      "url": "https://finnhub.io/api/news?id=d3ca2480cdf4102d28394ec135e9dbee8dc83136c52f5d51ed0fcd7a06a2f0c8"
     }
   ],
   "polygon_news": [],
@@ -2835,58 +2835,58 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788862119,
-      "headline": "NewAmsterdam Pharma: Potential Coupled With Uncertainty",
-      "id": 141949322,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2285918278/image_2285918278.jpg?io=getty-c-w1536",
-      "related": "PFE",
-      "source": "SeekingAlpha",
-      "summary": "NewAmsterdam Pharma (NAMS) has seen a near 40% stock pullback post-Merck\u00e2\u0080\u0099s Lipfendra approval, but retains multi-blockbuster potential with obicetrapib. Read the latest on the stock here.",
-      "url": "https://finnhub.io/api/news?id=4327394c95660a20d019c67d42085de8642f275075d61e1337f760a5b7bc2062"
-    },
-    {
-      "category": "company",
-      "datetime": 1788856238,
-      "headline": "Dividend Harvesting Portfolio Week 288: $28,800 Allocated, $3,289.51 In Projected Dividends",
-      "id": 141948955,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2199578213/image_2199578213.jpg?io=getty-c-w1536",
-      "related": "PFE",
-      "source": "SeekingAlpha",
-      "summary": "Dividend Harvesting Portfolio update: 45.8% ROI, $3,289 forward annual income, 7.83% yield. Click here to read more.",
-      "url": "https://finnhub.io/api/news?id=d3d1a380b95492109fe7307d02168b156b4c4a80de9fc5a262c0b1e539182525"
-    },
-    {
-      "category": "company",
-      "datetime": 1788800445,
-      "headline": "Forget the Dividend. This Could Be the Real Reason to Buy Pfizer Stock Now",
-      "id": 141771129,
+      "datetime": 1788887331,
+      "headline": "Is AbbVie Stock Too Reliant On Skyrizi?",
+      "id": 141952570,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "PFE",
       "source": "Yahoo",
-      "summary": "Pfizer's 5.91% yield draws most of the headlines, but a quietly rerated stock and a pipeline loaded with 2026 catalysts are building a separate case altogether for investors willing to look past the dividend.",
-      "url": "https://finnhub.io/api/news?id=8d4ddd4505d0a2c0a565fc6aa50cad54667e4793873643445d02cbd7344ed953"
+      "summary": "AbbVie (ABBV) trades at $256.46, roughly 96% of its 52-week high, after returning 24.1% over the past twelve months against 19.7% for the S&P 500. That price buys a business where about a third of guided 2026 revenue comes from one drug. The market reads that concentration as strength. It is worth reading it the other way too.",
+      "url": "https://finnhub.io/api/news?id=5705e6aac332197632f6883717364f774adac3cf64f03b6da96a17c69f795736"
     },
     {
       "category": "company",
-      "datetime": 1788796201,
-      "headline": "This Is What I'd Do With Pfizer Stock Right Now",
-      "id": 141771130,
+      "datetime": 1788887100,
+      "headline": "Move Aside, Pfizer: This Stock Is the Smarter Dividend Buy Right Now",
+      "id": 141952507,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "PFE",
       "source": "Yahoo",
-      "summary": "The pharmaceutical stock is struggling, but its dividend can be highly valuable to income investors.",
-      "url": "https://finnhub.io/api/news?id=b9e06ae22a5e4c2a6e09314150400ac04b567e316d83e4ca72b0070fbd64d175"
+      "summary": "Pfizer's 6% dividend yield is enticing, but AbbVie's dividend growth is superior.",
+      "url": "https://finnhub.io/api/news?id=5bc48b8fcb4082ca3a778081490904fe5568769496d5f9bf7ced0e48723eb43c"
     },
     {
       "category": "company",
-      "datetime": 1788784860,
-      "headline": "AstraZeneca Secures FDA Nod for New Breast Cancer Therapy Etcamah",
-      "id": 141762863,
+      "datetime": 1788878400,
+      "headline": "MRNA Stock Soars 143% in a Month: Time to Buy, Hold or Sell?",
+      "id": 141950162,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "PFE",
       "source": "Yahoo",
-      "summary": "AZN's Etcamah wins accelerated FDA approval for certain advanced breast cancer patients, backed by a 56% risk reduction in progression or death.",
-      "url": "https://finnhub.io/api/news?id=41ffd461059d01b83af5f6b005e0cd9ed487a6bbd0d0ecd81a797819bfe6cdb1"
+      "summary": "Moderna stock surges 143% in a month on positive cancer therapy results, but competition and valuation raise key questions for investors.",
+      "url": "https://finnhub.io/api/news?id=70423431bc7b150e3630ade48f615f5dd07d0c36f4e85b7c28b19b44f9016e98"
+    },
+    {
+      "category": "company",
+      "datetime": 1788878194,
+      "headline": "What Merck Stopped Saying About GARDASIL Should Change What You Watch",
+      "id": 141949985,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "PFE",
+      "source": "Yahoo",
+      "summary": "Merck (MRK) has returned about 85% over the past year and at about $150 trades roughly 4% below its 52-week high. A year ago, management spent earnings calls managing fallout from a steep drop in GARDASIL sales. That problem has left the lead. What management opens with instead is a much larger claim, and it settles years from now.",
+      "url": "https://finnhub.io/api/news?id=23e22eca29f124149162f38fb98cc7d4fd8a268c0cb690d6bdce0f160f07e68b"
+    },
+    {
+      "category": "company",
+      "datetime": 1788876000,
+      "headline": "Pfizer Invites Public to Listen to Webcast of Pfizer Discussion at Healthcare Conference",
+      "id": 141950556,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "PFE",
+      "source": "Yahoo",
+      "summary": "NEW YORK, September 08, 2026--Pfizer Inc. (NYSE: PFE) invites investors and the general public to listen to a webcast of a discussion with Albert Bourla, Chairman and Chief Executive Officer, at the Morgan Stanley 24th Annual Global Healthcare Conference on Monday, September 14, 2026 at 10:45 a.m. EDT.",
+      "url": "https://finnhub.io/api/news?id=08300e39c77d680ab5e7a4f13974480802f6ddb9b5122762586f5dbd571da750"
     }
   ],
   "polygon_news": [],
@@ -3068,58 +3068,58 @@ Evidence packet (source-labelled; missing sources must remain uncertain):
   "finnhub_news": [
     {
       "category": "company",
-      "datetime": 1788861600,
-      "headline": "American Century Value Fund Q2 2026 Contributors And Detractors",
-      "id": 141949289,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2182047027/image_2182047027.jpg?io=getty-c-w1536",
-      "related": "AAPL",
-      "source": "SeekingAlpha",
-      "summary": "Key contributors include Infineon Technologies, Teradyne and Walmart. Learn more about key detractors.",
-      "url": "https://finnhub.io/api/news?id=4d692700574c5bd991de1cb46707cbbc7162de9134cc7fb87a13d812a326409e"
-    },
-    {
-      "category": "company",
-      "datetime": 1788852300,
-      "headline": "Greg Abel Has 53.6% of Berkshire Hathaway's Stock Invested in These 4 Top Stocks",
-      "id": 141862091,
+      "datetime": 1788886870,
+      "headline": "TSMC, IBD Stock Of The Day, Rises Above Early Buy Point As Chip Stocks Rally",
+      "id": 141952516,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "AAPL",
       "source": "Yahoo",
-      "summary": "Two of them are tech stocks, and the others are the portfolio's longest-held positions.",
-      "url": "https://finnhub.io/api/news?id=42c612dbc50821aec4300518f593a2cfb4b9f86d1a2cbb0bcfe763b7baffd53f"
+      "summary": "Taiwan Semiconductor Manufacturing is the IBD Stock Of The Day. TSM stock hit an early-entry buy point on Tuesday.",
+      "url": "https://finnhub.io/api/news?id=4fb9351ff83ec74cef60c4d0d78b9bdf7b160384a183100f7de3e3c68dae94f7"
     },
     {
       "category": "company",
-      "datetime": 1788850156,
-      "headline": "Apple: Negatively Impacted By Hyperscaler Demand",
-      "id": 141925545,
-      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2223152978/image_2223152978.jpg?io=getty-c-w1536",
-      "related": "AAPL",
-      "source": "SeekingAlpha",
-      "summary": "Apple Inc. (AAPL) delivered strong FY26 results, but shares dropped 7% post-earnings due to margin pressure and a cautious outlook.",
-      "url": "https://finnhub.io/api/news?id=c14a58686e15a43a89f9c93a4a57cfba6b6afc67aacdde4325d8da19235dc6cc"
-    },
-    {
-      "category": "company",
-      "datetime": 1788847500,
-      "headline": "ASML Wins Over TSMC, Samsung for New EUV Machines as AI Demand Surges",
-      "id": 141862096,
+      "datetime": 1788886316,
+      "headline": "Apple Falls Before Ternus's First $54 Billion iPhone Test",
+      "id": 141952513,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "AAPL",
       "source": "Yahoo",
-      "summary": "ASML Holding NV has won commitments from top chipmakers to use its latest semiconductor production gear, while embarking on a broader agreement to meet surging demand for more powerful artificial intelligence technology.",
-      "url": "https://finnhub.io/api/news?id=17177fef1ca7bf317dcc93cda3f133854e00d7ce7a932e729985430f169fc70d"
+      "summary": "Tomorrow's launch must turn premium hardware into evidence that Apple can close its AI gap.",
+      "url": "https://finnhub.io/api/news?id=3f9726212b39259306b2d0278e91135a5c6c3a307066401f71025d6f84effea2"
     },
     {
       "category": "company",
-      "datetime": 1788818335,
-      "headline": "Palantir Stock Leads August Rally -- Nvidia, Salesforce and Super Micro Jump",
-      "id": 141771358,
+      "datetime": 1788885606,
+      "headline": "What's going on in today's session: dow jones movers",
+      "id": 141952073,
+      "image": "https://www.chartmill.com/images/uploads/CM_Top_Movers_Small_free_2b4ff2fc22.webp",
+      "related": "AAPL",
+      "source": "ChartMill",
+      "summary": "Wondering what's happening in today's session for the dow jones index? Stay informed with the top movers within the dow jones index on Tuesday.",
+      "url": "https://finnhub.io/api/news?id=5ed9c9ef40acd5c017324f75f1cda8dd92993808c451df6bde6b702e36240df6"
+    },
+    {
+      "category": "company",
+      "datetime": 1788884340,
+      "headline": "Apple expected to unveil first foldable iPhone as new CEO Ternus takes stage",
+      "id": 141952514,
       "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
       "related": "AAPL",
       "source": "Yahoo",
-      "summary": "Palantir Crushes Tech Stocks in August: Salesforce Nears 40% Gain, Super Micro Jumps",
-      "url": "https://finnhub.io/api/news?id=89ee1437c35b1ea43ff04c0695734f1b0ef289bd07ced8822ca70a45052719c9"
+      "summary": "Apple Inc (NASDAQ:AAPL, XETRA:APC) is set to unveil its first foldable iPhone alongside a refreshed Pro lineup, in John Ternus's first major product launch as CEO. The event, dubbed \"Surprise and shine,\" is scheduled for Wednesday at 1pm ET. Media reports cited in the note indicate the...",
+      "url": "https://finnhub.io/api/news?id=a8c4fc81b70a48ca8c1bc29495bc1502f0dde9d52e28e524b625d99bb1bfa022"
+    },
+    {
+      "category": "company",
+      "datetime": 1788883086,
+      "headline": "SK Hynix Jumps 7% as AI Diverts Memory From Phones, Micron Holds Steady, Apple Slips",
+      "id": 141951786,
+      "image": "https://s.yimg.com/rz/stage/p/yahoo_finance_en-US_h_p_finance_2.png",
+      "related": "AAPL",
+      "source": "Yahoo",
+      "summary": "AI data centers are pulling memory capacity away from smartphones, and the winners and losers splitting across the semiconductor complex reveal a supply war that could reshape device prices for years to come.",
+      "url": "https://finnhub.io/api/news?id=8c4ce9a3fb432f08151ecdb249e4b10cb962fcba637c6cfcd28a7b41e81530e9"
     }
   ],
   "polygon_news": [
