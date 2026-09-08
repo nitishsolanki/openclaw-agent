@@ -47,7 +47,7 @@ def _render_base(report: dict) -> str:
         return f"{arrow} {change:+.2f}%"
 
     def candidate_cards(items, profile):
-        return "".join(f"<article class='card' style='font-size:.9rem'><div class='row'><h3 style='font-size:1.1rem'>{escape(str(item['symbol']))}</h3><span class='badge'>{float(item.get('boosted_score', item['score'])):.1f}/100</span></div><p>{escape(str(item['direction']))} · {escape(str(item.get('sector', 'Unknown')))} · {escape(str(item.get('profile_status', 'QUALIFIED')))}</p><p class='muted'>Python: {float(item['score']):.1f} · Research: {float(item.get('research', {}).get('research_score', 0)):.1f} · Boosted: {float(item.get('boosted_score', item['score'])):.1f}</p><a href='details/{escape(str(item['symbol']).upper())}.html'>View details →</a></article>" for item in items)
+        return "".join(f"<article class='card' style='font-size:.9rem'><div class='row'><h3 style='font-size:1.1rem'>{escape(str(item['symbol']))}</h3><span class='badge'>{float(item.get('boosted_score', item['score'])):.1f}/100</span></div><p>{escape(str(item['direction']))} · {escape(str(item.get('sector', 'Unknown')))} · {escape(str(item.get('profile_status', 'QUALIFIED')))}</p><p class='muted'>Technical: {float(item['score']):.1f} · Research: {float(item.get('research', {}).get('research_score', 0)):.1f} · Boosted: {float(item.get('boosted_score', item['score'])):.1f}</p><a href='details/{escape(str(item['symbol']).upper())}.html'>View details →</a></article>" for item in items)
     profile_signals = report.get("profiles", {}) or {"swing": report.get("signals", [])}
     candidate_sections = "".join(f"<section><h2>{escape(profile.title())} Top Candidates</h2><div class='grid'>{candidate_cards(items, profile)}</div></section>" for profile, items in profile_signals.items())
     return f"""<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AI Trading Market Report</title><link rel='stylesheet' href='assets/styles.css'></head><body><main><header><p class='eyebrow'>AI TRADING AGENT · PAPER MODE</p><h1>Market Intelligence</h1><p class='muted'>Generated {escape(report.get('generated_at', 'unknown'))} · Source: {escape(str(report.get('data_source', 'unknown')))}</p></header><section class='hero'><div><span class='eyebrow'>MARKET REGIME</span><strong>{escape(report['market']['label'])}</strong><span class='score'>{report['market']['score']}/100</span></div><div><span class='eyebrow'>ACTIVE THEME</span><strong>{escape(report['theme']['name'])}</strong><span class='muted'>{', '.join(report['theme'].get('sectors', []))}</span></div></section>{{SECTOR_ROTATION}}{candidate_sections}<footer>{escape(report.get('disclaimer', ''))}</footer></main></body></html>"""
@@ -81,6 +81,10 @@ def render(report: dict) -> str:
     previous = history[-2] if len(history) > 1 else {}
     ranking = "".join(f"<div class='ranking-row'><span>{escape(str(sector['sector']))}</span><div class='ranking-bar'><b style='width:{float(sector.get('score', 0)):.1f}%'></b></div><strong>{float(sector.get('score', 0)):.1f}</strong><em>{float(latest.get('scores', {}).get(sector['sector'], 0)) - float(previous.get('scores', {}).get(sector['sector'], latest.get('scores', {}).get(sector['sector'], 0))):+.1f}</em></div>" for sector in sorted(sectors, key=lambda item: float(item.get('score', 0)), reverse=True))
     ranking_html = f"<div class='sector-ranking'>{ranking}</div>"
+    current_table = "<div class='table-scroll'><table><thead><tr><th>Sector</th><th>ETF</th><th>Score</th><th>Current Price</th><th>Price Δ</th><th>Trend</th></tr></thead><tbody>" + "".join(
+        f"<tr><td>{escape(str(item['sector']))}</td><td>{escape(str(item['symbol']))}</td><td>{float(item['score']):.1f}</td><td>{float(report.get('sector_current_prices', {}).get(item['sector'], 0)):.2f}</td><td>{price_trend:+.2f}%</td><td>{'Gaining' if price_trend > 0.25 else 'Losing' if price_trend < -0.25 else 'Stable'}</td></tr>"
+        for item, price_trend in ((item, ((float(history[-1].get('prices', {}).get(item['sector'], 0)) / float(history[0].get('prices', {}).get(item['sector'], 0)) - 1) * 100 if len(history) >= 2 and history[0].get('prices', {}).get(item['sector']) not in (None, 0) else 0.0)) for item in sorted(sectors, key=lambda value: float(value.get('score', 0)), reverse=True))
+    ) + "</tbody></table></div>"
     def correlation(left, right):
         pairs = [(a, b) for a, b in zip(left, right) if a is not None and b is not None]
         if len(pairs) < 3:
@@ -139,9 +143,60 @@ def render(report: dict) -> str:
             cells.append(f"<td class='{corr_class(value)}' title='{escape(title)}'>{display}</td>")
         corr_rows_parts.append(f"<tr><th>{escape(name)}</th>{''.join(cells)}</tr>")
     corr_rows = "".join(corr_rows_parts)
-    correlation_html = f"<div class='table-scroll'><table class='correlation-matrix'><thead><tr><th></th>{''.join(f'<th>{escape(name)}</th>' for name in ordered)}</tr></thead><tbody>{corr_rows}</tbody></table></div>"
+    history_json = json.dumps([
+        {"date": day.get("date", ""), "scores": day.get("scores", {})}
+        for day in history
+    ], separators=(",", ":"))
+    options = "".join(f"<option value='{escape(name)}'{' selected' if name.lower() == 'technology' else ''}>{escape(name)}</option>" for name in sector_names)
+    correlation_html = """
+<div class='correlation-controls'><label for='reference-sector'>Reference sector</label><select id='reference-sector'>""" + options + """</select><span class='muted'>Rolling correlation of daily score changes</span></div>
+<div class='chart-scroll'><svg id='reference-correlation-chart' viewBox='0 0 920 390' role='img' aria-label='Reference-sector correlation chart'></svg></div>
+<div id='reference-correlation-legend' class='sector-legend-wrap'></div>
+<script>
+(() => {
+  const history = """ + history_json + """;
+  const names = """ + json.dumps(sector_names) + """;
+  const colors = ['#70d6c3','#f6c85f','#ff7f66','#8ea7ff','#c792ea','#7bdff2','#f29e4c','#9be564','#e07aaf','#a6e3a1'];
+  const svg = document.getElementById('reference-correlation-chart');
+  const select = document.getElementById('reference-sector');
+  const legend = document.getElementById('reference-correlation-legend');
+  const NS = 'http://www.w3.org/2000/svg';
+  function correlation(a, b) {
+    const pairs = a.map((value, index) => [value, b[index]]).filter(pair => pair[0] != null && pair[1] != null);
+    if (pairs.length < 3) return null;
+    const ax = pairs.reduce((sum, pair) => sum + pair[0], 0) / pairs.length;
+    const bx = pairs.reduce((sum, pair) => sum + pair[1], 0) / pairs.length;
+    const numerator = pairs.reduce((sum, pair) => sum + (pair[0] - ax) * (pair[1] - bx), 0);
+    const denominator = Math.sqrt(pairs.reduce((sum, pair) => sum + (pair[0] - ax) ** 2, 0) * pairs.reduce((sum, pair) => sum + (pair[1] - bx) ** 2, 0));
+    return denominator ? numerator / denominator : null;
+  }
+  function draw() {
+    const reference = select.value;
+    const changes = name => history.slice(1).map((day, index) => {
+      const previous = history[index].scores[name], current = day.scores[name];
+      return previous == null || current == null ? null : Number(current) - Number(previous);
+    });
+    const ref = changes(reference), width = 920, height = 390, left = 48, right = 18, top = 24, bottom = 48;
+    const points = Math.max(history.length - 1, 1);
+    svg.innerHTML = `<line x1='${left}' y1='${top}' x2='${left}' y2='${height-bottom}' stroke='#52627d'/><line x1='${left}' y1='${height-bottom}' x2='${width-right}' y2='${height-bottom}' stroke='#52627d'/><line x1='${left}' y1='${top+(height-top-bottom)/2}' x2='${width-right}' y2='${top+(height-top-bottom)/2}' stroke='#52627d' stroke-dasharray='4 4'/><text x='5' y='${top+4}' fill='#8e9bb0' font-size='11'>+1.0</text><text x='14' y='${top+(height-top-bottom)/2+4}' fill='#8e9bb0' font-size='11'>0.0</text><text x='5' y='${height-bottom+4}' fill='#8e9bb0' font-size='11'>-1.0</text>`;
+    legend.innerHTML = `<span class='sector-legend reference-legend'><i></i>Reference: ${reference}</span>`;
+    names.filter(name => name !== reference).forEach((name, colorIndex) => {
+      const values = changes(name).map((value, index) => index < 2 ? null : correlation(ref.slice(index - 2, index + 1), changes(name).slice(index - 2, index + 1)));
+      const line = document.createElementNS(NS, 'polyline');
+      line.setAttribute('fill', 'none'); line.setAttribute('stroke', colors[colorIndex % colors.length]); line.setAttribute('stroke-width', '2');
+      const title = document.createElementNS(NS, 'title');
+      title.textContent = `${name} correlation with ${reference}`;
+      line.appendChild(title);
+      line.setAttribute('points', values.map((value, index) => value == null ? '' : `${left + (width-left-right) * index / Math.max(points-1,1)},${top + (height-top-bottom) * (1-value) / 2}`).filter(Boolean).join(' '));
+      svg.appendChild(line);
+      legend.insertAdjacentHTML('beforeend', `<span class='sector-legend'><i style='background:${colors[colorIndex % colors.length]}'></i>${name}</span>`);
+    });
+  }
+  select.addEventListener('change', draw); draw();
+})();
+</script>"""
     marker = "{SECTOR_ROTATION}"
-    replacement = f"<section><h2>Sector Rotation</h2><p class='muted'>Track sector strength and relationships.</p><h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Sector Correlation</h3><p class='muted'>Sectors are ordered by hierarchical clustering using correlations between consecutive score changes. Similar sectors appear next to each other.</p>{correlation_html}</section>"
+    replacement = f"<section><h2>Sector Rotation</h2><p class='muted'>Current sector score, price change, and trend.</p>{current_table}<h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Reference-Sector Correlation</h3><p class='muted'>Choose a reference sector to compare rolling correlation of daily score changes.</p>{correlation_html}</section>"
     return html.replace(marker, replacement, 1)
 
 def build(input_path: Path, output_dir: Path) -> None:
@@ -168,6 +223,7 @@ def build(input_path: Path, output_dir: Path) -> None:
         (details_dir / f"{symbol}.html").write_text(detail, encoding="utf-8")
     css = Path(__file__).parent / "styles.css"
     extra_css = """
+.sector-legend-wrap{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 20px}.sector-legend{font-size:.8rem;color:#b5c0d2;white-space:nowrap}.sector-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:#8e9bb0}.reference-legend i{background:#fff;border:1px solid #70d6c3}
 .sector-heatmap th,.sector-heatmap td{padding:9px 10px;text-align:center;white-space:nowrap}.sector-heatmap th:first-child{text-align:left;position:sticky;left:0;background:#131d30}.sector-heatmap td{border:1px solid #263650}.heat-0,.heat-10,.heat-20,.heat-30,.heat-40{background:#7d3f46}.heat-50,.heat-60{background:#665f3d}.heat-70,.heat-80{background:#35655e}.heat-90,.heat-100{background:#1f806f}.sector-ranking{display:grid;gap:8px}.ranking-row{display:grid;grid-template-columns:minmax(110px,1.2fr) 3fr 45px 45px;gap:10px;align-items:center;font-size:.9rem}.ranking-bar{height:10px;background:#263650;border-radius:99px;overflow:hidden}.ranking-bar b{display:block;height:100%;background:#70d6c3;border-radius:99px}.ranking-row em{font-style:normal;color:#8e9bb0}.correlation-matrix th,.correlation-matrix td{padding:8px;text-align:center;white-space:nowrap;font-size:.82rem}.correlation-matrix th:first-child{text-align:left;position:sticky;left:0;background:#131d30}.corr-positive{background:#1f806f}.corr-neutral{background:#665f3d}.corr-negative{background:#7d3f46}.corr-na{background:#263650;color:#8e9bb0}.cluster-summary,.divergence{margin-top:14px;padding:14px;background:#111b2d;border:1px solid #263650;border-radius:10px}.cluster-summary h4,.divergence h4{margin:0 0 8px}@media(max-width:650px){.ranking-row{grid-template-columns:90px 1.5fr 38px 38px;font-size:.78rem}}
 """
     (output_dir / "assets" / "styles.css").write_text(css.read_text(encoding="utf-8") + extra_css, encoding="utf-8")
