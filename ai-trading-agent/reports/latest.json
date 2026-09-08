@@ -1,92 +1,79 @@
 {
-  "generated_at": "2026-09-04T15:04:44.582784+00:00",
+  "generated_at": "2026-09-08T05:43:45.485937+00:00",
   "data_source": "alpaca_live",
   "market": {
     "label": "See signal components",
     "score": 100.0
   },
   "theme": {
-    "name": "materials+communication services+financials_leadership",
-    "sectors": [
-      "Materials",
-      "Communication Services",
-      "Financials"
-    ],
-    "industries": [
-      "Banks",
-      "Insurance",
-      "Capital Markets",
-      "Fintech"
-    ],
-    "source": "sector_rotation",
-    "score": 90.19,
-    "expires_at": "2026-09-07T13:00:05.611489+00:00"
+    "name": "none",
+    "sectors": []
   },
   "sectors": [
     {
       "sector": "Energy",
       "symbol": "XLE",
-      "score": 85.52,
+      "score": 91.09,
       "rank": 1
     },
     {
       "sector": "Technology",
       "symbol": "XLK",
-      "score": 82.18,
+      "score": 87.71,
       "rank": 2
-    },
-    {
-      "sector": "Communication Services",
-      "symbol": "XLC",
-      "score": 81.3,
-      "rank": 3
-    },
-    {
-      "sector": "Healthcare",
-      "symbol": "XLV",
-      "score": 81.21,
-      "rank": 4
     },
     {
       "sector": "Financials",
       "symbol": "XLF",
-      "score": 81.17,
+      "score": 86.6,
+      "rank": 3
+    },
+    {
+      "sector": "Communication Services",
+      "symbol": "XLC",
+      "score": 85.62,
+      "rank": 4
+    },
+    {
+      "sector": "Healthcare",
+      "symbol": "XLV",
+      "score": 85.48,
       "rank": 5
     },
     {
       "sector": "Utilities",
       "symbol": "XLU",
-      "score": 52.18,
+      "score": 58.73,
       "rank": 6
-    },
-    {
-      "sector": "Materials",
-      "symbol": "XLB",
-      "score": 50.83,
-      "rank": 7
     },
     {
       "sector": "Consumer Staples",
       "symbol": "XLP",
-      "score": 50.74,
-      "rank": 8
-    },
-    {
-      "sector": "Real Estate",
-      "symbol": "XLRE",
-      "score": 50.66,
-      "rank": 9
+      "score": 56.95,
+      "rank": 7
     },
     {
       "sector": "Industrials",
       "symbol": "XLI",
-      "score": 50.06,
-      "rank": 10
+      "score": 56.44,
+      "rank": 8
+    },
+    {
+      "sector": "Materials",
+      "symbol": "XLB",
+      "score": 55.86,
+      "rank": 9
     },
     {
       "sector": "Consumer Discretionary",
       "symbol": "XLY",
-      "score": 49.72,
+      "score": 55.7,
+      "rank": 10
+    },
+    {
+      "sector": "Real Estate",
+      "symbol": "XLRE",
+      "score": 53.46,
       "rank": 11
     }
   ],
@@ -1862,645 +1849,869 @@
     }
   ],
   "sector_current_prices": {
-    "Energy": 63.86,
-    "Technology": 187.5,
-    "Communication Services": 112.3,
-    "Healthcare": 171.62,
-    "Financials": 57.99,
-    "Utilities": 43.08,
-    "Materials": 52.46,
-    "Consumer Staples": 85.02,
-    "Real Estate": 44.22,
-    "Industrials": 175.09,
-    "Consumer Discretionary": 114.81
+    "Energy": 64.07,
+    "Technology": 187.3,
+    "Financials": 58.1,
+    "Communication Services": 112.04,
+    "Healthcare": 171.44,
+    "Utilities": 43.06,
+    "Consumer Staples": 84.59,
+    "Industrials": 175.24,
+    "Materials": 52.45,
+    "Consumer Discretionary": 114.9,
+    "Real Estate": 43.92
   },
   "signals": [
     {
       "symbol": "NVDA",
       "direction": "LONG",
-      "score": 86.27,
-      "boosted_score": 78.99,
+      "score": 85.51,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 83.26,
       "research": {
         "symbol": "NVDA",
-        "research_score": 62.0,
+        "research_score": 78.0,
         "conviction": "Medium",
         "catalysts": [
-          "Strong AI and data-center demand",
-          "Next earnings and guidance",
-          "Customer wins and backlog",
-          "Projected revenue growth"
+          "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
+          "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
         ],
         "risks": [
-          "Crowded AI positioning",
-          "Valuation and multiple-compression risk",
-          "Execution and supply constraints",
-          "No independently verified ticker-specific filing",
-          "High volatility"
+          "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
+          "No independently verified ticker-specific filing details",
+          "High valuation and crowded AI positioning noted in 2026-08-12 research"
         ],
-        "summary": "Evidence supports exceptional AI growth and upcoming earnings catalysts, but expectations, valuation, crowding, and filing-verification gaps require caution."
+        "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 87.71,
+        "relative_strength": 86.43035911363468,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 47.10597273339426,
+        "momentum": 83.25036199407018,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 78.37452595633931
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
       },
       "sector": "Technology",
       "reasons": [
         "market: 100.0",
-        "relative_strength: 93.0",
+        "sector: 87.7",
+        "relative_strength: 86.4",
         "vwap: 100.0",
         "trend: 100.0",
-        "momentum: 88.0",
-        "extension: 88.8"
+        "momentum: 83.3"
+      ]
+    },
+    {
+      "symbol": "HPQ",
+      "direction": "LONG",
+      "score": 85.8,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 85.8,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 87.71,
+        "relative_strength": 100.0,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 46.65929975487892,
+        "momentum": 85.99541058842819,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 25.19185040079097
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Technology",
+      "reasons": [
+        "market: 100.0",
+        "sector: 87.7",
+        "relative_strength: 100.0",
+        "vwap: 100.0",
+        "trend: 100.0",
+        "momentum: 86.0"
+      ]
+    },
+    {
+      "symbol": "DRAM",
+      "direction": "LONG",
+      "score": 85.78,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 85.78,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 50.0,
+        "relative_strength": 100.0,
+        "vwap": 98.2087965121265,
+        "trend": 100.0,
+        "volume": 52.35802465042243,
+        "momentum": 83.09029021855967,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Unknown",
+      "reasons": [
+        "market: 100.0",
+        "relative_strength: 100.0",
+        "vwap: 98.2",
+        "trend: 100.0",
+        "momentum: 83.1",
+        "extension: 100.0"
+      ]
+    },
+    {
+      "symbol": "EEM",
+      "direction": "LONG",
+      "score": 81.8,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 81.8,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 50.0,
+        "relative_strength": 74.02821865469701,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 85.3693375515186,
+        "momentum": 59.535160905840286,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Unknown",
+      "reasons": [
+        "market: 100.0",
+        "vwap: 100.0",
+        "trend: 100.0",
+        "volume: 85.4",
+        "extension: 100.0"
       ]
     },
     {
       "symbol": "PFE",
       "direction": "LONG",
-      "score": 84.84,
-      "boosted_score": 72.59,
+      "score": 80.59,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 69.31,
       "research": {
         "symbol": "PFE",
-        "research_score": 44.0,
+        "research_score": 43.0,
         "conviction": "Low",
         "catalysts": [
-          "Low valuation relative to peers",
-          "Approximately 6% dividend yield",
-          "Pipeline and portfolio repositioning potential"
+          "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
+          "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
         ],
         "risks": [
-          "Patent and exclusivity risks",
-          "Sharp TTM EPS decline",
-          "Weak revenue and cash-flow growth",
-          "High payout ratio and dividend sustainability concerns",
-          "No local research, SEC filings, earnings, or Polygon news supplied"
+          "No local research, news, SEC filings, or earnings source",
+          "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
+          "Fundamentals show declining TTM EPS and revenue growth"
         ],
-        "summary": "Low valuation and income are potential supports, but earnings deterioration, patent exposure, and payout sustainability keep conviction low."
+        "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 85.48,
+        "relative_strength": 75.12453458509279,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 39.28245938573467,
+        "momentum": 67.08407871198568,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 77.6165487035605
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
       },
       "sector": "Healthcare",
       "reasons": [
         "market: 100.0",
-        "sector: 86.3",
-        "relative_strength: 95.8",
+        "sector: 85.5",
         "vwap: 100.0",
         "trend: 100.0"
       ]
     },
     {
-      "symbol": "AAPL",
+      "symbol": "BITO",
       "direction": "LONG",
-      "score": 81.45,
-      "boosted_score": 72.61,
-      "research": {
-        "symbol": "AAPL",
-        "research_score": 52.0,
-        "conviction": "Low",
-        "catalysts": [
-          "Upcoming iPhone launch",
-          "Strong iPhone and Mac demand",
-          "Services installed-base growth"
-        ],
-        "risks": [
-          "Near-term slowdown",
-          "FX and tariff pressure",
-          "Regulatory and ATT lawsuit exposure",
-          "No local research, SEC filings, earnings, or independently verified company-specific filings"
-        ],
-        "summary": "Provider news and fundamentals indicate durable demand and growth, but valuation, regulatory exposure, and limited source coverage constrain conviction."
+      "score": 79.91,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 79.91,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 50.0,
+        "relative_strength": 100.0,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 44.042584742663855,
+        "momentum": 63.10047846889959,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 33.95482962049833
       },
-      "sector": "Technology",
-      "reasons": [
-        "market: 100.0",
-        "relative_strength: 81.8",
-        "vwap: 100.0",
-        "trend: 100.0",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "BAC",
-      "direction": "LONG",
-      "score": 78.57,
-      "boosted_score": 67.9,
-      "research": {
-        "symbol": "BAC",
-        "research_score": 43.0,
-        "conviction": "Low",
-        "catalysts": [
-          "Potential bank-backed stablecoin initiative",
-          "Payments and treasury-service opportunities",
-          "Strong recent earnings and valuation metrics in supplied fundamentals"
-        ],
-        "risks": [
-          "Berkshire has reduced its BAC position for eight consecutive quarters",
-          "Valuation concerns",
-          "No local company-specific research, filings, or earnings supplied",
-          "Rate, credit, and regulatory uncertainty"
-        ],
-        "summary": "Fundamentals and payments themes are supportive, but Berkshire reductions and incomplete company-specific research weaken conviction."
-      },
-      "sector": "Financials",
-      "reasons": [
-        "market: 100.0",
-        "sector: 88.8",
-        "vwap: 100.0",
-        "trend: 100.0",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "AMZN",
-      "direction": "LONG",
-      "score": 51.78,
-      "boosted_score": 57.85,
-      "research": {
-        "symbol": "AMZN",
-        "research_score": 72.0,
-        "conviction": "High",
-        "catalysts": [
-          "AWS acceleration",
-          "AI monetization",
-          "Advertising growth",
-          "Retail margin expansion",
-          "Free-cash-flow improvement"
-        ],
-        "risks": [
-          "AI and cloud capex pressure",
-          "AWS competition",
-          "Consumer slowdown",
-          "Antitrust and regulatory actions",
-          "Direct IR earnings release unavailable"
-        ],
-        "summary": "Diversified growth platform with strong AWS, advertising, and retail-efficiency themes; capex, competition, regulation, and weaker technical trend remain key risks."
-      },
-      "sector": "Consumer Discretionary",
-      "reasons": [
-        "market: 100.0",
-        "vwap: 100.0",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "BSX",
-      "direction": "WATCH",
-      "score": 46.91,
-      "boosted_score": 47.24,
-      "research": {
-        "symbol": "BSX",
-        "research_score": 48.0,
-        "conviction": "Low",
-        "catalysts": [
-          "ICVT sales momentum",
-          "Cardiovascular device growth",
-          "Renal-denervation and IVL market exposure",
-          "Atrial-fibrillation device demand"
-        ],
-        "risks": [
-          "Spinal-cord-stimulator recall and injury reports",
-          "Cyberattack disrupted manufacturing and shipping",
-          "Zacks Strong Sell designation and earnings-estimate cuts",
-          "No local research, SEC filings, or earnings supplied"
-        ],
-        "summary": "Long-term device-market exposure and recent sales momentum are offset by operational disruptions, recall risk, and negative estimate revisions."
-      },
-      "sector": "Healthcare",
-      "reasons": [
-        "market: 100.0",
-        "sector: 86.3",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "WMT",
-      "direction": "WATCH",
-      "score": 41.81,
-      "boosted_score": 45.17,
-      "research": {
-        "symbol": "WMT",
-        "research_score": 53.0,
-        "conviction": "Medium",
-        "catalysts": [
-          "$1.3 billion fulfillment facility",
-          "Expansion of delivery partnerships",
-          "Upcoming earnings",
-          "Scale and consumer-value positioning"
-        ],
-        "risks": [
-          "Premium valuation and high forward P/E",
-          "Weak recent relative performance",
-          "Low margins and cash-flow growth pressure",
-          "Retail-crime and execution risks",
-          "No local research, SEC filings, or Polygon news supplied"
-        ],
-        "summary": "Fulfillment investment, delivery expansion, and earnings visibility are constructive, but premium valuation, thin margins, and recent weakness limit conviction."
-      },
-      "sector": "Consumer Staples",
-      "reasons": [
-        "market: 100.0",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "NKE",
-      "direction": "WATCH",
-      "score": 34.21,
-      "boosted_score": 35.65,
-      "research": {
-        "symbol": "NKE",
-        "research_score": 39.0,
-        "conviction": "Low",
-        "catalysts": [
-          "Nike Strength expansion into elite training facilities"
-        ],
-        "risks": [
-          "Large multi-period price decline",
-          "Negative revenue and earnings-growth trends",
-          "Margin and cash-flow deterioration",
-          "Limited direct company-specific evidence",
-          "No local research, SEC filings, earnings, or Polygon news supplied"
-        ],
-        "summary": "A product-expansion item is constructive, but the supplied fundamentals and news indicate a weak and uncertain recovery profile."
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
       },
       "sector": "Unknown",
       "reasons": [
         "market: 100.0",
+        "relative_strength: 100.0",
+        "vwap: 100.0",
+        "trend: 100.0"
+      ]
+    },
+    {
+      "symbol": "GDX",
+      "direction": "LONG",
+      "score": 73.26,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 73.26,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 50.0,
+        "relative_strength": 74.86858884311505,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 30.878881132265718,
+        "momentum": 58.635360224764185,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 36.72010860551843
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Unknown",
+      "reasons": [
+        "market: 100.0",
+        "vwap: 100.0",
+        "trend: 100.0"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "direction": "LONG",
+      "score": 72.81,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 72.81,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 50.0,
+        "relative_strength": 50.0,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 42.597339269248465,
+        "momentum": 60.467970049916836,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Unknown",
+      "reasons": [
+        "market: 100.0",
+        "vwap: 100.0",
+        "trend: 100.0",
         "extension: 100.0"
       ]
     },
     {
-      "symbol": "PCG",
-      "direction": "WATCH",
-      "score": 33.46,
-      "boosted_score": 34.82,
-      "research": {
-        "symbol": "PCG",
-        "research_score": 38.0,
-        "conviction": "Low",
-        "catalysts": [
-          "Potential wildfire-liability reform",
-          "Strategic review and preparedness initiatives"
-        ],
-        "risks": [
-          "Wildfire-liability framework and unresolved financing risk",
-          "Truist downgrade to Hold",
-          "Heavy debt and low interest coverage",
-          "Recent underperformance",
-          "No local research, SEC filings, earnings, or Polygon news supplied"
-        ],
-        "summary": "Wildfire-liability uncertainty dominates the evidence; valuation and fundamentals do not offset the regulatory and financing risks."
+      "symbol": "BMNR",
+      "direction": "LONG",
+      "score": 72.35,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 72.35,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 87.71,
+        "relative_strength": 100.0,
+        "vwap": 20.997637145994297,
+        "trend": 100.0,
+        "volume": 48.93874306789532,
+        "momentum": 80.35751840168248,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 0.0
       },
-      "sector": "Utilities",
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Technology",
       "reasons": [
         "market: 100.0",
-        "volume: 100.0",
-        "extension: 100.0"
+        "sector: 87.7",
+        "relative_strength: 100.0",
+        "trend: 100.0",
+        "momentum: 80.4"
       ]
     },
     {
-      "symbol": "CCL",
-      "direction": "WATCH",
-      "score": 31.5,
-      "boosted_score": 35.55,
-      "research": {
-        "symbol": "CCL",
-        "research_score": 45.0,
-        "conviction": "Low",
-        "catalysts": [
-          "Debt reduction",
-          "Investment-grade rating upgrade",
-          "Record sales and bookings",
-          "Resumed dividend",
-          "Valuation discount"
-        ],
-        "risks": [
-          "52-week low and significant recent underperformance",
-          "Expected earnings decline",
-          "High leverage and low liquidity ratios",
-          "Oil, geopolitical, and travel-demand sensitivity",
-          "No local research, SEC filings, or earnings supplied"
-        ],
-        "summary": "Recovery and deleveraging evidence is constructive, but recent weakness, leverage, earnings pressure, and macro sensitivity limit conviction."
+      "symbol": "IREN",
+      "direction": "LONG",
+      "score": 66.45,
+      "profile_status": "FILTER_FALLBACK",
+      "boosted_score": 66.45,
+      "research": {},
+      "components": {
+        "market": 100.0,
+        "sector": 87.71,
+        "relative_strength": 100.0,
+        "vwap": 0.0,
+        "trend": 50.0,
+        "volume": 45.92071446803009,
+        "momentum": 96.0,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 69.76071386842807
       },
-      "sector": "Consumer Discretionary",
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Technology",
       "reasons": [
         "market: 100.0",
-        "extension: 100.0"
+        "sector: 87.7",
+        "relative_strength: 100.0",
+        "momentum: 96.0"
       ]
     }
   ],
   "profiles": {
     "day": [
       {
-        "symbol": "NVDA",
+        "symbol": "HPQ",
         "direction": "LONG",
-        "score": 84.32,
-        "boosted_score": 77.62,
-        "research": {
-          "symbol": "NVDA",
-          "research_score": 62.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "Strong AI and data-center demand",
-            "Next earnings and guidance",
-            "Customer wins and backlog",
-            "Projected revenue growth"
-          ],
-          "risks": [
-            "Crowded AI positioning",
-            "Valuation and multiple-compression risk",
-            "Execution and supply constraints",
-            "No independently verified ticker-specific filing",
-            "High volatility"
-          ],
-          "summary": "Evidence supports exceptional AI growth and upcoming earnings catalysts, but expectations, valuation, crowding, and filing-verification gaps require caution."
+        "score": 85.43,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 85.43,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 46.65929975487892,
+          "momentum": 85.99541058842819,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 25.19185040079097
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 82.8",
-          "relative_strength: 93.9",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 86.9"
-        ]
-      },
-      {
-        "symbol": "SMCI",
-        "direction": "LONG",
-        "score": 81.77,
-        "boosted_score": 73.44,
-        "research": {
-          "symbol": "SMCI",
-          "research_score": 54.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "AI and data-center spending",
-            "Revenue growth",
-            "Next earnings and guidance",
-            "Customer wins and backlog"
-          ],
-          "risks": [
-            "Inconsistent margins",
-            "Crowded AI positioning",
-            "Execution and financing risk",
-            "High volatility",
-            "No fresh ticker-specific filing independently verified"
-          ],
-          "summary": "Rapid revenue and earnings growth support the AI-server thesis, but margin quality, volatility, execution, and filing gaps limit conviction."
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 82.8",
+          "sector: 87.7",
           "relative_strength: 100.0",
           "vwap: 100.0",
           "trend: 100.0",
-          "momentum: 84.8"
+          "momentum: 86.0"
         ]
       },
       {
-        "symbol": "HPQ",
+        "symbol": "NVDA",
         "direction": "LONG",
-        "score": 80.19,
-        "boosted_score": 72.63,
+        "score": 85.26,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 83.08,
         "research": {
-          "symbol": "HPQ",
-          "research_score": 55.0,
+          "symbol": "NVDA",
+          "research_score": 78.0,
           "conviction": "Medium",
           "catalysts": [
-            "New AI-focused OmniBook products",
-            "Upcoming Q4 earnings",
-            "Recent revenue growth and strong relative performance",
-            "Attractive forward valuation"
+            "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
+            "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
           ],
           "risks": [
-            "Negative TTM and quarterly EPS growth",
-            "Long-term revenue and EBITDA pressure",
-            "High recent momentum may reverse",
-            "No local research, SEC filings, or Polygon news supplied"
+            "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
+            "No independently verified ticker-specific filing details",
+            "High valuation and crowded AI positioning noted in 2026-08-12 research"
           ],
-          "summary": "AI-PC launches, earnings visibility, and valuation support the setup, while declining profitability trends and limited company-specific sourcing temper conviction."
+          "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 86.43035911363468,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 47.10597273339426,
+          "momentum": 83.25036199407018,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 78.37452595633931
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 82.8",
-          "relative_strength: 85.9",
+          "sector: 87.7",
+          "relative_strength: 86.4",
           "vwap: 100.0",
-          "trend: 100.0"
+          "trend: 100.0",
+          "momentum: 83.3"
+        ]
+      },
+      {
+        "symbol": "DRAM",
+        "direction": "LONG",
+        "score": 81.68,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 81.68,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 98.2087965121265,
+          "trend": 100.0,
+          "volume": 52.35802465042243,
+          "momentum": 83.09029021855967,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 98.2",
+          "trend: 100.0",
+          "momentum: 83.1",
+          "extension: 100.0"
         ]
       },
       {
         "symbol": "PFE",
         "direction": "LONG",
-        "score": 79.61,
-        "boosted_score": 68.93,
+        "score": 81.32,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 69.82,
         "research": {
           "symbol": "PFE",
-          "research_score": 44.0,
+          "research_score": 43.0,
           "conviction": "Low",
           "catalysts": [
-            "Low valuation relative to peers",
-            "Approximately 6% dividend yield",
-            "Pipeline and portfolio repositioning potential"
+            "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
+            "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
           ],
           "risks": [
-            "Patent and exclusivity risks",
-            "Sharp TTM EPS decline",
-            "Weak revenue and cash-flow growth",
-            "High payout ratio and dividend sustainability concerns",
-            "No local research, SEC filings, earnings, or Polygon news supplied"
+            "No local research, news, SEC filings, or earnings source",
+            "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
+            "Fundamentals show declining TTM EPS and revenue growth"
           ],
-          "summary": "Low valuation and income are potential supports, but earnings deterioration, patent exposure, and payout sustainability keep conviction low."
+          "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 85.48,
+          "relative_strength": 75.12453458509279,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 39.28245938573467,
+          "momentum": 67.08407871198568,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 77.6165487035605
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Healthcare",
         "reasons": [
           "market: 100.0",
-          "sector: 81.6",
+          "sector: 85.5",
           "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "T",
+        "symbol": "BMNR",
         "direction": "LONG",
-        "score": 78.91,
-        "boosted_score": 69.64,
-        "research": {
-          "symbol": "T",
-          "research_score": 48.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Potential benefit from telecom cash flow",
-            "Preferred-share market interest"
-          ],
-          "risks": [
-            "Negative multi-period price performance",
-            "Declining long-term revenue growth",
-            "High leverage",
-            "Weak liquidity ratios",
-            "Dividend-growth deterioration",
-            "No local company-specific research, SEC filings, earnings, or Polygon news supplied"
-          ],
-          "summary": "Income and valuation metrics are somewhat supportive, but leverage, weak growth, and incomplete company-specific research constrain conviction."
+        "score": 80.16,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 80.16,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 23.07408782888716,
+          "trend": 100.0,
+          "volume": 48.93874306789532,
+          "momentum": 80.35751840168248,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 0.0
         },
-        "sector": "Communication Services",
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 82.0",
+          "sector: 87.7",
+          "relative_strength: 100.0",
+          "trend: 100.0",
+          "momentum: 80.4"
+        ]
+      },
+      {
+        "symbol": "BITO",
+        "direction": "LONG",
+        "score": 77.05,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 77.05,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 44.042584742663855,
+          "momentum": 63.10047846889959,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 33.95482962049833
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
           "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "AAPL",
+        "symbol": "EEM",
         "direction": "LONG",
-        "score": 76.17,
-        "boosted_score": 68.92,
-        "research": {
-          "symbol": "AAPL",
-          "research_score": 52.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Upcoming iPhone launch",
-            "Strong iPhone and Mac demand",
-            "Services installed-base growth"
-          ],
-          "risks": [
-            "Near-term slowdown",
-            "FX and tariff pressure",
-            "Regulatory and ATT lawsuit exposure",
-            "No local research, SEC filings, earnings, or independently verified company-specific filings"
-          ],
-          "summary": "Provider news and fundamentals indicate durable demand and growth, but valuation, regulatory exposure, and limited source coverage constrain conviction."
+        "score": 77.05,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 77.05,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 74.02821865469701,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 85.3693375515186,
+          "momentum": 59.535160905840286,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "volume: 85.4",
+          "extension: 100.0"
+        ]
+      },
+      {
+        "symbol": "IREN",
+        "direction": "LONG",
+        "score": 73.13,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 73.13,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 0.0,
+          "trend": 50.0,
+          "volume": 45.92071446803009,
+          "momentum": 96.0,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 69.76071386842807
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 82.8",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 100.0"
+          "sector: 87.7",
+          "relative_strength: 100.0",
+          "momentum: 96.0"
         ]
       },
       {
-        "symbol": "WBD",
+        "symbol": "IBIT",
         "direction": "LONG",
-        "score": 75.26,
-        "boosted_score": 64.68,
-        "research": {
-          "symbol": "WBD",
-          "research_score": 40.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Potential Paramount-Warner transaction",
-            "Recent price appreciation",
-            "Streaming-sector positioning"
-          ],
-          "risks": [
-            "Negative TTM EPS and operating margin",
-            "Declining revenue and quarterly earnings",
-            "High debt and weak interest coverage",
-            "Deal and antitrust uncertainty",
-            "No local research, SEC filings, earnings, or Polygon news supplied"
-          ],
-          "summary": "Deal speculation and price momentum provide catalysts, but negative profitability, declining revenue, leverage, and transaction uncertainty dominate."
+        "score": 72.47,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 72.47,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 12.871953599348743,
+          "trend": 100.0,
+          "volume": 35.80503830640127,
+          "momentum": 69.93350034160785,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 30.717830304973774
         },
-        "sector": "Communication Services",
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
         "reasons": [
           "market: 100.0",
-          "sector: 82.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 100.0"
+          "relative_strength: 100.0",
+          "trend: 100.0"
         ]
       },
       {
-        "symbol": "CMG",
+        "symbol": "GDX",
         "direction": "LONG",
-        "score": 72.44,
-        "boosted_score": 67.81,
-        "research": {
-          "symbol": "CMG",
-          "research_score": 57.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "First Seoul restaurant and Asian expansion test",
-            "Potential South Korea and Singapore growth"
-          ],
-          "risks": [
-            "Recent EPS and TTM EPS contraction",
-            "Premium valuation",
-            "Recent five-day decline",
-            "No Polygon news, local research, SEC filings, or earnings supplied"
-          ],
-          "summary": "International expansion offers a company-specific catalyst, but valuation and declining recent earnings metrics create uncertainty."
+        "score": 71.29,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 71.29,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 74.86858884311505,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 30.878881132265718,
+          "momentum": 58.635360224764185,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 36.72010860551843
         },
-        "sector": "Consumer Discretionary",
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
         "reasons": [
           "market: 100.0",
           "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 90.5"
-        ]
-      },
-      {
-        "symbol": "NFLX",
-        "direction": "LONG",
-        "score": 71.46,
-        "boosted_score": 63.82,
-        "research": {
-          "symbol": "NFLX",
-          "research_score": 46.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Subscription price increases",
-            "Advertising expansion potential",
-            "Strong margins and cash-flow growth"
-          ],
-          "risks": [
-            "Growth slowing and pricing power concerns",
-            "Advertising remains unproven",
-            "Premium valuation",
-            "Recent UK price increase triggered a decline",
-            "No local research, SEC filings, Polygon news, or earnings supplied"
-          ],
-          "summary": "Strong profitability and pricing actions are offset by slowing growth, uncertain advertising economics, and valuation risk."
-        },
-        "sector": "Communication Services",
-        "reasons": [
-          "market: 100.0",
-          "sector: 82.0",
-          "trend: 100.0",
-          "extension: 95.8"
-        ]
-      },
-      {
-        "symbol": "INTC",
-        "direction": "LONG",
-        "score": 70.04,
-        "boosted_score": 64.33,
-        "research": {
-          "symbol": "INTC",
-          "research_score": 51.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Agentic-AI and enterprise-server demand",
-            "Potentially broadening AI-chip investor interest",
-            "Recent revenue growth"
-          ],
-          "risks": [
-            "Loss-making TTM results",
-            "Very high forward valuation",
-            "Negative long-term revenue and EBITDA trends",
-            "Mizuho target reduction",
-            "High volatility",
-            "No local research, SEC filings, Polygon news, or earnings supplied"
-          ],
-          "summary": "News identifies AI and server tailwinds, but profitability, valuation, execution, and volatility risks remain substantial."
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 82.8",
-          "vwap: 100.0",
-          "momentum: 85.7",
-          "extension: 100.0"
+          "trend: 100.0"
         ]
       }
     ],
@@ -2508,308 +2719,426 @@
       {
         "symbol": "NVDA",
         "direction": "LONG",
-        "score": 86.27,
-        "boosted_score": 78.99,
+        "score": 85.51,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 83.26,
         "research": {
           "symbol": "NVDA",
-          "research_score": 62.0,
+          "research_score": 78.0,
           "conviction": "Medium",
           "catalysts": [
-            "Strong AI and data-center demand",
-            "Next earnings and guidance",
-            "Customer wins and backlog",
-            "Projected revenue growth"
+            "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
+            "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
           ],
           "risks": [
-            "Crowded AI positioning",
-            "Valuation and multiple-compression risk",
-            "Execution and supply constraints",
-            "No independently verified ticker-specific filing",
-            "High volatility"
+            "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
+            "No independently verified ticker-specific filing details",
+            "High valuation and crowded AI positioning noted in 2026-08-12 research"
           ],
-          "summary": "Evidence supports exceptional AI growth and upcoming earnings catalysts, but expectations, valuation, crowding, and filing-verification gaps require caution."
+          "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 86.43035911363468,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 47.10597273339426,
+          "momentum": 83.25036199407018,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 78.37452595633931
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
         },
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "relative_strength: 93.0",
+          "sector: 87.7",
+          "relative_strength: 86.4",
           "vwap: 100.0",
           "trend: 100.0",
-          "momentum: 88.0",
-          "extension: 88.8"
+          "momentum: 83.3"
+        ]
+      },
+      {
+        "symbol": "HPQ",
+        "direction": "LONG",
+        "score": 85.8,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 85.8,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 46.65929975487892,
+          "momentum": 85.99541058842819,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 25.19185040079097
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 87.7",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 86.0"
+        ]
+      },
+      {
+        "symbol": "DRAM",
+        "direction": "LONG",
+        "score": 85.78,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 85.78,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 98.2087965121265,
+          "trend": 100.0,
+          "volume": 52.35802465042243,
+          "momentum": 83.09029021855967,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 98.2",
+          "trend: 100.0",
+          "momentum: 83.1",
+          "extension: 100.0"
+        ]
+      },
+      {
+        "symbol": "EEM",
+        "direction": "LONG",
+        "score": 81.8,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 81.8,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 74.02821865469701,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 85.3693375515186,
+          "momentum": 59.535160905840286,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "volume: 85.4",
+          "extension: 100.0"
         ]
       },
       {
         "symbol": "PFE",
         "direction": "LONG",
-        "score": 84.84,
-        "boosted_score": 72.59,
+        "score": 80.59,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 69.31,
         "research": {
           "symbol": "PFE",
-          "research_score": 44.0,
+          "research_score": 43.0,
           "conviction": "Low",
           "catalysts": [
-            "Low valuation relative to peers",
-            "Approximately 6% dividend yield",
-            "Pipeline and portfolio repositioning potential"
+            "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
+            "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
           ],
           "risks": [
-            "Patent and exclusivity risks",
-            "Sharp TTM EPS decline",
-            "Weak revenue and cash-flow growth",
-            "High payout ratio and dividend sustainability concerns",
-            "No local research, SEC filings, earnings, or Polygon news supplied"
+            "No local research, news, SEC filings, or earnings source",
+            "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
+            "Fundamentals show declining TTM EPS and revenue growth"
           ],
-          "summary": "Low valuation and income are potential supports, but earnings deterioration, patent exposure, and payout sustainability keep conviction low."
+          "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 85.48,
+          "relative_strength": 75.12453458509279,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 39.28245938573467,
+          "momentum": 67.08407871198568,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 77.6165487035605
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
         },
         "sector": "Healthcare",
         "reasons": [
           "market: 100.0",
-          "sector: 86.3",
-          "relative_strength: 95.8",
+          "sector: 85.5",
           "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "AAPL",
+        "symbol": "BITO",
         "direction": "LONG",
-        "score": 81.45,
-        "boosted_score": 72.61,
-        "research": {
-          "symbol": "AAPL",
-          "research_score": 52.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Upcoming iPhone launch",
-            "Strong iPhone and Mac demand",
-            "Services installed-base growth"
-          ],
-          "risks": [
-            "Near-term slowdown",
-            "FX and tariff pressure",
-            "Regulatory and ATT lawsuit exposure",
-            "No local research, SEC filings, earnings, or independently verified company-specific filings"
-          ],
-          "summary": "Provider news and fundamentals indicate durable demand and growth, but valuation, regulatory exposure, and limited source coverage constrain conviction."
+        "score": 79.91,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 79.91,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 44.042584742663855,
+          "momentum": 63.10047846889959,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 33.95482962049833
         },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "relative_strength: 81.8",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "BAC",
-        "direction": "LONG",
-        "score": 78.57,
-        "boosted_score": 67.9,
-        "research": {
-          "symbol": "BAC",
-          "research_score": 43.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Potential bank-backed stablecoin initiative",
-            "Payments and treasury-service opportunities",
-            "Strong recent earnings and valuation metrics in supplied fundamentals"
-          ],
-          "risks": [
-            "Berkshire has reduced its BAC position for eight consecutive quarters",
-            "Valuation concerns",
-            "No local company-specific research, filings, or earnings supplied",
-            "Rate, credit, and regulatory uncertainty"
-          ],
-          "summary": "Fundamentals and payments themes are supportive, but Berkshire reductions and incomplete company-specific research weaken conviction."
-        },
-        "sector": "Financials",
-        "reasons": [
-          "market: 100.0",
-          "sector: 88.8",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "AMZN",
-        "direction": "LONG",
-        "score": 51.78,
-        "boosted_score": 57.85,
-        "research": {
-          "symbol": "AMZN",
-          "research_score": 72.0,
-          "conviction": "High",
-          "catalysts": [
-            "AWS acceleration",
-            "AI monetization",
-            "Advertising growth",
-            "Retail margin expansion",
-            "Free-cash-flow improvement"
-          ],
-          "risks": [
-            "AI and cloud capex pressure",
-            "AWS competition",
-            "Consumer slowdown",
-            "Antitrust and regulatory actions",
-            "Direct IR earnings release unavailable"
-          ],
-          "summary": "Diversified growth platform with strong AWS, advertising, and retail-efficiency themes; capex, competition, regulation, and weaker technical trend remain key risks."
-        },
-        "sector": "Consumer Discretionary",
-        "reasons": [
-          "market: 100.0",
-          "vwap: 100.0",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "BSX",
-        "direction": "WATCH",
-        "score": 46.91,
-        "boosted_score": 47.24,
-        "research": {
-          "symbol": "BSX",
-          "research_score": 48.0,
-          "conviction": "Low",
-          "catalysts": [
-            "ICVT sales momentum",
-            "Cardiovascular device growth",
-            "Renal-denervation and IVL market exposure",
-            "Atrial-fibrillation device demand"
-          ],
-          "risks": [
-            "Spinal-cord-stimulator recall and injury reports",
-            "Cyberattack disrupted manufacturing and shipping",
-            "Zacks Strong Sell designation and earnings-estimate cuts",
-            "No local research, SEC filings, or earnings supplied"
-          ],
-          "summary": "Long-term device-market exposure and recent sales momentum are offset by operational disruptions, recall risk, and negative estimate revisions."
-        },
-        "sector": "Healthcare",
-        "reasons": [
-          "market: 100.0",
-          "sector: 86.3",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "WMT",
-        "direction": "WATCH",
-        "score": 41.81,
-        "boosted_score": 45.17,
-        "research": {
-          "symbol": "WMT",
-          "research_score": 53.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "$1.3 billion fulfillment facility",
-            "Expansion of delivery partnerships",
-            "Upcoming earnings",
-            "Scale and consumer-value positioning"
-          ],
-          "risks": [
-            "Premium valuation and high forward P/E",
-            "Weak recent relative performance",
-            "Low margins and cash-flow growth pressure",
-            "Retail-crime and execution risks",
-            "No local research, SEC filings, or Polygon news supplied"
-          ],
-          "summary": "Fulfillment investment, delivery expansion, and earnings visibility are constructive, but premium valuation, thin margins, and recent weakness limit conviction."
-        },
-        "sector": "Consumer Staples",
-        "reasons": [
-          "market: 100.0",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "NKE",
-        "direction": "WATCH",
-        "score": 34.21,
-        "boosted_score": 35.65,
-        "research": {
-          "symbol": "NKE",
-          "research_score": 39.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Nike Strength expansion into elite training facilities"
-          ],
-          "risks": [
-            "Large multi-period price decline",
-            "Negative revenue and earnings-growth trends",
-            "Margin and cash-flow deterioration",
-            "Limited direct company-specific evidence",
-            "No local research, SEC filings, earnings, or Polygon news supplied"
-          ],
-          "summary": "A product-expansion item is constructive, but the supplied fundamentals and news indicate a weak and uncertain recovery profile."
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
         },
         "sector": "Unknown",
         "reasons": [
           "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0"
+        ]
+      },
+      {
+        "symbol": "GDX",
+        "direction": "LONG",
+        "score": 73.26,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 73.26,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 74.86858884311505,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 30.878881132265718,
+          "momentum": 58.635360224764185,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 36.72010860551843
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0"
+        ]
+      },
+      {
+        "symbol": "SPY",
+        "direction": "LONG",
+        "score": 72.81,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 72.81,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 50.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 42.597339269248465,
+          "momentum": 60.467970049916836,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
           "extension: 100.0"
         ]
       },
       {
-        "symbol": "PCG",
-        "direction": "WATCH",
-        "score": 33.46,
-        "boosted_score": 34.82,
-        "research": {
-          "symbol": "PCG",
-          "research_score": 38.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Potential wildfire-liability reform",
-            "Strategic review and preparedness initiatives"
-          ],
-          "risks": [
-            "Wildfire-liability framework and unresolved financing risk",
-            "Truist downgrade to Hold",
-            "Heavy debt and low interest coverage",
-            "Recent underperformance",
-            "No local research, SEC filings, earnings, or Polygon news supplied"
-          ],
-          "summary": "Wildfire-liability uncertainty dominates the evidence; valuation and fundamentals do not offset the regulatory and financing risks."
+        "symbol": "BMNR",
+        "direction": "LONG",
+        "score": 72.35,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 72.35,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 20.997637145994297,
+          "trend": 100.0,
+          "volume": 48.93874306789532,
+          "momentum": 80.35751840168248,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 0.0
         },
-        "sector": "Utilities",
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "volume: 100.0",
-          "extension: 100.0"
+          "sector: 87.7",
+          "relative_strength: 100.0",
+          "trend: 100.0",
+          "momentum: 80.4"
         ]
       },
       {
-        "symbol": "CCL",
-        "direction": "WATCH",
-        "score": 31.5,
-        "boosted_score": 35.55,
-        "research": {
-          "symbol": "CCL",
-          "research_score": 45.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Debt reduction",
-            "Investment-grade rating upgrade",
-            "Record sales and bookings",
-            "Resumed dividend",
-            "Valuation discount"
-          ],
-          "risks": [
-            "52-week low and significant recent underperformance",
-            "Expected earnings decline",
-            "High leverage and low liquidity ratios",
-            "Oil, geopolitical, and travel-demand sensitivity",
-            "No local research, SEC filings, or earnings supplied"
-          ],
-          "summary": "Recovery and deleveraging evidence is constructive, but recent weakness, leverage, earnings pressure, and macro sensitivity limit conviction."
+        "symbol": "IREN",
+        "direction": "LONG",
+        "score": 66.45,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 66.45,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 0.0,
+          "trend": 50.0,
+          "volume": 45.92071446803009,
+          "momentum": 96.0,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 69.76071386842807
         },
-        "sector": "Consumer Discretionary",
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "extension: 100.0"
+          "sector: 87.7",
+          "relative_strength: 100.0",
+          "momentum: 96.0"
         ]
       }
     ],
@@ -2817,325 +3146,427 @@
       {
         "symbol": "NVDA",
         "direction": "LONG",
-        "score": 80.16,
-        "boosted_score": 74.71,
+        "score": 82.62,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 81.23,
         "research": {
           "symbol": "NVDA",
-          "research_score": 62.0,
+          "research_score": 78.0,
           "conviction": "Medium",
           "catalysts": [
-            "Strong AI and data-center demand",
-            "Next earnings and guidance",
-            "Customer wins and backlog",
-            "Projected revenue growth"
+            "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
+            "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
           ],
           "risks": [
-            "Crowded AI positioning",
-            "Valuation and multiple-compression risk",
-            "Execution and supply constraints",
-            "No independently verified ticker-specific filing",
-            "High volatility"
+            "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
+            "No independently verified ticker-specific filing details",
+            "High valuation and crowded AI positioning noted in 2026-08-12 research"
           ],
-          "summary": "Evidence supports exceptional AI growth and upcoming earnings catalysts, but expectations, valuation, crowding, and filing-verification gaps require caution."
+          "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 86.43035911363468,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 47.10597273339426,
+          "momentum": 83.25036199407018,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 78.37452595633931
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 82.8",
-          "relative_strength: 93.1",
+          "sector: 87.7",
+          "relative_strength: 86.4",
           "vwap: 100.0",
           "trend: 100.0",
-          "momentum: 86.4"
-        ]
-      },
-      {
-        "symbol": "SMCI",
-        "direction": "LONG",
-        "score": 77.55,
-        "boosted_score": 70.48,
-        "research": {
-          "symbol": "SMCI",
-          "research_score": 54.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "AI and data-center spending",
-            "Revenue growth",
-            "Next earnings and guidance",
-            "Customer wins and backlog"
-          ],
-          "risks": [
-            "Inconsistent margins",
-            "Crowded AI positioning",
-            "Execution and financing risk",
-            "High volatility",
-            "No fresh ticker-specific filing independently verified"
-          ],
-          "summary": "Rapid revenue and earnings growth support the AI-server thesis, but margin quality, volatility, execution, and filing gaps limit conviction."
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 82.8",
-          "relative_strength: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 86.1"
+          "momentum: 83.3"
         ]
       },
       {
         "symbol": "HPQ",
         "direction": "LONG",
-        "score": 76.05,
-        "boosted_score": 69.73,
-        "research": {
-          "symbol": "HPQ",
-          "research_score": 55.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "New AI-focused OmniBook products",
-            "Upcoming Q4 earnings",
-            "Recent revenue growth and strong relative performance",
-            "Attractive forward valuation"
-          ],
-          "risks": [
-            "Negative TTM and quarterly EPS growth",
-            "Long-term revenue and EBITDA pressure",
-            "High recent momentum may reverse",
-            "No local research, SEC filings, or Polygon news supplied"
-          ],
-          "summary": "AI-PC launches, earnings visibility, and valuation support the setup, while declining profitability trends and limited company-specific sourcing temper conviction."
+        "score": 82.57,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 82.57,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 46.65929975487892,
+          "momentum": 81.99541058842819,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 25.19185040079097
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 82.8",
-          "relative_strength: 87.0",
+          "sector: 87.7",
+          "relative_strength: 100.0",
           "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 82.0"
+        ]
+      },
+      {
+        "symbol": "BMNR",
+        "direction": "LONG",
+        "score": 77.56,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 77.56,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 23.07408782888716,
+          "trend": 100.0,
+          "volume": 48.93874306789532,
+          "momentum": 79.35751840168248,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 0.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 87.7",
+          "relative_strength: 100.0",
           "trend: 100.0"
+        ]
+      },
+      {
+        "symbol": "DRAM",
+        "direction": "LONG",
+        "score": 79.3,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 79.3,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 98.2087965121265,
+          "trend": 100.0,
+          "volume": 52.35802465042243,
+          "momentum": 83.09029021855967,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 98.2",
+          "trend: 100.0",
+          "momentum: 83.1",
+          "extension: 100.0"
         ]
       },
       {
         "symbol": "PFE",
         "direction": "LONG",
-        "score": 75.43,
-        "boosted_score": 66.0,
+        "score": 78.28,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 67.7,
         "research": {
           "symbol": "PFE",
-          "research_score": 44.0,
+          "research_score": 43.0,
           "conviction": "Low",
           "catalysts": [
-            "Low valuation relative to peers",
-            "Approximately 6% dividend yield",
-            "Pipeline and portfolio repositioning potential"
+            "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
+            "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
           ],
           "risks": [
-            "Patent and exclusivity risks",
-            "Sharp TTM EPS decline",
-            "Weak revenue and cash-flow growth",
-            "High payout ratio and dividend sustainability concerns",
-            "No local research, SEC filings, earnings, or Polygon news supplied"
+            "No local research, news, SEC filings, or earnings source",
+            "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
+            "Fundamentals show declining TTM EPS and revenue growth"
           ],
-          "summary": "Low valuation and income are potential supports, but earnings deterioration, patent exposure, and payout sustainability keep conviction low."
+          "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 85.48,
+          "relative_strength": 75.12453458509279,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 39.28245938573467,
+          "momentum": 67.08407871198568,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 77.6165487035605
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Healthcare",
         "reasons": [
           "market: 100.0",
-          "sector: 81.7",
+          "sector: 85.5",
           "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "T",
+        "symbol": "EEM",
         "direction": "LONG",
-        "score": 74.05,
-        "boosted_score": 66.23,
-        "research": {
-          "symbol": "T",
-          "research_score": 48.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Potential benefit from telecom cash flow",
-            "Preferred-share market interest"
-          ],
-          "risks": [
-            "Negative multi-period price performance",
-            "Declining long-term revenue growth",
-            "High leverage",
-            "Weak liquidity ratios",
-            "Dividend-growth deterioration",
-            "No local company-specific research, SEC filings, earnings, or Polygon news supplied"
-          ],
-          "summary": "Income and valuation metrics are somewhat supportive, but leverage, weak growth, and incomplete company-specific research constrain conviction."
+        "score": 76.32,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 76.32,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 74.02821865469701,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 85.3693375515186,
+          "momentum": 59.535160905840286,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
         },
-        "sector": "Communication Services",
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
         "reasons": [
           "market: 100.0",
-          "sector: 82.1",
-          "vwap: 97.8",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "volume: 85.4",
+          "extension: 100.0"
+        ]
+      },
+      {
+        "symbol": "BITO",
+        "direction": "LONG",
+        "score": 74.26,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 74.26,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 44.042584742663855,
+          "momentum": 63.10047846889959,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 33.95482962049833
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "AAPL",
+        "symbol": "IREN",
         "direction": "LONG",
-        "score": 72.3,
-        "boosted_score": 66.21,
-        "research": {
-          "symbol": "AAPL",
-          "research_score": 52.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Upcoming iPhone launch",
-            "Strong iPhone and Mac demand",
-            "Services installed-base growth"
-          ],
-          "risks": [
-            "Near-term slowdown",
-            "FX and tariff pressure",
-            "Regulatory and ATT lawsuit exposure",
-            "No local research, SEC filings, earnings, or independently verified company-specific filings"
-          ],
-          "summary": "Provider news and fundamentals indicate durable demand and growth, but valuation, regulatory exposure, and limited source coverage constrain conviction."
+        "score": 72.97,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 72.97,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.71,
+          "relative_strength": 100.0,
+          "vwap": 0.0,
+          "trend": 50.0,
+          "volume": 45.92071446803009,
+          "momentum": 97.0,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 69.76071386842807
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 82.8",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 100.0"
+          "sector: 87.7",
+          "relative_strength: 100.0",
+          "momentum: 97.0"
         ]
       },
       {
-        "symbol": "WBD",
+        "symbol": "IBIT",
         "direction": "LONG",
-        "score": 70.78,
-        "boosted_score": 61.55,
-        "research": {
-          "symbol": "WBD",
-          "research_score": 40.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Potential Paramount-Warner transaction",
-            "Recent price appreciation",
-            "Streaming-sector positioning"
-          ],
-          "risks": [
-            "Negative TTM EPS and operating margin",
-            "Declining revenue and quarterly earnings",
-            "High debt and weak interest coverage",
-            "Deal and antitrust uncertainty",
-            "No local research, SEC filings, earnings, or Polygon news supplied"
-          ],
-          "summary": "Deal speculation and price momentum provide catalysts, but negative profitability, declining revenue, leverage, and transaction uncertainty dominate."
+        "score": 69.26,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 69.26,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 100.0,
+          "vwap": 12.871953599348743,
+          "trend": 100.0,
+          "volume": 35.80503830640127,
+          "momentum": 69.93350034160785,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 30.717830304973774
         },
-        "sector": "Communication Services",
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Unknown",
         "reasons": [
           "market: 100.0",
-          "sector: 82.1",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 100.0"
+          "relative_strength: 100.0",
+          "trend: 100.0"
         ]
       },
       {
-        "symbol": "INTC",
+        "symbol": "GDX",
         "direction": "LONG",
-        "score": 68.24,
-        "boosted_score": 63.07,
-        "research": {
-          "symbol": "INTC",
-          "research_score": 51.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Agentic-AI and enterprise-server demand",
-            "Potentially broadening AI-chip investor interest",
-            "Recent revenue growth"
-          ],
-          "risks": [
-            "Loss-making TTM results",
-            "Very high forward valuation",
-            "Negative long-term revenue and EBITDA trends",
-            "Mizuho target reduction",
-            "High volatility",
-            "No local research, SEC filings, Polygon news, or earnings supplied"
-          ],
-          "summary": "News identifies AI and server tailwinds, but profitability, valuation, execution, and volatility risks remain substantial."
+        "score": 67.83,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 67.83,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 50.0,
+          "relative_strength": 74.86858884311505,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 30.878881132265718,
+          "momentum": 58.635360224764185,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 36.72010860551843
         },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 82.8",
-          "vwap: 100.0",
-          "momentum: 85.4",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "CMG",
-        "direction": "LONG",
-        "score": 67.57,
-        "boosted_score": 64.4,
-        "research": {
-          "symbol": "CMG",
-          "research_score": 57.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "First Seoul restaurant and Asian expansion test",
-            "Potential South Korea and Singapore growth"
-          ],
-          "risks": [
-            "Recent EPS and TTM EPS contraction",
-            "Premium valuation",
-            "Recent five-day decline",
-            "No Polygon news, local research, SEC filings, or earnings supplied"
-          ],
-          "summary": "International expansion offers a company-specific catalyst, but valuation and declining recent earnings metrics create uncertainty."
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
         },
-        "sector": "Consumer Discretionary",
+        "sector": "Unknown",
         "reasons": [
           "market: 100.0",
           "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 91.6"
-        ]
-      },
-      {
-        "symbol": "NFLX",
-        "direction": "LONG",
-        "score": 67.06,
-        "boosted_score": 60.74,
-        "research": {
-          "symbol": "NFLX",
-          "research_score": 46.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Subscription price increases",
-            "Advertising expansion potential",
-            "Strong margins and cash-flow growth"
-          ],
-          "risks": [
-            "Growth slowing and pricing power concerns",
-            "Advertising remains unproven",
-            "Premium valuation",
-            "Recent UK price increase triggered a decline",
-            "No local research, SEC filings, Polygon news, or earnings supplied"
-          ],
-          "summary": "Strong profitability and pricing actions are offset by slowing growth, uncertain advertising economics, and valuation risk."
-        },
-        "sector": "Communication Services",
-        "reasons": [
-          "market: 100.0",
-          "sector: 82.1",
-          "trend: 100.0",
-          "extension: 97.5"
+          "trend: 100.0"
         ]
       }
     ]
   },
-  "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled.",
-  "sector_tickers": {
-    "Consumer Staples": []
-  }
+  "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
 }

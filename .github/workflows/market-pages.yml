@@ -9,7 +9,7 @@ on:
         default: false
         type: boolean
   schedule:
-    - cron: "35 9 * * 1-5"
+    - cron: "0 9 * * 1-5"
       timezone: America/Chicago
     - cron: "0 12 * * 1-5"
       timezone: America/Chicago
