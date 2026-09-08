@@ -32,6 +32,28 @@ if mode == ExecutionMode.LIVE:
 alpaca = None
 if mode == ExecutionMode.PAPER and env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     alpaca = AlpacaPaperBroker(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
+
+# Reconcile broker positions before normal local monitoring. New short entries
+# are disabled, but an existing Alpaca short must be bought to cover even when
+# it was never written to the local ledger.
+if alpaca:
+    local_open_symbols = {order.symbol.upper() for order in trader.open_orders()}
+    try:
+        for position in alpaca.positions():
+            symbol = str(getattr(position, "symbol", "")).upper()
+            side = str(getattr(position, "side", "")).lower()
+            quantity = abs(float(getattr(position, "qty", 0)))
+            if symbol and side.endswith("short") and quantity > 0 and symbol not in local_open_symbols:
+                price = float(getattr(position, "current_price", 0) or getattr(position, "avg_entry_price", 0))
+                order = alpaca.submit_buy(symbol, quantity, price)
+                entry = float(getattr(position, "avg_entry_price", price))
+                db.execute("INSERT INTO trades(symbol,side,quantity,entry_price,exit_price,stop_price,target_price,status,realized_pnl,closed_at) VALUES (?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP)",
+                           (symbol, "SHORT", quantity, entry, price, entry, 0, "closed", round((entry - price) * quantity, 2)))
+                db.commit()
+                print(f"reconciled_short_cover={symbol} quantity={quantity:g} price={price:.2f} order={getattr(order, 'id', 'submitted')}")
+    except Exception as exc:
+        print(f"position_reconcile_error={type(exc).__name__}: {exc}")
+
 for order in trader.open_orders():
     try:
         if not env.get("ALPACA_API_KEY") or not env.get("ALPACA_SECRET_KEY"):
