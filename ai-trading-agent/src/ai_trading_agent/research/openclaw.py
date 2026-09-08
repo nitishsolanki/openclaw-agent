@@ -14,7 +14,10 @@ def run_research(root: Path, prompt_path: Path, expected_symbols: set[str]) -> P
     The function fails closed: no output file is replaced unless the response
     contains valid research for every requested symbol.
     """
-    binary = os.environ.get("OPENCLAW_BIN", "openclaw")
+    default_binary = (r"C:\Users\nitis\AppData\Roaming\npm\openclaw.cmd"
+                      if os.name == "nt" and Path(r"C:\Users\nitis\AppData\Roaming\npm\openclaw.cmd").exists()
+                      else "openclaw")
+    binary = os.environ.get("OPENCLAW_BIN", default_binary)
     agent = os.environ.get("OPENCLAW_AGENT", "main")
     command = [binary, "agent", "--agent", agent, "--message-file", str(prompt_path)]
     if binary.lower().endswith(".ps1"):

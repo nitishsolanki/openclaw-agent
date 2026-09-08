@@ -33,10 +33,10 @@ alpaca = None
 if mode == ExecutionMode.PAPER and env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"):
     alpaca = AlpacaPaperBroker(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
 for order in trader.open_orders():
-    if trader.bought_today(order.symbol):
-        print(f"paper_exit_blocked={order.symbol} reason=same_day_entry")
-        continue
     try:
+        if not env.get("ALPACA_API_KEY") or not env.get("ALPACA_SECRET_KEY"):
+            print(f"monitor_skip={order.symbol} reason=missing_alpaca_credentials")
+            continue
         bars = (AlpacaMarketData(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
                 .get_bars(order.symbol))
         price = float(bars["close"].iloc[-1])
@@ -46,6 +46,7 @@ for order in trader.open_orders():
         decision = evaluate_exit(PositionState(order.symbol, order.quantity, order.entry_price,
                                                order.stop_price, order.target_price, 50.0, "Unknown", order.side),
                                   price, 50.0, bool(features["above"]), price > ema20 > ema50, True)
+        print(f"monitor_check={order.symbol} side={order.side} price={price:.2f} stop={order.stop_price:.2f} target={order.target_price:.2f} action={decision.action} reason={decision.reason}")
         if decision.action in {"SELL_ALL", "TAKE_PARTIAL"}:
             if alpaca:
                 if order.side in {"SELL", "SHORT"}:
