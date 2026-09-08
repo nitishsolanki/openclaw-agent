@@ -1,5 +1,14 @@
 # AI Trading Agent
 
+## README structure
+
+- **Part I — Business and Trading Knowledge:** what the agent looks for, how the
+  profiles differ, how setup maturity works, and how to interpret candidates.
+- **Part II — IT Operations and Python References:** installation, commands,
+  configuration, services, tests, scheduled jobs, reports, and source files.
+
+# Part I — Business and Trading Knowledge
+
 The AI Trading Agent is a signal-only stock scanner and paper-trading framework. It
 combines deterministic Python technical signals with optional market, sector, news,
 earnings, options, and OpenClaw research inputs. It does not place live broker orders.
@@ -15,42 +24,9 @@ earnings, options, and OpenClaw research inputs. It does not place live broker o
 7. Optionally enrich the top candidates with OpenClaw research; research changes the
    ranking blend but does not bypass deterministic risk controls.
 
-## Quick start
+## Market eligibility and score calculation
 
-From this directory:
-
-```powershell
-python -m pip install -e .
-python -m ai_trading_agent scan
-
-# Choose a scoring profile
-python -m ai_trading_agent scan --profile day
-python -m ai_trading_agent scan --profile swing
-python -m ai_trading_agent scan --profile growth
-```
-
-This uses the offline sample data and writes signals to `trading.db`.
-
-For the local API and Telegram bot, use separate terminals:
-
-```powershell
-python scripts/run_api.py
-python scripts/run_telegram.py
-```
-
-Useful Telegram commands are `/scan`, `/sectors`, `/analyze SYMBOL`,
-`/setup SYMBOL`, `/positions`, `/pnl`, and `/status`. `/analyze` is informational;
-`/setup` calculates a possible entry, stop, target, and share quantity subject to
-risk rules.
-
-## Python stock-filtering rules
-
-The main liquidity filters are implemented in
-`src/ai_trading_agent/data/bars_batch.py`, function `fetch_liquid_bars()`.
-Universe loading and live/offline selection are handled in
-`src/ai_trading_agent/cli.py`, function `run_scan()`.
-
-In live mode, `fetch_liquid_bars()` excludes a symbol when any of these checks fail:
+In live mode, a stock is excluded when any of these eligibility checks fail:
 
 | Rule | Requirement |
 |---|---:|
@@ -65,11 +41,17 @@ Empty data, provider errors, or failed calculations also exclude the symbol. Off
 mode currently uses the sample universe (`AAA`, `BBB`, and `CCC`) and does not apply
 the live liquidity download path.
 
-After liquidity filtering, `run_scan()` may also apply the active weekly theme filter
-in offline mode. In live mode it enriches sector names and applies sector scores;
-these affect ranking rather than eligibility. The final scanner in
-`src/ai_trading_agent/screening/scanner.py`, function `scan()`, sorts eligible stocks
-by score and keeps the top 10.
+After liquidity filtering, the active theme, market regime, sector leadership, and
+technical factors influence ranking. These are eligibility and ranking rules, not
+trade approval. A stock that passes the filters is scored and ranked; it is not
+automatically approved for a trade.
+
+The Sector Rotation heatmap compares each sector ETF with the benchmark and scores
+relative strength, trend, momentum, and recent price behavior. The date cells show
+the historical sector score. The 5D and 20D columns compare the latest sector score
+with the score five and twenty sessions earlier. ETF Current Δ compares the latest
+ETF close with the previous available close; positive values are green and negative
+values are red. Rows are ordered by five-day sector-score improvement.
 
 These are eligibility and ranking rules, not trade approval. A stock that passes the
 filters is scored and ranked; it is not automatically approved for a trade.
@@ -87,9 +69,21 @@ and `config/strategy_growth.yaml`. The default is `swing`.
   strength, with less dependence on current VWAP and volume. It is currently a
   technical growth proxy, not a fundamental long-term investing model.
 
-See [Trading Candidate Profiles.md](Trading%20Candidate%20Profiles.md) for the
-Day, Swing, and Growth top-candidate sections, profile weights, and Python
-scoring rules.
+All three lists use the same stock universe and reusable Early Setup layer, but
+apply different technical priorities and filters:
+
+| List | Main focus | Most important factors |
+| --- | --- | --- |
+| **Day** | Short-term intraday momentum | Market regime, sector strength, trend, relative strength, VWAP, options |
+| **Swing** | Multi-day to multi-week moves | Relative strength, VWAP, trend, momentum, volume |
+| **Growth** | Stronger medium/long-term candidates | Market regime, sector strength, relative strength, trend, volume |
+
+The Early Setup layer classifies candidates as `BUILDING`, `BREAKOUT_READY`,
+`CONFIRMED_BREAKOUT`, `PULLBACK`, or `EXTENDED`. Extended candidates are treated
+as `WAIT` candidates rather than automatic buys.
+
+See [Trading Candidate Profiles.md](Trading%20Candidate%20Profiles.md) for a
+business-level explanation of the Day, Swing, and Growth candidate profiles.
 
 When no stock passes every profile gate in a market snapshot, the report shows
 the highest-ranked long-only candidates with `FILTER_FALLBACK` status for review.
@@ -125,6 +119,30 @@ Current milestone: the offline scanner, deterministic risk engine, and local
 paper-trading model are working. The system is not investment advice and should
 not be used for live trading without independent validation.
 
+# Part II — IT Operations and Python References
+
+## Quick start
+
+From this directory:
+
+```powershell
+python -m pip install -e .
+python -m ai_trading_agent scan
+python -m ai_trading_agent scan --profile day
+python -m ai_trading_agent scan --profile swing
+python -m ai_trading_agent scan --profile growth
+```
+
+For the local API and Telegram bot, use separate terminals:
+
+```powershell
+python scripts/run_api.py
+python scripts/run_telegram.py
+```
+
+Useful Telegram commands are `/scan`, `/sectors`, `/analyze SYMBOL`,
+`/setup SYMBOL`, `/positions`, `/pnl`, and `/status`.
+
 ## Run tests
 
 ```bash
@@ -142,6 +160,22 @@ python -m ai_trading_agent scan
 
 The command uses `data/sample/`, prints ranked signal candidates, and writes
 signals to `trading.db`. It does not place orders.
+
+## Python source reference
+
+| Area | File | Purpose |
+| --- | --- | --- |
+| CLI orchestration | `src/ai_trading_agent/cli.py` | Loads profiles, universe, market data, and runs scans |
+| Liquidity filtering | `src/ai_trading_agent/data/bars_batch.py` | Price, history, volume, dollar-volume, and spread checks |
+| Profile scoring | `src/ai_trading_agent/screening/scanner.py` | Technical components, filters, and ranking |
+| Early setup layer | `src/ai_trading_agent/screening/early_setup.py` | Maturity, compression, extension, timing, and opportunity metrics |
+| Strategy configuration | `config/strategy_day.yaml`, `strategy_swing.yaml`, `strategy_growth.yaml` | Profile weights, filters, and early-setup thresholds |
+| Report generation | `reports/build_live_report.py` and `reports/generate_site.py` | JSON report, candidate tables, charts, and detail pages |
+| Paper execution | `scripts/paper_autotrader.py` | Research handoff, exits, reconciliation, and paper entries |
+
+The scanner's primary output is a `TradeSignal` containing the profile score and
+component dictionary. The report builder serializes those components together
+with research, setup maturity, timing, and opportunity fields.
 
 ## Local environment
 
@@ -161,8 +195,8 @@ Available endpoints are `/health`, `/scan`, and `/paper/orders`. The default exe
 
 ## GitHub Pages deployment
 
-The workflow in `.github/workflows/market-pages.yml` generates reports at 9:35 AM
-and 2:00 PM Chicago time on weekdays. Add `ALPACA_API_KEY`,
+The workflow in `.github/workflows/market-pages.yml` generates reports at 9:00 AM,
+12:00 PM, and 2:00 PM Chicago time on weekdays. Add `ALPACA_API_KEY`,
 `ALPACA_SECRET_KEY`, `FINNHUB_API_KEY`, and `POLYGON_API_KEY` as repository
 Actions secrets, then enable GitHub Pages with **GitHub Actions** as the source.
 

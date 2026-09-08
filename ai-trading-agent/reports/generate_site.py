@@ -182,7 +182,7 @@ def render(report: dict) -> str:
         corr_rows_parts.append(f"<tr><th>{escape(name)}</th>{''.join(cells)}</tr>")
     corr_rows = "".join(corr_rows_parts)
     history_json = json.dumps([
-        {"date": day.get("date", ""), "scores": day.get("scores", {})}
+        {"date": day.get("date", ""), "scores": day.get("scores", {}), "prices": day.get("prices", {})}
         for day in history
     ], separators=(",", ":"))
     fallback_tickers = {}
@@ -195,7 +195,7 @@ def render(report: dict) -> str:
     ticker_json = json.dumps(report.get("sector_tickers") or fallback_tickers, separators=(",", ":"))
     options = "".join(f"<option value='{escape(name)}'{' selected' if name.lower() == 'technology' else ''}>{escape(name)}</option>" for name in sector_names)
     correlation_html = """
-<div class='correlation-controls'><label for='reference-sector'>Reference sector</label><select id='reference-sector'>""" + options + """</select><span class='muted'>Rolling correlation of daily score changes</span></div>
+<div class='correlation-controls'><label for='reference-sector'>Reference sector</label><select id='reference-sector'>""" + options + """</select><span class='muted'>Correlation of ETF daily percentage returns</span></div>
 <div class='chart-scroll'><svg id='reference-correlation-chart' viewBox='0 0 920 390' role='img' aria-label='Reference-sector correlation chart'></svg></div>
 <div id='reference-correlation-legend' class='sector-legend-wrap'></div>
 <script>
@@ -219,8 +219,8 @@ def render(report: dict) -> str:
   function draw() {
     const reference = select.value;
     const changes = name => history.slice(1).map((day, index) => {
-      const previous = history[index].scores[name], current = day.scores[name];
-      return previous == null || current == null ? null : Number(current) - Number(previous);
+      const previous = history[index].prices[name], current = day.prices[name];
+      return previous == null || current == null || Number(previous) === 0 ? null : (Number(current) / Number(previous) - 1) * 100;
     });
     const ref = changes(reference), width = 920, rowHeight = 32, labelX = 210, plotLeft = 300, zeroX = 610, plotRight = 880, top = 20, bottom = 20;
     const values = names.filter(name => name !== reference).map(name => ({name, value: correlation(ref, changes(name))})).sort((a, b) => (b.value ?? -2) - (a.value ?? -2));
@@ -269,7 +269,7 @@ def render(report: dict) -> str:
 })();
 </script>"""
     marker = "{SECTOR_ROTATION}"
-    replacement = f"<section><h2>Sector Rotation</h2><h3>Sector Rotation — Heatmap</h3>{heatmap}<div class='sector-chart-columns'><div><h3>Reference-Sector Correlation</h3>{correlation_html}</div><div><h3>Probable Next Sector Rotation</h3>{rotation_html}</div></div></section>"
+    replacement = f"<section><h2>Sector Rotation</h2><h3>Sector Rotation — Heatmap</h3>{heatmap}<div class='sector-chart-columns'><div><h3>Reference-Sector Correlation</h3><p class='muted'>Based on ETF daily percentage returns.</p>{correlation_html}</div><div><h3>Probable Next Sector Rotation</h3>{rotation_html}</div></div></section>"
     return html.replace(marker, replacement, 1)
 
 def build(input_path: Path, output_dir: Path) -> None:
