@@ -67,8 +67,13 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     def serialize(items, profile):
         strategy_path = root / "config" / f"strategy_{profile}.yaml"
         weights = load_strategy(strategy_path).get("weights", {})
-        return [{"symbol": item.symbol, "direction": item.direction, "score": item.final_score,
+        return [{"symbol": item.symbol, "profile": profile, "direction": item.direction, "score": item.final_score,
                  "profile_status": item.profile_status,
+                 "early_setup_score": item.components.get("early_setup_score", 0),
+                 "entry_timing_score": item.components.get("entry_timing_score", 0),
+                 "setup_maturity": item.components.get("setup_maturity", "BUILDING"),
+                 "opportunity_score": item.components.get("opportunity_score", item.final_score),
+                 "recommendation": item.components.get("recommendation", "WATCH"),
                  "boosted_score": boosted_score(item.final_score, research.get(item.symbol)),
                  "research": research.get(item.symbol, {}),
                  "components": {key: value for key, value in item.components.items() if isinstance(value, (int, float))},

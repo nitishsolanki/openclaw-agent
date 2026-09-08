@@ -1,4 +1,19 @@
 profile: swing
+early_setup:
+  relative_strength_acceleration: 0.15
+  trend_acceleration: 0.15
+  compression: 0.15
+  volatility_contraction: 0.10
+  volume_accumulation: 0.10
+  breakout_distance: 0.15
+  support_quality: 0.10
+  momentum_improvement: 0.10
+  profile_score_weight: 0.70
+  early_setup_weight: 0.30
+  breakout_ready_distance_pct: 3.0
+  confirmed_breakout_buffer_pct: 1.0
+  extended_atr_multiple: 3.0
+  extended_return_20d_pct: 15.0
 signals:
   market_regime_weight: 0.10
   sector_weight: 0.10

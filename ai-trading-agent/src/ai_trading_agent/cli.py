@@ -109,7 +109,7 @@ def run_scan(root: Path, require_live: bool = False, profile: str = "swing") -> 
             except Exception:
                 enrichments[symbol] = {"news": 50.0, "options": 50.0}
     results = scan(candidates, benchmark, config["weights"], market_score=regime.score,
-                   enrichments=enrichments, minimum_filters=config.get("filters"))
+                   enrichments=enrichments, minimum_filters=config.get("filters"), setup_config=config.get("early_setup"))
     if live:
         try:
             broker = AlpacaPaperBroker(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
@@ -119,7 +119,7 @@ def run_scan(root: Path, require_live: bool = False, profile: str = "swing") -> 
                 options[result.symbol] = {**options.get(result.symbol, {}),
                                           "options": options_confirmation(snapshots)}
             results = scan(candidates, benchmark, config["weights"], market_score=regime.score,
-                           enrichments=options, minimum_filters=config.get("filters"))
+                           enrichments=options, minimum_filters=config.get("filters"), setup_config=config.get("early_setup"))
         except Exception:
             pass
     journal = db
