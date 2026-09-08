@@ -47,9 +47,31 @@ def _render_base(report: dict) -> str:
         return f"{arrow} {change:+.2f}%"
 
     def candidate_cards(items, profile):
-        return "".join(f"<article class='card candidate-card'><div class='row'><h3>{escape(str(item['symbol']))}</h3><span class='badge'>{float(item.get('boosted_score', item['score'])):.1f}/100</span></div><p>{escape(str(item['direction']))} · {escape(str(item.get('sector', 'Unknown')))} · {escape(str(item.get('profile_status', 'QUALIFIED')))}</p><p class='muted'>Technical: {float(item['score']):.1f} · Research: {float(item.get('research', {}).get('research_score', 0)):.1f} · Boosted: {float(item.get('boosted_score', item['score'])):.1f}</p><a href='details/{escape(str(item['symbol']).upper())}.html'>View details →</a></article>" for item in items)
+        rows = "".join(f"<tr><td>{escape(str(item['symbol']).upper())} <a class='detail-link' href='details/{escape(str(item['symbol']).upper())}.html' title='View details'>»</a></td><td>{float(item.get('score', 0)):.1f}</td><td>{float(item.get('research', {}).get('research_score', 0)):.1f}</td><td><strong>{float(item.get('boosted_score', item.get('score', 0))):.1f}</strong></td><td><span class='setup-badge setup-{escape(str(item.get('setup_maturity', 'BUILDING')).lower())}'>{escape(str(item.get('setup_maturity', 'BUILDING')))}</span></td></tr>" for item in items)
+        return f"<div class='table-scroll candidate-table-wrap'><table class='candidate-table'><thead><tr><th>Ticker</th><th>Technical</th><th>Research</th><th>Boosted</th><th>Setup</th></tr></thead><tbody>{rows}</tbody></table></div>"
     profile_signals = report.get("profiles", {}) or {"swing": report.get("signals", [])}
-    candidate_sections = "".join(f"<section><h2>{escape(profile.title())} Top Candidates</h2><div class='grid'>{candidate_cards(items, profile)}</div></section>" for profile, items in profile_signals.items())
+    merged_candidates = {}
+    for profile, items in profile_signals.items():
+        for item in items:
+            symbol = str(item.get("symbol", "")).upper()
+            if not symbol:
+                continue
+            record = merged_candidates.setdefault(symbol, {**item, "profiles": set()})
+            record["profiles"].add(profile.title())
+            if float(item.get("boosted_score", item.get("score", 0))) > float(record.get("boosted_score", record.get("score", 0))):
+                for key in ("score", "research", "boosted_score", "components", "setup_maturity", "early_setup_score", "entry_timing_score", "opportunity_score", "recommendation"):
+                    if key in item:
+                        record[key] = item[key]
+    category_order = ["BUILDING", "BREAKOUT_READY", "CONFIRMED_BREAKOUT", "PULLBACK", "EXTENDED"]
+    category_sections = []
+    for category in category_order:
+        items = [item for item in merged_candidates.values() if str(item.get("setup_maturity", "BUILDING")) == category]
+        items.sort(key=lambda item: float(item.get("boosted_score", item.get("score", 0))), reverse=True)
+        rows = "".join(f"<tr><td>{escape(str(item['symbol']).upper())} <a class='detail-link' href='details/{escape(str(item['symbol']).upper())}.html' title='View details'>»</a></td><td>{escape('/'.join(sorted(item['profiles'])))}</td><td>{float(item.get('score', 0)):.1f}</td><td>{float(item.get('research', {}).get('research_score', 0)):.1f}</td><td><strong>{float(item.get('boosted_score', item.get('score', 0))):.1f}</strong></td><td>{escape(str(item.get('recommendation', 'WATCH')))}</td></tr>" for item in items)
+        if not rows:
+            rows = "<tr><td colspan='6' class='muted'>No candidates in this category.</td></tr>"
+        category_sections.append(f"<section><h2>{category.replace('_', ' ').title()} Candidates</h2><div class='table-scroll candidate-table-wrap'><table class='candidate-table'><thead><tr><th>Ticker</th><th>Profiles</th><th>Technical</th><th>Research</th><th>Boosted</th><th>Recommendation</th></tr></thead><tbody>{rows}</tbody></table></div></section>")
+    candidate_sections = "".join(category_sections)
     return f"""<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AI Trading Market Report</title><link rel='stylesheet' href='assets/styles.css'></head><body><main><header><p class='eyebrow'>AI TRADING AGENT · PAPER MODE</p><h1>Market Intelligence</h1><p class='muted'>Generated {escape(report.get('generated_at', 'unknown'))} · Source: {escape(str(report.get('data_source', 'unknown')))}</p></header><section class='hero'><div class='active-theme-compact'><span class='eyebrow'>ACTIVE THEME</span><strong>{escape(report['theme']['name'])}</strong><span class='muted'>{', '.join(report['theme'].get('sectors', []))}</span></div></section>{{SECTOR_ROTATION}}{candidate_sections}<footer>{escape(report.get('disclaimer', ''))}</footer></main></body></html>"""
 
 def render(report: dict) -> str:
@@ -86,10 +108,13 @@ def render(report: dict) -> str:
         five_day = current_score - valid_scores[-6] if len(valid_scores) >= 6 else 0.0
         twenty_day = current_score - valid_scores[-21] if len(valid_scores) >= 21 else 0.0
         trend = "Gaining" if five_day > 0.25 else "Losing" if five_day < -0.25 else "Stable"
-        summary = f"<td>{five_day:+.1f}</td><td>{twenty_day:+.1f}</td><td><strong>{current_score:.1f}</strong></td><td>{trend}</td>"
+        price_values = [day.get("prices", {}).get(sector["sector"]) for day in history if day.get("prices", {}).get(sector["sector"]) is not None]
+        price_change = ((float(price_values[-1]) / float(price_values[-2]) - 1) * 100) if len(price_values) >= 2 and float(price_values[-2]) else 0.0
+        price_class = "price-up" if price_change > 0 else "price-down" if price_change < 0 else "price-flat"
+        summary = f"<td>{five_day:+.1f}</td><td>{twenty_day:+.1f}</td><td><strong class='{price_class}'>{price_change:+.2f}%</strong></td><td>{trend}</td>"
         heatmap_rows_parts.append(f"<tr><th>{escape(str(sector['sector']))}</th><td class='sector-etf'>{escape(str(sector.get('symbol', '—')))}</td>{''.join(cells)}{summary}</tr>")
     heatmap_rows = "".join(heatmap_rows_parts)
-    heatmap = f"<div class='table-scroll'><table class='sector-heatmap'><thead><tr><th>Sector</th><th>ETF</th>{''.join(f'<th>{escape(format_date(date))}</th>' for date in dates)}<th>5D Δ</th><th>20D Δ</th><th>Current</th><th>Trend</th></tr></thead><tbody>{heatmap_rows}</tbody></table></div>"
+    heatmap = f"<div class='table-scroll'><table class='sector-heatmap'><thead><tr><th>Sector</th><th>ETF</th>{''.join(f'<th>{escape(format_date(date))}</th>' for date in dates)}<th>5D Δ</th><th>20D Δ</th><th>ETF Current Δ</th><th>Trend</th></tr></thead><tbody>{heatmap_rows}</tbody></table></div>"
     latest = history[-1] if history else {}
     previous = history[-2] if len(history) > 1 else {}
     ranking = "".join(f"<div class='ranking-row'><span>{escape(str(sector['sector']))}</span><div class='ranking-bar'><b style='width:{float(sector.get('score', 0)):.1f}%'></b></div><strong>{float(sector.get('score', 0)):.1f}</strong><em>{float(latest.get('scores', {}).get(sector['sector'], 0)) - float(previous.get('scores', {}).get(sector['sector'], latest.get('scores', {}).get(sector['sector'], 0))):+.1f}</em></div>" for sector in sorted(sectors, key=lambda item: float(item.get('score', 0)), reverse=True))
@@ -304,6 +329,8 @@ def build(input_path: Path, output_dir: Path) -> None:
 .sector-chart-columns{display:grid;grid-template-columns:1fr;gap:28px;align-items:start}.sector-chart-columns>div{min-width:0}.sector-chart-columns h3{margin-top:18px}
 .sector-chart-columns svg{width:100%;height:auto;min-height:300px}.sector-chart-columns svg text{font-size:14px!important}.sector-chart-columns .sector-legend{font-size:.95rem}.sector-chart-columns select{font-size:1rem;padding:6px 8px}.sector-chart-columns .muted{font-size:.95rem}
 .candidate-card{font-size:.82rem;padding:12px}.candidate-card h3{font-size:.95rem;margin:.15rem 0}.candidate-card p{margin:.35rem 0}.candidate-card .badge{font-size:.75rem;padding:3px 6px}.candidate-card a{font-size:.78rem}
+.candidate-table{min-width:620px}.candidate-table th,.candidate-table td{padding:10px 12px;font-size:1rem}.candidate-table th:not(:first-child),.candidate-table td:not(:first-child){text-align:center}.candidate-table-wrap{margin-top:8px}.candidate-table a.detail-link{color:#70d6c3;text-decoration:none;font-size:1.15rem;font-weight:700;margin-left:4px}.candidate-table a.detail-link:hover{color:#fff}.setup-badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.01em}.setup-building{background:#a87900;color:#fff7d1}.setup-breakout_ready{background:#087f6b;color:#e7fff9}.setup-confirmed_breakout{background:#1264ad;color:#e5f3ff}.setup-pullback{background:#6b4bb5;color:#f3ebff}.setup-extended{background:#b8323e;color:#fff0f0}
+.price-up{color:#70d6c3}.price-down{color:#ff7777}.price-flat{color:#b5c0d2}
 .sector-heatmap th,.sector-heatmap td{padding:9px 10px;text-align:center;white-space:nowrap}.sector-heatmap th:first-child{text-align:left;position:sticky;left:0;background:#131d30}.sector-heatmap td{border:1px solid #263650}.heat-0,.heat-10,.heat-20,.heat-30,.heat-40{background:#7d3f46}.heat-50,.heat-60{background:#665f3d}.heat-70,.heat-80{background:#35655e}.heat-90,.heat-100{background:#1f806f}.sector-ranking{display:grid;gap:8px}.ranking-row{display:grid;grid-template-columns:minmax(110px,1.2fr) 3fr 45px 45px;gap:10px;align-items:center;font-size:.9rem}.ranking-bar{height:10px;background:#263650;border-radius:99px;overflow:hidden}.ranking-bar b{display:block;height:100%;background:#70d6c3;border-radius:99px}.ranking-row em{font-style:normal;color:#8e9bb0}.correlation-matrix th,.correlation-matrix td{padding:8px;text-align:center;white-space:nowrap;font-size:.82rem}.correlation-matrix th:first-child{text-align:left;position:sticky;left:0;background:#131d30}.corr-positive{background:#1f806f}.corr-neutral{background:#665f3d}.corr-negative{background:#7d3f46}.corr-na{background:#263650;color:#8e9bb0}.cluster-summary,.divergence{margin-top:14px;padding:14px;background:#111b2d;border:1px solid #263650;border-radius:10px}.cluster-summary h4,.divergence h4{margin:0 0 8px}@media(max-width:650px){.ranking-row{grid-template-columns:90px 1.5fr 38px 38px;font-size:.78rem}}
 """
     (output_dir / "assets" / "styles.css").write_text(css.read_text(encoding="utf-8") + extra_css, encoding="utf-8")

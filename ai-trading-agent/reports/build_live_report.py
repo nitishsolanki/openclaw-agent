@@ -82,10 +82,21 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
                  "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if isinstance(value, (int, float)) and value >= 80]}
                 for item in items]
 
+    theme = active_theme(root)
+    if not theme and sectors:
+        leaders = sorted(sectors, key=lambda item: float(item.get("score", 0)), reverse=True)[:3]
+        leader_sectors = [item["sector"] for item in leaders]
+        theme = {
+            "name": "+".join(f"{sector.lower().replace(' ', '_')}_leadership" for sector in leader_sectors),
+            "sectors": leader_sectors,
+            "industries": [],
+            "score": round(sum(float(item.get("score", 0)) for item in leaders) / max(len(leaders), 1), 2),
+            "source": "sector_rotation_fallback",
+        }
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(), "data_source": "alpaca_live",
         "market": {"label": "See signal components", "score": signals[0].components.get("market", 0) if signals else 0},
-        "theme": active_theme(root) or {"name": "none", "sectors": []}, "sectors": sectors,
+        "theme": theme or {"name": "market_leadership", "sectors": []}, "sectors": sectors,
         "sector_history": history, "sector_current_prices": current_prices, "sector_tickers": sector_tickers,
         "signals": serialize(signals, "swing"),
         "profiles": {profile: serialize(items, profile) for profile, items in profile_results.items()},

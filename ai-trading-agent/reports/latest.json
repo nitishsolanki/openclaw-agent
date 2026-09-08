@@ -6,8 +6,15 @@
     "score": 100.0
   },
   "theme": {
-    "name": "none",
-    "sectors": []
+    "name": "energy_leadership+technology_leadership+utilities_leadership",
+    "sectors": [
+      "Energy",
+      "Technology",
+      "Utilities"
+    ],
+    "industries": [],
+    "score": 85.55,
+    "source": "sector_rotation_fallback"
   },
   "sectors": [
     {
