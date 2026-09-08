@@ -160,6 +160,14 @@ def render(report: dict) -> str:
         {"date": day.get("date", ""), "scores": day.get("scores", {})}
         for day in history
     ], separators=(",", ":"))
+    fallback_tickers = {}
+    for profile_items in (report.get("profiles", {}) or {}).values():
+        for item in profile_items:
+            sector = item.get("sector", "Unknown")
+            symbol = item.get("symbol")
+            if sector != "Unknown" and symbol:
+                fallback_tickers.setdefault(sector, []).append({"symbol": symbol, "change": 0})
+    ticker_json = json.dumps(report.get("sector_tickers") or fallback_tickers, separators=(",", ":"))
     options = "".join(f"<option value='{escape(name)}'{' selected' if name.lower() == 'technology' else ''}>{escape(name)}</option>" for name in sector_names)
     correlation_html = """
 <div class='correlation-controls'><label for='reference-sector'>Reference sector</label><select id='reference-sector'>""" + options + """</select><span class='muted'>Rolling correlation of daily score changes</span></div>
@@ -189,27 +197,55 @@ def render(report: dict) -> str:
       const previous = history[index].scores[name], current = day.scores[name];
       return previous == null || current == null ? null : Number(current) - Number(previous);
     });
-    const ref = changes(reference), width = 920, height = 390, left = 48, right = 18, top = 24, bottom = 48;
-    const points = Math.max(history.length - 1, 1);
-    svg.innerHTML = `<line x1='${left}' y1='${top}' x2='${left}' y2='${height-bottom}' stroke='#52627d'/><line x1='${left}' y1='${height-bottom}' x2='${width-right}' y2='${height-bottom}' stroke='#52627d'/><line x1='${left}' y1='${top+(height-top-bottom)/2}' x2='${width-right}' y2='${top+(height-top-bottom)/2}' stroke='#52627d' stroke-dasharray='4 4'/><text x='5' y='${top+4}' fill='#8e9bb0' font-size='11'>+1.0</text><text x='14' y='${top+(height-top-bottom)/2+4}' fill='#8e9bb0' font-size='11'>0.0</text><text x='5' y='${height-bottom+4}' fill='#8e9bb0' font-size='11'>-1.0</text>`;
+    const ref = changes(reference), width = 920, rowHeight = 32, labelX = 210, plotLeft = 300, zeroX = 610, plotRight = 880, top = 20, bottom = 20;
+    const values = names.filter(name => name !== reference).map(name => ({name, value: correlation(ref, changes(name))})).sort((a, b) => (b.value ?? -2) - (a.value ?? -2));
+    const height = Math.max(150, top + bottom + values.length * rowHeight);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.innerHTML = `<line x1='${zeroX}' y1='${top}' x2='${zeroX}' y2='${height-bottom}' stroke='#52627d'/><text x='${zeroX}' y='${top-6}' text-anchor='middle' fill='#8e9bb0' font-size='11'>0.00 · Reference: ${reference}</text><text x='${plotLeft}' y='${top-6}' text-anchor='start' fill='#8e9bb0' font-size='10'>Inverse</text><text x='${plotRight}' y='${top-6}' text-anchor='end' fill='#8e9bb0' font-size='10'>Positive</text>`;
     legend.innerHTML = `<span class='sector-legend reference-legend'><i></i>Reference: ${reference}</span>`;
-    names.filter(name => name !== reference).forEach((name, colorIndex) => {
-      const values = changes(name).map((value, index) => index < 2 ? null : correlation(ref.slice(index - 2, index + 1), changes(name).slice(index - 2, index + 1)));
-      const line = document.createElementNS(NS, 'polyline');
-      line.setAttribute('fill', 'none'); line.setAttribute('stroke', colors[colorIndex % colors.length]); line.setAttribute('stroke-width', '2');
+    values.forEach((item, index) => {
+      const y = top + index * rowHeight + 8, value = item.value;
+      const label = document.createElementNS(NS, 'text'); label.setAttribute('x', value >= 0 ? zeroX - 14 : zeroX + 14); label.setAttribute('y', y + 14); label.setAttribute('text-anchor', value >= 0 ? 'end' : 'start'); label.setAttribute('fill', '#b5c0d2'); label.setAttribute('font-size', '12'); label.textContent = item.name; svg.appendChild(label);
+      if (value == null) return;
+      const bar = document.createElementNS(NS, 'rect');
+      const scale = Math.min(zeroX - plotLeft, plotRight - zeroX);
+      bar.setAttribute('x', value >= 0 ? zeroX : zeroX + value * scale); bar.setAttribute('y', y); bar.setAttribute('width', Math.abs(value) * scale); bar.setAttribute('height', '16'); bar.setAttribute('rx', '4'); bar.setAttribute('fill', value >= 0.4 ? '#1f806f' : value <= -0.4 ? '#7d3f46' : '#665f3d');
       const title = document.createElementNS(NS, 'title');
-      title.textContent = `${name} correlation with ${reference}`;
-      line.appendChild(title);
-      line.setAttribute('points', values.map((value, index) => value == null ? '' : `${left + (width-left-right) * index / Math.max(points-1,1)},${top + (height-top-bottom) * (1-value) / 2}`).filter(Boolean).join(' '));
-      svg.appendChild(line);
-      legend.insertAdjacentHTML('beforeend', `<span class='sector-legend'><i style='background:${colors[colorIndex % colors.length]}'></i>${name}</span>`);
+      title.textContent = `${item.name} correlation with ${reference}: ${value.toFixed(2)}`;
+      bar.appendChild(title); svg.appendChild(bar);
+      const score = document.createElementNS(NS, 'text'); score.setAttribute('x', value >= 0 ? zeroX + Math.abs(value) * scale + 8 : zeroX + value * scale - 8); score.setAttribute('y', y + 13); score.setAttribute('text-anchor', value >= 0 ? 'start' : 'end'); score.setAttribute('fill', '#b5c0d2'); score.setAttribute('font-size', '11'); score.textContent = value.toFixed(2); svg.appendChild(score);
     });
   }
   select.addEventListener('change', draw); draw();
 })();
 </script>"""
+    rotation_html = """
+<div class='chart-scroll'><svg id='sector-rotation-flow' viewBox='0 0 920 420' role='img' aria-label='Probable next sector rotation flow'></svg></div>
+<p class='muted'>Statistical proxy based on recent momentum improvement versus the longer-term trend; not a trading signal.</p>
+<script>
+(() => {
+  const history = """ + history_json + """;
+  const sectors = """ + json.dumps(sector_names) + """;
+  const tickers = """ + ticker_json + """;
+  const svg = document.getElementById('sector-rotation-flow');
+  const values = name => history.map(day => day.scores[name]).filter(value => value != null).map(Number);
+  const stats = sectors.map(name => { const v = values(name), recent = v.length > 5 ? v[v.length-1] - v[v.length-6] : 0, long = v.length > 20 ? v[v.length-1] - v[v.length-21] : recent; return {name, recent, long, score: Math.max(0, Math.min(100, 50 + recent * 3 + (recent - long / 4) * 2))}; }).sort((a,b) => b.score-a.score);
+  const winners = stats.filter(x => x.recent > 0).slice(0, 5), losers = stats.filter(x => x.recent < 0).sort((a,b) => a.recent-b.recent).slice(0, 5);
+  const width = 920, height = 420, left = 28, center = 460, top = 34, row = 62;
+  svg.innerHTML = `<text x='${left}' y='18' fill='#8e9bb0' font-size='11'>WEAKENING / OUTFLOW PROXY</text><text x='${center+20}' y='18' fill='#8e9bb0' font-size='11'>IMPROVING / INFLOW PROXY</text><line x1='${center}' y1='${top}' x2='${center}' y2='${height-20}' stroke='#52627d'/>`;
+  const count = Math.max(winners.length, losers.length);
+  for (let i=0; i<count; i++) {
+    const y = top + i * row + 18, loser = losers[i], winner = winners[i];
+    const tickerText = name => (tickers[name] || []).map(item => item.symbol).join(', ') || 'No screened tickers available';
+    const tickerColor = name => (tickers[name] || []).some(item => Number(item.change) > 0) ? '#70d6c3' : '#ff8a80';
+    if (loser) { svg.insertAdjacentHTML('beforeend', `<text x='${center-18}' y='${y}' text-anchor='end' fill='#b5c0d2' font-size='13'>${loser.name}</text><text x='${center-18}' y='${y+17}' text-anchor='end' fill='#ff8a80' font-size='11'>${loser.recent.toFixed(1)} pts · ${tickerText(loser.name)}</text>`); }
+    if (winner) { const probability = Math.round(winner.score); svg.insertAdjacentHTML('beforeend', `<line x1='${center+12}' y1='${y-5}' x2='${center+150}' y2='${y-5}' stroke='#70d6c3' stroke-width='2' marker-end='url(#arrow)'/><text x='${center+170}' y='${y}' fill='#b5c0d2' font-size='13'>${winner.name}</text><text x='${center+170}' y='${y+17}' fill='${tickerColor(winner.name)}' font-size='11'>Rotation ${probability}/100 · ${tickerText(winner.name)}</text>`); }
+  }
+  svg.insertAdjacentHTML('afterbegin', `<defs><marker id='arrow' markerWidth='8' markerHeight='8' refX='7' refY='3' orient='auto'><path d='M0,0 L0,6 L8,3 z' fill='#70d6c3'/></marker></defs>`);
+})();
+</script>"""
     marker = "{SECTOR_ROTATION}"
-    replacement = f"<section><h2>Sector Rotation</h2><h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Reference-Sector Correlation</h3><p class='muted'>Choose a reference sector to compare rolling correlation of daily score changes.</p>{correlation_html}</section>"
+    replacement = f"<section><h2>Sector Rotation</h2><h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Reference-Sector Correlation</h3><p class='muted'>Choose a reference sector to compare rolling correlation of daily score changes.</p>{correlation_html}<h3>Probable Next Sector Rotation</h3>{rotation_html}</section>"
     return html.replace(marker, replacement, 1)
 
 def build(input_path: Path, output_dir: Path) -> None:

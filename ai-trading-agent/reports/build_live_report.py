@@ -44,6 +44,23 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     profile_results = {"day": run_scan(root, require_live=True, profile="day"),
                        "swing": signals,
                        "growth": run_scan(root, require_live=True, profile="growth")}
+    sector_tickers = {}
+    seen_tickers = set()
+    for profile_items in profile_results.values():
+        for signal in profile_items:
+            sector = signal.components.get("sector_name", "Unknown")
+            if sector == "Unknown" or signal.symbol in seen_tickers:
+                continue
+            try:
+                bars = provider.get_bars(signal.symbol)
+                prices = bars["close"].dropna()
+                change = ((float(prices.iloc[-1]) / float(prices.iloc[-2])) - 1) * 100 if len(prices) >= 2 else 0.0
+                sector_tickers.setdefault(sector, []).append({"symbol": signal.symbol, "change": round(change, 2)})
+                seen_tickers.add(signal.symbol)
+            except (KeyError, ValueError, IndexError, FileNotFoundError):
+                continue
+    for sector in sector_tickers:
+        sector_tickers[sector] = sector_tickers[sector][:10]
     if os.getenv("GITHUB_ACTIONS") == "true" and any(item.symbol in {"AAA", "BBB", "CCC"} for item in signals):
         raise RuntimeError("Refusing to publish sample candidates in GitHub Actions")
     research = research or load_research(root)
@@ -64,7 +81,7 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
         "generated_at": datetime.now(timezone.utc).isoformat(), "data_source": "alpaca_live",
         "market": {"label": "See signal components", "score": signals[0].components.get("market", 0) if signals else 0},
         "theme": active_theme(root) or {"name": "none", "sectors": []}, "sectors": sectors,
-        "sector_history": history, "sector_current_prices": current_prices,
+        "sector_history": history, "sector_current_prices": current_prices, "sector_tickers": sector_tickers,
         "signals": serialize(signals, "swing"),
         "profiles": {profile: serialize(items, profile) for profile, items in profile_results.items()},
         "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
