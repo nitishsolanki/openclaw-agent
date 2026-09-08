@@ -219,7 +219,12 @@ def build(input_path: Path, output_dir: Path) -> None:
                         components[key.strip()] = float(value.strip())
                     except ValueError:
                         pass
-        weights = item.get("weights", {}) or {}
+        weights = item.get("weights", {}) or {
+            "market": 0.10, "sector": 0.10, "relative_strength": 0.20,
+            "vwap": 0.15, "trend": 0.15, "volume": 0.10,
+            "momentum": 0.10, "volatility": 0.05, "options": 0.00,
+            "extension": 0.05,
+        }
         component_rows = "".join(f"<tr><td>{escape(str(key).replace('_', ' ').title())}</td><td>{float(value):.1f}</td><td>{float(weights.get(key, 0)) * 100:.1f}%</td><td>{float(value) * float(weights.get(key, 0)):.1f}</td></tr>" for key, value in components.items() if isinstance(value, (int, float)))
         research_rows = "".join(f"<tr><td>{escape(str(key).replace('_', ' ').title())}</td><td>{escape(str(value))}</td></tr>" for key, value in research.items() if key not in {"symbol"})
         python_score = float(item.get("score", 0))

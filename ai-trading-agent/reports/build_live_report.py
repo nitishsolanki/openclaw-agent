@@ -25,8 +25,10 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
         if not isinstance(history, list): history = []
     except (FileNotFoundError, json.JSONDecodeError):
         history = []
-    if len(history) < 5 or any("prices" not in item for item in history):
-        history = sector_score_history(provider, days=5)
+    # Backfill enough sessions for meaningful rolling correlation when the
+    # historical file is new or was previously limited to five days.
+    if len(history) < 30 or any("prices" not in item for item in history):
+        history = sector_score_history(provider, days=60)
     current_prices = {}
     for item in sectors:
         try:
