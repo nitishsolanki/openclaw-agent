@@ -22,6 +22,8 @@ from .screening.scanner import Candidate, scan
 def _normalize_sector(profile: dict) -> str:
     sector = str(profile.get("sector") or "").strip()
     industry = str(profile.get("finnhubIndustry") or "").strip()
+    if sector in {"Consumer Defensive", "Consumer Staples", "Consumer Defensive Goods"}:
+        return "Consumer Staples"
     known = {"Technology", "Financials", "Energy", "Healthcare", "Industrials",
              "Consumer Discretionary", "Consumer Staples", "Utilities", "Materials",
              "Real Estate", "Communication Services"}
@@ -34,8 +36,8 @@ def _normalize_sector(profile: dict) -> str:
         "Energy": ("oil", "gas", "energy", "coal"),
         "Healthcare": ("health", "biotech", "pharma", "medical"),
         "Industrials": ("rail", "industrial", "machinery", "aerospace", "defense", "transport"),
-        "Consumer Discretionary": ("restaurant", "hotel", "retail", "automobile", "auto", "leisure", "travel"),
-        "Consumer Staples": ("beverage", "food", "household", "tobacco", "grocery"),
+        "Consumer Discretionary": ("restaurant", "hotel", "automobile", "auto", "leisure", "travel", "luxury", "apparel"),
+        "Consumer Staples": ("beverage", "food", "household", "tobacco", "grocery", "supermarket", "discount store", "consumer defensive", "personal care"),
         "Utilities": ("utility", "utilities", "electric", "water"),
         "Materials": ("chemical", "materials", "steel", "metal", "mining"),
         "Real Estate": ("real estate", "reit", "property"),

@@ -2089,7 +2089,7 @@
         ],
         "summary": "Fulfillment investment, delivery expansion, and earnings visibility are constructive, but premium valuation, thin margins, and recent weakness limit conviction."
       },
-      "sector": "Consumer Discretionary",
+      "sector": "Consumer Staples",
       "reasons": [
         "market: 100.0",
         "extension: 100.0"
@@ -2719,7 +2719,7 @@
           ],
           "summary": "Fulfillment investment, delivery expansion, and earnings visibility are constructive, but premium valuation, thin margins, and recent weakness limit conviction."
         },
-        "sector": "Consumer Discretionary",
+        "sector": "Consumer Staples",
         "reasons": [
           "market: 100.0",
           "extension: 100.0"
@@ -3134,5 +3134,8 @@
       }
     ]
   },
-  "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
+  "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled.",
+  "sector_tickers": {
+    "Consumer Staples": []
+  }
 }
