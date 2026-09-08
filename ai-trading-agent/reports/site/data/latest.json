@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T05:43:45.485937+00:00",
+  "generated_at": "2026-09-08T18:20:12.808237+00:00",
   "data_source": "alpaca_live",
   "market": {
     "label": "See signal components",
@@ -13,67 +13,67 @@
     {
       "sector": "Energy",
       "symbol": "XLE",
-      "score": 91.09,
+      "score": 86.78,
       "rank": 1
     },
     {
       "sector": "Technology",
       "symbol": "XLK",
-      "score": 87.71,
+      "score": 85.41,
       "rank": 2
-    },
-    {
-      "sector": "Financials",
-      "symbol": "XLF",
-      "score": 86.6,
-      "rank": 3
-    },
-    {
-      "sector": "Communication Services",
-      "symbol": "XLC",
-      "score": 85.62,
-      "rank": 4
-    },
-    {
-      "sector": "Healthcare",
-      "symbol": "XLV",
-      "score": 85.48,
-      "rank": 5
     },
     {
       "sector": "Utilities",
       "symbol": "XLU",
-      "score": 58.73,
+      "score": 84.47,
+      "rank": 3
+    },
+    {
+      "sector": "Healthcare",
+      "symbol": "XLV",
+      "score": 54.36,
+      "rank": 4
+    },
+    {
+      "sector": "Financials",
+      "symbol": "XLF",
+      "score": 54.0,
+      "rank": 5
+    },
+    {
+      "sector": "Communication Services",
+      "symbol": "XLC",
+      "score": 53.86,
       "rank": 6
-    },
-    {
-      "sector": "Consumer Staples",
-      "symbol": "XLP",
-      "score": 56.95,
-      "rank": 7
-    },
-    {
-      "sector": "Industrials",
-      "symbol": "XLI",
-      "score": 56.44,
-      "rank": 8
     },
     {
       "sector": "Materials",
       "symbol": "XLB",
-      "score": 55.86,
-      "rank": 9
+      "score": 53.43,
+      "rank": 7
     },
     {
-      "sector": "Consumer Discretionary",
-      "symbol": "XLY",
-      "score": 55.7,
-      "rank": 10
+      "sector": "Consumer Staples",
+      "symbol": "XLP",
+      "score": 53.03,
+      "rank": 8
     },
     {
       "sector": "Real Estate",
       "symbol": "XLRE",
-      "score": 53.46,
+      "score": 52.3,
+      "rank": 9
+    },
+    {
+      "sector": "Industrials",
+      "symbol": "XLI",
+      "score": 52.07,
+      "rank": 10
+    },
+    {
+      "sector": "Consumer Discretionary",
+      "symbol": "XLY",
+      "score": 50.94,
       "rank": 11
     }
   ],
@@ -1821,426 +1821,146 @@
     {
       "date": "2026-09-08",
       "scores": {
-        "Energy": 91.09,
-        "Technology": 87.71,
-        "Financials": 86.6,
-        "Communication Services": 85.62,
-        "Healthcare": 85.48,
-        "Utilities": 58.73,
-        "Consumer Staples": 56.95,
-        "Industrials": 56.44,
-        "Materials": 55.86,
-        "Consumer Discretionary": 55.7,
-        "Real Estate": 53.46
+        "Energy": 86.78,
+        "Technology": 85.41,
+        "Utilities": 84.47,
+        "Healthcare": 54.36,
+        "Financials": 54.0,
+        "Communication Services": 53.86,
+        "Materials": 53.43,
+        "Consumer Staples": 53.03,
+        "Real Estate": 52.3,
+        "Industrials": 52.07,
+        "Consumer Discretionary": 50.94
       },
       "prices": {
-        "Energy": 64.07,
-        "Technology": 187.3,
-        "Financials": 58.1,
-        "Communication Services": 112.04,
-        "Healthcare": 171.44,
-        "Utilities": 43.06,
-        "Consumer Staples": 84.59,
-        "Industrials": 175.24,
-        "Materials": 52.45,
-        "Consumer Discretionary": 114.9,
-        "Real Estate": 43.92
+        "Energy": 64.77,
+        "Technology": 188.48,
+        "Utilities": 43.53,
+        "Healthcare": 167.25,
+        "Financials": 57.56,
+        "Communication Services": 111.25,
+        "Materials": 52.12,
+        "Consumer Staples": 83.93,
+        "Real Estate": 44.03,
+        "Industrials": 175.32,
+        "Consumer Discretionary": 114.28
       }
     }
   ],
   "sector_current_prices": {
-    "Energy": 64.07,
-    "Technology": 187.3,
-    "Financials": 58.1,
-    "Communication Services": 112.04,
-    "Healthcare": 171.44,
-    "Utilities": 43.06,
-    "Consumer Staples": 84.59,
-    "Industrials": 175.24,
-    "Materials": 52.45,
-    "Consumer Discretionary": 114.9,
-    "Real Estate": 43.92
+    "Energy": 64.77,
+    "Technology": 188.48,
+    "Utilities": 43.53,
+    "Healthcare": 167.25,
+    "Financials": 57.56,
+    "Communication Services": 111.25,
+    "Materials": 52.12,
+    "Consumer Staples": 83.93,
+    "Real Estate": 44.03,
+    "Industrials": 175.32,
+    "Consumer Discretionary": 114.28
+  },
+  "sector_tickers": {
+    "Energy": [
+      {
+        "symbol": "PBR",
+        "change": 3.58
+      }
+    ],
+    "Technology": [
+      {
+        "symbol": "SMCI",
+        "change": 2.69
+      },
+      {
+        "symbol": "HPE",
+        "change": 6.11
+      },
+      {
+        "symbol": "NVDA",
+        "change": -1.84
+      },
+      {
+        "symbol": "HPQ",
+        "change": -4.9
+      },
+      {
+        "symbol": "CIFR",
+        "change": 9.24
+      },
+      {
+        "symbol": "INTC",
+        "change": 9.9
+      },
+      {
+        "symbol": "AAPL",
+        "change": -1.15
+      }
+    ],
+    "Financials": [
+      {
+        "symbol": "NU",
+        "change": 0.98
+      }
+    ],
+    "Communication Services": [
+      {
+        "symbol": "SPCX",
+        "change": 3.75
+      },
+      {
+        "symbol": "T",
+        "change": -0.25
+      },
+      {
+        "symbol": "WBD",
+        "change": -0.44
+      }
+    ],
+    "Consumer Discretionary": [
+      {
+        "symbol": "CMG",
+        "change": 0.37
+      }
+    ],
+    "Healthcare": [
+      {
+        "symbol": "PFE",
+        "change": -1.81
+      }
+    ]
   },
   "signals": [
     {
-      "symbol": "NVDA",
+      "symbol": "SMCI",
       "direction": "LONG",
-      "score": 85.51,
+      "score": 82.57,
       "profile_status": "QUALIFIED",
-      "boosted_score": 85.06,
+      "boosted_score": 78.2,
       "research": {
-        "symbol": "NVDA",
-        "research_score": 84.0,
-        "conviction": "High",
-        "catalysts": [
-          "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
-          "Scheduled 2026-11-17 earnings provide a dated verification point",
-          "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
-          "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
-        ],
-        "risks": [
-          "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
-          "Valuation is elevated on several metrics and expectations are high",
-          "No current Polygon news and no completed earnings actuals in the packet"
-        ],
-        "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
-      },
-      "components": {
-        "market": 100.0,
-        "sector": 87.71,
-        "relative_strength": 86.43035911363468,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 47.10597273339426,
-        "momentum": 83.25036199407018,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 78.37452595633931
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Technology",
-      "reasons": [
-        "market: 100.0",
-        "sector: 87.7",
-        "relative_strength: 86.4",
-        "vwap: 100.0",
-        "trend: 100.0",
-        "momentum: 83.3"
-      ]
-    },
-    {
-      "symbol": "HPQ",
-      "direction": "LONG",
-      "score": 85.8,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 80.76,
-      "research": {
-        "symbol": "HPQ",
-        "research_score": 69.0,
+        "symbol": "SMCI",
+        "research_score": 68.0,
         "conviction": "Medium",
         "catalysts": [
-          "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
-          "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
-          "Fundamentals show attractive valuation and positive recent price performance",
-          "Earnings are scheduled for 2026-11-23"
+          "AI infrastructure demand and positive semiconductor-equipment read-through dated 2026-08-13 and 2026-08-14",
+          "Fundamentals show strong revenue and EPS growth"
         ],
         "risks": [
-          "No local research, local news, or SEC filing evidence supplied",
-          "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
-          "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+          "No ticker-specific SEC filing independently verified in the 2026-08-12 to 2026-08-13 collection windows",
+          "No earnings dataset; cash-flow metrics are mixed and company-specific guidance/backlog were not independently verified",
+          "Crowded AI positioning, execution risk, geopolitical risk, and possible financing or dilution"
         ],
-        "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+        "summary": "Technical setup is supported by AI-infrastructure exposure and strong reported growth metrics, but company-specific verification is incomplete and cash-flow quality remains a material uncertainty."
       },
       "components": {
         "market": 100.0,
-        "sector": 87.71,
+        "sector": 83.0,
         "relative_strength": 100.0,
         "vwap": 100.0,
         "trend": 100.0,
-        "volume": 46.65929975487892,
-        "momentum": 85.99541058842819,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 25.19185040079097
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Technology",
-      "reasons": [
-        "market: 100.0",
-        "sector: 87.7",
-        "relative_strength: 100.0",
-        "vwap: 100.0",
-        "trend: 100.0",
-        "momentum: 86.0"
-      ]
-    },
-    {
-      "symbol": "DRAM",
-      "direction": "LONG",
-      "score": 85.78,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 85.78,
-      "research": {},
-      "components": {
-        "market": 100.0,
-        "sector": 50.0,
-        "relative_strength": 100.0,
-        "vwap": 98.2087965121265,
-        "trend": 100.0,
-        "volume": 52.35802465042243,
-        "momentum": 83.09029021855967,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 100.0
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Unknown",
-      "reasons": [
-        "market: 100.0",
-        "relative_strength: 100.0",
-        "vwap: 98.2",
-        "trend: 100.0",
-        "momentum: 83.1",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "EEM",
-      "direction": "LONG",
-      "score": 81.8,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 81.8,
-      "research": {},
-      "components": {
-        "market": 100.0,
-        "sector": 50.0,
-        "relative_strength": 74.02821865469701,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 85.3693375515186,
-        "momentum": 59.535160905840286,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 100.0
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Unknown",
-      "reasons": [
-        "market: 100.0",
-        "vwap: 100.0",
-        "trend: 100.0",
-        "volume: 85.4",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "PFE",
-      "direction": "LONG",
-      "score": 80.59,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 72.91,
-      "research": {
-        "symbol": "PFE",
-        "research_score": 55.0,
-        "conviction": "Low",
-        "catalysts": [
-          "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
-          "Fundamentals show positive recent price returns and low forward P/E"
-        ],
-        "risks": [
-          "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
-          "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
-          "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
-        ],
-        "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
-      },
-      "components": {
-        "market": 100.0,
-        "sector": 85.48,
-        "relative_strength": 75.12453458509279,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 39.28245938573467,
-        "momentum": 67.08407871198568,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 77.6165487035605
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Healthcare",
-      "reasons": [
-        "market: 100.0",
-        "sector: 85.5",
-        "vwap: 100.0",
-        "trend: 100.0"
-      ]
-    },
-    {
-      "symbol": "BITO",
-      "direction": "LONG",
-      "score": 79.91,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 79.91,
-      "research": {},
-      "components": {
-        "market": 100.0,
-        "sector": 50.0,
-        "relative_strength": 100.0,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 44.042584742663855,
-        "momentum": 63.10047846889959,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 33.95482962049833
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Unknown",
-      "reasons": [
-        "market: 100.0",
-        "relative_strength: 100.0",
-        "vwap: 100.0",
-        "trend: 100.0"
-      ]
-    },
-    {
-      "symbol": "GDX",
-      "direction": "LONG",
-      "score": 73.26,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 73.26,
-      "research": {},
-      "components": {
-        "market": 100.0,
-        "sector": 50.0,
-        "relative_strength": 74.86858884311505,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 30.878881132265718,
-        "momentum": 58.635360224764185,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 36.72010860551843
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Unknown",
-      "reasons": [
-        "market: 100.0",
-        "vwap: 100.0",
-        "trend: 100.0"
-      ]
-    },
-    {
-      "symbol": "SPY",
-      "direction": "LONG",
-      "score": 72.81,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 72.81,
-      "research": {},
-      "components": {
-        "market": 100.0,
-        "sector": 50.0,
-        "relative_strength": 50.0,
-        "vwap": 100.0,
-        "trend": 100.0,
-        "volume": 42.597339269248465,
-        "momentum": 60.467970049916836,
-        "volatility": 50.0,
-        "options": 50.0,
-        "extension": 100.0
-      },
-      "weights": {
-        "market": 0.1,
-        "sector": 0.1,
-        "relative_strength": 0.2,
-        "vwap": 0.15,
-        "trend": 0.15,
-        "volume": 0.1,
-        "momentum": 0.1,
-        "volatility": 0.05,
-        "options": 0.0,
-        "extension": 0.05
-      },
-      "sector": "Unknown",
-      "reasons": [
-        "market: 100.0",
-        "vwap: 100.0",
-        "trend: 100.0",
-        "extension: 100.0"
-      ]
-    },
-    {
-      "symbol": "BMNR",
-      "direction": "LONG",
-      "score": 72.35,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 72.35,
-      "research": {},
-      "components": {
-        "market": 100.0,
-        "sector": 87.71,
-        "relative_strength": 100.0,
-        "vwap": 20.997637145994297,
-        "trend": 100.0,
-        "volume": 48.93874306789532,
-        "momentum": 80.35751840168248,
+        "volume": 17.685646062154866,
+        "momentum": 100.0,
         "volatility": 50.0,
         "options": 50.0,
         "extension": 0.0
@@ -2260,30 +1980,45 @@
       "sector": "Technology",
       "reasons": [
         "market: 100.0",
-        "sector: 87.7",
+        "sector: 83.0",
         "relative_strength: 100.0",
+        "vwap: 100.0",
         "trend: 100.0",
-        "momentum: 80.4"
+        "momentum: 100.0"
       ]
     },
     {
-      "symbol": "IREN",
+      "symbol": "INTC",
       "direction": "LONG",
-      "score": 66.45,
-      "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 66.45,
-      "research": {},
+      "score": 79.82,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 74.17,
+      "research": {
+        "symbol": "INTC",
+        "research_score": 61.0,
+        "conviction": "Medium",
+        "catalysts": [
+          "2026-09-08 Polygon report cites planned CPU price increases and a Northland Securities upgrade",
+          "Dated 2026-09-07 coverage describes data-center and AI revenue growth"
+        ],
+        "risks": [
+          "No local research, local news, or SEC filing evidence supplied",
+          "No earnings dataset; reported fundamentals show negative TTM EPS, negative TTM net margin, and declining multi-year revenue",
+          "Valuation and turnaround execution concerns are noted in the 2026-09-08 report"
+        ],
+        "summary": "Recent dated reports provide a plausible turnaround catalyst, but the evidence packet lacks primary company verification and fundamentals show substantial execution and profitability uncertainty."
+      },
       "components": {
         "market": 100.0,
-        "sector": 87.71,
+        "sector": 83.0,
         "relative_strength": 100.0,
-        "vwap": 0.0,
+        "vwap": 100.0,
         "trend": 50.0,
-        "volume": 45.92071446803009,
-        "momentum": 96.0,
+        "volume": 15.172614564223894,
+        "momentum": 100.0,
         "volatility": 50.0,
         "options": 50.0,
-        "extension": 69.76071386842807
+        "extension": 100.0
       },
       "weights": {
         "market": 0.1,
@@ -2300,201 +2035,470 @@
       "sector": "Technology",
       "reasons": [
         "market: 100.0",
-        "sector: 87.7",
+        "sector: 83.0",
         "relative_strength: 100.0",
-        "momentum: 96.0"
+        "vwap: 100.0",
+        "momentum: 100.0",
+        "extension: 100.0"
+      ]
+    },
+    {
+      "symbol": "HPE",
+      "direction": "LONG",
+      "score": 79.59,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 78.51,
+      "research": {
+        "symbol": "HPE",
+        "research_score": 76.0,
+        "conviction": "Medium",
+        "catalysts": [
+          "2026-09-03 coverage reports record revenue, strong AI Systems orders, backlog, and raised guidance",
+          "2026-09-07 coverage reports 33.7% year-over-year revenue growth and international outperformance",
+          "Earnings are scheduled for 2026-12-02"
+        ],
+        "risks": [
+          "No local research, local news, or SEC filing evidence supplied",
+          "Next earnings actuals are unavailable; execution against elevated AI-infrastructure expectations remains unverified",
+          "Current ratio and quick ratio are near or below 1, while leverage and valuation require monitoring"
+        ],
+        "summary": "Dated earnings-related coverage and fundamentals support a relatively strong research case, though filing confirmation and upcoming earnings execution remain missing."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 83.0,
+        "relative_strength": 76.18356088889131,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 16.403936874060722,
+        "momentum": 79.02574409034355,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 80.15290163683107
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Technology",
+      "reasons": [
+        "market: 100.0",
+        "sector: 83.0",
+        "vwap: 100.0",
+        "trend: 100.0",
+        "extension: 80.2"
+      ]
+    },
+    {
+      "symbol": "NVDA",
+      "direction": "LONG",
+      "score": 79.54,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 80.88,
+      "research": {
+        "symbol": "NVDA",
+        "research_score": 84.0,
+        "conviction": "High",
+        "catalysts": [
+          "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+          "Scheduled 2026-11-17 earnings provide a dated verification point",
+          "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+          "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
+        ],
+        "risks": [
+          "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+          "Valuation is elevated on several metrics and expectations are high",
+          "No current Polygon news and no completed earnings actuals in the packet"
+        ],
+        "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 83.0,
+        "relative_strength": 79.54165686072787,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 12.83559201459996,
+        "momentum": 72.4784931630897,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 86.00058171704516
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Technology",
+      "reasons": [
+        "market: 100.0",
+        "sector: 83.0",
+        "vwap: 100.0",
+        "trend: 100.0",
+        "extension: 86.0"
+      ]
+    },
+    {
+      "symbol": "HPQ",
+      "direction": "LONG",
+      "score": 78.97,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 75.98,
+      "research": {
+        "symbol": "HPQ",
+        "research_score": 69.0,
+        "conviction": "Medium",
+        "catalysts": [
+          "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+          "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+          "Fundamentals show attractive valuation and positive recent price performance",
+          "Earnings are scheduled for 2026-11-23"
+        ],
+        "risks": [
+          "No local research, local news, or SEC filing evidence supplied",
+          "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+          "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+        ],
+        "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 83.0,
+        "relative_strength": 84.71272156158881,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 13.732236173443408,
+        "momentum": 71.38907395069955,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 54.250848361539035
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Technology",
+      "reasons": [
+        "market: 100.0",
+        "sector: 83.0",
+        "relative_strength: 84.7",
+        "vwap: 100.0",
+        "trend: 100.0"
+      ]
+    },
+    {
+      "symbol": "CMG",
+      "direction": "LONG",
+      "score": 74.96,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 71.37,
+      "research": {
+        "symbol": "CMG",
+        "research_score": 63.0,
+        "conviction": "Medium",
+        "catalysts": [
+          "Dated coverage cites planned 2026 restaurant openings, Chipotlane expansion, digital adoption, and international growth",
+          "Fundamentals show strong profitability, returns, and debt-free balance-sheet metrics",
+          "Recent one-month performance outpaced cited peers"
+        ],
+        "risks": [
+          "No local research, local news, SEC filings, or earnings dataset supplied",
+          "2026-09-03 coverage cites premium valuation and expected flat EPS",
+          "Recent five-day performance was negative and annual and TTM growth metrics are moderating"
+        ],
+        "summary": "Operational expansion and profitability are constructive, but the packet supports only moderate research conviction because valuation is premium, earnings growth is limited, and primary company evidence is missing."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 49.44,
+        "relative_strength": 81.81184684877627,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 13.621233616891043,
+        "momentum": 51.900065746219624,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 92.03194517961111
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Consumer Discretionary",
+      "reasons": [
+        "market: 100.0",
+        "relative_strength: 81.8",
+        "vwap: 100.0",
+        "trend: 100.0",
+        "extension: 92.0"
+      ]
+    },
+    {
+      "symbol": "T",
+      "direction": "LONG",
+      "score": 70.37,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 68.46,
+      "research": {
+        "symbol": "T",
+        "research_score": 64.0,
+        "conviction": "Medium",
+        "catalysts": [
+          "Fundamentals show low valuation multiples, positive TTM EPS growth, and a high dividend yield",
+          "Dated 2026 coverage describes AT&T as outperforming telecom peers"
+        ],
+        "risks": [
+          "Local research is mislabeled as WDC and VST material rather than AT&T-specific evidence",
+          "No earnings dataset, Polygon news, or ticker-specific SEC filing verification supplied",
+          "High leverage, weak multi-year revenue growth, declining free-cash-flow CAGR, and dividend-growth decline are material risks"
+        ],
+        "summary": "Valuation, income, and recent relative performance are supportive, but the evidence packet has source-quality limitations and significant leverage and growth uncertainties."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 52.23,
+        "relative_strength": 66.43477274754387,
+        "vwap": 88.2648885203065,
+        "trend": 100.0,
+        "volume": 13.756142683160554,
+        "momentum": 57.68205524434999,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 79.62829532932092
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Communication Services",
+      "reasons": [
+        "market: 100.0",
+        "vwap: 88.3",
+        "trend: 100.0"
+      ]
+    },
+    {
+      "symbol": "WBD",
+      "direction": "LONG",
+      "score": 70.2,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 63.54,
+      "research": {
+        "symbol": "WBD",
+        "research_score": 48.0,
+        "conviction": "Low",
+        "catalysts": [
+          "Dated coverage reports regulatory progress on Paramount Skydance's proposed acquisition bid",
+          "Recent news cites modest positive 30-day and 90-day share returns"
+        ],
+        "risks": [
+          "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+          "Fundamentals show negative TTM EPS, negative net margin, weak operating profitability, and high leverage",
+          "Deal approval remains uncertain due to a lawsuit by 12 state attorneys general",
+          "Revenue and quarterly EPS trends are negative"
+        ],
+        "summary": "The takeover process is the primary identifiable catalyst, but operating fundamentals, leverage, regulatory uncertainty, and limited source coverage warrant low research conviction."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 52.23,
+        "relative_strength": 59.24895863620909,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 10.427570688915734,
+        "momentum": 45.85964912280698,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Communication Services",
+      "reasons": [
+        "market: 100.0",
+        "vwap: 100.0",
+        "trend: 100.0",
+        "extension: 100.0"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "direction": "LONG",
+      "score": 69.21,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 64.95,
+      "research": {
+        "symbol": "PFE",
+        "research_score": 55.0,
+        "conviction": "Low",
+        "catalysts": [
+          "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
+          "Fundamentals show positive recent price returns and low forward P/E"
+        ],
+        "risks": [
+          "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+          "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
+          "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
+        ],
+        "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 52.41,
+        "relative_strength": 53.88183098854408,
+        "vwap": 100.0,
+        "trend": 100.0,
+        "volume": 9.413617971490499,
+        "momentum": 54.02880224798036,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 86.87351293268864
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Healthcare",
+      "reasons": [
+        "market: 100.0",
+        "vwap: 100.0",
+        "trend: 100.0",
+        "extension: 86.9"
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "direction": "LONG",
+      "score": 58.98,
+      "profile_status": "QUALIFIED",
+      "boosted_score": 61.39,
+      "research": {
+        "symbol": "AAPL",
+        "research_score": 67.0,
+        "conviction": "Medium",
+        "catalysts": [
+          "2026-09-08 coverage cites the September 9 product event and anticipated AI-enhanced Siri developments",
+          "2026-09-02 coverage reports a CEO transition to John Ternus that was received positively by the market",
+          "Fundamentals show strong margins, profitability, cash flow, and returns"
+        ],
+        "risks": [
+          "No local research, local news, SEC filings, or earnings dataset supplied",
+          "2026-09-08 coverage cites 36x forward earnings, indicating valuation sensitivity",
+          "Dated coverage reports margin pressure and a cautious outlook after FY26 results",
+          "Technical trend component is zero, and company-specific event outcomes remain unverified"
+        ],
+        "summary": "The company has strong fundamental quality and near-term product catalysts, but valuation, reported margin pressure, missing primary filings, and weak technical trend reduce research conviction."
+      },
+      "components": {
+        "market": 100.0,
+        "sector": 83.0,
+        "relative_strength": 55.510679067166315,
+        "vwap": 100.0,
+        "trend": 0.0,
+        "volume": 12.867221073063032,
+        "momentum": 57.93151289651259,
+        "volatility": 50.0,
+        "options": 50.0,
+        "extension": 100.0
+      },
+      "weights": {
+        "market": 0.1,
+        "sector": 0.1,
+        "relative_strength": 0.2,
+        "vwap": 0.15,
+        "trend": 0.15,
+        "volume": 0.1,
+        "momentum": 0.1,
+        "volatility": 0.05,
+        "options": 0.0,
+        "extension": 0.05
+      },
+      "sector": "Technology",
+      "reasons": [
+        "market: 100.0",
+        "sector: 83.0",
+        "vwap: 100.0",
+        "extension: 100.0"
       ]
     }
   ],
   "profiles": {
     "day": [
       {
-        "symbol": "HPQ",
+        "symbol": "PBR",
         "direction": "LONG",
-        "score": 85.43,
-        "profile_status": "QUALIFIED",
-        "boosted_score": 80.5,
-        "research": {
-          "symbol": "HPQ",
-          "research_score": 69.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
-            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
-            "Fundamentals show attractive valuation and positive recent price performance",
-            "Earnings are scheduled for 2026-11-23"
-          ],
-          "risks": [
-            "No local research, local news, or SEC filing evidence supplied",
-            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
-            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
-          ],
-          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
-        },
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 100.0,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 46.65929975487892,
-          "momentum": 85.99541058842819,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 25.19185040079097
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.2,
-          "volume": 0.05,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 86.0"
-        ]
-      },
-      {
-        "symbol": "NVDA",
-        "direction": "LONG",
-        "score": 85.26,
-        "profile_status": "QUALIFIED",
-        "boosted_score": 84.88,
-        "research": {
-          "symbol": "NVDA",
-          "research_score": 84.0,
-          "conviction": "High",
-          "catalysts": [
-            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
-            "Scheduled 2026-11-17 earnings provide a dated verification point",
-            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
-            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
-          ],
-          "risks": [
-            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
-            "Valuation is elevated on several metrics and expectations are high",
-            "No current Polygon news and no completed earnings actuals in the packet"
-          ],
-          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
-        },
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 86.43035911363468,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 47.10597273339426,
-          "momentum": 83.25036199407018,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 78.37452595633931
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.2,
-          "volume": 0.05,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 86.4",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 83.3"
-        ]
-      },
-      {
-        "symbol": "DRAM",
-        "direction": "LONG",
-        "score": 81.68,
+        "score": 86.5,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 81.68,
+        "boosted_score": 86.5,
         "research": {},
         "components": {
           "market": 100.0,
-          "sector": 50.0,
+          "sector": 87.52,
           "relative_strength": 100.0,
-          "vwap": 98.2087965121265,
-          "trend": 100.0,
-          "volume": 52.35802465042243,
-          "momentum": 83.09029021855967,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 100.0
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.2,
-          "volume": 0.05,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "relative_strength: 100.0",
-          "vwap: 98.2",
-          "trend: 100.0",
-          "momentum: 83.1",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "PFE",
-        "direction": "LONG",
-        "score": 81.32,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 73.42,
-        "research": {
-          "symbol": "PFE",
-          "research_score": 55.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
-            "Fundamentals show positive recent price returns and low forward P/E"
-          ],
-          "risks": [
-            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
-            "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
-            "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
-          ],
-          "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
-        },
-        "components": {
-          "market": 100.0,
-          "sector": 85.48,
-          "relative_strength": 75.12453458509279,
           "vwap": 100.0,
           "trend": 100.0,
-          "volume": 39.28245938573467,
-          "momentum": 67.08407871198568,
+          "volume": 42.69713668070493,
+          "momentum": 75.64632885211991,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 77.6165487035605
+          "extension": 61.52562466802114
         },
         "weights": {
           "market": 0.1,
@@ -2508,29 +2512,44 @@
           "options": 0.05,
           "extension": 0.05
         },
-        "sector": "Healthcare",
+        "sector": "Energy",
         "reasons": [
           "market: 100.0",
-          "sector: 85.5",
+          "sector: 87.5",
+          "relative_strength: 100.0",
           "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "BMNR",
+        "symbol": "SMCI",
         "direction": "LONG",
-        "score": 80.16,
+        "score": 83.28,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 80.16,
-        "research": {},
+        "boosted_score": 78.7,
+        "research": {
+          "symbol": "SMCI",
+          "research_score": 68.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "AI infrastructure demand and positive semiconductor-equipment read-through dated 2026-08-13 and 2026-08-14",
+            "Fundamentals show strong revenue and EPS growth"
+          ],
+          "risks": [
+            "No ticker-specific SEC filing independently verified in the 2026-08-12 to 2026-08-13 collection windows",
+            "No earnings dataset; cash-flow metrics are mixed and company-specific guidance/backlog were not independently verified",
+            "Crowded AI positioning, execution risk, geopolitical risk, and possible financing or dilution"
+          ],
+          "summary": "Technical setup is supported by AI-infrastructure exposure and strong reported growth metrics, but company-specific verification is incomplete and cash-flow quality remains a material uncertainty."
+        },
         "components": {
           "market": 100.0,
-          "sector": 87.71,
+          "sector": 86.29,
           "relative_strength": 100.0,
-          "vwap": 23.07408782888716,
+          "vwap": 100.0,
           "trend": 100.0,
-          "volume": 48.93874306789532,
-          "momentum": 80.35751840168248,
+          "volume": 34.23698579575757,
+          "momentum": 86.16364855801484,
           "volatility": 50.0,
           "options": 50.0,
           "extension": 0.0
@@ -2550,109 +2569,46 @@
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 100.0",
-          "trend: 100.0",
-          "momentum: 80.4"
-        ]
-      },
-      {
-        "symbol": "BITO",
-        "direction": "LONG",
-        "score": 77.05,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 77.05,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 100.0,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 44.042584742663855,
-          "momentum": 63.10047846889959,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 33.95482962049833
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.2,
-          "volume": 0.05,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
+          "sector: 86.3",
           "relative_strength: 100.0",
           "vwap: 100.0",
-          "trend: 100.0"
+          "trend: 100.0",
+          "momentum: 86.2"
         ]
       },
       {
-        "symbol": "EEM",
+        "symbol": "HPE",
         "direction": "LONG",
-        "score": 77.05,
+        "score": 82.61,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 77.05,
-        "research": {},
+        "boosted_score": 80.63,
+        "research": {
+          "symbol": "HPE",
+          "research_score": 76.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-03 coverage reports record revenue, strong AI Systems orders, backlog, and raised guidance",
+            "2026-09-07 coverage reports 33.7% year-over-year revenue growth and international outperformance",
+            "Earnings are scheduled for 2026-12-02"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Next earnings actuals are unavailable; execution against elevated AI-infrastructure expectations remains unverified",
+            "Current ratio and quick ratio are near or below 1, while leverage and valuation require monitoring"
+          ],
+          "summary": "Dated earnings-related coverage and fundamentals support a relatively strong research case, though filing confirmation and upcoming earnings execution remain missing."
+        },
         "components": {
           "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 74.02821865469701,
+          "sector": 86.29,
+          "relative_strength": 78.49512880507906,
           "vwap": 100.0,
           "trend": 100.0,
-          "volume": 85.3693375515186,
-          "momentum": 59.535160905840286,
+          "volume": 34.34249444317487,
+          "momentum": 80.78667815101926,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 100.0
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.2,
-          "volume": 0.05,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "volume: 85.4",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "IREN",
-        "direction": "LONG",
-        "score": 73.13,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 73.13,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 100.0,
-          "vwap": 0.0,
-          "trend": 50.0,
-          "volume": 45.92071446803009,
-          "momentum": 96.0,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 69.76071386842807
+          "extension": 77.91331622526121
         },
         "weights": {
           "market": 0.1,
@@ -2669,29 +2625,30 @@
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 100.0",
-          "momentum: 96.0"
+          "sector: 86.3",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 80.8"
         ]
       },
       {
-        "symbol": "IBIT",
+        "symbol": "EWZ",
         "direction": "LONG",
-        "score": 72.47,
+        "score": 81.3,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 72.47,
+        "boosted_score": 81.3,
         "research": {},
         "components": {
           "market": 100.0,
           "sector": 50.0,
           "relative_strength": 100.0,
-          "vwap": 12.871953599348743,
+          "vwap": 100.0,
           "trend": 100.0,
-          "volume": 35.80503830640127,
-          "momentum": 69.93350034160785,
+          "volume": 63.399088515281576,
+          "momentum": 81.07170650361311,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 30.717830304973774
+          "extension": 81.60437926606745
         },
         "weights": {
           "market": 0.1,
@@ -2709,27 +2666,181 @@
         "reasons": [
           "market: 100.0",
           "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 81.1",
+          "extension: 81.6"
+        ]
+      },
+      {
+        "symbol": "NVDA",
+        "direction": "LONG",
+        "score": 81.15,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 82.0,
+        "research": {
+          "symbol": "NVDA",
+          "research_score": 84.0,
+          "conviction": "High",
+          "catalysts": [
+            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+            "Scheduled 2026-11-17 earnings provide a dated verification point",
+            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
+          ],
+          "risks": [
+            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+            "Valuation is elevated on several metrics and expectations are high",
+            "No current Polygon news and no completed earnings actuals in the packet"
+          ],
+          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 86.29,
+          "relative_strength": 72.42221441953482,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 28.708193362095514,
+          "momentum": 69.20039844245224,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 90.19254157338574
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 86.3",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 90.2"
+        ]
+      },
+      {
+        "symbol": "HPQ",
+        "direction": "LONG",
+        "score": 80.75,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 77.22,
+        "research": {
+          "symbol": "HPQ",
+          "research_score": 69.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+            "Fundamentals show attractive valuation and positive recent price performance",
+            "Earnings are scheduled for 2026-11-23"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+          ],
+          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 86.29,
+          "relative_strength": 78.387420700372,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 26.683106715477006,
+          "momentum": 71.52431712191873,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 58.08855765015341
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 86.3",
+          "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "GDX",
+        "symbol": "NU",
         "direction": "LONG",
-        "score": 71.29,
+        "score": 80.55,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 71.29,
+        "boosted_score": 80.55,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 55.07,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 26.084763402970268,
+          "momentum": 78.40549828178695,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 86.19858330118879
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Financials",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 86.2"
+        ]
+      },
+      {
+        "symbol": "DRAM",
+        "direction": "LONG",
+        "score": 79.98,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 79.98,
         "research": {},
         "components": {
           "market": 100.0,
           "sector": 50.0,
-          "relative_strength": 74.86858884311505,
+          "relative_strength": 100.0,
           "vwap": 100.0,
           "trend": 100.0,
-          "volume": 30.878881132265718,
-          "momentum": 58.635360224764185,
+          "volume": 28.116103476419248,
+          "momentum": 89.32161687170476,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 36.72010860551843
+          "extension": 82.11910264359389
         },
         "weights": {
           "market": 0.1,
@@ -2746,391 +2857,124 @@
         "sector": "Unknown",
         "reasons": [
           "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 89.3",
+          "extension: 82.1"
+        ]
+      },
+      {
+        "symbol": "SPCX",
+        "direction": "LONG",
+        "score": 79.93,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 79.93,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 55.01,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 40.33001559263391,
+          "momentum": 76.75389755011129,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 61.38699391934777
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Communication Services",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
           "vwap: 100.0",
           "trend: 100.0"
+        ]
+      },
+      {
+        "symbol": "CIFR",
+        "direction": "LONG",
+        "score": 79.24,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 79.24,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 86.29,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 50.0,
+          "volume": 47.62902616059722,
+          "momentum": 92.0,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.2,
+          "volume": 0.05,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 86.3",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "momentum: 92.0",
+          "extension: 100.0"
         ]
       }
     ],
     "swing": [
       {
-        "symbol": "NVDA",
+        "symbol": "SMCI",
         "direction": "LONG",
-        "score": 85.51,
+        "score": 82.57,
         "profile_status": "QUALIFIED",
-        "boosted_score": 85.06,
+        "boosted_score": 78.2,
         "research": {
-          "symbol": "NVDA",
-          "research_score": 84.0,
-          "conviction": "High",
-          "catalysts": [
-            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
-            "Scheduled 2026-11-17 earnings provide a dated verification point",
-            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
-            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
-          ],
-          "risks": [
-            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
-            "Valuation is elevated on several metrics and expectations are high",
-            "No current Polygon news and no completed earnings actuals in the packet"
-          ],
-          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
-        },
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 86.43035911363468,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 47.10597273339426,
-          "momentum": 83.25036199407018,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 78.37452595633931
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 86.4",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 83.3"
-        ]
-      },
-      {
-        "symbol": "HPQ",
-        "direction": "LONG",
-        "score": 85.8,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 80.76,
-        "research": {
-          "symbol": "HPQ",
-          "research_score": 69.0,
+          "symbol": "SMCI",
+          "research_score": 68.0,
           "conviction": "Medium",
           "catalysts": [
-            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
-            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
-            "Fundamentals show attractive valuation and positive recent price performance",
-            "Earnings are scheduled for 2026-11-23"
+            "AI infrastructure demand and positive semiconductor-equipment read-through dated 2026-08-13 and 2026-08-14",
+            "Fundamentals show strong revenue and EPS growth"
           ],
           "risks": [
-            "No local research, local news, or SEC filing evidence supplied",
-            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
-            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+            "No ticker-specific SEC filing independently verified in the 2026-08-12 to 2026-08-13 collection windows",
+            "No earnings dataset; cash-flow metrics are mixed and company-specific guidance/backlog were not independently verified",
+            "Crowded AI positioning, execution risk, geopolitical risk, and possible financing or dilution"
           ],
-          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+          "summary": "Technical setup is supported by AI-infrastructure exposure and strong reported growth metrics, but company-specific verification is incomplete and cash-flow quality remains a material uncertainty."
         },
         "components": {
           "market": 100.0,
-          "sector": 87.71,
+          "sector": 83.0,
           "relative_strength": 100.0,
           "vwap": 100.0,
           "trend": 100.0,
-          "volume": 46.65929975487892,
-          "momentum": 85.99541058842819,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 25.19185040079097
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 86.0"
-        ]
-      },
-      {
-        "symbol": "DRAM",
-        "direction": "LONG",
-        "score": 85.78,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 85.78,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 100.0,
-          "vwap": 98.2087965121265,
-          "trend": 100.0,
-          "volume": 52.35802465042243,
-          "momentum": 83.09029021855967,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 100.0
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "relative_strength: 100.0",
-          "vwap: 98.2",
-          "trend: 100.0",
-          "momentum: 83.1",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "EEM",
-        "direction": "LONG",
-        "score": 81.8,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 81.8,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 74.02821865469701,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 85.3693375515186,
-          "momentum": 59.535160905840286,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 100.0
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "volume: 85.4",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "PFE",
-        "direction": "LONG",
-        "score": 80.59,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 72.91,
-        "research": {
-          "symbol": "PFE",
-          "research_score": 55.0,
-          "conviction": "Low",
-          "catalysts": [
-            "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
-            "Fundamentals show positive recent price returns and low forward P/E"
-          ],
-          "risks": [
-            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
-            "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
-            "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
-          ],
-          "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
-        },
-        "components": {
-          "market": 100.0,
-          "sector": 85.48,
-          "relative_strength": 75.12453458509279,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 39.28245938573467,
-          "momentum": 67.08407871198568,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 77.6165487035605
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Healthcare",
-        "reasons": [
-          "market: 100.0",
-          "sector: 85.5",
-          "vwap: 100.0",
-          "trend: 100.0"
-        ]
-      },
-      {
-        "symbol": "BITO",
-        "direction": "LONG",
-        "score": 79.91,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 79.91,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 100.0,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 44.042584742663855,
-          "momentum": 63.10047846889959,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 33.95482962049833
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "relative_strength: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0"
-        ]
-      },
-      {
-        "symbol": "GDX",
-        "direction": "LONG",
-        "score": 73.26,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 73.26,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 74.86858884311505,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 30.878881132265718,
-          "momentum": 58.635360224764185,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 36.72010860551843
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0"
-        ]
-      },
-      {
-        "symbol": "SPY",
-        "direction": "LONG",
-        "score": 72.81,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 72.81,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 50.0,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 42.597339269248465,
-          "momentum": 60.467970049916836,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 100.0
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.1,
-          "relative_strength": 0.2,
-          "vwap": 0.15,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.1,
-          "volatility": 0.05,
-          "options": 0.0,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "BMNR",
-        "direction": "LONG",
-        "score": 72.35,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 72.35,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 100.0,
-          "vwap": 20.997637145994297,
-          "trend": 100.0,
-          "volume": 48.93874306789532,
-          "momentum": 80.35751840168248,
+          "volume": 17.685646062154866,
+          "momentum": 100.0,
           "volatility": 50.0,
           "options": 50.0,
           "extension": 0.0
@@ -3150,30 +2994,45 @@
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 87.7",
+          "sector: 83.0",
           "relative_strength: 100.0",
+          "vwap: 100.0",
           "trend: 100.0",
-          "momentum: 80.4"
+          "momentum: 100.0"
         ]
       },
       {
-        "symbol": "IREN",
+        "symbol": "INTC",
         "direction": "LONG",
-        "score": 66.45,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 66.45,
-        "research": {},
+        "score": 79.82,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 74.17,
+        "research": {
+          "symbol": "INTC",
+          "research_score": 61.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-08 Polygon report cites planned CPU price increases and a Northland Securities upgrade",
+            "Dated 2026-09-07 coverage describes data-center and AI revenue growth"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "No earnings dataset; reported fundamentals show negative TTM EPS, negative TTM net margin, and declining multi-year revenue",
+            "Valuation and turnaround execution concerns are noted in the 2026-09-08 report"
+          ],
+          "summary": "Recent dated reports provide a plausible turnaround catalyst, but the evidence packet lacks primary company verification and fundamentals show substantial execution and profitability uncertainty."
+        },
         "components": {
           "market": 100.0,
-          "sector": 87.71,
+          "sector": 83.0,
           "relative_strength": 100.0,
-          "vwap": 0.0,
+          "vwap": 100.0,
           "trend": 50.0,
-          "volume": 45.92071446803009,
-          "momentum": 96.0,
+          "volume": 15.172614564223894,
+          "momentum": 100.0,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 69.76071386842807
+          "extension": 100.0
         },
         "weights": {
           "market": 0.1,
@@ -3190,142 +3049,521 @@
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 87.7",
+          "sector: 83.0",
           "relative_strength: 100.0",
-          "momentum: 96.0"
+          "vwap: 100.0",
+          "momentum: 100.0",
+          "extension: 100.0"
+        ]
+      },
+      {
+        "symbol": "HPE",
+        "direction": "LONG",
+        "score": 79.59,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 78.51,
+        "research": {
+          "symbol": "HPE",
+          "research_score": 76.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-03 coverage reports record revenue, strong AI Systems orders, backlog, and raised guidance",
+            "2026-09-07 coverage reports 33.7% year-over-year revenue growth and international outperformance",
+            "Earnings are scheduled for 2026-12-02"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Next earnings actuals are unavailable; execution against elevated AI-infrastructure expectations remains unverified",
+            "Current ratio and quick ratio are near or below 1, while leverage and valuation require monitoring"
+          ],
+          "summary": "Dated earnings-related coverage and fundamentals support a relatively strong research case, though filing confirmation and upcoming earnings execution remain missing."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 83.0,
+          "relative_strength": 76.18356088889131,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 16.403936874060722,
+          "momentum": 79.02574409034355,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 80.15290163683107
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 83.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 80.2"
+        ]
+      },
+      {
+        "symbol": "NVDA",
+        "direction": "LONG",
+        "score": 79.54,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 80.88,
+        "research": {
+          "symbol": "NVDA",
+          "research_score": 84.0,
+          "conviction": "High",
+          "catalysts": [
+            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+            "Scheduled 2026-11-17 earnings provide a dated verification point",
+            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
+          ],
+          "risks": [
+            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+            "Valuation is elevated on several metrics and expectations are high",
+            "No current Polygon news and no completed earnings actuals in the packet"
+          ],
+          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 83.0,
+          "relative_strength": 79.54165686072787,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 12.83559201459996,
+          "momentum": 72.4784931630897,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 86.00058171704516
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 83.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 86.0"
+        ]
+      },
+      {
+        "symbol": "HPQ",
+        "direction": "LONG",
+        "score": 78.97,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 75.98,
+        "research": {
+          "symbol": "HPQ",
+          "research_score": 69.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+            "Fundamentals show attractive valuation and positive recent price performance",
+            "Earnings are scheduled for 2026-11-23"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+          ],
+          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 83.0,
+          "relative_strength": 84.71272156158881,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 13.732236173443408,
+          "momentum": 71.38907395069955,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 54.250848361539035
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 83.0",
+          "relative_strength: 84.7",
+          "vwap: 100.0",
+          "trend: 100.0"
+        ]
+      },
+      {
+        "symbol": "CMG",
+        "direction": "LONG",
+        "score": 74.96,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 71.37,
+        "research": {
+          "symbol": "CMG",
+          "research_score": 63.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "Dated coverage cites planned 2026 restaurant openings, Chipotlane expansion, digital adoption, and international growth",
+            "Fundamentals show strong profitability, returns, and debt-free balance-sheet metrics",
+            "Recent one-month performance outpaced cited peers"
+          ],
+          "risks": [
+            "No local research, local news, SEC filings, or earnings dataset supplied",
+            "2026-09-03 coverage cites premium valuation and expected flat EPS",
+            "Recent five-day performance was negative and annual and TTM growth metrics are moderating"
+          ],
+          "summary": "Operational expansion and profitability are constructive, but the packet supports only moderate research conviction because valuation is premium, earnings growth is limited, and primary company evidence is missing."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 49.44,
+          "relative_strength": 81.81184684877627,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 13.621233616891043,
+          "momentum": 51.900065746219624,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 92.03194517961111
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Consumer Discretionary",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 81.8",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 92.0"
+        ]
+      },
+      {
+        "symbol": "T",
+        "direction": "LONG",
+        "score": 70.37,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 68.46,
+        "research": {
+          "symbol": "T",
+          "research_score": 64.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "Fundamentals show low valuation multiples, positive TTM EPS growth, and a high dividend yield",
+            "Dated 2026 coverage describes AT&T as outperforming telecom peers"
+          ],
+          "risks": [
+            "Local research is mislabeled as WDC and VST material rather than AT&T-specific evidence",
+            "No earnings dataset, Polygon news, or ticker-specific SEC filing verification supplied",
+            "High leverage, weak multi-year revenue growth, declining free-cash-flow CAGR, and dividend-growth decline are material risks"
+          ],
+          "summary": "Valuation, income, and recent relative performance are supportive, but the evidence packet has source-quality limitations and significant leverage and growth uncertainties."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 52.23,
+          "relative_strength": 66.43477274754387,
+          "vwap": 88.2648885203065,
+          "trend": 100.0,
+          "volume": 13.756142683160554,
+          "momentum": 57.68205524434999,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 79.62829532932092
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Communication Services",
+        "reasons": [
+          "market: 100.0",
+          "vwap: 88.3",
+          "trend: 100.0"
+        ]
+      },
+      {
+        "symbol": "WBD",
+        "direction": "LONG",
+        "score": 70.2,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 63.54,
+        "research": {
+          "symbol": "WBD",
+          "research_score": 48.0,
+          "conviction": "Low",
+          "catalysts": [
+            "Dated coverage reports regulatory progress on Paramount Skydance's proposed acquisition bid",
+            "Recent news cites modest positive 30-day and 90-day share returns"
+          ],
+          "risks": [
+            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+            "Fundamentals show negative TTM EPS, negative net margin, weak operating profitability, and high leverage",
+            "Deal approval remains uncertain due to a lawsuit by 12 state attorneys general",
+            "Revenue and quarterly EPS trends are negative"
+          ],
+          "summary": "The takeover process is the primary identifiable catalyst, but operating fundamentals, leverage, regulatory uncertainty, and limited source coverage warrant low research conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 52.23,
+          "relative_strength": 59.24895863620909,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 10.427570688915734,
+          "momentum": 45.85964912280698,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Communication Services",
+        "reasons": [
+          "market: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 100.0"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "direction": "LONG",
+        "score": 69.21,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 64.95,
+        "research": {
+          "symbol": "PFE",
+          "research_score": 55.0,
+          "conviction": "Low",
+          "catalysts": [
+            "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
+            "Fundamentals show positive recent price returns and low forward P/E"
+          ],
+          "risks": [
+            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+            "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
+            "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
+          ],
+          "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 52.41,
+          "relative_strength": 53.88183098854408,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 9.413617971490499,
+          "momentum": 54.02880224798036,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 86.87351293268864
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Healthcare",
+        "reasons": [
+          "market: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 86.9"
+        ]
+      },
+      {
+        "symbol": "AAPL",
+        "direction": "LONG",
+        "score": 58.98,
+        "profile_status": "QUALIFIED",
+        "boosted_score": 61.39,
+        "research": {
+          "symbol": "AAPL",
+          "research_score": 67.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-08 coverage cites the September 9 product event and anticipated AI-enhanced Siri developments",
+            "2026-09-02 coverage reports a CEO transition to John Ternus that was received positively by the market",
+            "Fundamentals show strong margins, profitability, cash flow, and returns"
+          ],
+          "risks": [
+            "No local research, local news, SEC filings, or earnings dataset supplied",
+            "2026-09-08 coverage cites 36x forward earnings, indicating valuation sensitivity",
+            "Dated coverage reports margin pressure and a cautious outlook after FY26 results",
+            "Technical trend component is zero, and company-specific event outcomes remain unverified"
+          ],
+          "summary": "The company has strong fundamental quality and near-term product catalysts, but valuation, reported margin pressure, missing primary filings, and weak technical trend reduce research conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 83.0,
+          "relative_strength": 55.510679067166315,
+          "vwap": 100.0,
+          "trend": 0.0,
+          "volume": 12.867221073063032,
+          "momentum": 57.93151289651259,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.1,
+          "relative_strength": 0.2,
+          "vwap": 0.15,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.1,
+          "volatility": 0.05,
+          "options": 0.0,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 83.0",
+          "vwap: 100.0",
+          "extension: 100.0"
         ]
       }
     ],
     "growth": [
       {
-        "symbol": "NVDA",
+        "symbol": "PBR",
         "direction": "LONG",
-        "score": 82.62,
+        "score": 84.34,
         "profile_status": "QUALIFIED",
-        "boosted_score": 83.03,
-        "research": {
-          "symbol": "NVDA",
-          "research_score": 84.0,
-          "conviction": "High",
-          "catalysts": [
-            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
-            "Scheduled 2026-11-17 earnings provide a dated verification point",
-            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
-            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
-          ],
-          "risks": [
-            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
-            "Valuation is elevated on several metrics and expectations are high",
-            "No current Polygon news and no completed earnings actuals in the packet"
-          ],
-          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
-        },
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 86.43035911363468,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 47.10597273339426,
-          "momentum": 83.25036199407018,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 78.37452595633931
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 86.4",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 83.3"
-        ]
-      },
-      {
-        "symbol": "HPQ",
-        "direction": "LONG",
-        "score": 82.57,
-        "profile_status": "QUALIFIED",
-        "boosted_score": 78.5,
-        "research": {
-          "symbol": "HPQ",
-          "research_score": 69.0,
-          "conviction": "Medium",
-          "catalysts": [
-            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
-            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
-            "Fundamentals show attractive valuation and positive recent price performance",
-            "Earnings are scheduled for 2026-11-23"
-          ],
-          "risks": [
-            "No local research, local news, or SEC filing evidence supplied",
-            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
-            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
-          ],
-          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
-        },
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 100.0,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 46.65929975487892,
-          "momentum": 81.99541058842819,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 25.19185040079097
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Technology",
-        "reasons": [
-          "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "momentum: 82.0"
-        ]
-      },
-      {
-        "symbol": "BMNR",
-        "direction": "LONG",
-        "score": 77.56,
-        "profile_status": "QUALIFIED",
-        "boosted_score": 77.56,
+        "boosted_score": 84.34,
         "research": {},
         "components": {
           "market": 100.0,
-          "sector": 87.71,
+          "sector": 88.74,
           "relative_strength": 100.0,
-          "vwap": 23.07408782888716,
+          "vwap": 100.0,
           "trend": 100.0,
-          "volume": 48.93874306789532,
-          "momentum": 79.35751840168248,
+          "volume": 48.09407617041078,
+          "momentum": 80.81695966907958,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 54.836806867140766
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Energy",
+        "reasons": [
+          "market: 100.0",
+          "sector: 88.7",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 80.8"
+        ]
+      },
+      {
+        "symbol": "SMCI",
+        "direction": "LONG",
+        "score": 80.71,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 76.9,
+        "research": {
+          "symbol": "SMCI",
+          "research_score": 68.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "AI infrastructure demand and positive semiconductor-equipment read-through dated 2026-08-13 and 2026-08-14",
+            "Fundamentals show strong revenue and EPS growth"
+          ],
+          "risks": [
+            "No ticker-specific SEC filing independently verified in the 2026-08-12 to 2026-08-13 collection windows",
+            "No earnings dataset; cash-flow metrics are mixed and company-specific guidance/backlog were not independently verified",
+            "Crowded AI positioning, execution risk, geopolitical risk, and possible financing or dilution"
+          ],
+          "summary": "Technical setup is supported by AI-infrastructure exposure and strong reported growth metrics, but company-specific verification is incomplete and cash-flow quality remains a material uncertainty."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 87.22,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 39.53115963647305,
+          "momentum": 86.16364855801484,
           "volatility": 50.0,
           "options": 50.0,
           "extension": 0.0
@@ -3345,202 +3583,46 @@
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 87.7",
+          "sector: 87.2",
           "relative_strength: 100.0",
-          "trend: 100.0"
-        ]
-      },
-      {
-        "symbol": "DRAM",
-        "direction": "LONG",
-        "score": 79.3,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 79.3,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 100.0,
-          "vwap": 98.2087965121265,
-          "trend": 100.0,
-          "volume": 52.35802465042243,
-          "momentum": 83.09029021855967,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 100.0
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "relative_strength: 100.0",
-          "vwap: 98.2",
+          "vwap: 100.0",
           "trend: 100.0",
-          "momentum: 83.1",
-          "extension: 100.0"
+          "momentum: 86.2"
         ]
       },
       {
-        "symbol": "PFE",
+        "symbol": "HPE",
         "direction": "LONG",
-        "score": 78.28,
+        "score": 80.5,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 71.3,
+        "boosted_score": 79.15,
         "research": {
-          "symbol": "PFE",
-          "research_score": 55.0,
-          "conviction": "Low",
+          "symbol": "HPE",
+          "research_score": 76.0,
+          "conviction": "Medium",
           "catalysts": [
-            "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
-            "Fundamentals show positive recent price returns and low forward P/E"
+            "2026-09-03 coverage reports record revenue, strong AI Systems orders, backlog, and raised guidance",
+            "2026-09-07 coverage reports 33.7% year-over-year revenue growth and international outperformance",
+            "Earnings are scheduled for 2026-12-02"
           ],
           "risks": [
-            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
-            "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
-            "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
+            "No local research, local news, or SEC filing evidence supplied",
+            "Next earnings actuals are unavailable; execution against elevated AI-infrastructure expectations remains unverified",
+            "Current ratio and quick ratio are near or below 1, while leverage and valuation require monitoring"
           ],
-          "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
+          "summary": "Dated earnings-related coverage and fundamentals support a relatively strong research case, though filing confirmation and upcoming earnings execution remain missing."
         },
         "components": {
           "market": 100.0,
-          "sector": 85.48,
-          "relative_strength": 75.12453458509279,
+          "sector": 87.22,
+          "relative_strength": 81.32368230833818,
           "vwap": 100.0,
           "trend": 100.0,
-          "volume": 39.28245938573467,
-          "momentum": 67.08407871198568,
+          "volume": 38.75147657570108,
+          "momentum": 82.31792516030238,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 77.6165487035605
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Healthcare",
-        "reasons": [
-          "market: 100.0",
-          "sector: 85.5",
-          "vwap: 100.0",
-          "trend: 100.0"
-        ]
-      },
-      {
-        "symbol": "EEM",
-        "direction": "LONG",
-        "score": 76.32,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 76.32,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 74.02821865469701,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 85.3693375515186,
-          "momentum": 59.535160905840286,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 100.0
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0",
-          "volume: 85.4",
-          "extension: 100.0"
-        ]
-      },
-      {
-        "symbol": "BITO",
-        "direction": "LONG",
-        "score": 74.26,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 74.26,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 50.0,
-          "relative_strength": 100.0,
-          "vwap": 100.0,
-          "trend": 100.0,
-          "volume": 44.042584742663855,
-          "momentum": 63.10047846889959,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 33.95482962049833
-        },
-        "weights": {
-          "market": 0.1,
-          "sector": 0.2,
-          "relative_strength": 0.2,
-          "vwap": 0.05,
-          "trend": 0.15,
-          "volume": 0.1,
-          "momentum": 0.05,
-          "volatility": 0.05,
-          "options": 0.05,
-          "extension": 0.05
-        },
-        "sector": "Unknown",
-        "reasons": [
-          "market: 100.0",
-          "relative_strength: 100.0",
-          "vwap: 100.0",
-          "trend: 100.0"
-        ]
-      },
-      {
-        "symbol": "IREN",
-        "direction": "LONG",
-        "score": 72.97,
-        "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 72.97,
-        "research": {},
-        "components": {
-          "market": 100.0,
-          "sector": 87.71,
-          "relative_strength": 100.0,
-          "vwap": 0.0,
-          "trend": 50.0,
-          "volume": 45.92071446803009,
-          "momentum": 97.0,
-          "volatility": 50.0,
-          "options": 50.0,
-          "extension": 69.76071386842807
+          "extension": 75.96618405572353
         },
         "weights": {
           "market": 0.1,
@@ -3557,29 +3639,31 @@
         "sector": "Technology",
         "reasons": [
           "market: 100.0",
-          "sector: 87.7",
-          "relative_strength: 100.0",
-          "momentum: 97.0"
+          "sector: 87.2",
+          "relative_strength: 81.3",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 82.3"
         ]
       },
       {
-        "symbol": "IBIT",
+        "symbol": "EWZ",
         "direction": "LONG",
-        "score": 69.26,
+        "score": 80.28,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 69.26,
+        "boosted_score": 80.28,
         "research": {},
         "components": {
           "market": 100.0,
           "sector": 50.0,
           "relative_strength": 100.0,
-          "vwap": 12.871953599348743,
+          "vwap": 100.0,
           "trend": 100.0,
-          "volume": 35.80503830640127,
-          "momentum": 69.93350034160785,
+          "volume": 71.71067690570074,
+          "momentum": 82.73929961089492,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 30.717830304973774
+          "extension": 79.53854340884902
         },
         "weights": {
           "market": 0.1,
@@ -3597,27 +3681,277 @@
         "reasons": [
           "market: 100.0",
           "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 82.7"
+        ]
+      },
+      {
+        "symbol": "CIFR",
+        "direction": "LONG",
+        "score": 79.87,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 79.87,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 87.22,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 50.0,
+          "volume": 53.286308898017396,
+          "momentum": 92.0,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 100.0
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 87.2",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "momentum: 92.0",
+          "extension: 100.0"
+        ]
+      },
+      {
+        "symbol": "INTC",
+        "direction": "LONG",
+        "score": 78.96,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 73.57,
+        "research": {
+          "symbol": "INTC",
+          "research_score": 61.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-08 Polygon report cites planned CPU price increases and a Northland Securities upgrade",
+            "Dated 2026-09-07 coverage describes data-center and AI revenue growth"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "No earnings dataset; reported fundamentals show negative TTM EPS, negative TTM net margin, and declining multi-year revenue",
+            "Valuation and turnaround execution concerns are noted in the 2026-09-08 report"
+          ],
+          "summary": "Recent dated reports provide a plausible turnaround catalyst, but the evidence packet lacks primary company verification and fundamentals show substantial execution and profitability uncertainty."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 87.22,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 50.0,
+          "volume": 40.173309971373214,
+          "momentum": 100.0,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 99.94715020525791
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 87.2",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "momentum: 100.0",
+          "extension: 99.9"
+        ]
+      },
+      {
+        "symbol": "NVDA",
+        "direction": "LONG",
+        "score": 78.12,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 79.88,
+        "research": {
+          "symbol": "NVDA",
+          "research_score": 84.0,
+          "conviction": "High",
+          "catalysts": [
+            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+            "Scheduled 2026-11-17 earnings provide a dated verification point",
+            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
+          ],
+          "risks": [
+            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+            "Valuation is elevated on several metrics and expectations are high",
+            "No current Polygon news and no completed earnings actuals in the packet"
+          ],
+          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 87.22,
+          "relative_strength": 72.42221441953482,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 32.206481068153096,
+          "momentum": 69.20039844245224,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 90.19254157338574
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 87.2",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "extension: 90.2"
+        ]
+      },
+      {
+        "symbol": "HPQ",
+        "direction": "LONG",
+        "score": 77.89,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 75.22,
+        "research": {
+          "symbol": "HPQ",
+          "research_score": 69.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+            "Fundamentals show attractive valuation and positive recent price performance",
+            "Earnings are scheduled for 2026-11-23"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+          ],
+          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+        },
+        "components": {
+          "market": 100.0,
+          "sector": 87.22,
+          "relative_strength": 79.3891011187267,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 30.91849990037867,
+          "momentum": 72.05729513657566,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 57.374473930325024
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Technology",
+        "reasons": [
+          "market: 100.0",
+          "sector: 87.2",
+          "vwap: 100.0",
           "trend: 100.0"
         ]
       },
       {
-        "symbol": "GDX",
+        "symbol": "NU",
         "direction": "LONG",
-        "score": 67.83,
+        "score": 77.77,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 67.83,
+        "boosted_score": 77.77,
+        "research": {},
+        "components": {
+          "market": 100.0,
+          "sector": 56.57,
+          "relative_strength": 100.0,
+          "vwap": 100.0,
+          "trend": 100.0,
+          "volume": 32.7643545073277,
+          "momentum": 82.11683848797252,
+          "volatility": 50.0,
+          "options": 50.0,
+          "extension": 81.56746977813923
+        },
+        "weights": {
+          "market": 0.1,
+          "sector": 0.2,
+          "relative_strength": 0.2,
+          "vwap": 0.05,
+          "trend": 0.15,
+          "volume": 0.1,
+          "momentum": 0.05,
+          "volatility": 0.05,
+          "options": 0.05,
+          "extension": 0.05
+        },
+        "sector": "Financials",
+        "reasons": [
+          "market: 100.0",
+          "relative_strength: 100.0",
+          "vwap: 100.0",
+          "trend: 100.0",
+          "momentum: 82.1",
+          "extension: 81.6"
+        ]
+      },
+      {
+        "symbol": "DRAM",
+        "direction": "LONG",
+        "score": 77.09,
+        "profile_status": "FILTER_FALLBACK",
+        "boosted_score": 77.09,
         "research": {},
         "components": {
           "market": 100.0,
           "sector": 50.0,
-          "relative_strength": 74.86858884311505,
+          "relative_strength": 100.0,
           "vwap": 100.0,
           "trend": 100.0,
-          "volume": 30.878881132265718,
-          "momentum": 58.635360224764185,
+          "volume": 35.47869833046376,
+          "momentum": 92.0984182776801,
           "volatility": 50.0,
           "options": 50.0,
-          "extension": 36.72010860551843
+          "extension": 78.71624418139777
         },
         "weights": {
           "market": 0.1,
@@ -3634,8 +3968,10 @@
         "sector": "Unknown",
         "reasons": [
           "market: 100.0",
+          "relative_strength: 100.0",
           "vwap: 100.0",
-          "trend: 100.0"
+          "trend: 100.0",
+          "momentum: 92.1"
         ]
       }
     ]
