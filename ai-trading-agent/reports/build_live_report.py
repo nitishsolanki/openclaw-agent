@@ -49,6 +49,7 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
                  "profile_status": item.profile_status,
                  "boosted_score": boosted_score(item.final_score, research.get(item.symbol)),
                  "research": research.get(item.symbol, {}),
+                 "components": {key: value for key, value in item.components.items() if isinstance(value, (int, float))},
                  "sector": item.components.get("sector_name", "Unknown"),
                  "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if isinstance(value, (int, float)) and value >= 80]}
                 for item in items]
