@@ -5,6 +5,7 @@ import json
 import os
 import re
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -53,7 +54,15 @@ def run_research(root: Path, prompt_path: Path, expected_symbols: set[str]) -> P
         raise RuntimeError(f"OpenClaw omitted symbols: {', '.join(sorted(missing))}")
 
     output = root / "reports" / "research_enrichment.json"
+    existing = {}
+    try:
+        previous = json.loads(output.read_text(encoding="utf-8"))
+        for row in previous.get("research", []):
+            existing[str(row.get("symbol", "")).upper()] = row
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+    existing.update(normalized)
     temporary = output.with_suffix(".json.tmp")
-    temporary.write_text(json.dumps({"research": list(normalized.values())}, indent=2) + "\n", encoding="utf-8")
+    temporary.write_text(json.dumps({"generated_at": datetime.now(timezone.utc).isoformat(), "research": list(existing.values())}, indent=2) + "\n", encoding="utf-8")
     temporary.replace(output)
     return output

@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 import os
+from datetime import datetime, timezone
 
 root = Path(__file__).parents[1]
 sys.path.insert(0, str(root))
@@ -97,14 +98,30 @@ export_top_candidates(root, signals)
 research = {}
 if env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() in {"1", "true", "yes"}:
     from prepare_research_handoff import write_prompt
-    write_prompt(root, signals)
+    all_symbols = {signal.symbol for signal in signals}
+    research = load_research(root, all_symbols)
+    cache_path = root / "reports" / "research_enrichment.json"
+    cache_date = None
     try:
-        run_research(root, root / "reports" / "openclaw_research_prompt.md",
-                     {signal.symbol for signal in signals})
-    except Exception as exc:
-        print(f"research_fallback=python reason={type(exc).__name__}: {exc}")
+        payload = json.loads(cache_path.read_text(encoding="utf-8"))
+        generated_at = payload.get("generated_at")
+        cache_date = datetime.fromisoformat(str(generated_at).replace("Z", "+00:00")).date() if generated_at else datetime.fromtimestamp(cache_path.stat().st_mtime).date()
+    except (FileNotFoundError, json.JSONDecodeError, TypeError, ValueError):
+        pass
+    today = datetime.now().date()
+    new_symbols = all_symbols - set(research)
+    if cache_date != today:
+        new_symbols = all_symbols
+    if new_symbols:
+        new_signals = [signal for signal in signals if signal.symbol in new_symbols]
+        write_prompt(root, new_signals)
+        try:
+            run_research(root, root / "reports" / "openclaw_research_prompt.md", new_symbols)
+        except Exception as exc:
+            print(f"research_fallback=python reason={type(exc).__name__}: {exc}")
+        research = load_research(root, all_symbols)
     else:
-        research = load_research(root, {signal.symbol for signal in signals})
+        print(f"research_cache_reused={len(research)}")
 elif env.get("OPENCLAW_AUTO_RESEARCH", "1").lower() not in {"1", "true", "yes"}:
     research = load_research(root, {signal.symbol for signal in signals[:5]})
 generate_report(root, signals, research)
