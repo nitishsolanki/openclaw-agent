@@ -221,7 +221,6 @@ def render(report: dict) -> str:
 </script>"""
     rotation_html = """
 <div class='chart-scroll'><svg id='sector-rotation-flow' viewBox='0 0 920 420' role='img' aria-label='Probable next sector rotation flow'></svg></div>
-<p class='muted'>Statistical proxy based on recent momentum improvement versus the longer-term trend; not a trading signal.</p>
 <script>
 (() => {
   const history = """ + history_json + """;
@@ -245,7 +244,7 @@ def render(report: dict) -> str:
 })();
 </script>"""
     marker = "{SECTOR_ROTATION}"
-    replacement = f"<section><h2>Sector Rotation</h2><h3>Sector Rotation — Heatmap</h3>{heatmap}<h3>Reference-Sector Correlation</h3><p class='muted'>Choose a reference sector to compare rolling correlation of daily score changes.</p>{correlation_html}<h3>Probable Next Sector Rotation</h3>{rotation_html}</section>"
+    replacement = f"<section><h2>Sector Rotation</h2><h3>Sector Rotation — Heatmap</h3>{heatmap}<div class='sector-chart-columns'><div><h3>Reference-Sector Correlation</h3>{correlation_html}</div><div><h3>Probable Next Sector Rotation</h3>{rotation_html}</div></div></section>"
     return html.replace(marker, replacement, 1)
 
 def build(input_path: Path, output_dir: Path) -> None:
@@ -275,18 +274,35 @@ def build(input_path: Path, output_dir: Path) -> None:
             "extension": 0.05,
         }
         component_rows = "".join(f"<tr><td>{escape(str(key).replace('_', ' ').title())}</td><td>{float(value):.1f}</td><td>{float(weights.get(key, 0)) * 100:.1f}%</td><td>{float(value) * float(weights.get(key, 0)):.1f}</td></tr>" for key, value in components.items() if isinstance(value, (int, float)))
-        research_rows = "".join(f"<tr><td>{escape(str(key).replace('_', ' ').title())}</td><td>{escape(str(value))}</td></tr>" for key, value in research.items() if key not in {"symbol"})
+        research_rows_parts = []
+        for key, value in research.items():
+            if key in {"symbol", "research_score"}:
+                continue
+            label = escape(str(key).replace("_", " ").title())
+            if isinstance(value, list):
+                content = "<ul class='research-list'>" + "".join(f"<li>{escape(str(entry))}</li>" for entry in value) + "</ul>"
+            elif key.lower() == "summary":
+                content = f"<p class='research-summary'>{escape(str(value))}</p>"
+            else:
+                content = escape(str(value))
+            research_rows_parts.append(f"<tr><th>{label}</th><td>{content}</td></tr>")
+        research_rows = "".join(research_rows_parts)
+        research_score = float(research.get("research_score", 0))
+        research_highlights = f"<div class='research-highlights'><div><span class='eyebrow'>RESEARCH SCORE</span><strong>{research_score:.1f}/100</strong></div><div><span class='eyebrow'>CONVICTION</span><strong>{escape(str(research.get('conviction', 'Unavailable')))}</strong></div></div>"
         python_score = float(item.get("score", 0))
         research_score = float(research.get("research_score", 0))
         boosted_score = float(item.get("boosted_score", python_score))
         contribution = (f"<section><h2>Score Contribution</h2><p class='muted'>Boosted score = Technical score × 70% + Research score × 30%.</p><table><thead><tr><th>Source</th><th>Raw score</th><th>Weight</th><th>Contribution</th></tr></thead><tbody><tr><td>Technical</td><td>{python_score:.1f}</td><td>70%</td><td>{python_score * .70:.1f}</td></tr><tr><td>Research</td><td>{research_score:.1f}</td><td>30%</td><td>{research_score * .30:.1f}</td></tr><tr><th>Boosted total</th><th colspan='2'></th><th>{boosted_score:.1f}</th></tr></tbody></table></section>")
-        detail = f"<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>{escape(symbol)} Details</title><link rel='stylesheet' href='../assets/styles.css'></head><body><main><p><a href='../index.html'>← Back to Market Intelligence</a></p><h1>{escape(symbol)} Details</h1><p class='muted'>Day-trading candidate · {escape(str(item.get('direction', 'UNKNOWN')))}</p><section><h2>Score Summary</h2><table><tbody><tr><th>Technical score</th><td>{float(item.get('score', 0)):.1f}</td></tr><tr><th>Research score</th><td>{float(research.get('research_score', 0)):.1f}</td></tr><tr><th>Boosted score</th><td>{float(item.get('boosted_score', item.get('score', 0))):.1f}</td></tr></tbody></table></section><section><h2>Technical Indicators and Components</h2><p class='muted'>Contribution = component score × profile weight. The contributions sum to the technical score.</p><table><thead><tr><th>Component</th><th>Score</th><th>Weight</th><th>Contribution</th></tr></thead><tbody>{component_rows}</tbody></table></section><section><h2>Research Details</h2><table><tbody>{research_rows or '<tr><td colspan=\"2\">No research details available.</td></tr>'}</tbody></table></section><p><a href='../index.html'>← Back to Market Intelligence</a></p></main></body></html>"
+        detail = f"<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>{escape(symbol)} Details</title><link rel='stylesheet' href='../assets/styles.css'></head><body><main><p><a href='../index.html'>← Back to Market Intelligence</a></p><h1>{escape(symbol)} Details</h1><p class='muted'>Day-trading candidate · {escape(str(item.get('direction', 'UNKNOWN')))}</p><section><h2>Score Summary</h2><table><tbody><tr><th>Technical score</th><td>{float(item.get('score', 0)):.1f}</td></tr><tr><th>Research score</th><td>{float(research.get('research_score', 0)):.1f}</td></tr><tr><th>Boosted score</th><td>{float(item.get('boosted_score', item.get('score', 0))):.1f}</td></tr></tbody></table></section><section><h2>Technical Indicators and Components</h2><p class='muted'>Contribution = component score × profile weight. The contributions sum to the technical score.</p><table><thead><tr><th>Component</th><th>Score</th><th>Weight</th><th>Contribution</th></tr></thead><tbody>{component_rows}</tbody></table></section><section><h2>Research Details</h2>{research_highlights}<table><tbody>{research_rows or '<tr><td colspan=\"2\">No research details available.</td></tr>'}</tbody></table></section><p><a href='../index.html'>← Back to Market Intelligence</a></p></main></body></html>"
         detail = detail.replace("</section><section><h2>Python Filters and Components</h2>", f"</section>{contribution}<section><h2>Python Filters and Components</h2>")
         detail = detail.replace("<h2>Technical Indicators and Components</h2>", "<h2>Technical Indicators and Components</h2><p class='muted'>These component metrics form the technical score: market regime, sector strength, relative strength, VWAP, trend, volume, momentum, volatility, options confirmation, and extension.</p>")
         (details_dir / f"{symbol}.html").write_text(detail, encoding="utf-8")
     css = Path(__file__).parent / "styles.css"
     extra_css = """
 .sector-legend-wrap{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 20px}.sector-legend{font-size:.8rem;color:#b5c0d2;white-space:nowrap}.sector-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:#8e9bb0}.reference-legend i{background:#fff;border:1px solid #70d6c3}.active-theme-compact{font-size:.82rem}.active-theme-compact strong{font-size:1rem;margin-right:8px}.active-theme-compact .muted{font-size:.78rem}
+.research-highlights{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}.research-highlights>div{min-width:150px;padding:12px 14px;background:#111b2d;border:1px solid #263650;border-radius:10px}.research-highlights strong{display:block;font-size:1.15rem;margin-top:4px}.research-list{margin:0;padding-left:20px}.research-list li{margin:5px 0}.research-summary{margin:0;line-height:1.55;color:#d4dbea}
+.sector-chart-columns{display:grid;grid-template-columns:1fr;gap:28px;align-items:start}.sector-chart-columns>div{min-width:0}.sector-chart-columns h3{margin-top:18px}
+.sector-chart-columns svg{width:100%;height:auto;min-height:300px}.sector-chart-columns svg text{font-size:14px!important}.sector-chart-columns .sector-legend{font-size:.95rem}.sector-chart-columns select{font-size:1rem;padding:6px 8px}.sector-chart-columns .muted{font-size:.95rem}
 .sector-heatmap th,.sector-heatmap td{padding:9px 10px;text-align:center;white-space:nowrap}.sector-heatmap th:first-child{text-align:left;position:sticky;left:0;background:#131d30}.sector-heatmap td{border:1px solid #263650}.heat-0,.heat-10,.heat-20,.heat-30,.heat-40{background:#7d3f46}.heat-50,.heat-60{background:#665f3d}.heat-70,.heat-80{background:#35655e}.heat-90,.heat-100{background:#1f806f}.sector-ranking{display:grid;gap:8px}.ranking-row{display:grid;grid-template-columns:minmax(110px,1.2fr) 3fr 45px 45px;gap:10px;align-items:center;font-size:.9rem}.ranking-bar{height:10px;background:#263650;border-radius:99px;overflow:hidden}.ranking-bar b{display:block;height:100%;background:#70d6c3;border-radius:99px}.ranking-row em{font-style:normal;color:#8e9bb0}.correlation-matrix th,.correlation-matrix td{padding:8px;text-align:center;white-space:nowrap;font-size:.82rem}.correlation-matrix th:first-child{text-align:left;position:sticky;left:0;background:#131d30}.corr-positive{background:#1f806f}.corr-neutral{background:#665f3d}.corr-negative{background:#7d3f46}.corr-na{background:#263650;color:#8e9bb0}.cluster-summary,.divergence{margin-top:14px;padding:14px;background:#111b2d;border:1px solid #263650;border-radius:10px}.cluster-summary h4,.divergence h4{margin:0 0 8px}@media(max-width:650px){.ranking-row{grid-template-columns:90px 1.5fr 38px 38px;font-size:.78rem}}
 """
     (output_dir / "assets" / "styles.css").write_text(css.read_text(encoding="utf-8") + extra_css, encoding="utf-8")
