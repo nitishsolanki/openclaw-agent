@@ -1867,21 +1867,23 @@
       "direction": "LONG",
       "score": 85.51,
       "profile_status": "QUALIFIED",
-      "boosted_score": 83.26,
+      "boosted_score": 85.06,
       "research": {
         "symbol": "NVDA",
-        "research_score": 78.0,
-        "conviction": "Medium",
+        "research_score": 84.0,
+        "conviction": "High",
         "catalysts": [
-          "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
-          "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
+          "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+          "Scheduled 2026-11-17 earnings provide a dated verification point",
+          "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+          "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
         ],
         "risks": [
-          "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
-          "No independently verified ticker-specific filing details",
-          "High valuation and crowded AI positioning noted in 2026-08-12 research"
+          "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+          "Valuation is elevated on several metrics and expectations are high",
+          "No current Polygon news and no completed earnings actuals in the packet"
         ],
-        "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+        "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
       },
       "components": {
         "market": 100.0,
@@ -1922,8 +1924,24 @@
       "direction": "LONG",
       "score": 85.8,
       "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 85.8,
-      "research": {},
+      "boosted_score": 80.76,
+      "research": {
+        "symbol": "HPQ",
+        "research_score": 69.0,
+        "conviction": "Medium",
+        "catalysts": [
+          "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+          "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+          "Fundamentals show attractive valuation and positive recent price performance",
+          "Earnings are scheduled for 2026-11-23"
+        ],
+        "risks": [
+          "No local research, local news, or SEC filing evidence supplied",
+          "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+          "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+        ],
+        "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+      },
       "components": {
         "market": 100.0,
         "sector": 87.71,
@@ -2044,21 +2062,21 @@
       "direction": "LONG",
       "score": 80.59,
       "profile_status": "FILTER_FALLBACK",
-      "boosted_score": 69.31,
+      "boosted_score": 72.91,
       "research": {
         "symbol": "PFE",
-        "research_score": 43.0,
+        "research_score": 55.0,
         "conviction": "Low",
         "catalysts": [
-          "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
-          "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
+          "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
+          "Fundamentals show positive recent price returns and low forward P/E"
         ],
         "risks": [
-          "No local research, news, SEC filings, or earnings source",
-          "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
-          "Fundamentals show declining TTM EPS and revenue growth"
+          "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+          "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
+          "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
         ],
-        "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+        "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
       },
       "components": {
         "market": 100.0,
@@ -2295,8 +2313,24 @@
         "direction": "LONG",
         "score": 85.43,
         "profile_status": "QUALIFIED",
-        "boosted_score": 85.43,
-        "research": {},
+        "boosted_score": 80.5,
+        "research": {
+          "symbol": "HPQ",
+          "research_score": 69.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+            "Fundamentals show attractive valuation and positive recent price performance",
+            "Earnings are scheduled for 2026-11-23"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+          ],
+          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+        },
         "components": {
           "market": 100.0,
           "sector": 87.71,
@@ -2336,21 +2370,23 @@
         "direction": "LONG",
         "score": 85.26,
         "profile_status": "QUALIFIED",
-        "boosted_score": 83.08,
+        "boosted_score": 84.88,
         "research": {
           "symbol": "NVDA",
-          "research_score": 78.0,
-          "conviction": "Medium",
+          "research_score": 84.0,
+          "conviction": "High",
           "catalysts": [
-            "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
-            "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
+            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+            "Scheduled 2026-11-17 earnings provide a dated verification point",
+            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
           ],
           "risks": [
-            "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
-            "No independently verified ticker-specific filing details",
-            "High valuation and crowded AI positioning noted in 2026-08-12 research"
+            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+            "Valuation is elevated on several metrics and expectations are high",
+            "No current Polygon news and no completed earnings actuals in the packet"
           ],
-          "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
         },
         "components": {
           "market": 100.0,
@@ -2432,21 +2468,21 @@
         "direction": "LONG",
         "score": 81.32,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 69.82,
+        "boosted_score": 73.42,
         "research": {
           "symbol": "PFE",
-          "research_score": 43.0,
+          "research_score": 55.0,
           "conviction": "Low",
           "catalysts": [
-            "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
-            "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
+            "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
+            "Fundamentals show positive recent price returns and low forward P/E"
           ],
           "risks": [
-            "No local research, news, SEC filings, or earnings source",
-            "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
-            "Fundamentals show declining TTM EPS and revenue growth"
+            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+            "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
+            "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
           ],
-          "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+          "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
         },
         "components": {
           "market": 100.0,
@@ -2721,21 +2757,23 @@
         "direction": "LONG",
         "score": 85.51,
         "profile_status": "QUALIFIED",
-        "boosted_score": 83.26,
+        "boosted_score": 85.06,
         "research": {
           "symbol": "NVDA",
-          "research_score": 78.0,
-          "conviction": "Medium",
+          "research_score": 84.0,
+          "conviction": "High",
           "catalysts": [
-            "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
-            "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
+            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+            "Scheduled 2026-11-17 earnings provide a dated verification point",
+            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
           ],
           "risks": [
-            "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
-            "No independently verified ticker-specific filing details",
-            "High valuation and crowded AI positioning noted in 2026-08-12 research"
+            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+            "Valuation is elevated on several metrics and expectations are high",
+            "No current Polygon news and no completed earnings actuals in the packet"
           ],
-          "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
         },
         "components": {
           "market": 100.0,
@@ -2776,8 +2814,24 @@
         "direction": "LONG",
         "score": 85.8,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 85.8,
-        "research": {},
+        "boosted_score": 80.76,
+        "research": {
+          "symbol": "HPQ",
+          "research_score": 69.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+            "Fundamentals show attractive valuation and positive recent price performance",
+            "Earnings are scheduled for 2026-11-23"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+          ],
+          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+        },
         "components": {
           "market": 100.0,
           "sector": 87.71,
@@ -2898,21 +2952,21 @@
         "direction": "LONG",
         "score": 80.59,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 69.31,
+        "boosted_score": 72.91,
         "research": {
           "symbol": "PFE",
-          "research_score": 43.0,
+          "research_score": 55.0,
           "conviction": "Low",
           "catalysts": [
-            "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
-            "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
+            "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
+            "Fundamentals show positive recent price returns and low forward P/E"
           ],
           "risks": [
-            "No local research, news, SEC filings, or earnings source",
-            "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
-            "Fundamentals show declining TTM EPS and revenue growth"
+            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+            "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
+            "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
           ],
-          "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+          "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
         },
         "components": {
           "market": 100.0,
@@ -3148,21 +3202,23 @@
         "direction": "LONG",
         "score": 82.62,
         "profile_status": "QUALIFIED",
-        "boosted_score": 81.23,
+        "boosted_score": 83.03,
         "research": {
           "symbol": "NVDA",
-          "research_score": 78.0,
-          "conviction": "Medium",
+          "research_score": 84.0,
+          "conviction": "High",
           "catalysts": [
-            "2026-08-13/14 AP and Applied Materials IR: record semiconductor-equipment results support AI-infrastructure demand",
-            "2026-11-17 earnings estimate: EPS 2.4659 and revenue estimate $108.1B"
+            "Fundamentals show very strong revenue, EPS, margin, cash-flow, and return growth",
+            "Scheduled 2026-11-17 earnings provide a dated verification point",
+            "2026-08-31 filing review references an NVDA 8-K, but advises primary EDGAR verification",
+            "Dated 2026-08-13 and 2026-08-14 market coverage supports AI-infrastructure demand"
           ],
           "risks": [
-            "2026-08-31 SEC review: NVDA 2026-08-26 8-K requires primary EDGAR verification",
-            "No independently verified ticker-specific filing details",
-            "High valuation and crowded AI positioning noted in 2026-08-12 research"
+            "The cited 2026-08-26 8-K was listed by a secondary index and was not independently verified from primary EDGAR",
+            "Valuation is elevated on several metrics and expectations are high",
+            "No current Polygon news and no completed earnings actuals in the packet"
           ],
-          "summary": "Fundamentals and dated sector evidence support the long thesis, but company-specific filing verification and valuation risk limit conviction."
+          "summary": "NVDA has the strongest company-level fundamental evidence in the packet, with exceptional growth and profitability, but elevated expectations and incomplete primary filing verification limit absolute conviction."
         },
         "components": {
           "market": 100.0,
@@ -3203,8 +3259,24 @@
         "direction": "LONG",
         "score": 82.57,
         "profile_status": "QUALIFIED",
-        "boosted_score": 82.57,
-        "research": {},
+        "boosted_score": 78.5,
+        "research": {
+          "symbol": "HPQ",
+          "research_score": 69.0,
+          "conviction": "Medium",
+          "catalysts": [
+            "2026-09-04 company announcement introduced new AI PCs using NVIDIA RTX Spark technology",
+            "2026-09-08 Zacks coverage cites a Rank #1 rating and 8.4% upward earnings-estimate revisions",
+            "Fundamentals show attractive valuation and positive recent price performance",
+            "Earnings are scheduled for 2026-11-23"
+          ],
+          "risks": [
+            "No local research, local news, or SEC filing evidence supplied",
+            "Fundamentals show declining multi-year revenue, negative EPS growth, and declining free-cash-flow CAGR",
+            "Current and quick ratios are below 1; product demand and margin execution remain uncertain"
+          ],
+          "summary": "AI-PC launches, estimate revisions, and valuation support the long thesis, but mature-business growth and liquidity metrics are weaker and primary filings are unavailable."
+        },
         "components": {
           "market": 100.0,
           "sector": 87.71,
@@ -3324,21 +3396,21 @@
         "direction": "LONG",
         "score": 78.28,
         "profile_status": "FILTER_FALLBACK",
-        "boosted_score": 67.7,
+        "boosted_score": 71.3,
         "research": {
           "symbol": "PFE",
-          "research_score": 43.0,
+          "research_score": 55.0,
           "conviction": "Low",
           "catalysts": [
-            "2026-09-07 Yahoo: global vaccine market forecast includes Pfizer",
-            "2026-09-05 Yahoo: reported 6% dividend yield may support income interest"
+            "Dated 2026 coverage identifies pipeline catalysts and highlights a high dividend yield",
+            "Fundamentals show positive recent price returns and low forward P/E"
           ],
           "risks": [
-            "No local research, news, SEC filings, or earnings source",
-            "2026-09-05 Yahoo: patent risks and pressure on dividend sustainability were noted",
-            "Fundamentals show declining TTM EPS and revenue growth"
+            "No local research, local news, SEC filings, earnings, or Polygon evidence supplied",
+            "Fundamentals show declining revenue and EPS trends, weak recent profitability, and high payout ratios",
+            "Pipeline catalysts are reported in secondary coverage without company-specific trial or filing verification"
           ],
-          "summary": "Technical strength is not supported by sufficiently specific current company evidence; fundamentals and patent-related uncertainty weigh on research conviction."
+          "summary": "Income and valuation provide support, but declining operating trends and unverified pipeline catalysts leave the fundamental research case weak."
         },
         "components": {
           "market": 100.0,

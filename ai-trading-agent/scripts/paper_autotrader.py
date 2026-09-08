@@ -89,7 +89,7 @@ signals = [TradeSignal(str(item["symbol"]).upper(), item["direction"], float(ite
                        {**item.get("components", {}), "sector_name": item.get("sector", "Unknown")})
            for item in artifact.get("swing", [])
            if str(item.get("direction", "")).upper() != "SHORT"
-           and item.get("profile_status", "QUALIFIED") == "QUALIFIED"]
+           and item.get("profile_status", "QUALIFIED") in {"QUALIFIED", "FILTER_FALLBACK"}]
 if not signals:
     raise SystemExit("Paper entries blocked: GitHub artifact has no Swing candidates")
 from reports.build_live_report import generate_report
