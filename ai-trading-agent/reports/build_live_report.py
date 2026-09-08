@@ -5,6 +5,7 @@ from pathlib import Path
 
 from ai_trading_agent.cli import run_scan
 from ai_trading_agent.config.env import load_env
+from ai_trading_agent.config.settings import load_strategy
 from ai_trading_agent.data.market_data import AlpacaMarketData
 from ai_trading_agent.sector.live_rotation import rank_sectors, sector_score_history
 from ai_trading_agent.signals.llm import analyze_top_candidates
@@ -44,12 +45,15 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     if os.getenv("GITHUB_ACTIONS") == "true" and any(item.symbol in {"AAA", "BBB", "CCC"} for item in signals):
         raise RuntimeError("Refusing to publish sample candidates in GitHub Actions")
     research = research or load_research(root)
-    def serialize(items):
+    def serialize(items, profile):
+        strategy_path = root / "config" / f"strategy_{profile}.yaml"
+        weights = load_strategy(strategy_path).get("weights", {})
         return [{"symbol": item.symbol, "direction": item.direction, "score": item.final_score,
                  "profile_status": item.profile_status,
                  "boosted_score": boosted_score(item.final_score, research.get(item.symbol)),
                  "research": research.get(item.symbol, {}),
                  "components": {key: value for key, value in item.components.items() if isinstance(value, (int, float))},
+                 "weights": weights,
                  "sector": item.components.get("sector_name", "Unknown"),
                  "reasons": [f"{key}: {value:.1f}" for key, value in item.components.items() if isinstance(value, (int, float)) and value >= 80]}
                 for item in items]
@@ -59,8 +63,8 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
         "market": {"label": "See signal components", "score": signals[0].components.get("market", 0) if signals else 0},
         "theme": active_theme(root) or {"name": "none", "sectors": []}, "sectors": sectors,
         "sector_history": history, "sector_current_prices": current_prices,
-        "signals": serialize(signals),
-        "profiles": {profile: serialize(items) for profile, items in profile_results.items()},
+        "signals": serialize(signals, "swing"),
+        "profiles": {profile: serialize(items, profile) for profile, items in profile_results.items()},
         "disclaimer": "Paper-trading research only. Not investment advice. Live trading is disabled."
     }
     if env.get("OPENAI_API_KEY") and not research:
