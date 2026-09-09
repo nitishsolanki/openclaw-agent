@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 import pandas as pd
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from .config.settings import load_strategy
 from .data.market_data import CsvMarketData, AlpacaMarketData
@@ -98,16 +99,20 @@ def run_scan(root: Path, require_live: bool = False, profile: str = "swing", lim
     env = load_env(root / "local.env")
     if env.get("FINNHUB_API_KEY"):
         provider = FinnhubProvider(env["FINNHUB_API_KEY"])
-        for symbol in symbols:
+        def enrich_symbol(symbol):
             try:
                 news = provider.company_news(symbol)
                 calendar = provider.earnings_calendar()
                 news_score = news_confirmation(news)
                 earnings_score = earnings_risk(calendar, symbol)
-                enrichments[symbol] = {"news": news_score * earnings_score / 100.0,
-                                       "options": 50.0}
+                return symbol, {"news": news_score * earnings_score / 100.0, "options": 50.0}
             except Exception:
-                enrichments[symbol] = {"news": 50.0, "options": 50.0}
+                return symbol, {"news": 50.0, "options": 50.0}
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = [executor.submit(enrich_symbol, symbol) for symbol in symbols]
+            for future in as_completed(futures):
+                symbol, values = future.result()
+                enrichments[symbol] = values
     results = scan(candidates, benchmark, config["weights"], limit=limit, market_score=regime.score,
                    enrichments=enrichments, minimum_filters=config.get("filters"), setup_config=config.get("early_setup"))
     if live:

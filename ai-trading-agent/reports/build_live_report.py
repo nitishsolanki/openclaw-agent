@@ -25,10 +25,10 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
         if not isinstance(history, list): history = []
     except (FileNotFoundError, json.JSONDecodeError):
         history = []
-    # Backfill enough sessions for meaningful rolling correlation when the
-    # historical file is new or was previously limited to five days.
-    if len(history) < 30 or any("prices" not in item for item in history):
-        history = sector_score_history(provider, days=60)
+    # Long history is refreshed by the dedicated 7 AM job. Report builds only
+    # use the stored history and avoid repeating the expensive backfill.
+    if not history:
+        history = sector_score_history(provider, days=5)
     current_prices = {}
     for item in sectors:
         try:
