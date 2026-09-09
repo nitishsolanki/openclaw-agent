@@ -7,6 +7,9 @@ on:
       - "ai-trading-agent/reports/latest.json"
       - "ai-trading-agent/reports/research_enrichment.json"
       - "ai-trading-agent/reports/openclaw_research_prompt.md"
+      - "ai-trading-agent/reports/generate_site.py"
+      - "ai-trading-agent/reports/styles.css"
+      - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
 permissions:
