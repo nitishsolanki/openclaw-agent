@@ -46,13 +46,7 @@ def _normalize_sector(profile: dict) -> str:
     }
     return next((name for name, terms in groups.items() if any(term in text for term in terms)), "Unknown")
 
-def run_scan(root: Path, require_live: bool = False, profile: str = "swing", limit: int = 10) -> list:
-    if profile not in {"day", "swing", "growth"}:
-        raise ValueError("profile must be one of: day, swing, growth")
-    config_path = root / "config" / f"strategy_{profile}.yaml"
-    if not config_path.exists():
-        config_path = root / "config" / "strategy.yaml"
-    config = load_strategy(config_path)
+def _prepare_scan(root: Path, require_live: bool = False):
     env = load_env(root / "local.env")
     db = connect(root / "trading.db")
     provider = CsvMarketData(root / "data" / "sample")
@@ -113,6 +107,17 @@ def run_scan(root: Path, require_live: bool = False, profile: str = "swing", lim
             for future in as_completed(futures):
                 symbol, values = future.result()
                 enrichments[symbol] = values
+    return db, env, candidates, benchmark, regime, enrichments
+
+def _score_prepared(root: Path, prepared, profile: str, limit: int = 10) -> list:
+    if profile not in {"day", "swing", "growth"}:
+        raise ValueError("profile must be one of: day, swing, growth")
+    db, env, candidates, benchmark, regime, enrichments = prepared
+    live = bool(env.get("ALPACA_API_KEY") and env.get("ALPACA_SECRET_KEY"))
+    config_path = root / "config" / f"strategy_{profile}.yaml"
+    if not config_path.exists():
+        config_path = root / "config" / "strategy.yaml"
+    config = load_strategy(config_path)
     results = scan(candidates, benchmark, config["weights"], limit=limit, market_score=regime.score,
                    enrichments=enrichments, minimum_filters=config.get("filters"), setup_config=config.get("early_setup"))
     if live:
@@ -127,11 +132,23 @@ def run_scan(root: Path, require_live: bool = False, profile: str = "swing", lim
                            enrichments=options, minimum_filters=config.get("filters"), setup_config=config.get("early_setup"))
         except Exception:
             pass
-    journal = db
-    for result in results:
-        record_signal(journal, result.symbol, result.direction, result.final_score,
-                      reasoning=str(result.components))
     return results
+
+def run_profiles(root: Path, require_live: bool = False,
+                 profiles=("day", "swing", "growth"), limit: int = 10) -> dict:
+    """Prepare the market universe once, then apply each profile's scoring rules."""
+    prepared = _prepare_scan(root, require_live=require_live)
+    results = {profile: _score_prepared(root, prepared, profile, limit=limit)
+               for profile in profiles}
+    db = prepared[0]
+    for items in results.values():
+        for result in items:
+            record_signal(db, result.symbol, result.direction, result.final_score,
+                          reasoning=str(result.components))
+    return results
+
+def run_scan(root: Path, require_live: bool = False, profile: str = "swing", limit: int = 10) -> list:
+    return run_profiles(root, require_live=require_live, profiles=(profile,), limit=limit)[profile]
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="AI Trading Agent (signal-only scanner)")

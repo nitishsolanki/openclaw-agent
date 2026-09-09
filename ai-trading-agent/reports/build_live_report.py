@@ -3,7 +3,7 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
-from ai_trading_agent.cli import run_scan
+from ai_trading_agent.cli import run_scan, run_profiles
 from ai_trading_agent.config.env import load_env
 from ai_trading_agent.config.settings import load_strategy
 from ai_trading_agent.data.market_data import AlpacaMarketData
@@ -40,10 +40,13 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     history.append({"date": today, "scores": {item["sector"]: item["score"] for item in sectors}, "prices": current_prices})
     history = sorted(history, key=lambda item: str(item.get("date", "")))
     history_path.write_text(json.dumps(history, indent=2) + "\n", encoding="utf-8")
-    signals = run_scan(root, require_live=True, limit=10) if signals is None else signals
-    profile_results = {"day": run_scan(root, require_live=True, profile="day", limit=1000),
-                       "swing": run_scan(root, require_live=True, profile="swing", limit=1000),
-                       "growth": run_scan(root, require_live=True, profile="growth", limit=1000)}
+    if signals is None:
+        profile_results = run_profiles(root, require_live=True,
+                                       profiles=("day", "swing", "growth"), limit=1000)
+        signals = profile_results["swing"][:10]
+    else:
+        profile_results = run_profiles(root, require_live=True,
+                                       profiles=("day", "swing", "growth"), limit=1000)
     sector_tickers = {}
     seen_tickers = set()
     for profile_items in profile_results.values():

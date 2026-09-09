@@ -1,7 +1,7 @@
 """Generate the Python-only Day, Swing, and Growth candidate artifact."""
 import json
 from pathlib import Path
-from ai_trading_agent.cli import run_scan
+from ai_trading_agent.cli import run_profiles
 
 root = Path(__file__).parents[1]
 output = root / "reports" / "python_candidates.json"
@@ -15,7 +15,7 @@ def serialize(items):
              "sector": item.components.get("sector_name", "Unknown")}
             for item in items]
 
-payload = {profile: serialize(run_scan(root, require_live=True, profile=profile))
-           for profile in ("day", "swing", "growth")}
+scans = run_profiles(root, require_live=True, profiles=("day", "swing", "growth"), limit=10)
+payload = {profile: serialize(scans[profile]) for profile in ("day", "swing", "growth")}
 output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 print(f"python_candidates={output}")
