@@ -45,7 +45,7 @@ def _normalize_sector(profile: dict) -> str:
     }
     return next((name for name, terms in groups.items() if any(term in text for term in terms)), "Unknown")
 
-def run_scan(root: Path, require_live: bool = False, profile: str = "swing") -> list:
+def run_scan(root: Path, require_live: bool = False, profile: str = "swing", limit: int = 10) -> list:
     if profile not in {"day", "swing", "growth"}:
         raise ValueError("profile must be one of: day, swing, growth")
     config_path = root / "config" / f"strategy_{profile}.yaml"
@@ -108,7 +108,7 @@ def run_scan(root: Path, require_live: bool = False, profile: str = "swing") -> 
                                        "options": 50.0}
             except Exception:
                 enrichments[symbol] = {"news": 50.0, "options": 50.0}
-    results = scan(candidates, benchmark, config["weights"], market_score=regime.score,
+    results = scan(candidates, benchmark, config["weights"], limit=limit, market_score=regime.score,
                    enrichments=enrichments, minimum_filters=config.get("filters"), setup_config=config.get("early_setup"))
     if live:
         try:
@@ -118,7 +118,7 @@ def run_scan(root: Path, require_live: bool = False, profile: str = "swing") -> 
                 snapshots = broker.option_snapshots(result.symbol)
                 options[result.symbol] = {**options.get(result.symbol, {}),
                                           "options": options_confirmation(snapshots)}
-            results = scan(candidates, benchmark, config["weights"], market_score=regime.score,
+            results = scan(candidates, benchmark, config["weights"], limit=limit, market_score=regime.score,
                            enrichments=options, minimum_filters=config.get("filters"), setup_config=config.get("early_setup"))
         except Exception:
             pass

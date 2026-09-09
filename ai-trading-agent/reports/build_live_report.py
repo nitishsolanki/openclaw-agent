@@ -40,10 +40,10 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
     history.append({"date": today, "scores": {item["sector"]: item["score"] for item in sectors}, "prices": current_prices})
     history = sorted(history, key=lambda item: str(item.get("date", "")))
     history_path.write_text(json.dumps(history, indent=2) + "\n", encoding="utf-8")
-    signals = run_scan(root, require_live=True) if signals is None else signals
-    profile_results = {"day": run_scan(root, require_live=True, profile="day"),
-                       "swing": signals,
-                       "growth": run_scan(root, require_live=True, profile="growth")}
+    signals = run_scan(root, require_live=True, limit=10) if signals is None else signals
+    profile_results = {"day": run_scan(root, require_live=True, profile="day", limit=1000),
+                       "swing": run_scan(root, require_live=True, profile="swing", limit=1000),
+                       "growth": run_scan(root, require_live=True, profile="growth", limit=1000)}
     sector_tickers = {}
     seen_tickers = set()
     for profile_items in profile_results.values():
