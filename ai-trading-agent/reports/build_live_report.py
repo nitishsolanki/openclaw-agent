@@ -96,9 +96,19 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
             "score": round(sum(float(item.get("score", 0)) for item in leaders) / max(len(leaders), 1), 2),
             "source": "sector_rotation_fallback",
         }
+    market_indices = []
+    for label, symbol in (("S&P 500", "SPY"), ("Dow", "DIA"), ("Nasdaq", "QQQ")):
+        try:
+            bars = provider.get_bars(symbol)
+            closes = bars["close"].dropna()
+            latest = float(closes.iloc[-1])
+            previous = float(closes.iloc[-2]) if len(closes) > 1 else latest
+            market_indices.append({"label": label, "symbol": symbol, "price": round(latest, 2), "change_pct": round((latest / previous - 1) * 100, 2) if previous else 0.0})
+        except (KeyError, ValueError, IndexError, FileNotFoundError):
+            market_indices.append({"label": label, "symbol": symbol, "price": None, "change_pct": None})
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(), "data_source": "alpaca_live",
-        "market": {"label": "See signal components", "score": signals[0].components.get("market", 0) if signals else 0},
+        "market": {"label": "Latest index movement", "score": signals[0].components.get("market", 0) if signals else 0, "indices": market_indices},
         "theme": theme or {"name": "market_leadership", "sectors": []}, "sectors": sectors,
         "sector_history": history, "sector_current_prices": current_prices, "sector_tickers": sector_tickers,
         "signals": serialize(signals, "swing"),
