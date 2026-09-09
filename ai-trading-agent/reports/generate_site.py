@@ -107,11 +107,14 @@ def render(report: dict) -> str:
     theme_sectors = report.get('theme', {}).get('sectors', []) or []
     theme_label = ' · '.join(str(value) for value in theme_sectors[:3]) or 'Market leadership'
     topbar = "<div class='mock-topbar'><strong>◈ AI TRADING AGENT</strong><span>LIVE PAPER MODE · Updated " + escape(str(report.get('generated_at', 'unknown'))) + "</span></div>"
-    hero = "<section class='mock-hero'><div><span class='eyebrow'>MARKET BRIEFING</span><p>Technology and Financials are leading while early-stage setups continue to build beneath the surface.</p></div><div class='mock-actions'><a class='mock-button primary' href='#full-candidates'>View candidates</a><a class='mock-button' href='#sector-rotation'>Sector rotation</a></div></section>"
+    hero = "<section class='mock-hero'><div><span class='eyebrow'>MARKET BRIEFING</span><p>Technology and Financials are leading while early-stage setups continue to build beneath the surface.</p></div><div class='mock-actions'><a class='mock-button primary' style='display:inline-block;background:#55dfad;border:1px solid #55dfad;border-radius:9px;color:#06151a;font-weight:800;padding:10px 15px;text-decoration:none' href='#full-candidates'>View candidates</a><a class='mock-button' style='display:inline-block;background:#101d30;border:1px solid #263b55;border-radius:9px;color:#eef5ff;padding:10px 15px;text-decoration:none' href='#sector-rotation'>Sector rotation</a></div></section>"
     html = html.replace('<header>', topbar + '<header>', 1)
     html = html.replace('</header>', hero + '</header>', 1)
     raw_theme_label = str(report.get('theme', {}).get('name', 'Market leadership')).replace('_', ' ')
     html = html.replace(escape(raw_theme_label), escape(theme_label))
+    html = html.replace("<p class='eyebrow'>AI TRADING AGENT Â· PAPER MODE</p>", "", 1)
+    generated_line = f"<p class='muted'>Generated {escape(str(report.get('generated_at', 'unknown')))} Â· Source: {escape(str(report.get('data_source', 'unknown')))}</p>"
+    html = html.replace(generated_line, "", 1)
     html = html.replace("Current sector score, price change, and five-day trend.", "Current sector score, price change, and trend.")
     history = report.get("sector_history", [])
     sectors = report.get("sectors", [])
