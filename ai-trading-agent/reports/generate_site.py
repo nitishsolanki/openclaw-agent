@@ -136,7 +136,7 @@ def render(report: dict) -> str:
         generated_display = f"{generated_value.strftime('%b')} {generated_value.day}, {generated_value.year} · {generated_value.strftime('%I:%M %p %Z').lstrip('0')}"
     except (TypeError, ValueError):
         generated_display = 'time unavailable'
-    topbar = "<div class='mock-topbar'><strong>◈ AI TRADING AGENT</strong><span>LIVE PAPER MODE · Updated " + escape(generated_display) + " · <a class='holdings-link' href='holdings.html'>Alpaca Holdings</a></span></div>"
+    topbar = "<div class='mock-topbar'><strong>◈ AI TRADING AGENT</strong><span>LIVE PAPER MODE · Updated " + escape(generated_display) + "</span></div>"
     hero = "<section class='mock-hero'><div><span class='eyebrow'>MARKET BRIEFING</span><p>Technology and Financials are leading while early-stage setups continue to build beneath the surface.</p></div><div class='mock-actions'><a class='mock-button primary' style='display:inline-block;background:#55dfad;border:1px solid #55dfad;border-radius:9px;color:#06151a;font-weight:800;padding:10px 15px;text-decoration:none' href='#full-candidates'>View candidates</a><a class='mock-button' style='display:inline-block;background:#101d30;border:1px solid #263b55;border-radius:9px;color:#eef5ff;padding:10px 15px;text-decoration:none' href='#sector-rotation'>Sector rotation</a></div></section>"
     html = html.replace('<header>', topbar + '<header>', 1)
     html = html.replace('</header>', hero + '</header>', 1)
