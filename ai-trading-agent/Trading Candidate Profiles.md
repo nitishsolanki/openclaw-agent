@@ -2,13 +2,25 @@
 
 ## Overview
 
-The trading engine uses three candidate profiles:
+The trading engine uses one common setup-maturity layer across three scoring profiles:
 
 1. **Day Top Candidates** — short holding period / intraday opportunities
 2. **Swing Top Candidates** — multi-day opportunities
 3. **Growth Top Candidates** — technically strong growth-oriented stocks; fundamental growth is added when fundamental data becomes available
 
 The profiles share a common factor engine but apply different weights and filters.
+
+The dashboard groups candidates by setup maturity first. Day, Swing, and Growth are profile applicability labels shown within those maturity groups.
+
+| Dashboard category | Meaning |
+| --- | --- |
+| **BUILDING** | Quality and setup conditions are improving before a major move. |
+| **BREAKOUT_READY** | Price is close to resistance or a breakout trigger. |
+| **CONFIRMED_BREAKOUT** | Breakout has occurred with supporting confirmation. |
+| **PULLBACK** | Strong candidate waiting for a better entry or support test. |
+| **EXTENDED** | The stock has already moved too far for a fresh entry; normally WAIT. |
+
+Each candidate can show one or more applicable profiles: `Day`, `Swing`, `Growth`, or a combination such as `Day/Swing/Growth`. The profile describes how the stock scored; setup maturity describes when it may be actionable.
 
 The system should separate:
 
@@ -44,7 +56,9 @@ Factors not applicable to a profile have a weight of 0%.
 
 ---
 
-# Common Candidate Classifications
+# Legacy Trade Decision Labels
+
+The following decision labels describe trade readiness and are separate from the dashboard's five setup-maturity categories. For example, an `EXTENDED` candidate may be `BUY ON PULLBACK` or `WATCH`, but should not be treated as an immediate entry.
 
 ## BUY NOW
 
