@@ -136,7 +136,7 @@ def render(report: dict) -> str:
         generated_display = f"{generated_value.strftime('%b')} {generated_value.day}, {generated_value.year} · {generated_value.strftime('%I:%M %p %Z').lstrip('0')}"
     except (TypeError, ValueError):
         generated_display = 'time unavailable'
-    topbar = "<div class='mock-topbar'><strong>◈ AI TRADING AGENT</strong><span>LIVE PAPER MODE · Updated " + escape(generated_display) + "</span></div>"
+    topbar = "<div class='mock-topbar'><strong>◈ AI TRADING AGENT</strong><span>LIVE PAPER MODE · Updated " + escape(generated_display) + " · <a class='holdings-link' href='holdings.html'>Alpaca Holdings</a></span></div>"
     hero = "<section class='mock-hero'><div><span class='eyebrow'>MARKET BRIEFING</span><p>Technology and Financials are leading while early-stage setups continue to build beneath the surface.</p></div><div class='mock-actions'><a class='mock-button primary' style='display:inline-block;background:#55dfad;border:1px solid #55dfad;border-radius:9px;color:#06151a;font-weight:800;padding:10px 15px;text-decoration:none' href='#full-candidates'>View candidates</a><a class='mock-button' style='display:inline-block;background:#101d30;border:1px solid #263b55;border-radius:9px;color:#eef5ff;padding:10px 15px;text-decoration:none' href='#sector-rotation'>Sector rotation</a></div></section>"
     html = html.replace('<header>', topbar + '<header>', 1)
     html = html.replace('</header>', hero + '</header>', 1)
@@ -369,6 +369,10 @@ def build(input_path: Path, output_dir: Path) -> None:
     (output_dir / "index.html").write_text(render(report), encoding="utf-8")
     (output_dir / "data").mkdir(exist_ok=True)
     (output_dir / "data" / "latest.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    holdings = report.get('holdings', []) or []
+    holding_rows = ''.join(f"<tr><td><strong>{escape(str(item.get('symbol', '')))}</strong></td><td>{escape(str(item.get('side', '')).title())}</td><td>{float(item.get('quantity', 0)):.2f}</td><td>${float(item.get('entry_price', 0)):.2f}</td><td>${float(item.get('current_price', 0)):.2f}</td><td>${float(item.get('market_value', 0)):.2f}</td><td class='{ 'price-up' if float(item.get('unrealized_pl', 0)) >= 0 else 'price-down' }'>${float(item.get('unrealized_pl', 0)):+,.2f}</td></tr>" for item in holdings) or "<tr><td colspan='7' class='muted'>No open Alpaca paper positions found.</td></tr>"
+    holdings_html = f"<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Alpaca Holdings</title><link rel='stylesheet' href='assets/styles.css'></head><body><main><p><a href='index.html'>← Back to Market Intelligence</a></p><header><p class='eyebrow'>PAPER ACCOUNT</p><h1>Alpaca Holdings</h1><p class='muted'>Read-only snapshot from the Alpaca paper account. Updated with the latest report.</p></header><section><table><thead><tr><th>Symbol</th><th>Side</th><th>Quantity</th><th>Entry Price</th><th>Current Price</th><th>Market Value</th><th>Unrealized P/L</th></tr></thead><tbody>{holding_rows}</tbody></table></section><footer>Read-only page. Order controls are intentionally not exposed on public GitHub Pages.</footer></main></body></html>"
+    (output_dir / "holdings.html").write_text(holdings_html, encoding="utf-8")
     details_dir = output_dir / "details"
     details_dir.mkdir(parents=True, exist_ok=True)
     for item in [item for profile_items in report.get("profiles", {}).values() for item in profile_items]:

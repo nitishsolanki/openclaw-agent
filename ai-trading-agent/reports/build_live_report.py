@@ -106,9 +106,26 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
             market_indices.append({"label": label, "symbol": symbol, "price": round(latest, 2), "change_pct": round((latest / previous - 1) * 100, 2) if previous else 0.0})
         except (KeyError, ValueError, IndexError, FileNotFoundError):
             market_indices.append({"label": label, "symbol": symbol, "price": None, "change_pct": None})
+    holdings = []
+    try:
+        broker = AlpacaPaperBroker(env["ALPACA_API_KEY"], env["ALPACA_SECRET_KEY"])
+        for position in broker.positions():
+            holdings.append({
+                "symbol": str(getattr(position, "symbol", "")),
+                "side": str(getattr(position, "side", "")),
+                "quantity": float(getattr(position, "qty", 0) or 0),
+                "entry_price": float(getattr(position, "avg_entry_price", 0) or 0),
+                "current_price": float(getattr(position, "current_price", 0) or 0),
+                "market_value": float(getattr(position, "market_value", 0) or 0),
+                "unrealized_pl": float(getattr(position, "unrealized_pl", 0) or 0),
+                "unrealized_pl_pct": float(getattr(position, "unrealized_plpc", 0) or 0) * 100,
+            })
+    except Exception:
+        holdings = []
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(), "data_source": "alpaca_live",
         "market": {"label": "Latest index movement", "score": signals[0].components.get("market", 0) if signals else 0, "indices": market_indices},
+        "holdings": holdings,
         "theme": theme or {"name": "market_leadership", "sectors": []}, "sectors": sectors,
         "sector_history": history, "sector_current_prices": current_prices, "sector_tickers": sector_tickers,
         "signals": serialize(signals, "swing"),
