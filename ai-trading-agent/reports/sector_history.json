@@ -1767,5 +1767,34 @@
       "Industrials": 174.42,
       "Real Estate": 43.9
     }
+  },
+  {
+    "date": "2026-09-09",
+    "scores": {
+      "Energy": 85.29,
+      "Technology": 84.77,
+      "Communication Services": 52.98,
+      "Consumer Staples": 52.81,
+      "Utilities": 52.02,
+      "Materials": 51.92,
+      "Financials": 51.83,
+      "Consumer Discretionary": 51.27,
+      "Real Estate": 51.22,
+      "Industrials": 51.12,
+      "Healthcare": 50.97
+    },
+    "prices": {
+      "Energy": 65.19,
+      "Technology": 188.59,
+      "Communication Services": 111.57,
+      "Consumer Staples": 83.08,
+      "Utilities": 43.06,
+      "Materials": 51.74,
+      "Financials": 57.31,
+      "Consumer Discretionary": 112.77,
+      "Real Estate": 43.49,
+      "Industrials": 172.93,
+      "Healthcare": 166.81
+    }
   }
 ]
