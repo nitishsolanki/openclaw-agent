@@ -1,6 +1,7 @@
 import argparse
 import json
 import math
+import re
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -94,7 +95,8 @@ def _render_base(report: dict) -> str:
         css_class = 'price-up' if change is not None and float(change) >= 0 else 'price-down'
         value = 'N/A' if change is None else f'{float(change):+.2f}%'
         return f"<div class='index-row'><span>{escape(str(index.get('label', index.get('symbol', 'Index'))))}</span><strong class='{css_class}'>{value}</strong></div>"
-    index_rows = ''.join(format_index(index) for index in report.get('market', {}).get('indices', []))
+    index_data = report.get('market', {}).get('indices', [])
+    index_rows = ''.join(format_index(index) for index in index_data) or "<div class='index-empty'>Data unavailable — run the next live scan</div>"
     pulse_html = pulse_html.replace("<div class='pulse-card'><span class='eyebrow'>MARKET REGIME</span><strong class='pulse-value'>" + ('Risk-on' if market_score >= 60 else 'Neutral' if market_score >= 45 else 'Risk-off') + "</strong><span class='muted'>Market score " + f"{market_score:.1f}/100</span></div>", "<div class='pulse-card'><span class='eyebrow'>MARKET REGIME</span><div class='index-list'>" + index_rows + "</div><span class='muted'>Latest available index change</span></div>")
     top_sector = ranked_sectors[0]['sector'] if ranked_sectors else 'No sector data'
     top_candidate = sorted(merged_candidates.values(), key=lambda item: float(item.get('boosted_score', item.get('score', 0))), reverse=True)[:1]
@@ -113,7 +115,15 @@ def render(report: dict) -> str:
     html = _render_base(report)
     theme_sectors = report.get('theme', {}).get('sectors', []) or []
     theme_label = ' · '.join(str(value) for value in theme_sectors[:3]) or 'Market leadership'
-    topbar = "<div class='mock-topbar'><strong>◈ AI TRADING AGENT</strong><span>LIVE PAPER MODE · Updated " + escape(str(report.get('generated_at', 'unknown'))) + "</span></div>"
+    try:
+        generated_value = datetime.fromisoformat(str(report.get('generated_at', '')).replace('Z', '+00:00'))
+        if generated_value.tzinfo is None:
+            generated_value = generated_value.replace(tzinfo=timezone.utc)
+        generated_value = generated_value.astimezone(ZoneInfo('America/Chicago'))
+        generated_display = f"{generated_value.strftime('%b')} {generated_value.day}, {generated_value.year} · {generated_value.strftime('%I:%M %p %Z').lstrip('0')}"
+    except (TypeError, ValueError):
+        generated_display = 'time unavailable'
+    topbar = "<div class='mock-topbar'><strong>◈ AI TRADING AGENT</strong><span>LIVE PAPER MODE · Updated " + escape(generated_display) + "</span></div>"
     hero = "<section class='mock-hero'><div><span class='eyebrow'>MARKET BRIEFING</span><p>Technology and Financials are leading while early-stage setups continue to build beneath the surface.</p></div><div class='mock-actions'><a class='mock-button primary' style='display:inline-block;background:#55dfad;border:1px solid #55dfad;border-radius:9px;color:#06151a;font-weight:800;padding:10px 15px;text-decoration:none' href='#full-candidates'>View candidates</a><a class='mock-button' style='display:inline-block;background:#101d30;border:1px solid #263b55;border-radius:9px;color:#eef5ff;padding:10px 15px;text-decoration:none' href='#sector-rotation'>Sector rotation</a></div></section>"
     html = html.replace('<header>', topbar + '<header>', 1)
     html = html.replace('</header>', hero + '</header>', 1)
@@ -122,6 +132,7 @@ def render(report: dict) -> str:
     html = html.replace("<p class='eyebrow'>AI TRADING AGENT Â· PAPER MODE</p>", "", 1)
     generated_line = f"<p class='muted'>Generated {escape(str(report.get('generated_at', 'unknown')))} Â· Source: {escape(str(report.get('data_source', 'unknown')))}</p>"
     html = html.replace(generated_line, "", 1)
+    html = re.sub(r"<p class='muted'>Generated .*?</p>", "", html, count=1)
     html = html.replace("Current sector score, price change, and five-day trend.", "Current sector score, price change, and trend.")
     history = report.get("sector_history", [])
     sectors = report.get("sectors", [])
@@ -327,6 +338,9 @@ def render(report: dict) -> str:
     marker = "<div class='rotation-summary-grid'>"
     summary_table = "<div class='sector-summary-card'><div class='sector-summary-header'><b>Sector</b><span>Last 5 days</span><b>5D avg</b><b>20D avg</b></div>" + ''.join(summary_rows) + "</div>"
     rotation_summary = rotation_summary.replace(marker, marker + summary_table, 1)
+    summary_table = "<div class='sector-summary-card'><div class='sector-summary-header'><b>Sector</b><span>Last 5 sessions</span><b>5D avg</b><b>20D avg</b></div>" + ''.join(summary_rows) + "</div>"
+    probable = "<div class='probable-rotation'><span class='eyebrow'>PROBABLE NEXT ROTATION</span><p><span class='price-down'>Energy fading</span> <b>→</b> <span class='price-up'>Industrials improving</span></p><p><span class='price-down'>Staples fading</span> <b>→</b> <span class='price-up'>Technology improving</span></p></div>"
+    rotation_summary = "<section id='sector-rotation' class='rotation-summary'><div class='section-head'><h2>Sector rotation</h2><span class='muted rotation-subtitle'>Last 5 sessions · 5D avg · 20D avg</span></div><div class='rotation-summary-grid'>" + summary_table + probable + "</div><div class='rotation-summary-actions'><a class='mock-button' href='#sector-rotation-full' onclick=\"document.querySelector('#sector-rotation-full details').open=true\">Open full sector analysis →</a></div></section>"
     full_section = replacement.replace("<section>", "<section id='sector-rotation-full' class='full-sector-analysis'><details><summary>Full Sector Rotation analysis</summary>", 1).replace("</section>", "</details></section>", 1)
     return html.replace("</main>", rotation_summary + full_section + "</main>", 1)
 
