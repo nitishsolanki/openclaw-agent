@@ -57,7 +57,7 @@ def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
     components.update(setup)
     signal = score_signal(candidate.symbol, components, weights)
     components["opportunity_score"] = round(float(signal.final_score) * (setup_config or default_setup)["profile_score_weight"] + float(setup["entry_timing_score"]) * (setup_config or default_setup)["early_setup_weight"], 2)
-        direction = "WATCH" if setup.get("extended") or setup["setup_maturity"] == "PULLBACK" else "AVOID" if setup["setup_maturity"] == "FAILED" else signal.direction
+    direction = "WATCH" if setup.get("extended") or setup["setup_maturity"] == "PULLBACK" else "AVOID" if setup["setup_maturity"] == "FAILED" else signal.direction
     return replace(signal, direction=direction, components=components)
 
 def scan(candidates: list[Candidate], benchmark_close: pd.Series,
