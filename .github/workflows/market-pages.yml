@@ -63,35 +63,25 @@ jobs:
           key: market-report-${{ github.run_id }}
           restore-keys: market-report-
       - name: Refresh S&P 500 universe
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '0 7 * * 1-5') || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python scripts/refresh_sp500.py
       - name: Refresh active theme
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '0 7 * * 1-5') || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python scripts/refresh_theme.py
       - name: Generate Python candidates
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '0 7 * * 1-5') || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python scripts/generate_python_candidates.py
       - name: Upload Python candidates
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '0 7 * * 1-5') || inputs.fresh_scan == true }}
         uses: actions/upload-artifact@v4
         with:
           name: python-candidates
           path: ai-trading-agent/reports/python_candidates.json
       - name: Refresh long sector history
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '0 7 * * 1-5') || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python scripts/refresh_sector_history.py
       - name: Generate Market Intelligence report
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule == '0 7 * * 1-5') || inputs.fresh_scan == true }}
         working-directory: ai-trading-agent
         run: python reports/build_live_report.py
-      - name: Render cached Market Intelligence report
-        if: ${{ github.event_name == 'schedule' && github.event.schedule != '0 7 * * 1-5' }}
-        working-directory: ai-trading-agent
-        run: python reports/generate_site.py --input reports/latest.json --output reports/site
       - name: Build research library
         working-directory: market-research-agent
         run: python reports/build_pages.py
