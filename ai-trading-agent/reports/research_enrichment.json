@@ -1,82 +1,85 @@
 {
-  "generated_at": "2026-09-09T15:01:57.501116+00:00",
+  "generated_at": "2026-09-10T15:02:17.988729+00:00",
   "research": [
     {
       "symbol": "SMCI",
-      "research_score": 55,
+      "research_score": 47,
       "conviction": "Low",
       "catalysts": [
-        "Dated Finnhub coverage reports management describing strong AI-infrastructure demand, customer diversification, improved systems value, and an effort to improve cash conversion.",
-        "The provided fundamentals show strong recent revenue and EPS growth with a low forward P/E."
+        "Fundamentals show strong reported revenue and EPS growth",
+        "2026-08-13 local market news identified positive AI-infrastructure read-through from Applied Materials results"
       ],
       "risks": [
-        "No earnings schedule is provided, and local research explicitly says no ticker-specific filing was independently verified.",
-        "Local SEC evidence is dated 2026-08-13 and only identifies filing checks as a future priority.",
-        "The packet cites execution, financing, dilution, margin, and crowded-AI risks; the trading candidate is WATCH with weak entry timing and high historical volatility."
+        "No ticker-specific earnings data was provided",
+        "Local SEC review states no independently verified fresh filing",
+        "Recent dated news includes analyst caution, underperformance concerns, and a reported $7.7M insider sale",
+        "Gross margins are low and cash-flow fields are inconsistent across periods"
       ],
-      "summary": "Operational commentary and reported growth are positive, but filing and earnings gaps plus volatility and execution uncertainty prevent high conviction."
+      "summary": "Technical momentum and AI-infrastructure exposure are supported, but company-specific evidence is weak and includes governance, insider-activity, valuation, and data-quality uncertainty."
     },
     {
       "symbol": "INTC",
-      "research_score": 38,
+      "research_score": 42,
       "conviction": "Low",
       "catalysts": [
-        "Dated Finnhub coverage describes continued investor interest and possible milestone-driven upside.",
-        "The provided fundamentals show positive recent revenue growth and substantial year-to-date price appreciation."
+        "2026-09-08 Motley Fool: shares rose after reported plans to raise processor prices by up to 10%",
+        "Fundamentals show recent revenue growth and strong recent price momentum"
       ],
       "risks": [
-        "Earnings data is missing, as are local research, local news, and independently verified SEC filings.",
-        "The provided fundamentals show negative trailing EPS, negative trailing net margin, declining multi-year revenue, negative EBITDA growth, and high forward valuation.",
-        "The trading data shows a 2.88 ATR extension after a sharp short-term advance, increasing pullback risk."
+        "No ticker-specific earnings, local research, SEC filing, or Polygon evidence was provided",
+        "Fundamentals show negative trailing EPS, negative trailing net margin, and very high forward valuation",
+        "Reported price-action catalyst is from secondary coverage and requires issuer confirmation",
+        "High beta and recent extension increase event and reversal risk"
       ],
-      "summary": "Evidence is insufficient to validate a fundamental turnaround; the research case is speculative despite strong technical momentum."
+      "summary": "The supplied evidence supports only a price-based catalyst and a reported pricing initiative. Losses, valuation, and missing primary company verification make the research case weak."
     },
     {
       "symbol": "HPE",
       "research_score": 82,
       "conviction": "High",
       "catalysts": [
-        "Dated Yahoo/Zacks reports describe Q3 FY2026 revenue of $12.2B, approximately 34% year-over-year growth, AI Systems orders of $2.4B, backlog of $6.8B, and raised FY2026-27 guidance.",
-        "Earnings are scheduled for 2026-12-02, with an EPS estimate of 1.0796 and revenue estimate of $13.09B."
+        "2026-09-09 Zacks: Q3 revenue rose 33.7% year over year to $12.21B and adjusted EPS was $1.11 versus $0.95 estimate",
+        "2026-09-09 Zacks: full-year guidance was raised, with reported AI/server and networking growth"
       ],
       "risks": [
-        "Local research, local news, and independently verified SEC filings are missing.",
-        "The evidence packet cites strong AI-infrastructure demand but also references inventory build and networking-margin pressure.",
-        "The provided fundamentals show weak quarterly liquidity metrics and elevated leverage relative to some technology peers."
+        "No local research or SEC filing verification was provided",
+        "2026-12-02 earnings remain ahead and actual results are unavailable",
+        "Reported networking growth includes post-Juniper acquisition effects"
       ],
-      "summary": "Company-specific dated news, earnings evidence, and fundamentals support the long thesis, but the strong recent technical move and missing primary filing verification limit conviction."
+      "summary": "Company-specific dated news and fundamentals support the long setup, with strong reported growth and raised guidance. Missing independently verified SEC filings and upcoming earnings results limit certainty."
     },
     {
       "symbol": "NVDA",
-      "research_score": 78,
+      "research_score": 71,
       "conviction": "Medium",
       "catalysts": [
-        "The 2026-08-13 local market report describes record Applied Materials results as a positive read-through for semiconductor equipment and AI infrastructure.",
-        "Finnhub dated 2026-09-09 reports an expanded Mindgard technology ecosystem including NVIDIA.",
-        "Earnings are scheduled for 2026-11-17, with an EPS estimate of 2.4659 and revenue estimate of $108.13B."
+        "Fundamentals show very strong revenue, EPS, margin, and cash-flow growth",
+        "2026-11-17 earnings are scheduled with an EPS estimate of 2.4659 and revenue estimate of approximately $108.1B",
+        "2026-08-13 local market news described continued AI-infrastructure demand and positive semiconductor read-through"
       ],
       "risks": [
-        "The local research notes crowded AI positioning, execution risk, geopolitical disruption, and the need for fresh company-level verification.",
-        "The local SEC review only cites an August 2026 filing through a secondary index and says the primary EDGAR document should be verified.",
-        "Valuation metrics in the packet are elevated, including forward EV/free-cash-flow and price-to-book measures."
+        "Local research states no fresh independently verified ticker-specific filing; the cited secondary index entry requires primary EDGAR confirmation",
+        "Current technical candidate is WATCH with trend score 0 and negative 20-day return",
+        "Valuation remains elevated, with forward P/E near 18.1 and EV/revenue near 17.9",
+        "Dated news also highlights higher yields, oil, geopolitical risk, and crowded AI positioning"
       ],
-      "summary": "Fundamentals and dated ecosystem evidence remain supportive, but valuation, crowded positioning, and incomplete primary filing verification warrant medium conviction."
+      "summary": "Fundamentals and the upcoming earnings event support a strong long-term research case, but the current technical setup is weak and filing verification is incomplete."
     },
     {
       "symbol": "HPQ",
-      "research_score": 68,
+      "research_score": 75,
       "conviction": "Medium",
       "catalysts": [
-        "A dated 2026-09-04 HP announcement describes new AI PCs and desktops using NVIDIA RTX Spark technology, with fall launches expected.",
-        "Dated Zacks coverage reports upward earnings estimate revisions and a Zacks Rank #2 rating.",
-        "Earnings are scheduled for 2026-11-23, with an EPS estimate of 0.7038 and revenue estimate of $15.42B."
+        "2026-09-09 Zacks: enterprise PC refresh, Windows 11 adoption, and AI PC demand supported the outlook",
+        "2026-09-04 HP/GlobeNewswire: new OmniBook and OmniDesk AI products using NVIDIA technology are expected to launch in fall 2026",
+        "Fundamentals show forward P/E near 8.9 and indicated dividend yield near 3.8%"
       ],
       "risks": [
-        "Local research, local news, and independently verified SEC filings are missing.",
-        "The provided fundamentals show declining multi-year revenue and EPS, weak current and quick ratios, and negative EBITDA growth.",
-        "The stock is near its supplied 52-week high, while the evidence does not independently verify demand or launch execution."
+        "No local research or SEC filing verification was provided",
+        "2026-11-23 earnings remain ahead and actual results are unavailable",
+        "Reported earnings growth and cash-flow trends are mixed, including negative recent EPS and free-cash-flow growth metrics"
       ],
-      "summary": "AI-PC announcements and estimate revisions provide support, but mature-business trends, liquidity metrics, and missing primary filings keep conviction moderate."
+      "summary": "Valuation, dividend support, and dated product/news catalysts are favorable, but the evidence does not establish durable earnings acceleration and lacks independently verified filings."
     },
     {
       "symbol": "CMG",
@@ -95,34 +98,36 @@
     },
     {
       "symbol": "T",
-      "research_score": 68,
+      "research_score": 61,
       "conviction": "Medium",
       "catalysts": [
-        "2026-09-08 coverage reports AT&T's planned integration of Amazon Leo satellite services for business customers",
-        "2026-09-08 coverage reports new smartphone offerings",
-        "Fundamentals show low valuation multiples, positive TTM EPS growth, and a high dividend yield"
+        "2026-09-09 Yahoo: AT&T CEO described a complementary relationship with Starlink",
+        "2026-09-09 Seeking Alpha: fiber growth, wireless convergence, and customer retention were cited as supports",
+        "Fundamentals show forward P/E near 9.4 and indicated dividend yield near 6.8%"
       ],
       "risks": [
-        "Local research is mislabeled WDC and VST material rather than AT&T-specific evidence",
-        "No earnings dataset, Polygon news, or ticker-specific SEC filing verification supplied",
-        "High leverage, weak multi-year revenue growth, declining free-cash-flow CAGR, and dividend-growth decline remain risks"
+        "No ticker-specific earnings packet was provided",
+        "Earnings data is missing",
+        "Local research supplied was for WDC and VST rather than AT&T",
+        "Fundamentals show declining five-year revenue and free-cash-flow growth metrics"
       ],
-      "summary": "The Amazon Leo partnership adds a dated strategic catalyst and valuation is inexpensive, but source-quality gaps, leverage, and limited structural growth reduce conviction."
+      "summary": "Low valuation and dividend yield support the candidate, while dated news frames Starlink as manageable. Company-specific earnings and verified research are missing, so conviction remains moderate."
     },
     {
       "symbol": "WBD",
-      "research_score": 42,
+      "research_score": 50,
       "conviction": "Low",
       "catalysts": [
-        "Dated Finnhub coverage reports that Paramount Skydance said merger closing conditions were satisfied and regulatory clearances covered 69 jurisdictions.",
-        "The trading data shows compression and support-quality characteristics despite a weak trend."
+        "2026-09-08 Yahoo: Paramount Skydance reported that closing conditions for the WBD merger had been satisfied and regulatory clearances covered 69 jurisdictions",
+        "Fundamentals show positive five-year revenue growth and improved recent price performance"
       ],
       "risks": [
-        "Earnings data, local research, local news, and independently verified SEC filings are missing.",
-        "Merger litigation and closing uncertainty remain material, and the evidence does not establish final completion or economic terms.",
-        "The provided fundamentals show negative trailing EPS, negative margins and returns on capital, high leverage, and declining recent revenue."
+        "No local research, SEC filing verification, Polygon news, or earnings data was provided",
+        "Merger completion and litigation status require primary filing verification",
+        "Trailing EPS and net margin are negative, while debt and valuation risks remain material",
+        "Several supplied news items concern Netflix or unrelated media topics"
       ],
-      "summary": "The merger is the principal identifiable catalyst, but legal, closing, leverage, and profitability uncertainties make the research case low conviction."
+      "summary": "The merger-related report is the only material company-specific catalyst, but its status is not independently verified in filings. Negative trailing profitability and transaction uncertainty keep conviction low."
     },
     {
       "symbol": "PFE",
@@ -141,34 +146,53 @@
     },
     {
       "symbol": "AAPL",
-      "research_score": 60,
+      "research_score": 64,
       "conviction": "Medium",
       "catalysts": [
-        "Dated Finnhub coverage identifies a 2026-09-09 product event involving expected new iPhone products, including a reported foldable model and iPhone 18 Pro.",
-        "Dated coverage describes the new CEO's first major product launch event and potential AI-enhanced Siri developments."
+        "2026-09-10 Motley Fool: Apple unveiled a premium foldable iPhone under new CEO John Ternus",
+        "2026-09-02 Zacks: CEO transition to John Ternus was described as receiving a positive market response",
+        "Fundamentals show strong margins, cash flow, and year-over-year EPS growth"
       ],
       "risks": [
-        "Earnings data, local research, local news, and independently verified SEC filings are missing.",
-        "The product details are reported expectations rather than confirmed outcomes in the supplied evidence.",
-        "The provided fundamentals show premium valuation, moderate growth, and a weak technical trend with negative recent five-day performance."
+        "No local research, SEC filing verification, or earnings date was provided",
+        "Foldable product demand, pricing, supply capacity, and competitive response remain unverified",
+        "Recent coverage notes a muted retail response and broader pressure from higher yields"
       ],
-      "summary": "A near-term product-event catalyst is clearly identified, but much of the evidence is event speculation and valuation remains demanding."
+      "summary": "The product launch and leadership transition provide dated catalysts, while fundamentals are strong. Near-term product execution and missing filing/earnings verification reduce conviction."
     },
     {
       "symbol": "BAC",
-      "research_score": 72,
+      "research_score": 76,
       "conviction": "Medium",
       "catalysts": [
-        "Dated 2026-09-07 Zacks coverage reports Q2 2026 net income of $9.1B, 15% revenue growth, an 11.2% CET1 ratio, a 14.3% dividend increase, and $17B of remaining buyback authorization.",
-        "Dated coverage describes consumer banking and wealth-management diversification as a buffer against weaker capital-markets activity.",
-        "The provided fundamentals show positive earnings growth, a forward P/E near 13.4, and positive medium-term returns."
+        "2026-09-07 Zacks: Q2 net income was reported at $9.1B, revenue grew 15%, and the quarterly dividend increased 14.3% to $0.32",
+        "2026-09-07 Zacks: $17B remained under the buyback authorization and CET1 was reported at 11.2%",
+        "Fundamentals show positive EPS growth, forward P/E near 13.5, and strong recent returns"
       ],
       "risks": [
-        "Earnings data is missing, and the packet lacks a current ticker-specific earnings date.",
-        "The evidence includes a warning that bank preferred-stock weakness may signal persistent elevated-rate concerns.",
-        "The provided fundamentals show high total-debt-to-equity and incomplete cash-flow history for evaluating capital-return sustainability."
+        "No company earnings record was supplied in the structured earnings field",
+        "Local research and SEC material supplied were unrelated to BAC or not ticker-specific",
+        "2026-09-07 Zacks noted weaker debt-capital-markets volumes, which could affect fee revenue",
+        "Higher future G-SIB capital requirements were identified as a potential headwind"
       ],
-      "summary": "Dated company-specific evidence and fundamentals are supportive, but rate sensitivity, leverage, and missing current earnings scheduling limit conviction."
+      "summary": "Dated company-specific coverage supports earnings, capital returns, and balance-sheet strength. The absence of a structured earnings record and clean ticker-specific filing packet prevents high conviction."
+    },
+    {
+      "symbol": "AMZN",
+      "research_score": 73,
+      "conviction": "Medium",
+      "catalysts": [
+        "2026-09-10 Yahoo: Amazon opened ChatGPT advertising access to its advertisers",
+        "2026-09-09 Motley Fool: AWS growth and AI infrastructure investment were cited as key drivers",
+        "2026-09-10 Yahoo: TwelveLabs video search became available through Amazon Bedrock Managed Knowledge Base"
+      ],
+      "risks": [
+        "Local research states Amazon IR earnings access was blocked and relies on secondary/public context",
+        "No structured earnings record or local SEC filing packet was provided",
+        "Reported 2026 AI capital expenditure of $220B creates return-on-investment and free-cash-flow risk",
+        "Technical candidate is WATCH with negative 5-day, 10-day, and 20-day returns"
+      ],
+      "summary": "AWS, advertising, and Bedrock ecosystem catalysts are supported by dated coverage, but the candidate has weak technical positioning and substantial capex-return uncertainty."
     }
   ]
 }
