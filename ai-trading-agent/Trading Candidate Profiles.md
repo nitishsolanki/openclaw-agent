@@ -12,14 +12,27 @@ The profiles share a common factor engine but apply different weights and filter
 
 The dashboard groups candidates by setup maturity first. Day, Swing, and Growth are profile applicability labels shown within those maturity groups.
 
-| Dashboard category | Meaning |
-| --- | --- |
-| **BUILDING** | Early setup formation. Stock quality and setup ingredients are improving, but the breakout trigger is not yet mature. |
-| **BREAKOUT** | Setup is mature and price is testing/approaching the breakout trigger; confirmation is still pending. |
-| **CONFIRMED** | Breakout has occurred and is supported by price, volume, and structure confirmation. |
-| **PULLBACK** | A previously confirmed move is retracing constructively toward support or the breakout level. |
-| **FAILED** | A Building, Breakout, or Confirmed setup has invalidated or failed its expected progression. |
-| **EXTENDED** | A state modifier indicating the stock has moved too far from an acceptable entry/risk point; it is not a separate maturity stage. |
+| User-facing category | Meaning | Priority |
+| --- | --- | --- |
+| **EARLY RADAR** | Early evidence of improvement and factor convergence, but not enough structure to qualify as Building. | Watch |
+| **BUILDING** | Multiple independent factors are converging into a constructive setup. | High |
+| **BREAKOUT** | Setup is mature and price is near/testing the trigger; confirmation is pending. | High |
+| **CONFIRMED** | Breakout has occurred and is confirmed by price, volume, and structure. | Actionable |
+| **PULLBACK** | A previously confirmed move is retracing constructively toward support or the breakout level. | Actionable |
+
+**Status modifiers — not separate maturity categories:**
+
+- `EXTENDED` — entry is too far from an acceptable risk point.
+- `FAILED` — expected setup progression failed.
+- `INVALIDATED` — setup thesis is no longer valid.
+
+The formal maturity lifecycle is therefore:
+
+```text
+EARLY RADAR → BUILDING → BREAKOUT → CONFIRMED → PULLBACK → RE-ENTRY / CONFIRMED
+```
+
+`EARLY RADAR` is an early-warning scanner state, not an approval to trade.
 
 Each candidate can show one or more applicable profiles: `Day`, `Swing`, `Growth`, or a combination such as `Day/Swing/Growth`. The profile describes how the stock scored; setup maturity describes when it may be actionable.
 
@@ -1316,6 +1329,113 @@ The same stock can legitimately appear in multiple profiles.
 
 ---
 
+# Early Radar
+
+EARLY RADAR is the scanner's **early-warning layer**. It identifies stocks where several important factors are improving, but price structure has not matured enough to call the stock BUILDING.
+
+## Early Radar Principle
+
+```text
+EARLY RADAR = improvement + convergence
+BUILDING    = convergence + structure
+BREAKOUT    = mature structure + trigger proximity
+CONFIRMED   = trigger + price/volume confirmation
+```
+
+Do not use EARLY RADAR as a BUY signal.
+
+## Early Radar Characteristics
+
+```text
+Relative strength improving
+AND Trend improving
+AND Momentum improving
+AND Sector supportive
+AND Price structure not bearish
+AND No major deterioration
+AND No excessive extension
+```
+
+EARLY RADAR should **not require resistance to be close** and should **not require a mature base**.
+
+## Early Radar Score
+
+| Component | Weight |
+| --- | ---: |
+| Relative-strength improvement | 25% |
+| Trend improvement | 20% |
+| Momentum improvement | 20% |
+| Sector strength / improvement | 15% |
+| Volume improvement | 10% |
+| Price-structure improvement | 10% |
+| **Total** | **100%** |
+
+Evaluate improvement using 5-day, 10-day, and 20-day deltas plus slope/acceleration.
+
+Suggested qualification:
+
+```text
+Radar Score >= 75
+AND At least 3 major factors improving
+AND No major bearish breakdown
+AND Extension acceptable
+```
+
+## Early Radar Search Presentation
+
+Show EARLY RADAR separately from the primary candidate list:
+
+```text
+EARLY RADAR
+────────────────────────────────────────────
+Ticker   Radar   Trend Δ   RS Δ   Momentum Δ
+PBR       86       +8      +11       +9
+SMCI      83       +6       +9      +12
+DEF       78       +7       +6       +8
+```
+
+Each radar result should show:
+
+```text
+Current State
+Radar Score
+Next State
+Why it is improving
+Key missing condition
+Factor deltas
+```
+
+For general searches, prioritize BUILDING, BREAKOUT, CONFIRMED, and PULLBACK, then show EARLY RADAR separately. For searches specifically asking what is starting to build, promote EARLY RADAR.
+
+Do not present PRE-BUILDING, BUILDING, BREAKOUT, CONFIRMED, PULLBACK, EXTENDED, FAILED, and INVALIDATED as equal filters.
+
+# Factor Improvement and Convergence
+
+Static factor strength is not sufficient for early detection. Store current score, 5-day delta, 10-day delta, 20-day delta, slope, and acceleration for major factors.
+
+Example:
+
+```text
+Stock A: RS 72 / Trend 68 / Momentum 70
+Stock B: RS 55 → 63 → 72 / Trend 58 → 63 → 68 / Momentum 52 → 61 → 70
+```
+
+Stock B is more relevant to EARLY RADAR / BUILDING because factors are improving together.
+
+## Compression
+
+Preferred Building pattern:
+
+```text
+ATR % ↓
+Bollinger width ↓
+Daily range ↓
+Volume → / ↓
+while RS ↑, Trend ↑, Momentum ↑
+```
+
+Favor **strength + compression + improving momentum** over simple recent price acceleration.
+
 # State Transition Engine
 
 The maturity engine should track both the current state and the transition toward the next state.
@@ -1543,103 +1663,58 @@ The LLM should not invent missing data.
 # Recommended Final Architecture
 
 ```text
-                    MARKET DATA
-                         |
-                         v
-                  +-------------+
-                  | FACTOR      |
-                  | ENGINE      |
-                  +------+------+
-                         |
-                         v
-              +----------------------+
-              | PROFILE ENGINE       |
-              | Day / Swing / Growth |
-              +----------+-----------+
-                         |
-                         v
-              +----------------------+
-              | SETUP DEVELOPMENT    |
-              | Trend improvement    |
-              | RS improvement       |
-              | Base quality         |
-              | Resistance           |
-              | Volume               |
-              | Volatility           |
-              | Momentum             |
-              +----------+-----------+
-                         |
-                         v
-              +----------------------+
-              | STATE ENGINE         |
-              +----------+-----------+
-                         |
-          +--------------+--------------+
-          |              |              |
-          v              v              v
-      BUILDING       BREAKOUT       CONFIRMED
-          |              |              |
-          |              |              |
-          |              +--------------+
-          |                             |
-          |                             v
-          |                         PULLBACK
-          |                             |
-          +-----------------------------+
-                         |
-                         v
-              +----------------------+
-              | STATE MODIFIERS      |
-              | EXTENDED / FAILED    |
-              | / INVALIDATED        |
-              +----------+-----------+
-                         |
-                         v
-              +----------------------+
-              | HARD GATES            |
-              +----------+-----------+
-                         |
-                         v
-              +----------------------+
-              | ENTRY TIMING ENGINE  |
-              +----------+-----------+
-                         |
-                         v
-              +----------------------+
-              | LLM CONTEXT CHECK    |
-              | News / Catalyst/Risk |
-              +----------+-----------+
-                         |
-                         v
-              +----------------------+
-              | FINAL ACTION          |
-              +----------+-----------+
-                         |
-            +------------+-------------+
-            |            |             |
-            v            v             v
-         BUY NOW     PULLBACK        WATCH
+MARKET DATA
+    ↓
+FACTOR ENGINE
+    ↓
+PROFILE ENGINE (Day / Swing / Growth)
+    ↓
+IMPROVEMENT ENGINE (deltas / slopes / acceleration)
+    ↓
+SETUP / STATE ENGINE
+    ├── EARLY RADAR
+    ├── BUILDING
+    ├── BREAKOUT
+    ├── CONFIRMED
+    └── PULLBACK
+    ↓
+STATUS MODIFIERS (EXTENDED / FAILED / INVALIDATED)
+    ↓
+HARD GATES
+    ↓
+ENTRY TIMING ENGINE
+    ↓
+LLM CONTEXT CHECK
+    ↓
+FINAL ACTION (BUY NOW / PULLBACK / WATCH)
 ```
 
-## Core Design Principle
+## User-Facing Dashboard
 
-The scanner should combine:
+Primary sections:
 
 ```text
-PROFILE QUALITY
-+
-SETUP DEVELOPMENT
-+
-STATE TRANSITION
-+
-ENTRY TIMING
-+
-RISK
+BUILDING
+BREAKOUT
+CONFIRMED
+PULLBACK
 ```
 
-A high profile score alone must not cause a BUY.
+Separate early-warning section:
 
-The scanner should prioritize stocks that are **moving toward the next actionable state**, especially BUILDING candidates that resemble an early developing setup rather than stocks that have already completed most of their move.
+```text
+EARLY RADAR
+```
+
+Status badges:
+
+```text
+EXTENDED
+FAILED
+INVALIDATED
+```
+
+The dashboard remains simple while the engine retains the full lifecycle internally.
 
 # Important Implementation Principle
 
@@ -1670,8 +1745,14 @@ previous_state
 current_state
 next_state
 state_confidence
+radar_score
 setup_development_score
 breakout_readiness
+factor_delta_5d
+factor_delta_10d
+factor_delta_20d
+convergence_score
+compression_score
 state_transition_reason
 entry_price
 stop_price
@@ -1689,7 +1770,7 @@ The first implementation should therefore be considered **Version 1**, with the 
 
 ---
 
-# Version 2 — Setup Lifecycle Architecture
+# Version 3 — Simplified Setup Lifecycle + Early Radar
 
 This version changes the scanner from primarily static candidate scoring to a **score + setup lifecycle + state-transition model**.
 

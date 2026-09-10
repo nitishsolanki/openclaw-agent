@@ -91,6 +91,19 @@ def _prepare_scan(root: Path, require_live: bool = False):
         candidates = [candidate for candidate in candidates if candidate.sector in theme["sectors"]]
     enrichments = {}
     env = load_env(root / "local.env")
+    if live and hasattr(provider, "get_premarket_snapshot"):
+        def premarket_symbol(symbol):
+            try:
+                snapshot = provider.get_premarket_snapshot(symbol)
+                # Ignore thin/insignificant moves; the daily model remains primary.
+                meaningful = abs(float(snapshot.get("gap_pct", 0))) >= 0.50 and float(snapshot.get("volume_ratio", 0)) >= 0.25
+                return symbol, {"premarket": float(snapshot.get("score", 50.0)) if meaningful else 50.0}
+            except Exception:
+                return symbol, {"premarket": 50.0}
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            for future in as_completed([executor.submit(premarket_symbol, symbol) for symbol in symbols]):
+                symbol, values = future.result()
+                enrichments[symbol] = values
     if env.get("FINNHUB_API_KEY"):
         provider = FinnhubProvider(env["FINNHUB_API_KEY"])
         def enrich_symbol(symbol):
@@ -99,9 +112,9 @@ def _prepare_scan(root: Path, require_live: bool = False):
                 calendar = provider.earnings_calendar()
                 news_score = news_confirmation(news)
                 earnings_score = earnings_risk(calendar, symbol)
-                return symbol, {"news": news_score * earnings_score / 100.0, "options": 50.0}
+                return symbol, {**enrichments.get(symbol, {}), "news": news_score * earnings_score / 100.0, "options": 50.0}
             except Exception:
-                return symbol, {"news": 50.0, "options": 50.0}
+                return symbol, {**enrichments.get(symbol, {}), "news": 50.0, "options": 50.0}
         with ThreadPoolExecutor(max_workers=8) as executor:
             futures = [executor.submit(enrich_symbol, symbol) for symbol in symbols]
             for future in as_completed(futures):

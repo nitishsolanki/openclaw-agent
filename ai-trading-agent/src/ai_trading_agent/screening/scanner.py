@@ -31,7 +31,8 @@ def extension_score(close: pd.Series, lookback: int = 50) -> float:
 def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
                     weights: dict[str, float], market_score: float = 50.0,
                     news_score: float = 50.0, options_score: float = 50.0,
-                    setup_config: dict[str, float] | None = None) -> TradeSignal:
+                    setup_config: dict[str, float] | None = None,
+                    premarket_score: float = 50.0) -> TradeSignal:
     bars = candidate.bars
     close = bars["close"]
     ema20 = close.ewm(span=20, adjust=False).mean().iloc[-1]
@@ -49,6 +50,7 @@ def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
         "sector_name": candidate.sector,
         "relative_strength": rs_score, "vwap": vwap_score, "trend": trend,
         "volume": volume_score, "momentum": momentum, "volatility": 50.0, "options": options_score,
+        "premarket": premarket_score,
     }
     if "extension" in weights:
         components["extension"] = extension_score(close)
@@ -56,6 +58,8 @@ def score_candidate(candidate: Candidate, benchmark_close: pd.Series,
     setup = evaluate_setup(bars, benchmark_close, setup_config or default_setup)
     components.update(setup)
     signal = score_signal(candidate.symbol, components, weights)
+    adjusted_score = round(float(signal.final_score) * 0.95 + premarket_score * 0.05, 2)
+    signal = replace(signal, final_score=adjusted_score)
     components["opportunity_score"] = round(float(signal.final_score) * (setup_config or default_setup)["profile_score_weight"] + float(setup["entry_timing_score"]) * (setup_config or default_setup)["early_setup_weight"], 2)
     direction = "WATCH" if setup.get("extended") or setup["setup_maturity"] == "PULLBACK" else "AVOID" if setup["setup_maturity"] == "FAILED" else signal.direction
     return replace(signal, direction=direction, components=components)
@@ -69,7 +73,8 @@ def scan(candidates: list[Candidate], benchmark_close: pd.Series,
     enrichments = enrichments or {}
     signals = (score_candidate(candidate, benchmark_close, weights, market_score,
                                enrichments.get(candidate.symbol, {}).get("news", 50.0),
-                   enrichments.get(candidate.symbol, {}).get("options", 50.0), setup_config)
+                               enrichments.get(candidate.symbol, {}).get("options", 50.0), setup_config,
+                               enrichments.get(candidate.symbol, {}).get("premarket", 50.0))
                for candidate in candidates)
     def passes_filters(signal: TradeSignal) -> bool:
         if signal.direction == "SHORT":

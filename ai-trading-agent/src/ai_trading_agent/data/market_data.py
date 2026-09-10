@@ -80,6 +80,27 @@ class AlpacaMarketData:
         bars = self.get_bars(symbol, "1D")
         return float(bars["close"].iloc[-1])
 
+    def get_premarket_snapshot(self, symbol: str) -> dict[str, float]:
+        """Return today's extended-hours movement relative to the prior daily close."""
+        from datetime import datetime, timedelta, timezone
+        from zoneinfo import ZoneInfo
+        central = datetime.now(ZoneInfo("America/Chicago"))
+        session_start = central.replace(hour=4, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
+        market_open = central.replace(hour=8, minute=30, second=0, microsecond=0).astimezone(timezone.utc)
+        end = min(datetime.now(timezone.utc), market_open)
+        if end < session_start:
+            return {"gap_pct": 0.0, "volume_ratio": 0.0, "score": 50.0}
+        bars = self.get_bars(symbol, "1Min", start=session_start, end=end)
+        if bars.empty:
+            return {"gap_pct": 0.0, "volume_ratio": 0.0, "score": 50.0}
+        daily = self.get_bars(symbol, "1D", start=end - timedelta(days=10), end=end)
+        previous_close = float(daily["close"].iloc[-2]) if len(daily) > 1 else float(bars["close"].iloc[0])
+        latest = float(bars["close"].iloc[-1])
+        gap_pct = (latest / previous_close - 1) * 100 if previous_close else 0.0
+        volume_ratio = float(bars["volume"].sum()) / max(float(daily["volume"].tail(5).mean()) / 390 * max(len(bars), 1), 1)
+        score = max(0.0, min(100.0, 50.0 + gap_pct * 12.0))
+        return {"gap_pct": round(gap_pct, 3), "volume_ratio": round(volume_ratio, 2), "score": round(score, 2)}
+
     def get_spread(self, symbol: str) -> float | None:
         try:
             import truststore

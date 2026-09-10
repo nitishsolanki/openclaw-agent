@@ -41,7 +41,7 @@ def evaluate_setup(bars: pd.DataFrame, benchmark: pd.Series, config: dict[str, f
     early = round(sum(metrics[key] * config[key] for key in metrics), 2)
     atr_extension = (price - dma20) / max(atr, .01)
     extended = ret20 >= config["extended_return_20d_pct"] or atr_extension >= config["extended_atr_multiple"]
-    confirmed = price > breakout * (1 + config["confirmed_breakout_buffer_pct"] / 100)
+    confirmed = price > breakout + atr * config.get("confirmed_breakout_atr_multiple", .5) and volume_ratio >= config.get("confirmed_volume_ratio", 1.5)
     failed = price < dma50 and ret20 < float(config.get("failed_return_20d_pct", -8)) and early < float(config.get("failed_early_score", 45))
     if failed: maturity = "FAILED"
     elif confirmed and accumulation >= 55: maturity = "CONFIRMED"

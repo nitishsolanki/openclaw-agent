@@ -6,13 +6,15 @@ DEFAULT_WEIGHTS = {
     "trend": .10, "volume": .10, "momentum": .05, "volatility": .05, "options": .05,
 }
 DEFAULT_EARLY_SETUP = {
-    "relative_strength_acceleration": .15, "trend_acceleration": .15,
-    "compression": .15, "volatility_contraction": .10,
+    "relative_strength_acceleration": .20, "trend_acceleration": .20,
+    "compression": .20, "volatility_contraction": .10,
     "volume_accumulation": .10, "breakout_distance": .15,
-    "support_quality": .10, "momentum_improvement": .10,
+    "support_quality": .00, "momentum_improvement": .05,
     "profile_score_weight": .70, "early_setup_weight": .30,
     "breakout_ready_distance_pct": 3.0, "confirmed_breakout_buffer_pct": 1.0,
+    "confirmed_breakout_atr_multiple": .5, "confirmed_volume_ratio": 1.5,
     "extended_atr_multiple": 3.0, "extended_return_20d_pct": 15.0,
+    "failed_return_20d_pct": -8.0, "failed_early_score": 45.0,
 }
 
 def load_strategy(path: str | Path) -> dict:
