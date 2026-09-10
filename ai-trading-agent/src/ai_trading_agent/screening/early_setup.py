@@ -42,10 +42,12 @@ def evaluate_setup(bars: pd.DataFrame, benchmark: pd.Series, config: dict[str, f
     atr_extension = (price - dma20) / max(atr, .01)
     extended = ret20 >= config["extended_return_20d_pct"] or atr_extension >= config["extended_atr_multiple"]
     confirmed = price > breakout * (1 + config["confirmed_breakout_buffer_pct"] / 100)
-    if extended and compression < 65: maturity = "EXTENDED"
-    elif confirmed and accumulation >= 55: maturity = "CONFIRMED_BREAKOUT"
-    elif dist_breakout <= config["breakout_ready_distance_pct"] and early >= 60: maturity = "BREAKOUT_READY"
+    failed = price < dma50 and ret20 < float(config.get("failed_return_20d_pct", -8)) and early < float(config.get("failed_early_score", 45))
+    if failed: maturity = "FAILED"
+    elif confirmed and accumulation >= 55: maturity = "CONFIRMED"
+    elif dist_breakout <= config["breakout_ready_distance_pct"] and early >= 60: maturity = "BREAKOUT"
     elif ret20 > 5 and compression >= 60 and early >= 55: maturity = "PULLBACK"
     else: maturity = "BUILDING"
     timing = round(_bounded(early - max(0, ret20 - 10) * 2 - max(0, atr_extension - 1.5) * 8), 2)
-    return {**metrics, "early_setup_score": early, "entry_timing_score": timing, "opportunity_score": round(config["profile_score_weight"] * 50 + config["early_setup_weight"] * timing, 2), "setup_maturity": maturity, "return_5d": round(ret5, 2), "return_10d": round(ret10, 2), "return_20d": round(ret20, 2), "distance_to_breakout": round(dist_breakout, 2), "atr_extension": round(atr_extension, 2), "recommendation": "WAIT" if maturity == "EXTENDED" else "WATCH" if maturity == "PULLBACK" else "PRIORITIZE"}
+    recommendation = "WAIT" if extended else "AVOID" if maturity == "FAILED" else "WATCH" if maturity == "PULLBACK" else "PRIORITIZE"
+    return {**metrics, "early_setup_score": early, "entry_timing_score": timing, "opportunity_score": round(config["profile_score_weight"] * 50 + config["early_setup_weight"] * timing, 2), "setup_maturity": maturity, "extended": extended, "return_5d": round(ret5, 2), "return_10d": round(ret10, 2), "return_20d": round(ret20, 2), "distance_to_breakout": round(dist_breakout, 2), "atr_extension": round(atr_extension, 2), "recommendation": recommendation}

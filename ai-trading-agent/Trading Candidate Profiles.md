@@ -14,11 +14,12 @@ The dashboard groups candidates by setup maturity first. Day, Swing, and Growth 
 
 | Dashboard category | Meaning |
 | --- | --- |
-| **BUILDING** | Quality and setup conditions are improving before a major move. |
-| **BREAKOUT_READY** | Price is close to resistance or a breakout trigger. |
-| **CONFIRMED_BREAKOUT** | Breakout has occurred with supporting confirmation. |
-| **PULLBACK** | Strong candidate waiting for a better entry or support test. |
-| **EXTENDED** | The stock has already moved too far for a fresh entry; normally WAIT. |
+| **BUILDING** | Early setup formation. Stock quality and setup ingredients are improving, but the breakout trigger is not yet mature. |
+| **BREAKOUT** | Setup is mature and price is testing/approaching the breakout trigger; confirmation is still pending. |
+| **CONFIRMED** | Breakout has occurred and is supported by price, volume, and structure confirmation. |
+| **PULLBACK** | A previously confirmed move is retracing constructively toward support or the breakout level. |
+| **FAILED** | A Building, Breakout, or Confirmed setup has invalidated or failed its expected progression. |
+| **EXTENDED** | A state modifier indicating the stock has moved too far from an acceptable entry/risk point; it is not a separate maturity stage. |
 
 Each candidate can show one or more applicable profiles: `Day`, `Swing`, `Growth`, or a combination such as `Day/Swing/Growth`. The profile describes how the stock scored; setup maturity describes when it may be actionable.
 
@@ -28,6 +29,61 @@ The system should separate:
 * **Setup Quality** — Is there a valid setup?
 * **Entry Timing** — Is this the right time to enter?
 * **Risk** — Is the potential reward sufficient relative to the defined stop?
+
+## Setup Lifecycle
+
+The scanner should classify both the current setup state and the direction of state transition.
+
+```text
+                         STOCK QUALITY
+                               |
+                               v
+                         +-----------+
+                         | BUILDING  |
+                         +-----+-----+
+                               |
+                         setup matures
+                               |
+                               v
+                         +-----------+
+                         | BREAKOUT  |
+                         +-----+-----+
+                               |
+                         confirmation
+                               |
+                               v
+                        +--------------+
+                        |  CONFIRMED   |
+                        +------+-------+
+                               |
+                  +------------+------------+
+                  |                         |
+             continuation                retracement
+                  |                         |
+                  v                         v
+             EXTENDED*                 PULLBACK
+                                            |
+                                      re-entry / support
+                                            |
+                                            v
+                                        CONFIRMED
+
+* EXTENDED is a state modifier, not a maturity stage.
+
+At any stage:
+    FAILED / INVALIDATED
+```
+
+The key scanner question changes from:
+
+> "Does this stock have a high score?"
+
+to:
+
+> **"What state is this stock in, is the setup improving or deteriorating, and how close is it to the next state?"**
+
+This is intended to identify developing setups earlier rather than waiting for a large move to make the stock score highly on already-confirmed breakout factors.
+
 
 A high overall score should **not automatically result in a BUY**. Hard gates must be passed first.
 
@@ -56,9 +112,11 @@ Factors not applicable to a profile have a weight of 0%.
 
 ---
 
-# Legacy Trade Decision Labels
+# Trade Action Layer
 
-The following decision labels describe trade readiness and are separate from the dashboard's five setup-maturity categories. For example, an `EXTENDED` candidate may be `BUY ON PULLBACK` or `WATCH`, but should not be treated as an immediate entry.
+Trade actions are separate from setup maturity. Maturity answers **where the setup is in its lifecycle**; the action layer answers **what to do now**.
+
+A candidate may therefore be `CONFIRMED + EXTENDED`, `BUILDING + WATCH`, or `PULLBACK + BUY NOW` depending on entry timing and risk.
 
 ## BUY NOW
 
@@ -215,27 +273,128 @@ Trend score should also consider whether the moving averages are rising.
 
 # 5. Price Setup
 
-Price setup identifies whether there is an actionable trading structure.
+Price setup identifies the structure and stage of the trade setup. It should be separated from trend and from breakout confirmation.
 
-This should be treated separately from trend.
+## Setup Development
 
-### Strong setups
+The setup-development layer identifies whether the ingredients for a future move are converging.
+
+Preferred Building characteristics:
 
 ```text
-Breakout + volume confirmation       100
-Breakout + successful retest          95
-Pullback to support + reversal        90
-Pullback to 20/50 DMA                 85
-VWAP reclaim                          85
-Tight consolidation                   80
-Range-bound                           50
-Chasing extended move                 20
-Breakdown                              0
+Strong / improving stock quality
++
+Trend constructive or improving
++
+Relative strength improving
++
+Price forming a base or controlled consolidation
++
+Identifiable resistance
++
+Volatility contracting or stabilizing
++
+Constructive volume behavior
++
+Momentum improving
+=
+BUILDING
 ```
 
-The exact scoring thresholds should be configurable.
+The scanner should **not require price to already be directly at resistance** for BUILDING.
 
----
+### Strong setup structures
+
+```text
+Tight consolidation
+Base formation
+Higher lows below resistance
+Volatility contraction
+Controlled pullback within an established trend
+Improving relative strength during consolidation
+```
+
+### Setup Development Score
+
+Use a separate score to measure how strongly the setup is converging toward a breakout:
+
+| Component | Weight |
+| --- | ---: |
+| Trend improvement | 20% |
+| Relative-strength improvement | 20% |
+| Base / consolidation quality | 20% |
+| Resistance proximity | 15% |
+| Volume behavior | 10% |
+| Volatility contraction | 10% |
+| Momentum improvement | 5% |
+| **Total** | **100%** |
+
+This score should emphasize **change and convergence**, not simply the absolute strength of the stock.
+
+## Breakout Confirmation
+
+Once a setup becomes mature, the scanner can classify it as BREAKOUT.
+
+Preferred BREAKOUT characteristics:
+
+```text
+Strong setup has developed
+AND
+Price is testing / near resistance
+AND
+Base / consolidation is mature
+AND
+Volume is beginning to expand
+AND
+Breakout trigger is within actionable range
+BUT
+confirmation is not yet complete
+```
+
+A breakout should not be considered CONFIRMED merely because price briefly trades above resistance intraday.
+
+Preferred confirmation:
+
+```text
+Close > resistance by configurable threshold
+AND
+Volume expansion
+AND
+Relative strength remains strong
+AND
+Price holds above breakout level
+AND
+No immediate rejection
+```
+
+Suggested initial configurable thresholds:
+
+```text
+Breakout close threshold >= 0.5 ATR above resistance
+RVOL >= 1.5
+Breakout volume > 20-day average
+Close remains above breakout level
+```
+
+These are starting parameters only and must be backtested.
+
+## Price Setup Scoring
+
+Use setup stage as context rather than allowing one static setup score to drive the entire classification.
+
+```text
+Confirmed breakout + volume confirmation       100
+Breakout + successful retest                    95
+Pullback to support + reversal                  90
+Pullback to 20/50 DMA                           85
+VWAP reclaim                                    85
+Tight consolidation                             80
+Range-bound                                     50
+Chasing extended move                           20
+Breakdown                                        0
+```
+
+The exact scoring thresholds should remain configurable.
 
 # 6. VWAP
 
@@ -571,16 +730,48 @@ BUY ON PULLBACK
 
 ---
 
-## Day BREAKOUT WATCH
+## Day BUILDING
 
-Use when:
+Use when an intraday candidate is developing toward a potential breakout but is not yet at the trigger.
+
+```text
+Market/sector supportive
+AND
+Strong or improving relative strength
+AND
+Constructive trend
+AND
+Intraday base / consolidation
+AND
+Resistance identifiable
+AND
+Momentum improving
+AND
+Volume constructive
+AND
+No confirmed breakout
+```
+
+The purpose is **early detection**, not immediate entry.
+
+## Day BREAKOUT
+
+Use when the Building setup has matured:
 
 ```text
 Strong trend
+AND
 Strong relative strength
-Tight consolidation
-Resistance nearby
-Volume not yet confirmed
+AND
+Mature consolidation
+AND
+Price near resistance
+AND
+Breakout trigger within actionable range
+AND
+Volume beginning to expand
+BUT
+confirmation is missing
 ```
 
 Wait for:
@@ -591,9 +782,25 @@ Resistance break
 Volume expansion
 +
 VWAP confirmation
++
+Price hold
 ```
 
----
+## Day CONFIRMED
+
+Use when:
+
+```text
+Resistance broken
+AND
+Breakout confirmation threshold passed
+AND
+Volume confirms
+AND
+VWAP / intraday structure remains supportive
+AND
+Price holds above breakout
+```
 
 ## Day Avoid Conditions
 
@@ -772,7 +979,29 @@ The stock remains a candidate but the system waits for a better entry.
 
 ---
 
-## Swing BREAKOUT WATCH
+## Swing BUILDING
+
+Use when the multi-day setup is developing before the breakout trigger is mature.
+
+```text
+Trend constructive / improving
+AND
+RS improving
+AND
+Base / consolidation quality strong
+AND
+Resistance identifiable
+AND
+Volatility contracting or stabilizing
+AND
+Volume constructive
+AND
+Momentum improving
+AND
+No confirmed breakout
+```
+
+## Swing BREAKOUT
 
 Use when:
 
@@ -784,11 +1013,27 @@ AND
 Price is near resistance
 AND
 Consolidation quality >= threshold
+AND
+Breakout trigger is actionable
 BUT
 Breakout confirmation is missing
 ```
 
----
+## Swing CONFIRMED
+
+Use when:
+
+```text
+Resistance broken
+AND
+Close confirms the breakout
+AND
+Volume expansion confirms
+AND
+RS remains strong
+AND
+Price holds above the breakout level
+```
 
 # ## Growth Top Candidates
 
@@ -981,7 +1226,29 @@ Extension is excessive
 
 ---
 
-# Growth BREAKOUT WATCH
+# Growth BUILDING
+
+Use when a technically strong growth candidate is developing a constructive base before the breakout trigger.
+
+```text
+Strong sector
++
+Strong / improving relative strength
++
+Persistent or improving trend
++
+Constructive consolidation
++
+Volatility contraction
++
+Positive momentum
++
+Constructive volume
++
+Resistance identifiable
+```
+
+## Growth BREAKOUT
 
 Use when:
 
@@ -992,14 +1259,30 @@ Strong trend
 +
 Strong sector
 +
-Tight consolidation
+Mature consolidation
 +
 Price near resistance
++
+Breakout trigger actionable
 BUT
-Breakout confirmation missing
+confirmation missing
 ```
 
----
+## Growth CONFIRMED
+
+Use when:
+
+```text
+Resistance broken
+AND
+Breakout confirmation threshold passed
+AND
+Volume confirms
+AND
+Relative strength remains strong
+AND
+Price holds above breakout
+```
 
 # Cross-Profile Ranking
 
@@ -1032,6 +1315,130 @@ Growth Ranking
 The same stock can legitimately appear in multiple profiles.
 
 ---
+
+# State Transition Engine
+
+The maturity engine should track both the current state and the transition toward the next state.
+
+## State Transition Rules
+
+### BUILDING → BREAKOUT
+
+Require a mature setup:
+
+```text
+Setup Development Score >= configurable threshold
+AND
+Resistance proximity <= configurable threshold
+AND
+Consolidation quality >= threshold
+AND
+No invalidation condition
+```
+
+### BREAKOUT → CONFIRMED
+
+Require actual confirmation:
+
+```text
+Price closes above resistance
+AND
+Breakout exceeds minimum threshold
+AND
+Volume confirms
+AND
+Relative strength remains strong
+AND
+Price does not immediately reject the breakout
+```
+
+### CONFIRMED → PULLBACK
+
+Require:
+
+```text
+Prior confirmed breakout
+AND
+Price retraces
+AND
+Pullback volume is controlled
+AND
+Breakout level / support remains intact
+AND
+Relative strength remains healthy
+AND
+Momentum stabilizes or reverses positively
+```
+
+### Any State → FAILED
+
+Example:
+
+```text
+Expected progression invalidated
+OR
+Breakout rejected
+OR
+Support decisively lost
+OR
+Relative strength deteriorates materially
+```
+
+A failed setup should be retained in historical data for backtesting.
+
+## EXTENDED State Modifier
+
+EXTENDED is not a maturity stage.
+
+It can be attached to any actionable maturity state:
+
+```text
+CONFIRMED + EXTENDED
+BREAKOUT + EXTENDED
+PULLBACK + EXTENDED
+```
+
+Apply EXTENDED when the distance from the acceptable entry/risk point becomes excessive.
+
+Example:
+
+```text
+Extension <= 1.0 ATR       Normal
+1.0–1.5 ATR                Caution
+1.5–2.0 ATR                EXTENDED
+>2.0 ATR                   HIGHLY EXTENDED
+```
+
+A stock can remain technically strong while being a poor fresh entry.
+
+## Distance to Next State
+
+Every candidate should expose:
+
+```text
+Current State
+State Confidence
+Next State
+Distance to Next State
+Setup Development Score
+Breakout Readiness
+Key Missing Condition
+```
+
+Example:
+
+```text
+Current State: BUILDING
+Next State: BREAKOUT
+Setup Development: 84
+Breakout Readiness: 78
+Resistance Distance: 1.2%
+Volume Confirmation: Pending
+Momentum: Improving
+RS: Improving
+```
+
+This allows the scanner to identify **approaching setups**, not only already-tested setups.
 
 # Entry Timing Layer
 
@@ -1139,32 +1546,54 @@ The LLM should not invent missing data.
                     MARKET DATA
                          |
                          v
-              +----------------------+
-              |  FACTOR ENGINE       |
-              |----------------------|
-              | Market               |
-              | Sector               |
-              | Relative Strength    |
-              | Trend                |
-              | Price Setup          |
-              | VWAP                 |
-              | Volume               |
-              | Momentum             |
-              | Volatility           |
-              | Extension            |
-              | Options              |
-              +----------+-----------+
+                  +-------------+
+                  | FACTOR      |
+                  | ENGINE      |
+                  +------+------+
                          |
                          v
               +----------------------+
               | PROFILE ENGINE       |
+              | Day / Swing / Growth |
+              +----------+-----------+
+                         |
+                         v
               +----------------------+
-                 /        |        \
-                /         |         \
-               v          v          v
-             DAY       SWING       GROWTH
-                \         |         /
-                 \        |        /
+              | SETUP DEVELOPMENT    |
+              | Trend improvement    |
+              | RS improvement       |
+              | Base quality         |
+              | Resistance           |
+              | Volume               |
+              | Volatility           |
+              | Momentum             |
+              +----------+-----------+
+                         |
+                         v
+              +----------------------+
+              | STATE ENGINE         |
+              +----------+-----------+
+                         |
+          +--------------+--------------+
+          |              |              |
+          v              v              v
+      BUILDING       BREAKOUT       CONFIRMED
+          |              |              |
+          |              |              |
+          |              +--------------+
+          |                             |
+          |                             v
+          |                         PULLBACK
+          |                             |
+          +-----------------------------+
+                         |
+                         v
+              +----------------------+
+              | STATE MODIFIERS      |
+              | EXTENDED / FAILED    |
+              | / INVALIDATED        |
+              +----------+-----------+
+                         |
                          v
               +----------------------+
               | HARD GATES            |
@@ -1183,16 +1612,34 @@ The LLM should not invent missing data.
                          |
                          v
               +----------------------+
-              | FINAL CLASSIFICATION |
-              +----------------------+
+              | FINAL ACTION          |
+              +----------+-----------+
                          |
-             +-----------+-----------+
-             |           |           |
-             v           v           v
-          BUY NOW    PULLBACK      WATCH
+            +------------+-------------+
+            |            |             |
+            v            v             v
+         BUY NOW     PULLBACK        WATCH
 ```
 
----
+## Core Design Principle
+
+The scanner should combine:
+
+```text
+PROFILE QUALITY
++
+SETUP DEVELOPMENT
++
+STATE TRANSITION
++
+ENTRY TIMING
++
+RISK
+```
+
+A high profile score alone must not cause a BUY.
+
+The scanner should prioritize stocks that are **moving toward the next actionable state**, especially BUILDING candidates that resemble an early developing setup rather than stocks that have already completed most of their move.
 
 # Important Implementation Principle
 
@@ -1219,6 +1666,13 @@ profile_score
 entry_timing_score
 risk_reward
 classification
+previous_state
+current_state
+next_state
+state_confidence
+setup_development_score
+breakout_readiness
+state_transition_reason
 entry_price
 stop_price
 target_price
@@ -1231,3 +1685,34 @@ maximum_adverse_excursion
 This allows the weights and thresholds to be optimized based on actual historical performance rather than assumptions.
 
 The first implementation should therefore be considered **Version 1**, with the weights and thresholds treated as configurable parameters.
+
+
+---
+
+# Version 2 — Setup Lifecycle Architecture
+
+This version changes the scanner from primarily static candidate scoring to a **score + setup lifecycle + state-transition model**.
+
+The intended lifecycle is:
+
+```text
+BUILDING
+   ↓
+BREAKOUT
+   ↓
+CONFIRMED
+   ↓
+PULLBACK
+   ↓
+RE-ENTRY / CONFIRMED
+```
+
+with independent modifiers:
+
+```text
+EXTENDED
+FAILED
+INVALIDATED
+```
+
+The numerical thresholds in this document are initial configurable values. They should be validated through historical backtesting, including state-transition outcomes, maximum favorable excursion, maximum adverse excursion, time-to-breakout, and false-breakout rates.

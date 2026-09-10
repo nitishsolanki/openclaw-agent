@@ -14,6 +14,8 @@ early_setup:
   confirmed_breakout_buffer_pct: 1.0
   extended_atr_multiple: 3.0
   extended_return_20d_pct: 15.0
+  failed_return_20d_pct: -8.0
+  failed_early_score: 45.0
 signals:
   market_regime_weight: 0.16
   sector_weight: 0.20

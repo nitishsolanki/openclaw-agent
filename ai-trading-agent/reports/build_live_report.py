@@ -75,6 +75,7 @@ def generate_report(root: Path, signals=None, research=None) -> Path:
                  "early_setup_score": item.components.get("early_setup_score", 0),
                  "entry_timing_score": item.components.get("entry_timing_score", 0),
                  "setup_maturity": item.components.get("setup_maturity", "BUILDING"),
+                 "extended": bool(item.components.get("extended", False)),
                  "opportunity_score": item.components.get("opportunity_score", item.final_score),
                  "recommendation": item.components.get("recommendation", "WATCH"),
                  "boosted_score": boosted_score(item.final_score, research.get(item.symbol)),
