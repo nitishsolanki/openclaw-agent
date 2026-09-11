@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T15:02:17.988729+00:00",
+  "generated_at": "2026-09-11T15:53:16.643937+00:00",
   "research": [
     {
       "symbol": "SMCI",
@@ -50,51 +50,57 @@
     },
     {
       "symbol": "NVDA",
-      "research_score": 71,
+      "research_score": 64,
       "conviction": "Medium",
       "catalysts": [
-        "Fundamentals show very strong revenue, EPS, margin, and cash-flow growth",
-        "2026-11-17 earnings are scheduled with an EPS estimate of 2.4659 and revenue estimate of approximately $108.1B",
-        "2026-08-13 local market news described continued AI-infrastructure demand and positive semiconductor read-through"
+        "Fundamentals show 83.38% TTM revenue growth, 125.15% TTM EPS growth, and 74.67% TTM gross margin.",
+        "2026-11-17 scheduled earnings provide a dated catalyst with an EPS estimate of 2.4659 and revenue estimate of approximately $108.13 billion.",
+        "2026-09-11 news reported a rebound after inflation data and continued discussion of AI-chip competition and export restrictions."
       ],
       "risks": [
-        "Local research states no fresh independently verified ticker-specific filing; the cited secondary index entry requires primary EDGAR confirmation",
-        "Current technical candidate is WATCH with trend score 0 and negative 20-day return",
-        "Valuation remains elevated, with forward P/E near 18.1 and EV/revenue near 17.9",
-        "Dated news also highlights higher yields, oil, geopolitical risk, and crowded AI positioning"
+        "No Polygon news was supplied.",
+        "Local SEC evidence says the reported 2026-08-26 8-K requires primary EDGAR verification.",
+        "Local research explicitly says no ticker-specific filing was independently verified in its collection window.",
+        "China export restrictions and domestic competitor pricing are material reported risks.",
+        "Technical direction is WATCH with trend score zero, weak relative strength, and negative 5- and 20-day returns."
       ],
-      "summary": "Fundamentals and the upcoming earnings event support a strong long-term research case, but the current technical setup is weak and filing verification is incomplete."
+      "summary": "Exceptional supplied fundamentals and a clear earnings catalyst are offset by unverified filing details, geopolitical/export uncertainty, and weak current technical positioning."
     },
     {
       "symbol": "HPQ",
-      "research_score": 75,
-      "conviction": "Medium",
+      "research_score": 70,
+      "conviction": "High",
       "catalysts": [
-        "2026-09-09 Zacks: enterprise PC refresh, Windows 11 adoption, and AI PC demand supported the outlook",
-        "2026-09-04 HP/GlobeNewswire: new OmniBook and OmniDesk AI products using NVIDIA technology are expected to launch in fall 2026",
-        "Fundamentals show forward P/E near 8.9 and indicated dividend yield near 3.8%"
+        "2026-09-04 HP announced new OmniBook and OmniDesk AI PCs.",
+        "2026-09-09 Zacks described AI-PC, enterprise-refresh, and Windows 11 demand as industry drivers.",
+        "2026-11-23 scheduled earnings provide a dated catalyst; EPS estimate is 0.7038 and revenue estimate is approximately $15.42 billion.",
+        "Fundamentals show 8.14% TTM revenue growth and a 3.69% TTM dividend yield."
       ],
       "risks": [
-        "No local research or SEC filing verification was provided",
-        "2026-11-23 earnings remain ahead and actual results are unavailable",
-        "Reported earnings growth and cash-flow trends are mixed, including negative recent EPS and free-cash-flow growth metrics"
+        "Earnings actuals are unavailable until the scheduled 2026-11-23 report.",
+        "No supplied local research or SEC filings.",
+        "TTM EPS declined 4.42% and EBITDA has negative five-year and interim growth.",
+        "The stock is near its 52-week high and technical support quality is scored zero."
       ],
-      "summary": "Valuation, dividend support, and dated product/news catalysts are favorable, but the evidence does not establish durable earnings acceleration and lacks independently verified filings."
+      "summary": "Positive product and industry evidence plus scheduled earnings support the research case, while declining profitability metrics and weak support reduce certainty."
     },
     {
       "symbol": "CMG",
-      "research_score": 62,
-      "conviction": "Medium",
+      "research_score": 45,
+      "conviction": "Low",
       "catalysts": [
-        "Dated Zacks coverage cites approximately 350 planned 2026 openings, digital revenue contribution, Chipotlane expansion, and international growth initiatives.",
-        "The provided fundamentals show positive multi-year revenue and EBITDA growth and strong profitability ratios."
+        "2026-09-09 Zacks reported projected Q3 earnings on 2026-10-28 with revenue growth expected at 9.35%.",
+        "2026-09-07 Zacks cited digital ordering, Chipotlane expansion, menu innovation, and planned 2026 restaurant openings.",
+        "Fundamentals show 9.31% quarterly revenue growth and 53.26% TTM ROE."
       ],
       "risks": [
-        "Earnings data, local research, local news, and independently verified SEC filings are missing.",
-        "Dated Zacks coverage assigns a Hold view and cites premium valuation, flat expected EPS, and limited full-year earnings growth.",
-        "Recent 5-day momentum is negative and the candidate has a high extension reading."
+        "No supplied local research, local news, local SEC filings, or earnings packet.",
+        "2026-09-09 Zacks reported a Hold rating and premium forward P/E of 32.26.",
+        "2026-09-05 Yahoo reported margin pressure from inflation and higher costs.",
+        "EPS declined 4.17% TTM and recent five-day return was negative 6.46%.",
+        "The supplied local research is unrelated to CMG and cannot support company-specific conclusions."
       ],
-      "summary": "Expansion and operating metrics support the business case, but premium valuation, muted earnings growth, and missing primary filings temper conviction."
+      "summary": "Operational growth evidence is offset by margin pressure, premium valuation, declining EPS, and a weak technical setup."
     },
     {
       "symbol": "T",
@@ -131,68 +137,104 @@
     },
     {
       "symbol": "PFE",
-      "research_score": 48,
+      "research_score": 38,
       "conviction": "Low",
       "catalysts": [
-        "Dated Finnhub coverage cites non-COVID growth, oncology pipeline potential, cost reductions, and an estimates-beating quarter.",
-        "The provided fundamentals show a high indicated dividend yield and recent positive 13-week performance."
+        "Fundamentals show a 6.25% TTM dividend yield and 8.43% 13-week price return.",
+        "2026-09-11 dividend-focused news identified PFE as a high-yield name."
       ],
       "risks": [
-        "Earnings data, local research, local news, and independently verified SEC filings are missing.",
-        "The provided fundamentals show sharply lower trailing EPS growth, declining long-term revenue trends, high payout ratios, and weak recent momentum.",
-        "The evidence does not quantify pipeline contributions, patent-loss timing, or cost-cutting execution."
+        "No supplied local research, local news, local SEC filings, Polygon news, or earnings packet.",
+        "TTM EPS declined 59.91%, TTM revenue declined 0.22%, and TTM operating margin is 6.79%.",
+        "TTM payout ratio is 80.25%, while PEG is negative due to declining earnings.",
+        "Recent technical returns are negative over five and ten days, with trend score zero."
       ],
-      "summary": "Income support and broad strategic themes are present, but company-specific evidence is incomplete and profitability trends remain uncertain."
+      "summary": "Income support exists, but the evidence packet lacks primary company research and shows deteriorating earnings and margins, limiting research conviction."
     },
     {
       "symbol": "AAPL",
-      "research_score": 64,
-      "conviction": "Medium",
+      "research_score": 78,
+      "conviction": "High",
       "catalysts": [
-        "2026-09-10 Motley Fool: Apple unveiled a premium foldable iPhone under new CEO John Ternus",
-        "2026-09-02 Zacks: CEO transition to John Ternus was described as receiving a positive market response",
-        "Fundamentals show strong margins, cash flow, and year-over-year EPS growth"
+        "2026-09-10 Rogers announced availability of new Apple products, including iPhone Duo and iPhone 18 Pro models.",
+        "2026-09-02 CEO transition to John Ternus was reported positively by Zacks.",
+        "Fundamentals show 14.24% TTM revenue growth and 32.61% TTM EPS growth."
       ],
       "risks": [
-        "No local research, SEC filing verification, or earnings date was provided",
-        "Foldable product demand, pricing, supply capacity, and competitive response remain unverified",
-        "Recent coverage notes a muted retail response and broader pressure from higher yields"
+        "No supplied earnings packet.",
+        "No supplied local SEC filings or local research.",
+        "Valuation is elevated, including forward P/E of 34.85 and forward PEG of 2.53.",
+        "Product-demand and launch execution remain unverified beyond the supplied news reports."
       ],
-      "summary": "The product launch and leadership transition provide dated catalysts, while fundamentals are strong. Near-term product execution and missing filing/earnings verification reduce conviction."
+      "summary": "Strong technical candidate with supportive dated product, leadership, and fundamental evidence, but missing primary earnings and SEC verification limits conviction."
     },
     {
       "symbol": "BAC",
       "research_score": 76,
-      "conviction": "Medium",
+      "conviction": "High",
       "catalysts": [
-        "2026-09-07 Zacks: Q2 net income was reported at $9.1B, revenue grew 15%, and the quarterly dividend increased 14.3% to $0.32",
-        "2026-09-07 Zacks: $17B remained under the buyback authorization and CET1 was reported at 11.2%",
-        "Fundamentals show positive EPS growth, forward P/E near 13.5, and strong recent returns"
+        "2026-09-07 Zacks reported Q2 2026 net income of $9.1 billion, a 14.3% dividend increase, healthy CET1 capital, and $17 billion of remaining buyback authorization.",
+        "2026-09-08 and 2026-09-11 Motley Fool reports identified BAC as a major Berkshire Hathaway holding.",
+        "Fundamentals show 25.82% TTM EPS growth, 99.37% TTM revenue growth, and a forward P/E of 13.49."
       ],
       "risks": [
-        "No company earnings record was supplied in the structured earnings field",
-        "Local research and SEC material supplied were unrelated to BAC or not ticker-specific",
-        "2026-09-07 Zacks noted weaker debt-capital-markets volumes, which could affect fee revenue",
-        "Higher future G-SIB capital requirements were identified as a potential headwind"
+        "No supplied earnings packet despite dated earnings claims in news.",
+        "No ticker-specific local SEC filing was supplied for BAC.",
+        "Current financial conditions and rate sensitivity remain relevant; a 2026-09-11 Seeking Alpha item described tighter conditions and possible additional rate hikes.",
+        "Some supplied articles mention BAC only incidentally rather than analyzing its operations."
       ],
-      "summary": "Dated company-specific coverage supports earnings, capital returns, and balance-sheet strength. The absence of a structured earnings record and clean ticker-specific filing packet prevents high conviction."
+      "summary": "Strongest research support among the candidates, combining favorable dated capital-return evidence with improving reported fundamentals; primary filing and earnings verification are missing."
     },
     {
       "symbol": "AMZN",
-      "research_score": 73,
+      "research_score": 72,
       "conviction": "Medium",
       "catalysts": [
-        "2026-09-10 Yahoo: Amazon opened ChatGPT advertising access to its advertisers",
-        "2026-09-09 Motley Fool: AWS growth and AI infrastructure investment were cited as key drivers",
-        "2026-09-10 Yahoo: TwelveLabs video search became available through Amazon Bedrock Managed Knowledge Base"
+        "Local research identifies AWS, advertising, fulfillment efficiency, and AI infrastructure as key business drivers.",
+        "2026-09-11 Motley Fool reported planned 2026 capital spending of $220 billion tied to AI infrastructure demand.",
+        "2026-09-11 Yahoo reported successful Prime Air drone trials and potential UK expansion.",
+        "Fundamentals show 19.62% quarterly revenue growth, 89.71% TTM EPS growth, and 30.5% TTM ROE."
       ],
       "risks": [
-        "Local research states Amazon IR earnings access was blocked and relies on secondary/public context",
-        "No structured earnings record or local SEC filing packet was provided",
-        "Reported 2026 AI capital expenditure of $220B creates return-on-investment and free-cash-flow risk",
-        "Technical candidate is WATCH with negative 5-day, 10-day, and 20-day returns"
+        "No supplied earnings packet, local news, or local SEC filing packet.",
+        "Local research states Amazon IR earnings access was blocked, so direct earnings-release verification is unavailable.",
+        "High capital intensity and weak TTM free-cash-flow valuation metrics are risks; current EV/free cash flow TTM is 115.22.",
+        "Technical direction is WATCH with trend score zero and negative 5-, 10-, and 20-day returns."
       ],
-      "summary": "AWS, advertising, and Bedrock ecosystem catalysts are supported by dated coverage, but the candidate has weak technical positioning and substantial capex-return uncertainty."
+      "summary": "Good business and fundamental evidence supports a medium research score, but the technical setup is weak and primary earnings verification is unavailable."
+    },
+    {
+      "symbol": "WMT",
+      "research_score": 35,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-11-19 scheduled earnings provide a dated catalyst with EPS estimate 0.6428 and revenue estimate of approximately $189.03 billion.",
+        "2026-09-11 Yahoo reported the six-month decline may improve the entry point."
+      ],
+      "risks": [
+        "No supplied local research, local news, local SEC filings, or Polygon news.",
+        "2026-09-11 Yahoo cited premium valuation, cost pressures, and weaker estimates.",
+        "Fundamentals show negative 13-week and 26-week returns, forward P/E of 35.99, and forward PEG of 3.68.",
+        "Technical direction is AVOID with trend and VWAP scores zero and a negative 20-day return."
+      ],
+      "summary": "Scheduled earnings are the main identifiable catalyst, but dated news and fundamentals indicate valuation and trend risks with limited supporting research."
+    },
+    {
+      "symbol": "NKE",
+      "research_score": 22,
+      "conviction": "Low",
+      "catalysts": [
+        "No company-specific positive catalyst is established in the supplied evidence.",
+        "The supplied fundamentals show a 4.39% TTM dividend yield."
+      ],
+      "risks": [
+        "No supplied NKE-specific local research, local news, local SEC filings, Polygon news, or earnings packet.",
+        "2026-09-11 Yahoo reported a 52-week low and another bearish Wall Street call.",
+        "Fundamentals show negative 13-week, 26-week, and 52-week returns; TTM revenue growth is 0.19% and five-year EPS growth is negative 10.02%.",
+        "Technical direction is AVOID with relative strength 14.33, trend and VWAP scores zero, and negative 5-, 10-, and 20-day returns.",
+        "The supplied local research concerns unrelated securities and cannot support NKE conclusions."
+      ],
+      "summary": "The candidate has weak technical and fundamental evidence, while the supplied dated news is predominantly negative and company-specific research is missing."
     }
   ]
 }

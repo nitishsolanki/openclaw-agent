@@ -1800,30 +1800,59 @@
   {
     "date": "2026-09-10",
     "scores": {
-      "Energy": 94.25,
-      "Technology": 85.36,
-      "Communication Services": 56.8,
-      "Utilities": 56.27,
-      "Industrials": 54.58,
-      "Real Estate": 54.37,
-      "Financials": 53.77,
-      "Consumer Discretionary": 53.05,
-      "Consumer Staples": 52.76,
-      "Healthcare": 52.7,
-      "Materials": 52.48
+      "Energy": 95.84,
+      "Technology": 85.92,
+      "Communication Services": 57.43,
+      "Utilities": 57.01,
+      "Industrials": 56.0,
+      "Financials": 54.64,
+      "Real Estate": 54.57,
+      "Consumer Discretionary": 53.58,
+      "Healthcare": 53.55,
+      "Materials": 53.41,
+      "Consumer Staples": 53.07
     },
     "prices": {
-      "Energy": 65.11,
-      "Technology": 185.72,
-      "Communication Services": 111.39,
-      "Utilities": 42.67,
-      "Industrials": 170.3,
-      "Real Estate": 43.08,
-      "Financials": 56.81,
-      "Consumer Discretionary": 112.23,
-      "Consumer Staples": 83.22,
-      "Healthcare": 165.72,
-      "Materials": 50.69
+      "Energy": 65.22,
+      "Technology": 185.35,
+      "Communication Services": 111.25,
+      "Utilities": 42.65,
+      "Industrials": 170.09,
+      "Financials": 56.73,
+      "Real Estate": 42.96,
+      "Consumer Discretionary": 111.92,
+      "Healthcare": 165.76,
+      "Materials": 50.66,
+      "Consumer Staples": 83.14
+    }
+  },
+  {
+    "date": "2026-09-11",
+    "scores": {
+      "Energy": 87.74,
+      "Communication Services": 85.63,
+      "Technology": 84.44,
+      "Consumer Staples": 53.54,
+      "Real Estate": 52.92,
+      "Financials": 52.85,
+      "Utilities": 52.4,
+      "Consumer Discretionary": 51.9,
+      "Materials": 51.74,
+      "Healthcare": 51.55,
+      "Industrials": 51.35
+    },
+    "prices": {
+      "Energy": 65.19,
+      "Communication Services": 112.93,
+      "Technology": 188.36,
+      "Consumer Staples": 83.34,
+      "Real Estate": 43.41,
+      "Financials": 57.16,
+      "Utilities": 42.54,
+      "Consumer Discretionary": 112.92,
+      "Materials": 51.02,
+      "Healthcare": 165.43,
+      "Industrials": 172.55
     }
   }
 ]
