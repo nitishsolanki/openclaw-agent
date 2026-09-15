@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T16:40:00.576425+00:00",
+  "generated_at": "2026-09-15T14:37:48.493511+00:00",
   "research": [
     {
       "symbol": "SMCI",
@@ -49,19 +49,21 @@
     },
     {
       "symbol": "NVDA",
-      "research_score": 64,
+      "research_score": 78,
       "conviction": "Medium",
       "catalysts": [
-        "2026-11-17 earnings are estimated at $2.5231 EPS and $111.3B revenue.",
-        "Fundamentals show 83.38% trailing revenue growth, 125.15% trailing EPS growth, and 65.17% trailing operating margin.",
-        "2026-09-12 Motley Fool highlighted NVIDIA's long-term AI strategy and ecosystem leadership."
+        "2026-09-15 Yahoo/Finnhub coverage reports a Salesforce-NVIDIA collaboration using NVIDIA Nemotron",
+        "2026-09-15 Yahoo/Finnhub coverage reports a proposed 1,024-GPU NVIDIA B300 cluster tied to a $192M commitment",
+        "2026-11-17 earnings are scheduled with revenue and EPS estimates supplied",
+        "Fundamentals show 83.38% TTM revenue growth and 125.15% TTM EPS growth"
       ],
       "risks": [
-        "2026-09-14 Yahoo reported chip stocks falling amid AI slowdown fears, higher oil, and elevated Treasury yields.",
-        "The packet notes an August 26, 2026 8-K only through a secondary index and lacks primary-document verification.",
-        "Valuation and AI-capex payback remain risks; current technical evidence is weak."
+        "Technical data classifies NVDA as WATCH with negative trend and a 8.34% five-day decline",
+        "The 2026-08-31 SEC reference is a secondary index and requires primary EDGAR verification",
+        "Fundamentals show elevated valuation, including 26.20 TTM P/E and 39.88 EV/free cash flow",
+        "Recent AI leadership remains exposed to high expectations and profit-taking"
       ],
-      "summary": "Fundamentals and the upcoming earnings catalyst are strong, but near-term AI-slowdown concerns, valuation sensitivity, and filing-verification gaps support watch status rather than high conviction."
+      "summary": "Company evidence and fundamentals are strong, but the current technical setup is poor and valuation and filing-verification risks argue for watchlist treatment."
     },
     {
       "symbol": "HPQ",
@@ -101,20 +103,19 @@
     },
     {
       "symbol": "T",
-      "research_score": 61,
-      "conviction": "Medium",
+      "research_score": 42,
+      "conviction": "Low",
       "catalysts": [
-        "2026-09-09 Yahoo: AT&T CEO described a complementary relationship with Starlink",
-        "2026-09-09 Seeking Alpha: fiber growth, wireless convergence, and customer retention were cited as supports",
-        "Fundamentals show forward P/E near 9.4 and indicated dividend yield near 6.8%"
+        "2026-09-15 Yahoo/Finnhub coverage reports AT&T management is not highly concerned about Starlink competition",
+        "2026-09-14 Yahoo/Finnhub coverage reports AT&T fiber expansion and 2026 capital investment of $23B-$24B"
       ],
       "risks": [
-        "No ticker-specific earnings packet was provided",
-        "Earnings data is missing",
-        "Local research supplied was for WDC and VST rather than AT&T",
-        "Fundamentals show declining five-year revenue and free-cash-flow growth metrics"
+        "Local research is mismatched and covers WDC, not T",
+        "No ticker-specific earnings evidence was supplied",
+        "No independently verified fresh SEC filing was supplied",
+        "2026-09-14 Yahoo/Finnhub coverage raises concerns about capital intensity and limited remaining free cash flow after shareholder returns"
       ],
-      "summary": "Low valuation and dividend yield support the candidate, while dated news frames Starlink as manageable. Company-specific earnings and verified research are missing, so conviction remains moderate."
+      "summary": "The technical setup is strong, but company-specific evidence is limited and the local research packet is for another company. Fiber investment is a catalyst, while capital intensity remains a concern."
     },
     {
       "symbol": "WBD",
@@ -131,33 +132,37 @@
     },
     {
       "symbol": "PFE",
-      "research_score": 38,
-      "conviction": "Low",
+      "research_score": 55,
+      "conviction": "Medium",
       "catalysts": [
-        "Fundamentals show a 6.25% TTM dividend yield and 8.43% 13-week price return.",
-        "2026-09-11 dividend-focused news identified PFE as a high-yield name."
+        "2026-09-15 Yahoo/Finnhub coverage reports Pfizer is evaluating Phase 1-2 oncology deals",
+        "2026-09-15 Yahoo/Finnhub coverage highlights pipeline and obesity plans",
+        "Fundamentals show 6.19% trailing dividend yield and 8.64 forward P/E"
       ],
       "risks": [
-        "No supplied local research, local news, local SEC filings, Polygon news, or earnings packet.",
-        "TTM EPS declined 59.91%, TTM revenue declined 0.22%, and TTM operating margin is 6.79%.",
-        "TTM payout ratio is 80.25%, while PEG is negative due to declining earnings.",
-        "Recent technical returns are negative over five and ten days, with trend score zero."
+        "2026-09-15 Yahoo/Finnhub coverage indicates management expects a return to growth from 2029",
+        "TTM EPS is down 59.91% year over year",
+        "No local research, earnings, or SEC filing evidence was supplied",
+        "TTM payout ratio is 80.25% and five-year FOCF CAGR is negative"
       ],
-      "summary": "Income support exists, but the evidence packet lacks primary company research and shows deteriorating earnings and margins, limiting research conviction."
+      "summary": "Low valuation and high income support a recovery thesis, but declining earnings, weak recent momentum, and dependence on future pipeline execution limit conviction."
     },
     {
       "symbol": "AAPL",
-      "research_score": 67,
+      "research_score": 68,
       "conviction": "Medium",
       "catalysts": [
-        "2026-09-14 Yahoo reported Apple had its strongest June quarter, though details were not provided in the packet.",
-        "2026-09-14 Yahoo reported a potential foldable iPhone launch and a TrendForce estimate of approximately 5 million 2026 shipments."
+        "2026-09-15 Yahoo/Finnhub coverage reports increasing iPhone 18 pre-order wait times",
+        "2026-09-15 Yahoo/Finnhub coverage reports the iOS 27 Siri AI update",
+        "2026-09-15 Yahoo/Finnhub coverage reports Apple TV receiving 29 Emmy wins"
       ],
       "risks": [
-        "2026-09-14 Motley Fool cited elevated broader-market valuations and valuation risk affecting large technology stocks.",
-        "Earnings, local research, and SEC filing sources are missing; foldable-phone claims are reported forecasts rather than company guidance."
+        "No local research, earnings, or SEC filing evidence was supplied",
+        "2026-09-15 Benzinga coverage reports slow Siri response times and usage caps",
+        "2026-09-15 Seeking Alpha coverage questions whether the iPhone cycle supports the valuation",
+        "Fundamentals show elevated valuation, including 34.85 forward P/E"
       ],
-      "summary": "News provides possible product catalysts and a positive earnings reference, but company-specific detail and current earnings evidence are limited."
+      "summary": "Strong technical performance and favorable iPhone-demand commentary support the candidate, but premium valuation, mixed Siri commentary, and missing primary earnings and filing evidence reduce conviction."
     },
     {
       "symbol": "BAC",
@@ -178,21 +183,20 @@
     },
     {
       "symbol": "AMZN",
-      "research_score": 72,
+      "research_score": 70,
       "conviction": "Medium",
       "catalysts": [
-        "Local research identifies AWS, advertising, fulfillment efficiency, and AI infrastructure as key business drivers.",
-        "2026-09-11 Motley Fool reported planned 2026 capital spending of $220 billion tied to AI infrastructure demand.",
-        "2026-09-11 Yahoo reported successful Prime Air drone trials and potential UK expansion.",
-        "Fundamentals show 19.62% quarterly revenue growth, 89.71% TTM EPS growth, and 30.5% TTM ROE."
+        "Local research identifies AWS AI services, advertising, and retail efficiency as key growth areas",
+        "2026-09-15 Yahoo/Finnhub coverage discusses Amazon's Anthropic investment exposure",
+        "Fundamentals show 19.62% quarterly revenue growth and 89.71% TTM EPS growth"
       ],
       "risks": [
-        "No supplied earnings packet, local news, or local SEC filing packet.",
-        "Local research states Amazon IR earnings access was blocked, so direct earnings-release verification is unavailable.",
-        "High capital intensity and weak TTM free-cash-flow valuation metrics are risks; current EV/free cash flow TTM is 115.22.",
-        "Technical direction is WATCH with trend score zero and negative 5-, 10-, and 20-day returns."
+        "2026-09-15 Yahoo/Finnhub coverage reports AWS access disruptions at facilities in Bahrain and the UAE",
+        "Local research says the Amazon IR earnings page was inaccessible",
+        "No fresh ticker-specific earnings release or SEC filing was supplied",
+        "Fundamentals show negative five-year FOCF CAGR of 21.57%, indicating cash-flow uncertainty during heavy investment"
       ],
-      "summary": "Good business and fundamental evidence supports a medium research score, but the technical setup is weak and primary earnings verification is unavailable."
+      "summary": "The evidence supports a diversified AWS, advertising, and retail thesis, but the technical setup is weak and AWS disruption, capex intensity, and missing primary-source verification limit conviction."
     },
     {
       "symbol": "WMT",
@@ -257,33 +261,55 @@
     },
     {
       "symbol": "CCL",
-      "research_score": 49,
+      "research_score": 48,
       "conviction": "Low",
       "catalysts": [
-        "2026-09-08 Zacks reported 93% of 2026 business booked at record pricing, $9B of customer deposits, and expectations for record H2 2026 yields.",
-        "2026-09-07 Zacks cited a positive earnings ESP and a history of recent estimate beats."
+        "2026-09-14 Yahoo/Finnhub coverage says the fiscal 2026 EBITDA outlook above $7B remains intact",
+        "2026-09-13 Benzinga reports Wells Fargo maintained Overweight while lowering its price target to $36",
+        "Fundamentals show 21.77% TTM EPS growth and 11.13 forward P/E"
       ],
       "risks": [
-        "2026-09-09 Zacks reported a 16.1% monthly decline tied to European travel demand and geopolitical uncertainty.",
-        "2026-09-08 Zacks projected a 4.9% year-over-year EPS decline despite modest revenue growth.",
-        "Earnings, local research, local news, and SEC filing sources are missing; leverage and liquidity metrics are comparatively weak."
+        "Technical data classifies CCL as AVOID with negative five-, ten-, and twenty-day returns",
+        "2026-09-14 Yahoo/Finnhub coverage cites Caribbean pricing pressure",
+        "Quarterly debt-to-equity is 1.92",
+        "Quarterly current ratio is 0.33 and quick ratio is 0.22",
+        "No local research, earnings, or SEC filing evidence was supplied"
       ],
-      "summary": "Forward bookings and pricing are constructive, but recent underperformance, geopolitical demand risk, projected EPS decline, and leverage concerns support the avoid classification."
+      "summary": "EBITDA guidance and valuation provide possible recovery support, but severe technical deterioration, pricing pressure, leverage, and weak liquidity outweigh the catalysts."
     },
     {
       "symbol": "PCG",
-      "research_score": 35,
+      "research_score": 45,
       "conviction": "Low",
       "catalysts": [
-        "2026-09-03 Yahoo reported a Google-backed virtual power-plant proof of concept with PG&E."
+        "2026-09-12 Yahoo/Finnhub coverage reports Google's backing of PG&E's virtual power plant program",
+        "2026-09-15 Seeking Alpha coverage describes a capital plan exceeding $70B through 2030 and targeted high-single-digit EPS growth",
+        "Fundamentals show 24.89% TTM EPS growth and 9.54 TTM P/E"
       ],
       "risks": [
-        "2026-09-14 Fintel reported a 12.41% reduction in the consensus price target to $20.15.",
-        "Yahoo reported Consumer Watchdog criticism regarding infrastructure spending and a proposed bailout.",
-        "Fundamentals show substantial relative and year-to-date underperformance, high debt-to-equity, and weak cash-flow metrics.",
-        "Earnings, local research, Polygon news, and SEC filing sources are missing."
+        "Technical data classifies PCG as AVOID with negative five-, ten-, and twenty-day returns",
+        "2026-09-12 Fintel coverage reports a 12.41% decline in the consensus price target to $20.15",
+        "Quarterly debt-to-equity is 1.89 and interest coverage is 1.97",
+        "Cash-flow data is volatile and no local research, earnings, or SEC filing evidence was supplied"
       ],
-      "summary": "A virtual-power-plant initiative is a limited catalyst, while target cuts, criticism, weak price action, leverage, and missing verification produce low research support."
+      "summary": "The capital plan, virtual-power-plant initiative, and reported EPS growth are potential positives, but severe technical weakness, leverage, low interest coverage, and limited primary-source evidence support low conviction."
+    },
+    {
+      "symbol": "CMCSA",
+      "research_score": 52,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-09-15 Yahoo/Finnhub coverage reports Universal Ads expanding creator-led streaming inventory",
+        "2026-09-15 Yahoo/Finnhub coverage reports Comcast broadband expansion and an AI-focused edge platform",
+        "Fundamentals show 8.94 EV/free cash flow and 5.45% trailing dividend yield"
+      ],
+      "risks": [
+        "Technical data shows WATCH status, negative trend, and weak relative strength",
+        "TTM EPS is down 49.00% year over year",
+        "No local research, earnings, or SEC filing evidence was supplied",
+        "TTM revenue growth is 0.58% and quarterly EPS is down 66.91%"
+      ],
+      "summary": "Low valuation and new advertising and edge initiatives are positives, but weak growth, declining earnings, and poor technical structure keep conviction low."
     }
   ]
 }
