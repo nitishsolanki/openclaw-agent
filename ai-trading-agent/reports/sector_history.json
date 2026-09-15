@@ -1829,30 +1829,59 @@
   {
     "date": "2026-09-11",
     "scores": {
-      "Energy": 87.74,
-      "Communication Services": 85.63,
-      "Technology": 84.44,
-      "Consumer Staples": 53.54,
-      "Real Estate": 52.92,
-      "Financials": 52.85,
-      "Utilities": 52.4,
-      "Consumer Discretionary": 51.9,
-      "Materials": 51.74,
-      "Healthcare": 51.55,
-      "Industrials": 51.35
+      "Energy": 89.77,
+      "Communication Services": 88.54,
+      "Technology": 86.66,
+      "Real Estate": 55.97,
+      "Financials": 55.19,
+      "Consumer Staples": 54.57,
+      "Consumer Discretionary": 53.96,
+      "Utilities": 53.88,
+      "Healthcare": 53.15,
+      "Materials": 52.9,
+      "Industrials": 52.82
     },
     "prices": {
-      "Energy": 65.19,
-      "Communication Services": 112.93,
-      "Technology": 188.36,
-      "Consumer Staples": 83.34,
-      "Real Estate": 43.41,
-      "Financials": 57.16,
-      "Utilities": 42.54,
-      "Consumer Discretionary": 112.92,
-      "Materials": 51.02,
-      "Healthcare": 165.43,
-      "Industrials": 172.55
+      "Energy": 64.98,
+      "Communication Services": 112.64,
+      "Technology": 188.04,
+      "Real Estate": 43.43,
+      "Financials": 57.23,
+      "Consumer Staples": 83.42,
+      "Consumer Discretionary": 113.02,
+      "Utilities": 42.44,
+      "Healthcare": 165.31,
+      "Materials": 50.91,
+      "Industrials": 172.42
+    }
+  },
+  {
+    "date": "2026-09-14",
+    "scores": {
+      "Energy": 89.73,
+      "Communication Services": 86.97,
+      "Financials": 57.14,
+      "Healthcare": 56.14,
+      "Consumer Staples": 56.07,
+      "Utilities": 54.65,
+      "Real Estate": 54.44,
+      "Technology": 54.14,
+      "Materials": 54.07,
+      "Consumer Discretionary": 53.77,
+      "Industrials": 53.61
+    },
+    "prices": {
+      "Energy": 65.05,
+      "Communication Services": 114.94,
+      "Financials": 57.28,
+      "Healthcare": 167.71,
+      "Consumer Staples": 84.59,
+      "Utilities": 41.95,
+      "Real Estate": 43.3,
+      "Technology": 184.87,
+      "Materials": 50.6,
+      "Consumer Discretionary": 112.88,
+      "Industrials": 169.7
     }
   }
 ]

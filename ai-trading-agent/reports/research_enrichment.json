@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T15:53:16.643937+00:00",
+  "generated_at": "2026-09-14T16:40:00.576425+00:00",
   "research": [
     {
       "symbol": "SMCI",
@@ -35,36 +35,33 @@
     },
     {
       "symbol": "HPE",
-      "research_score": 82,
-      "conviction": "High",
+      "research_score": 78,
+      "conviction": "Medium",
       "catalysts": [
-        "2026-09-09 Zacks: Q3 revenue rose 33.7% year over year to $12.21B and adjusted EPS was $1.11 versus $0.95 estimate",
-        "2026-09-09 Zacks: full-year guidance was raised, with reported AI/server and networking growth"
+        "2026-09-10 Zacks reported $2.4B AI Systems orders, $7.6B AI backlog, 25% Cloud & AI revenue growth, and 35% server revenue growth.",
+        "2026-09-09 Zacks reported 34% quarterly revenue growth and 75% networking revenue growth."
       ],
       "risks": [
-        "No local research or SEC filing verification was provided",
-        "2026-12-02 earnings remain ahead and actual results are unavailable",
-        "Reported networking growth includes post-Juniper acquisition effects"
+        "2026-09-14 Yahoo/Investing.com reported Evercore ISI cut HPE to In Line after the sharp rally.",
+        "Local research and SEC filing sources are missing; upcoming 2026-12-02 earnings remain unreported."
       ],
-      "summary": "Company-specific dated news and fundamentals support the long setup, with strong reported growth and raised guidance. Missing independently verified SEC filings and upcoming earnings results limit certainty."
+      "summary": "Strong dated AI-infrastructure and operating-growth evidence supports the long thesis, but recent appreciation, an analyst downgrade, and missing issuer-level research limit conviction."
     },
     {
       "symbol": "NVDA",
       "research_score": 64,
       "conviction": "Medium",
       "catalysts": [
-        "Fundamentals show 83.38% TTM revenue growth, 125.15% TTM EPS growth, and 74.67% TTM gross margin.",
-        "2026-11-17 scheduled earnings provide a dated catalyst with an EPS estimate of 2.4659 and revenue estimate of approximately $108.13 billion.",
-        "2026-09-11 news reported a rebound after inflation data and continued discussion of AI-chip competition and export restrictions."
+        "2026-11-17 earnings are estimated at $2.5231 EPS and $111.3B revenue.",
+        "Fundamentals show 83.38% trailing revenue growth, 125.15% trailing EPS growth, and 65.17% trailing operating margin.",
+        "2026-09-12 Motley Fool highlighted NVIDIA's long-term AI strategy and ecosystem leadership."
       ],
       "risks": [
-        "No Polygon news was supplied.",
-        "Local SEC evidence says the reported 2026-08-26 8-K requires primary EDGAR verification.",
-        "Local research explicitly says no ticker-specific filing was independently verified in its collection window.",
-        "China export restrictions and domestic competitor pricing are material reported risks.",
-        "Technical direction is WATCH with trend score zero, weak relative strength, and negative 5- and 20-day returns."
+        "2026-09-14 Yahoo reported chip stocks falling amid AI slowdown fears, higher oil, and elevated Treasury yields.",
+        "The packet notes an August 26, 2026 8-K only through a secondary index and lacks primary-document verification.",
+        "Valuation and AI-capex payback remain risks; current technical evidence is weak."
       ],
-      "summary": "Exceptional supplied fundamentals and a clear earnings catalyst are offset by unverified filing details, geopolitical/export uncertainty, and weak current technical positioning."
+      "summary": "Fundamentals and the upcoming earnings catalyst are strong, but near-term AI-slowdown concerns, valuation sensitivity, and filing-verification gaps support watch status rather than high conviction."
     },
     {
       "symbol": "HPQ",
@@ -121,19 +118,16 @@
     },
     {
       "symbol": "WBD",
-      "research_score": 50,
+      "research_score": 45,
       "conviction": "Low",
       "catalysts": [
-        "2026-09-08 Yahoo: Paramount Skydance reported that closing conditions for the WBD merger had been satisfied and regulatory clearances covered 69 jurisdictions",
-        "Fundamentals show positive five-year revenue growth and improved recent price performance"
+        "2026-09-13 SeekingAlpha discussed the Paramount-Warner merger and argued WBD could prevail in court."
       ],
       "risks": [
-        "No local research, SEC filing verification, Polygon news, or earnings data was provided",
-        "Merger completion and litigation status require primary filing verification",
-        "Trailing EPS and net margin are negative, while debt and valuation risks remain material",
-        "Several supplied news items concern Netflix or unrelated media topics"
+        "Merger outcome, timing, and regulatory or antitrust consequences are unresolved.",
+        "Fundamentals, earnings, Polygon news, local research, and SEC filing sources are missing."
       ],
-      "summary": "The merger-related report is the only material company-specific catalyst, but its status is not independently verified in filings. Negative trailing profitability and transaction uncertainty keep conviction low."
+      "summary": "The merger is the only material company-specific catalyst in the packet, while the unresolved transaction and weak recent operating evidence create substantial uncertainty."
     },
     {
       "symbol": "PFE",
@@ -153,20 +147,17 @@
     },
     {
       "symbol": "AAPL",
-      "research_score": 78,
-      "conviction": "High",
+      "research_score": 67,
+      "conviction": "Medium",
       "catalysts": [
-        "2026-09-10 Rogers announced availability of new Apple products, including iPhone Duo and iPhone 18 Pro models.",
-        "2026-09-02 CEO transition to John Ternus was reported positively by Zacks.",
-        "Fundamentals show 14.24% TTM revenue growth and 32.61% TTM EPS growth."
+        "2026-09-14 Yahoo reported Apple had its strongest June quarter, though details were not provided in the packet.",
+        "2026-09-14 Yahoo reported a potential foldable iPhone launch and a TrendForce estimate of approximately 5 million 2026 shipments."
       ],
       "risks": [
-        "No supplied earnings packet.",
-        "No supplied local SEC filings or local research.",
-        "Valuation is elevated, including forward P/E of 34.85 and forward PEG of 2.53.",
-        "Product-demand and launch execution remain unverified beyond the supplied news reports."
+        "2026-09-14 Motley Fool cited elevated broader-market valuations and valuation risk affecting large technology stocks.",
+        "Earnings, local research, and SEC filing sources are missing; foldable-phone claims are reported forecasts rather than company guidance."
       ],
-      "summary": "Strong technical candidate with supportive dated product, leadership, and fundamental evidence, but missing primary earnings and SEC verification limits conviction."
+      "summary": "News provides possible product catalysts and a positive earnings reference, but company-specific detail and current earnings evidence are limited."
     },
     {
       "symbol": "BAC",
@@ -205,36 +196,94 @@
     },
     {
       "symbol": "WMT",
-      "research_score": 35,
+      "research_score": 48,
       "conviction": "Low",
       "catalysts": [
-        "2026-11-19 scheduled earnings provide a dated catalyst with EPS estimate 0.6428 and revenue estimate of approximately $189.03 billion.",
-        "2026-09-11 Yahoo reported the six-month decline may improve the entry point."
+        "2026-11-19 earnings are estimated at $0.6438 EPS and $189.2B revenue.",
+        "2026-09-14 Yahoo described Walmart as having defensive scale and e-commerce momentum."
       ],
       "risks": [
-        "No supplied local research, local news, local SEC filings, or Polygon news.",
-        "2026-09-11 Yahoo cited premium valuation, cost pressures, and weaker estimates.",
-        "Fundamentals show negative 13-week and 26-week returns, forward P/E of 35.99, and forward PEG of 3.68.",
-        "Technical direction is AVOID with trend and VWAP scores zero and a negative 20-day return."
+        "2026-09-14 Yahoo reported concerns that AI shopping assistants may steer consumers toward imported products, creating potential retail-policy and sourcing uncertainty.",
+        "Fundamentals show negative 13-week and 26-week returns, declining free-cash-flow CAGR, and a forward P/E near 36.",
+        "Local research, news, and SEC filing sources are missing."
       ],
-      "summary": "Scheduled earnings are the main identifiable catalyst, but dated news and fundamentals indicate valuation and trend risks with limited supporting research."
+      "summary": "Defensive scale and a scheduled earnings catalyst provide support, but valuation, relative underperformance, and limited company-specific evidence keep research conviction low."
     },
     {
       "symbol": "NKE",
-      "research_score": 22,
+      "research_score": 32,
       "conviction": "Low",
       "catalysts": [
-        "No company-specific positive catalyst is established in the supplied evidence.",
-        "The supplied fundamentals show a 4.39% TTM dividend yield."
+        "The packet contains no clearly verified positive company-specific catalyst beyond ongoing brand and campus-marketing activity."
       ],
       "risks": [
-        "No supplied NKE-specific local research, local news, local SEC filings, Polygon news, or earnings packet.",
-        "2026-09-11 Yahoo reported a 52-week low and another bearish Wall Street call.",
-        "Fundamentals show negative 13-week, 26-week, and 52-week returns; TTM revenue growth is 0.19% and five-year EPS growth is negative 10.02%.",
-        "Technical direction is AVOID with relative strength 14.33, trend and VWAP scores zero, and negative 5-, 10-, and 20-day returns.",
-        "The supplied local research concerns unrelated securities and cannot support NKE conclusions."
+        "2026-09-14 Yahoo reported Nike was downgraded; Benzinga reported Citi maintained Neutral and lowered its target to $39.",
+        "2026-09-14 Yahoo described Nike as more than 75% below its high and facing major challenges.",
+        "Fundamentals show negative multi-period returns, declining earnings and EBITDA trends, and weak revenue growth.",
+        "Earnings and Polygon news sources are missing."
       ],
-      "summary": "The candidate has weak technical and fundamental evidence, while the supplied dated news is predominantly negative and company-specific research is missing."
+      "summary": "The evidence is predominantly negative, with analyst caution, severe relative underperformance, and deteriorating growth indicators supporting the avoid classification."
+    },
+    {
+      "symbol": "F",
+      "research_score": 62,
+      "conviction": "Medium",
+      "catalysts": [
+        "2026-09-14 Motley Fool cited Ford Pro strength, raised outlook, approximately $3.5B adjusted free cash flow, and an 8.4x forward P/E.",
+        "2026-09-14 Yahoo reported a planned $1B Kentucky Truck Plant paint-shop investment."
+      ],
+      "risks": [
+        "2026-09-03 Zacks reported a recall affecting 148,663 Mustang vehicles, with repairs expected by March 2027.",
+        "2026-09-06 Motley Fool highlighted mature-market demand, thin margins, cyclicality, and high capital requirements.",
+        "The packet contains no Ford earnings release or independently verified ticker-specific SEC filing."
+      ],
+      "summary": "Low valuation and commercial-vehicle strength support the research case, but losses, recall exposure, cyclical fundamentals, and weak technical trend reduce conviction."
+    },
+    {
+      "symbol": "NFLX",
+      "research_score": 70,
+      "conviction": "Medium",
+      "catalysts": [
+        "2026-09-13 Motley Fool cited 13.4% revenue growth, approximately $11B trailing free cash flow, buybacks, advertising expansion, and sports-rights investment.",
+        "2026-09-10 Motley Fool cited advertising-tier growth and projected 2026 advertising revenue of approximately $3B.",
+        "2026-09-14 Benzinga reported Evercore maintained Outperform and raised its price target to $110."
+      ],
+      "risks": [
+        "The packet lacks current earnings, local research, and SEC filing sources.",
+        "2026-09-14 Motley Fool noted streaming competition and referenced Netflix only as a competitor in a broader media comparison.",
+        "Technical data show negative 5-day, 10-day, and 20-day returns and weak trend."
+      ],
+      "summary": "Dated third-party evidence supports cash flow, advertising, and strategic execution, but missing issuer-level verification and weak technical conditions limit conviction."
+    },
+    {
+      "symbol": "CCL",
+      "research_score": 49,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-09-08 Zacks reported 93% of 2026 business booked at record pricing, $9B of customer deposits, and expectations for record H2 2026 yields.",
+        "2026-09-07 Zacks cited a positive earnings ESP and a history of recent estimate beats."
+      ],
+      "risks": [
+        "2026-09-09 Zacks reported a 16.1% monthly decline tied to European travel demand and geopolitical uncertainty.",
+        "2026-09-08 Zacks projected a 4.9% year-over-year EPS decline despite modest revenue growth.",
+        "Earnings, local research, local news, and SEC filing sources are missing; leverage and liquidity metrics are comparatively weak."
+      ],
+      "summary": "Forward bookings and pricing are constructive, but recent underperformance, geopolitical demand risk, projected EPS decline, and leverage concerns support the avoid classification."
+    },
+    {
+      "symbol": "PCG",
+      "research_score": 35,
+      "conviction": "Low",
+      "catalysts": [
+        "2026-09-03 Yahoo reported a Google-backed virtual power-plant proof of concept with PG&E."
+      ],
+      "risks": [
+        "2026-09-14 Fintel reported a 12.41% reduction in the consensus price target to $20.15.",
+        "Yahoo reported Consumer Watchdog criticism regarding infrastructure spending and a proposed bailout.",
+        "Fundamentals show substantial relative and year-to-date underperformance, high debt-to-equity, and weak cash-flow metrics.",
+        "Earnings, local research, Polygon news, and SEC filing sources are missing."
+      ],
+      "summary": "A virtual-power-plant initiative is a limited catalyst, while target cuts, criticism, weak price action, leverage, and missing verification produce low research support."
     }
   ]
 }
