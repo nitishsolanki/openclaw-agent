@@ -1,21 +1,22 @@
 {
-  "generated_at": "2026-09-15T14:37:48.493511+00:00",
+  "generated_at": "2026-09-16T15:01:59.461827+00:00",
   "research": [
     {
       "symbol": "SMCI",
-      "research_score": 47,
+      "research_score": 55,
       "conviction": "Low",
       "catalysts": [
-        "Fundamentals show strong reported revenue and EPS growth",
-        "2026-08-13 local market news identified positive AI-infrastructure read-through from Applied Materials results"
+        "The supplied fundamentals report strong recent revenue and EPS growth and a forward P/E below 9.",
+        "2026-08-13 local market notes described Applied Materials' results as a positive read-through for AI infrastructure, servers, and storage.",
+        "Local research identifies continued AI and data-center spending as a potential demand catalyst."
       ],
       "risks": [
-        "No ticker-specific earnings data was provided",
-        "Local SEC review states no independently verified fresh filing",
-        "Recent dated news includes analyst caution, underperformance concerns, and a reported $7.7M insider sale",
-        "Gross margins are low and cash-flow fields are inconsistent across periods"
+        "No fresh ticker-specific SEC filing was independently verified in the supplied 2026-08-13 and 2026-08-26 notes.",
+        "No earnings entry or polygon news was supplied.",
+        "Recent trading evidence is weak: five-day return -8.74%, 52-week return -18.36%, and high reported volatility and beta.",
+        "Local research is dated 2026-08-12 and explicitly requires fresh company-level verification of valuation, customers, backlog, margins, cash burn, and filings."
       ],
-      "summary": "Technical momentum and AI-infrastructure exposure are supported, but company-specific evidence is weak and includes governance, insider-activity, valuation, and data-quality uncertainty."
+      "summary": "Fundamentals and AI infrastructure exposure are potentially supportive, but the current evidence is stale, filing and earnings verification is absent, and recent price deterioration materially lowers research conviction."
     },
     {
       "symbol": "INTC",
@@ -67,21 +68,19 @@
     },
     {
       "symbol": "HPQ",
-      "research_score": 70,
-      "conviction": "High",
+      "research_score": 72,
+      "conviction": "Medium",
       "catalysts": [
-        "2026-09-04 HP announced new OmniBook and OmniDesk AI PCs.",
-        "2026-09-09 Zacks described AI-PC, enterprise-refresh, and Windows 11 demand as industry drivers.",
-        "2026-11-23 scheduled earnings provide a dated catalyst; EPS estimate is 0.7038 and revenue estimate is approximately $15.42 billion.",
-        "Fundamentals show 8.14% TTM revenue growth and a 3.69% TTM dividend yield."
+        "2026-09-16 Zacks reported HPQ added to Rank #1 Strong Buy list after an 8.4% increase in consensus earnings estimates over 60 days.",
+        "2026-11-23 reported earnings date with EPS estimate of $0.761 and revenue estimate of $15.60B.",
+        "Fundamentals show positive quarterly and TTM revenue growth, a 3.6% TTM dividend yield, and moderate forward valuation."
       ],
       "risks": [
-        "Earnings actuals are unavailable until the scheduled 2026-11-23 report.",
-        "No supplied local research or SEC filings.",
-        "TTM EPS declined 4.42% and EBITDA has negative five-year and interim growth.",
-        "The stock is near its 52-week high and technical support quality is scored zero."
+        "No local research or ticker-specific SEC filing was supplied.",
+        "Fundamentals show declining TTM EPS growth, negative five-year EBITDA and free-cash-flow CAGR, and sub-1 current and quick ratios.",
+        "The supplied news is largely Zacks commentary; independent company-level verification is missing."
       ],
-      "summary": "Positive product and industry evidence plus scheduled earnings support the research case, while declining profitability metrics and weak support reduce certainty."
+      "summary": "Research evidence is moderately supportive through positive estimate revisions, upcoming earnings, and income characteristics, but operating-growth deterioration and missing primary-source verification limit conviction."
     },
     {
       "symbol": "CMG",
@@ -132,20 +131,19 @@
     },
     {
       "symbol": "PFE",
-      "research_score": 55,
-      "conviction": "Medium",
+      "research_score": 48,
+      "conviction": "Low",
       "catalysts": [
-        "2026-09-15 Yahoo/Finnhub coverage reports Pfizer is evaluating Phase 1-2 oncology deals",
-        "2026-09-15 Yahoo/Finnhub coverage highlights pipeline and obesity plans",
-        "Fundamentals show 6.19% trailing dividend yield and 8.64 forward P/E"
+        "2026-09-16 Zacks Analyst Blog coverage referenced Pfizer's Xtandi in prostate-cancer awareness coverage.",
+        "Fundamentals show a 6.2% TTM dividend yield, positive revenue growth over five years, and a reported forward P/E below trailing P/E."
       ],
       "risks": [
-        "2026-09-15 Yahoo/Finnhub coverage indicates management expects a return to growth from 2029",
-        "TTM EPS is down 59.91% year over year",
-        "No local research, earnings, or SEC filing evidence was supplied",
-        "TTM payout ratio is 80.25% and five-year FOCF CAGR is negative"
+        "No earnings calendar entry was supplied.",
+        "No local research, polygon news, or ticker-specific SEC filing was supplied.",
+        "TTM EPS growth is negative, TTM net margin and return metrics are below annual figures, and the TTM payout ratio is 80.25%.",
+        "Most supplied news is unrelated or only tangentially relevant to Pfizer."
       ],
-      "summary": "Low valuation and high income support a recovery thesis, but declining earnings, weak recent momentum, and dependence on future pipeline execution limit conviction."
+      "summary": "The dividend and valuation data provide limited support, but deteriorating profitability, high payout, sparse company-specific evidence, and missing earnings and filing data make the research case low conviction."
     },
     {
       "symbol": "AAPL",
@@ -200,33 +198,37 @@
     },
     {
       "symbol": "WMT",
-      "research_score": 48,
-      "conviction": "Low",
+      "research_score": 60,
+      "conviction": "Medium",
       "catalysts": [
-        "2026-11-19 earnings are estimated at $0.6438 EPS and $189.2B revenue.",
-        "2026-09-14 Yahoo described Walmart as having defensive scale and e-commerce momentum."
+        "2026-09-16 reported partnership with SCAN Health for Medicare Advantage plans expected to reach more than 2 million enrollees in two states.",
+        "2026-09-16 reported expansion of Walmart+ fuel benefits and digital marketplace assortment.",
+        "2026-11-19 reported earnings date with EPS estimate of $0.6438 and revenue estimate of $189.19B."
       ],
       "risks": [
-        "2026-09-14 Yahoo reported concerns that AI shopping assistants may steer consumers toward imported products, creating potential retail-policy and sourcing uncertainty.",
-        "Fundamentals show negative 13-week and 26-week returns, declining free-cash-flow CAGR, and a forward P/E near 36.",
-        "Local research, news, and SEC filing sources are missing."
+        "Sector is listed as Unknown in the trading packet.",
+        "No local research, polygon news, or ticker-specific SEC filing was supplied.",
+        "Fundamentals show high valuation metrics, negative 13- and 26-week returns, and negative year-to-date relative performance versus the S&P 500.",
+        "The supplied partnership news does not quantify financial impact."
       ],
-      "summary": "Defensive scale and a scheduled earnings catalyst provide support, but valuation, relative underperformance, and limited company-specific evidence keep research conviction low."
+      "summary": "Company-specific news and upcoming earnings provide moderate support, but valuation, weak intermediate performance, unknown sector classification, and absent primary-source research constrain conviction."
     },
     {
       "symbol": "NKE",
       "research_score": 32,
       "conviction": "Low",
       "catalysts": [
-        "The packet contains no clearly verified positive company-specific catalyst beyond ongoing brand and campus-marketing activity."
+        "2026-09-08 Zacks reported five consecutive quarters of double-digit NIKE Running growth and planned product launches for the second half of FY27.",
+        "2026-09-15 Zacks reported North America wholesale revenue growth of 10%."
       ],
       "risks": [
-        "2026-09-14 Yahoo reported Nike was downgraded; Benzinga reported Citi maintained Neutral and lowered its target to $39.",
-        "2026-09-14 Yahoo described Nike as more than 75% below its high and facing major challenges.",
-        "Fundamentals show negative multi-period returns, declining earnings and EBITDA trends, and weak revenue growth.",
-        "Earnings and Polygon news sources are missing."
+        "The supplied local research is for VST and MSFT, not NKE; no relevant local research was provided.",
+        "No ticker-specific SEC filing or earnings calendar entry was supplied.",
+        "2026-09-15 Zacks reported Greater China wholesale decline of 19%, international weakness, elevated inventory, and a slow turnaround.",
+        "2026-09-12 coverage reported S&P 100 removal and declining revenue, earnings, and operating margins.",
+        "Fundamentals show negative 13-, 26-, and 52-week returns, negative revenue and EBITDA trends, and a 77.45% payout ratio."
       ],
-      "summary": "The evidence is predominantly negative, with analyst caution, severe relative underperformance, and deteriorating growth indicators supporting the avoid classification."
+      "summary": "A few product and regional positives are outweighed by broad business deterioration, China weakness, turnaround uncertainty, and missing primary-source verification."
     },
     {
       "symbol": "F",
@@ -245,37 +247,38 @@
     },
     {
       "symbol": "NFLX",
-      "research_score": 70,
+      "research_score": 58,
       "conviction": "Medium",
       "catalysts": [
-        "2026-09-13 Motley Fool cited 13.4% revenue growth, approximately $11B trailing free cash flow, buybacks, advertising expansion, and sports-rights investment.",
-        "2026-09-10 Motley Fool cited advertising-tier growth and projected 2026 advertising revenue of approximately $3B.",
-        "2026-09-14 Benzinga reported Evercore maintained Outperform and raised its price target to $110."
+        "2026-09-15 Zacks coverage reported upcoming October 20 earnings expectations of $0.82 EPS and $12.88B revenue.",
+        "2026-09-14 coverage cited live events, short-form video, and advertising as potential growth levers.",
+        "2026-09-14 coverage reported expected 2026 free cash flow of $12.5B and a $4.7B Q2 buyback."
       ],
       "risks": [
-        "The packet lacks current earnings, local research, and SEC filing sources.",
-        "2026-09-14 Motley Fool noted streaming competition and referenced Netflix only as a competitor in a broader media comparison.",
-        "Technical data show negative 5-day, 10-day, and 20-day returns and weak trend."
+        "No earnings entry was supplied in the structured earnings data.",
+        "No local research or ticker-specific SEC filing was supplied.",
+        "2026-09-15 Zacks reported a 3% decline, a Hold rating, and premium valuation versus its industry; the packet also reports the stock down 32.4% over one year.",
+        "The strongest operating claims come from secondary media sources and were not independently verified here."
       ],
-      "summary": "Dated third-party evidence supports cash flow, advertising, and strategic execution, but missing issuer-level verification and weak technical conditions limit conviction."
+      "summary": "Growth initiatives and reported cash-flow expectations are constructive, but recent underperformance, valuation concerns, missing structured earnings data, and limited primary-source verification support only medium research conviction."
     },
     {
       "symbol": "CCL",
-      "research_score": 48,
+      "research_score": 38,
       "conviction": "Low",
       "catalysts": [
-        "2026-09-14 Yahoo/Finnhub coverage says the fiscal 2026 EBITDA outlook above $7B remains intact",
-        "2026-09-13 Benzinga reports Wells Fargo maintained Overweight while lowering its price target to $36",
-        "Fundamentals show 21.77% TTM EPS growth and 11.13 forward P/E"
+        "2026-09-08 Zacks reported 93% of 2026 business booked at record pricing, $9B in customer deposits, and expected record second-half yields.",
+        "2026-09-07 Zacks reported a recent earnings-beat history and positive Earnings ESP.",
+        "Fundamentals show positive TTM EPS growth and improving recent profitability metrics."
       ],
       "risks": [
-        "Technical data classifies CCL as AVOID with negative five-, ten-, and twenty-day returns",
-        "2026-09-14 Yahoo/Finnhub coverage cites Caribbean pricing pressure",
-        "Quarterly debt-to-equity is 1.92",
-        "Quarterly current ratio is 0.33 and quick ratio is 0.22",
-        "No local research, earnings, or SEC filing evidence was supplied"
+        "No local research, local news, or ticker-specific SEC filing was supplied.",
+        "No earnings calendar entry was supplied.",
+        "2026-09-09 Zacks reported a 16.1% monthly decline and European travel-demand and geopolitical concerns.",
+        "Secondary coverage cited substantial debt, tight liquidity, rising fuel costs, and geopolitical exposure.",
+        "Fundamentals show negative 13-, 26-, and 52-week returns, high beta, and debt-to-equity near 1.9x quarterly."
       ],
-      "summary": "EBITDA guidance and valuation provide possible recovery support, but severe technical deterioration, pricing pressure, leverage, and weak liquidity outweigh the catalysts."
+      "summary": "Booking and pricing data provide a credible operational catalyst, but severe price weakness, leverage, liquidity constraints, demand uncertainty, and missing primary-source verification support low conviction."
     },
     {
       "symbol": "PCG",
@@ -296,20 +299,20 @@
     },
     {
       "symbol": "CMCSA",
-      "research_score": 52,
+      "research_score": 43,
       "conviction": "Low",
       "catalysts": [
-        "2026-09-15 Yahoo/Finnhub coverage reports Universal Ads expanding creator-led streaming inventory",
-        "2026-09-15 Yahoo/Finnhub coverage reports Comcast broadband expansion and an AI-focused edge platform",
-        "Fundamentals show 8.94 EV/free cash flow and 5.45% trailing dividend yield"
+        "2026-09-15 Bank of America maintained a Buy rating while lowering its price target from $37 to $35.",
+        "2026-09-15 company announcement scheduled the 2026-10-22 third-quarter earnings call.",
+        "Supplied secondary coverage cited substantial free cash flow, a high dividend yield, and a planned NBCUniversal spinoff as potential support."
       ],
       "risks": [
-        "Technical data shows WATCH status, negative trend, and weak relative strength",
-        "TTM EPS is down 49.00% year over year",
-        "No local research, earnings, or SEC filing evidence was supplied",
-        "TTM revenue growth is 0.58% and quarterly EPS is down 66.91%"
+        "No local research or ticker-specific SEC filing was supplied.",
+        "No structured earnings estimate was supplied.",
+        "Secondary coverage reports broadband-customer losses, declining revenue trends, debt exposure, and structural competition.",
+        "The packet contains no verified company-level financial impact from the planned spinoff."
       ],
-      "summary": "Low valuation and new advertising and edge initiatives are positives, but weak growth, declining earnings, and poor technical structure keep conviction low."
+      "summary": "Dividend and possible strategic separation offer potential catalysts, but operating deterioration, leverage, weak recent performance, and missing primary-source and earnings data keep conviction low."
     }
   ]
 }
