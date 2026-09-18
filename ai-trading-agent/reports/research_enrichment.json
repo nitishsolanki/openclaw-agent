@@ -1,85 +1,84 @@
 {
-  "generated_at": "2026-09-17T15:02:15.091117+00:00",
+  "generated_at": "2026-09-18T17:02:17.173908+00:00",
   "research": [
     {
       "symbol": "SMCI",
-      "research_score": 46,
+      "research_score": 43,
       "conviction": "Low",
       "catalysts": [
-        "Dated Yahoo and Benzinga reports describe AI-server demand, a rebound, and substantial expected revenue growth",
-        "Supplied fundamentals show strong historical revenue and EPS growth with low forward P/E and EV/EBITDA multiples"
+        "2026-08-13 and 2026-08-14 local market research identified positive AI-infrastructure and semiconductor-capex read-through from Applied Materials.",
+        "Fundamentals show 77.79% TTM revenue growth and 94.10% TTM EPS growth."
       ],
       "risks": [
-        "Local SEC notes explicitly say no fresh ticker-specific filing was independently verified",
-        "No earnings packet or Polygon news was supplied",
-        "Supplied fundamentals show weak recent price performance, high beta, and very high three-month volatility",
-        "Local research identifies financing, dilution, execution, and margin risks"
+        "2026-08-12 local research said no ticker-specific filing was independently verified; 2026-08-13 local SEC review repeated that limitation.",
+        "No earnings source was supplied.",
+        "Fundamentals show a -17.95% 52-week return, low gross margin of 10.82%, and highly volatile 95.30% three-month annualized standard deviation."
       ],
-      "summary": "AI-server growth and apparently low valuation are positives, but filing verification is absent and volatility, execution, and financing risks are significant."
+      "summary": "Growth metrics and sector read-through are positive, but missing company-specific filings and earnings plus margin and volatility concerns keep conviction low."
     },
     {
       "symbol": "INTC",
-      "research_score": 42,
+      "research_score": 46,
       "conviction": "Low",
       "catalysts": [
-        "2026-09-08 Motley Fool: shares rose after reported plans to raise processor prices by up to 10%",
-        "Fundamentals show recent revenue growth and strong recent price momentum"
+        "2026-09-17 Motley Fool/Polygon reported exploratory discussions involving SK Hynix and Intel's Ohio facility.",
+        "2026-09-18 Zacks/Polygon reported a 7.7% share-price jump in a broad technology rally."
       ],
       "risks": [
-        "No ticker-specific earnings, local research, SEC filing, or Polygon evidence was provided",
-        "Fundamentals show negative trailing EPS, negative trailing net margin, and very high forward valuation",
-        "Reported price-action catalyst is from secondary coverage and requires issuer confirmation",
-        "High beta and recent extension increase event and reversal risk"
+        "The potential SK Hynix arrangement remains exploratory with no formal agreement, according to the 2026-09-17 report.",
+        "No earnings, local research, or SEC filing source was supplied.",
+        "Fundamentals show negative TTM EPS of -2.1202, negative TTM net margin of -19.79%, and negative five-year revenue growth of -7.46%.",
+        "Technical data marks the candidate as extended with a 2.69 ATR extension."
       ],
-      "summary": "The supplied evidence supports only a price-based catalyst and a reported pricing initiative. Losses, valuation, and missing primary company verification make the research case weak."
+      "summary": "News flow is event-driven and speculative while fundamentals remain weak and the technical setup is extended; research support is limited."
     },
     {
       "symbol": "HPE",
       "research_score": 78,
       "conviction": "Medium",
       "catalysts": [
-        "2026-09-10 Zacks reported $2.4B AI Systems orders, $7.6B AI backlog, 25% Cloud & AI revenue growth, and 35% server revenue growth.",
-        "2026-09-09 Zacks reported 34% quarterly revenue growth and 75% networking revenue growth."
+        "2026-09-10 Zacks/Polygon reported $2.4 billion in AI Systems orders, a $7.6 billion AI backlog, 25% Cloud & AI revenue growth, and 35% server revenue growth.",
+        "2026-09-09 Zacks/Polygon reported 34% quarterly revenue growth and raised guidance.",
+        "Earnings are scheduled for 2026-12-02, with an EPS estimate of 1.2751 and revenue estimate of 14460009551."
       ],
       "risks": [
-        "2026-09-14 Yahoo/Investing.com reported Evercore ISI cut HPE to In Line after the sharp rally.",
-        "Local research and SEC filing sources are missing; upcoming 2026-12-02 earnings remain unreported."
+        "2026-09-10 and 2026-09-09 Zacks reports are secondary sources; no local SEC filing was supplied.",
+        "Fundamentals show substantial recent price appreciation, including 132.01% over 52 weeks and 135.97% year to date.",
+        "The next earnings report remains unverified for actual results."
       ],
-      "summary": "Strong dated AI-infrastructure and operating-growth evidence supports the long thesis, but recent appreciation, an analyst downgrade, and missing issuer-level research limit conviction."
+      "summary": "Dated company-specific news and scheduled earnings support the research case, though the large price advance and lack of primary filing verification reduce conviction."
     },
     {
       "symbol": "NVDA",
-      "research_score": 78,
+      "research_score": 82,
       "conviction": "Medium",
       "catalysts": [
-        "2026-09-15 Yahoo/Finnhub coverage reports a Salesforce-NVIDIA collaboration using NVIDIA Nemotron",
-        "2026-09-15 Yahoo/Finnhub coverage reports a proposed 1,024-GPU NVIDIA B300 cluster tied to a $192M commitment",
-        "2026-11-17 earnings are scheduled with revenue and EPS estimates supplied",
-        "Fundamentals show 83.38% TTM revenue growth and 125.15% TTM EPS growth"
+        "2026-09-18 ChartMill/Finnhub described 111% EPS growth and strong leadership characteristics.",
+        "Fundamentals show 83.38% TTM revenue growth and 125.15% TTM EPS growth.",
+        "Earnings are scheduled for 2026-11-17, with an EPS estimate of 2.5231 and revenue estimate of 111273704778."
       ],
       "risks": [
-        "Technical data classifies NVDA as WATCH with negative trend and a 8.34% five-day decline",
-        "The 2026-08-31 SEC reference is a secondary index and requires primary EDGAR verification",
-        "Fundamentals show elevated valuation, including 26.20 TTM P/E and 39.88 EV/free cash flow",
-        "Recent AI leadership remains exposed to high expectations and profit-taking"
+        "2026-08-31 local SEC review listed an August 26 8-K through a secondary index but said the primary EDGAR document requires verification.",
+        "2026-08-13 and 2026-08-14 local research flagged crowded AI positioning, elevated expectations, geopolitical risk, and valuation risk.",
+        "Recent price performance weakened, including a -2.04% five-day return."
       ],
-      "summary": "Company evidence and fundamentals are strong, but the current technical setup is poor and valuation and filing-verification risks argue for watchlist treatment."
+      "summary": "Strong company fundamentals and an identified earnings catalyst support a high research score, tempered by filing verification, valuation, and AI-cycle risks."
     },
     {
       "symbol": "HPQ",
-      "research_score": 72,
+      "research_score": 63,
       "conviction": "Medium",
       "catalysts": [
-        "2026-09-16 Zacks reported HPQ added to Rank #1 Strong Buy list after an 8.4% increase in consensus earnings estimates over 60 days.",
-        "2026-11-23 reported earnings date with EPS estimate of $0.761 and revenue estimate of $15.60B.",
-        "Fundamentals show positive quarterly and TTM revenue growth, a 3.6% TTM dividend yield, and moderate forward valuation."
+        "2026-09-16 Zacks/Polygon reported HPQ was added to its Rank #1 list after an 8.4% increase in consensus earnings estimates over 60 days.",
+        "2026-09-18 Yahoo/Finnhub reported the launch of a ZBook Ultra G3a workstation positioned for local AI workloads.",
+        "Earnings are scheduled for 2026-11-23, with an EPS estimate of 0.761 and revenue estimate of 15598287570."
       ],
       "risks": [
-        "No local research or ticker-specific SEC filing was supplied.",
-        "Fundamentals show declining TTM EPS growth, negative five-year EBITDA and free-cash-flow CAGR, and sub-1 current and quick ratios.",
-        "The supplied news is largely Zacks commentary; independent company-level verification is missing."
+        "2026-09-16 Zacks/Polygon and 2026-09-18 Yahoo/Finnhub are secondary news sources; no local SEC filing was supplied.",
+        "Fundamentals show declining TTM EPS growth of -4.42%, negative five-year FOCF CAGR of -5.6%, and current and quick ratios below 1.",
+        "Technical data marks the candidate as extended with a 1.59 ATR extension."
       ],
-      "summary": "Research evidence is moderately supportive through positive estimate revisions, upcoming earnings, and income characteristics, but operating-growth deterioration and missing primary-source verification limit conviction."
+      "summary": "Analyst estimate revisions and an AI-workstation launch provide support, but operating trends, liquidity metrics, missing filings, and extension risk temper the case."
     },
     {
       "symbol": "CMG",
@@ -117,46 +116,48 @@
     },
     {
       "symbol": "WBD",
-      "research_score": 45,
+      "research_score": 31,
       "conviction": "Low",
       "catalysts": [
-        "2026-09-13 SeekingAlpha discussed the Paramount-Warner merger and argued WBD could prevail in court."
+        "2026-09-18 Benzinga/Finnhub reported FCC approval related to the proposed Paramount-Warner Bros. merger deal.",
+        "2026-09-18 Yahoo/Finnhub reported Barclays resumed coverage with an Equal Weight rating and a $28 target."
       ],
       "risks": [
-        "Merger outcome, timing, and regulatory or antitrust consequences are unresolved.",
-        "Fundamentals, earnings, Polygon news, local research, and SEC filing sources are missing."
+        "2026-09-18 Yahoo/Finnhub reported analysts view the proposed $110 billion merger as difficult to value and associated with major financial and operational risks.",
+        "No earnings, local research, SEC filing, or polygon news source was supplied.",
+        "Fundamentals show negative TTM EPS of -1.2735, negative TTM net margin of -8.77%, and negative TTM revenue growth of -6.05%."
       ],
-      "summary": "The merger is the only material company-specific catalyst in the packet, while the unresolved transaction and weak recent operating evidence create substantial uncertainty."
+      "summary": "The merger is the principal identifiable catalyst, but uncertainty around transaction execution and weak fundamentals substantially limit research conviction."
     },
     {
       "symbol": "PFE",
-      "research_score": 50,
-      "conviction": "Medium",
+      "research_score": 39,
+      "conviction": "Low",
       "catalysts": [
-        "Dated Yahoo report argues Pfizer's dividend should survive",
-        "Dated Yahoo report describes new-business launches and acquisitions as a potential growth handoff"
+        "2026-09-18 Seeking Alpha/Finnhub discussed oncology spending growth and identified PFE among potentially undervalued oncology stocks.",
+        "Fundamentals show a 6.23% TTM dividend yield."
       ],
       "risks": [
-        "No earnings packet, local research, Polygon news, or SEC filings was supplied",
-        "Supplied fundamentals show declining TTM EPS growth, revenue growth near zero, and TTM payout ratio of 80.25%",
-        "Dated coverage states the newer business is only about one-fifth of the company, leaving the legacy business material"
+        "The supplied oncology article does not provide a verified Pfizer-specific catalyst or operating result.",
+        "No earnings, local research, SEC filing, or polygon news source was supplied.",
+        "Fundamentals show TTM EPS growth of -59.91%, five-year EPS growth of -3.51%, and TTM net margin of 6.8%.",
+        "The dividend payout ratio is elevated at 80.25% TTM."
       ],
-      "summary": "Dividend support and potential newer-business growth provide some positives, but deteriorating earnings and limited direct evidence keep conviction moderate."
+      "summary": "Income characteristics and broad oncology interest provide limited support, but company-specific evidence is sparse and earnings trends are weak."
     },
     {
       "symbol": "AAPL",
-      "research_score": 72,
-      "conviction": "High",
+      "research_score": 76,
+      "conviction": "Medium",
       "catalysts": [
-        "Dated Yahoo report citing BofA commentary on higher iPhone 18 Pro Max carrier trade-in incentives",
-        "Dated Motley Fool reports discussing possible AI-server initiative and long-term compounder status"
+        "2026-09-18 Yahoo/Finnhub coverage cited a better-than-expected iPhone 18 refresh cycle and launch activity.",
+        "Fundamentals show 14.24% TTM revenue growth and 32.61% TTM EPS growth."
       ],
       "risks": [
-        "No earnings packet or local SEC filing was supplied",
-        "AI-server initiative is speculative and reportedly targeted for 2029",
-        "Valuation metrics in supplied fundamentals are elevated, including forward P/E 34.85 and forward PEG 2.53"
+        "2026-09-18 Yahoo/Finnhub coverage also noted price increases that could affect upgrade economics.",
+        "No earnings, local research, or SEC filing source was supplied; valuation is elevated at 34.85 forward P/E."
       ],
-      "summary": "Fundamentals and dated news are broadly supportive, with strong reported growth and margins, but the evidence lacks earnings and SEC verification and includes speculative AI expansion."
+      "summary": "Company fundamentals and dated news are supportive, but valuation and missing primary-source earnings and filing verification limit conviction."
     },
     {
       "symbol": "BAC",
@@ -177,20 +178,20 @@
     },
     {
       "symbol": "AMZN",
-      "research_score": 70,
-      "conviction": "High",
+      "research_score": 72,
+      "conviction": "Medium",
       "catalysts": [
-        "Local research dated 2026-08-26 describes AWS, advertising, retail efficiency, and AI infrastructure as key growth themes",
-        "Dated Motley Fool report cites a large increase in Stanley Druckenmiller's Amazon stake and reported AWS growth",
-        "Dated Yahoo coverage notes Amazon partnerships and AI infrastructure activity"
+        "2026-09-17 Motley Fool/Polygon reported Amazon agreed to an $8 billion potential long-term generator supply arrangement with Generac, including $2.4 billion of projected 2027-2028 deliveries.",
+        "2026-09-18 Yahoo/Finnhub reported a data-center electrical-cable installation contract near Columbus, Ohio.",
+        "Local research identifies AWS, advertising, AI infrastructure, and retail-margin expansion as key company themes."
       ],
       "risks": [
-        "Direct Amazon IR earnings release text was inaccessible according to local research",
-        "No earnings packet or independently verified ticker-specific SEC filing was supplied",
-        "AI capex may pressure free cash flow and AWS faces intense competition",
-        "Technical candidate is WATCH with negative recent returns and no breakout confirmation"
+        "Local research said Amazon's IR earnings page was inaccessible and relied on SEC availability and public-news context rather than direct earnings release text.",
+        "No earnings source or ticker-specific local SEC filing was supplied in the packet.",
+        "2026-09-18 Benzinga/Finnhub coverage warned that hyperscaler AI capex could create capital-destruction risk.",
+        "Technical data shows a zero trend component and negative five-, ten-, and twenty-day returns."
       ],
-      "summary": "The supplied local research and dated news support a diversified AWS, advertising, and AI thesis, while missing direct earnings and filing verification and heavy capex remain important uncertainties."
+      "summary": "Business-specific infrastructure news and a broad multi-engine operating thesis support the research case, but missing primary earnings verification, capex risk, and weak technical trend reduce conviction."
     },
     {
       "symbol": "WMT",
@@ -326,19 +327,18 @@
     },
     {
       "symbol": "SPCX",
-      "research_score": 45,
+      "research_score": 28,
       "conviction": "Low",
       "catalysts": [
-        "Dated Yahoo report says SpaceX is closer to a stated $100B ARR goal following a compute deal",
-        "Dated Benzinga report highlights approximately $2T valuation"
+        "2026-09-18 Seeking Alpha/Finnhub cited continued AI-capex demand for semiconductor funds.",
+        "2026-09-18 Seeking Alpha/Finnhub reported SpaceX had reached 100 Falcon launches in 2026."
       ],
       "risks": [
-        "No local research, Polygon news, earnings, or SEC filings were supplied",
-        "Supplied fundamentals show negative EPS, negative margins, negative cash flow per share, and forward P/E of 718.07",
-        "Dated Benzinga report describes approximately 4.5% daily swings, indicating high volatility",
-        "Dated Seeking Alpha headline characterizes the valuation as dangerous"
+        "The supplied news is largely thematic and does not establish SPCX-specific operating or financial catalysts.",
+        "No local research, news, SEC filings, earnings, or polygon source was supplied.",
+        "Fundamentals show losses, negative TTM net margin of -31.28%, negative TTM EPS of -0.7457, and 5.39 beta."
       ],
-      "summary": "News includes a compute-deal and ARR catalyst, but profitability, valuation, volatility, and evidence coverage create substantial uncertainty."
+      "summary": "Technical strength is not supported by sufficiently specific company or fund evidence; losses, volatility, and missing primary sources create substantial uncertainty."
     }
   ]
 }

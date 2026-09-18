@@ -1970,5 +1970,34 @@
       "Utilities": 41.46,
       "Consumer Discretionary": 111.64
     }
+  },
+  {
+    "date": "2026-09-18",
+    "scores": {
+      "Technology": 84.66,
+      "Energy": 83.27,
+      "Real Estate": 54.26,
+      "Consumer Staples": 54.11,
+      "Industrials": 53.64,
+      "Utilities": 53.45,
+      "Communication Services": 53.4,
+      "Financials": 53.11,
+      "Healthcare": 53.02,
+      "Consumer Discretionary": 51.93,
+      "Materials": 50.93
+    },
+    "prices": {
+      "Technology": 187.95,
+      "Energy": 64.36,
+      "Real Estate": 42.73,
+      "Consumer Staples": 83.15,
+      "Industrials": 168.93,
+      "Utilities": 41.13,
+      "Communication Services": 111.28,
+      "Financials": 55.87,
+      "Healthcare": 168.22,
+      "Consumer Discretionary": 111.02,
+      "Materials": 50.08
+    }
   }
 ]
